@@ -1,0 +1,331 @@
+
+
+<section class="section mt-60">
+    <div class="container mt-lg-3">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12 d-lg-block ">
+                <div class="sidebar sticky-bar p-4 rounded shadow">
+    
+                    
+                    <div class="widget mt-4">
+                        <ul class="list-unstyled sidebar-nav mb-0" id="navmenu-nav">
+                            <li class="navbar-item account-menu px-0">
+                                <a  (click)="crearPost()" class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                                    <span class="h4 mb-0"><i class="uil uil-dashboard"></i></span>
+                                    <h6 class="mb-0 ms-2">Crear Post</h6>
+                                </a>
+                            </li>
+                            
+                            <li (click)="mostrar = true" class="navbar-item account-menu px-0 mt-2">
+                                <a  class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                                    <span class="h4 mb-0"><i class="uil uil-users-alt"></i></span>
+                                    <h6 class="mb-0 ms-2">Listado de Post</h6>
+                                </a>
+                            </li>
+                            
+                            <li class="navbar-item account-menu px-0 mt-2">
+                                <a  class="navbar-link d-flex rounded shadow align-items-center py-2 px-4" (click)="mostarEmpresas()">
+                                    <span class="h4 mb-0"><i class="uil uil-file"></i></span>
+                                    <h6 class="mb-0 ms-2">Buscar Empresas</h6>
+                                </a>
+                            </li>
+                        
+                            
+                            <li class="navbar-item account-menu px-0 mt-2">
+                                <a href="auth-login-three.html" class="navbar-link d-flex rounded shadow align-items-center py-2 px-4">
+                                    <span class="h4 mb-0"><i class="uil uil-dashboard"></i></span>
+                                    <h6 class="mb-0 ms-2">Logout</h6>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="widget mt-4 pt-2">
+                        <h5 class="widget-title">Follow me :</h5>
+                        <ul class="list-unstyled social-icon social mb-0 mt-4">
+                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook fea icon-sm fea-social"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a></li>
+                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram fea icon-sm fea-social"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a></li>
+                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter fea icon-sm fea-social"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a></li>
+                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin fea icon-sm fea-social"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></li>
+                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github fea icon-sm fea-social"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></li>
+                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube fea icon-sm fea-social"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></li>
+                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gitlab fea icon-sm fea-social"><path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"></path></svg></a></li>
+                        </ul><!--end icon-->
+                    </div>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-lg-8 col-12">
+
+                <!-- La editor de post -->
+
+                <div class="card border-0 rounded shadow  h-100" *ngIf="!mostrar && !mostrar_empresas">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+                          <h5 class="text-md-start text-center">EDICION DE PUTISIMO BLOG :</h5>
+
+                          <div class="mt-3 text-md-start text-center d-sm-flex">
+                              <img src="assets/images/client/programador_tecnoria.jpg" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
+                              
+                              <div class="mt-md-4 mt-3 mt-sm-0">
+                                  <a  class="btn btn-primary mt-2" (click)="createPost()">Publicar Post</a>
+                                  <a href="javascript:void(0)" class="btn btn-outline-primary mt-2 ms-2">Borrar</a>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                   
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="mb-3">
+                              <label class="form-label">Titulo del blog <span class="text-danger">*</span></label>
+                              <div class="form-icon position-relative">
+                                <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                                <input name="title" id="title" type="text" class="form-control ps-5" placeholder="Titulo del Blog :" [(ngModel)]="post.title">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="mb-3">
+                              <label class="form-label">Meta Descripcion <span class="text-danger">*</span></label>
+                              <div class="form-icon position-relative">
+                                <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                                <input name="desc" id="desc" type="text" class="form-control ps-5" placeholder="Meta descripcion :" [(ngModel)]="post.shortDescription">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="mb-3 row">
+                              <div class="col-6">
+                                <label class="form-label">Keywords <span class="text-danger">*</span></label>
+                                <div class="form-icon position-relative">
+                                  <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                                  <input name="desc" id="desc" type="text" class="form-control ps-5" placeholder="Keyowrd :" [(ngModel)]="post.keyword">
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="mt-md-4 mt-3 mt-sm-0">
+                                  <a  class="btn btn-primary mt-2" (click)="addKeyword()">Añadir palabra clave</a>
+                                </div>
+                              </div>                     
+                            </div>
+                            <div class="row">
+                              <label>Lista de palabras</label>
+                              <div class="d-flex">
+                                  <span *ngFor="let word of post.keywords" 
+                                        class="badge rounded-pill bg-soft-INFO" 
+                                        style="background-color: green;"> {{word}} </span>                          
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="mb-3">
+                              <label class="form-label">Imagen destacada <span class="text-danger">*</span></label>
+                              <div class="form-icon position-relative">
+                                <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                                <input name="img" id="img" type="file" class="form-control ps-5" placeholder="Imagen destacada : " (change)="uploadFile($event)">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="mb-3">
+                              <label class="form-label">Categorias: <span class="text-danger">*</span></label>
+                              <div class="btn-group dropdown-primary position-relative" ngbDropdown>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ngbDropdownToggle aria-haspopup="true" aria-expanded="false">
+                                  {{post.tags}}
+                                </button>
+                                  <div class="dropdown-menu" ngbDropdownMenu>
+                                    <a class="dropdown-item" (click)="setCat('diseño')">Diseño Web</a>
+                                    <a class="dropdown-item" (click)="setCat('marketing')">Marketing</a>
+                                    <a class="dropdown-item" (click)="setCat('seo')">SEO</a>
+                                    <a class="dropdown-item" (click)="setCat('desarrollo')">Desarrollo</a>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <form [formGroup]="form">
+                            <div class="editor">
+                                <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+                                </ngx-editor-menu>
+                                <ngx-editor [editor]="editor" [(ngModel)]="post.content" formControlName="editorContent" class="h-100">
+                                </ngx-editor>
+                            </div>
+                        </form>
+                    </div><!--end row-->
+                </div>
+                
+                <!--end card-body-->
+                
+                <!-- listado de post -->
+
+                <div class="rounded shadow p-4" *ngIf="mostrar && !mostrar_empresas">
+                    
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h5 class="mb-0">Listado de Post</h5>
+                    </div>
+          
+                    <!-- Modal Content Start -->
+                    <ng-template #content let-modal>
+                      <div class="modal-content rounded shadow border-0">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="composemail-title">Branded T-Shirts</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body p-4">
+                          <form>
+                            <div class="row">
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <label class="form-label">Your Name <span class="text-danger">*</span></label>
+                                  <div class="form-icon position-relative">
+                                    <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                                    <input name="name" id="name" type="text" class="form-control ps-5" placeholder="First Name :">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <label class="form-label">Subject</label>
+                                  <div class="form-icon position-relative">
+                                    <i-feather name="book" class="fea icon-sm icons"></i-feather>
+                                    <input name="subject" id="subject" class="form-control ps-5" placeholder="Your subject :">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-12">
+                                <ckeditor [editor]="Editor" data="<p>Hello,<br><br> Great doctor if you need your family member to get effective immediate
+                                  assistance, emergency treatment or a simple consultation. <br><br>Thank you</p>"></ckeditor>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="border-top p-4">
+                          <button type="button" class="btn btn-primary">Send Now</button>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <!-- Modal Content End -->
+          
+                    <div class="d-flex border-bottom align-items-center justify-content-between bg-light mt-4 p-3">
+                      <div class="form-check ps-0">
+                        <div class="mb-0">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="selectall">
+                            <label class="form-check-label" for="selectall">Select all</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+          
+                    <div class="d-flex border-bottom p-3" *ngFor="let data of bloglist">
+                      <div class="form-check ps-0">
+                        <div class="mb-0">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="mail1">
+                            <label class="form-check-label" for="mail1"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <a href="javascript:void(0)">
+                        <div class="d-flex ms-2">
+                          <img src="{{data.image}}" class="avatar avatar-md-sm rounded-pill shadow" alt="">
+                          <div class="flex-1 ms-3">
+                            <span class="text-muted">{{data.date}}</span>
+                            <h6 class="text-dark">{{data.title}}</h6>
+                            <p class="text-muted mb-0">{{data.shortDescription}}</p>
+                          </div>
+                          <div class="flex-column ms-2">
+                            <a (click)="editarPost(data)" class="btn btn-primary">Editar</a>
+                            <a (click)="borrarPost(data)" class="btn btn-danger">Borrar</a>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+          
+                    <div class="d-flex align-items-center justify-content-between mt-4">
+                      <span class="text-muted h6 mb-0">Mostrando 8 out of 33</span>
+                      <a href="javascript:void(0)" class="btn btn-primary">See more</a>
+                    </div>
+                  </div>
+
+
+                <!-- end listado de post -->
+                  <div class="rounded shadow p-4" *ngIf="mostrar_empresas">
+                    <div class="card-body">
+                      <div class="row">
+                        
+                        <div class="col-12">
+                          <div class="mb-3">
+                            <label class="form-label">Tipo de negocio a buscar: <span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                              <input name="title" id="title" type="text" class="form-control ps-5" placeholder="Mecanocos, Abogado, Comercio, Tienda de ropa... :" [(ngModel)]="busqueda.negocio">
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-12">
+                          <div class="mb-3">
+                            <label class="form-label">Donde <span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                              <i-feather name="user" class="fea icon-sm icons"></i-feather>
+                              <input name="desc" id="desc" type="text" class="form-control ps-5" placeholder="Ejemplo:Vigo, Madrid, Galicia, España, Callejon Oscuro en el cento" [(ngModel)]="busqueda.lugar">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                        
+                                <div class="mt-md-4 mt-sm-0 mb-4">
+                                  <a  class="btn btn-primary mt-2" (click)="rasterearEmpresas()">Buscar</a>
+                                </div>
+                        </div>
+
+
+                      </div>
+
+                      <div class="row">
+                        <div class="vol-12">
+                          <div class="table-resposive features-absoulute shadow-md rounded-md">
+                            <table class="table mb-0 table-center">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Nombre</th>
+                                  <th scope="col">Direccion</th>
+                                  <th scope="col">Telefono</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Tipo de negocio</th>
+                                  <th scope="col">Acciones</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let data of empresas">
+                                  <td>{{data.nombre}}</td>
+                                  <td>{{data.direccion}}</td>
+                                  <td>{{data.telefono}}</td>
+                                  <td>{{data.email}}</td>
+                                  <td>{{data.tipoNegocio}}</td>
+                                  <td>
+                                    <a (click)="editarEmpresa(data)" class="btn btn-primary">Editar</a>
+                                    <a (click)="borrarEmpresa(data)" class="btn btn-danger">Borrar</a>
+                                  </td>
+                                </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+            
+                    </div>
+                  </div>
+
+
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section>

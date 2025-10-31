@@ -1,0 +1,89 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { RouterModule } from '@angular/router';
+
+import { ScrollspyDirective } from './scrollspy.directive';
+import { FeatherModule } from 'angular-feather';
+
+import { TestimonialComponent } from './testimonial/testimonial.component';
+import { ClientsLogoComponent } from './clients-logo/clients-logo.component';
+import { ServicesComponent } from './services/services.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { FeaturesComponent } from './features/features.component';
+import { CustomerTestmonialComponent } from './customer-testmonial/customer-testmonial.component';
+import { ReviewTestmonialComponent } from './review-testmonial/review-testmonial.component';
+import { SimplePricingComponent } from './simple-pricing/simple-pricing.component';
+import { MemberComponent } from './member/member.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { BlogComponent } from './blog/blog.component';
+import { FormBottomComponent } from './form-bottom/form-bottom.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PreloaderComponent } from './preloader/preloader.component';
+import { ChatBotComponent } from './chat-bot/chat-bot.component';
+import { ArribaFlechaComponent } from './arriba-flecha/arriba-flecha.component';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { LocationsComponent } from './locations/locations.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
+@NgModule({
+  declarations: [
+
+    ScrollspyDirective,
+    TestimonialComponent,
+    ClientsLogoComponent,
+    ServicesComponent,
+    PricingComponent,
+    FeaturesComponent,
+    CustomerTestmonialComponent,
+    ReviewTestmonialComponent,
+    SimplePricingComponent,
+    MemberComponent,
+    BlogComponent,
+    FormBottomComponent,
+    PreloaderComponent,
+    ChatBotComponent,
+    ArribaFlechaComponent,
+    LocationsComponent
+
+  ],
+  imports: [
+
+    CommonModule,
+    CarouselModule,
+    FeatherModule,
+    RouterModule,
+    NgbAccordionModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ScrollToModule,
+    HttpClientModule,
+    
+
+  ],
+  exports: [
+
+    TestimonialComponent, 
+    ScrollspyDirective,
+    ClientsLogoComponent, 
+    ServicesComponent, 
+    PricingComponent, 
+    FeaturesComponent, 
+    CustomerTestmonialComponent,
+    ReviewTestmonialComponent,
+    SimplePricingComponent,
+    MemberComponent,
+    BlogComponent,
+    FormBottomComponent,
+    ChatBotComponent,
+    ArribaFlechaComponent,
+    PreloaderComponent,
+    LocationsComponent
+    
+    
+   
+  ]
+})
+
+export class SharedModule { }

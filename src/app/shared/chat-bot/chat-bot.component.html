@@ -1,0 +1,86 @@
+<div id="chat-container" style="display: flex;" [hidden]="!hideChatBot">
+    <div class="container" id="webchat" style="width: 400px; height: 600px; display: block;">
+
+        <div class="row h-100"> 
+          <div class="col-12">
+    
+            <div class="h-100" id="chat2">
+
+              <div class="card-header d-flex  justify-content-center p-3 title">
+                <h5 class="mb-0 text-center">TecnoRia <span class="text-primary h5">Bot</span> </h5>
+              </div>
+
+              <div class="card-body d-flex"  style="position: relative; height: 515px; overflow-y: scroll;flex-direction: column-reverse;">
+    
+                <div class="flex-column align-items-end mt-auto">
+
+                  <div class="col-12" *ngFor="let item of messages">
+                 
+                    <div *ngIf="item.type =='bot'">
+                      <p class=" p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;"
+                      [innerHTML]="item.text"
+                      >
+                      
+                      </p>
+
+                      <div class="small p-2 me-3 mb-1 text-white rounded-3 text-right" *ngIf="item.buttons">
+                        <a 
+                          *ngFor="let button of item.buttons"
+                          href="javascript:void(0)" 
+                          class="btn btn-pills btn-soft-primary"
+                          (click)="btnResponse(button)"
+                          > 
+                          {{button.text}} 
+                        </a>
+                      </div>
+
+                      <p class="small ms-3 mb-3 rounded-3 text-muted">{{hora}}</p>
+
+                   
+                    </div>
+
+                    <div *ngIf="item.type =='user'" >
+                      <div class="d-flex flex-row justify-content-end">
+                        <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"
+                        [innerHTML]="item.text"
+                        ></p>
+                      </div>
+                      <p class="small ms-3 mb-3 rounded-3 text-muted" style="text-align: end;">{{hora}}</p>
+                    </div>
+
+                  </div>
+                  <div class="divider d-flex align-items-center mb-4 mt-auto">
+                    <p class="text-center mx-3 mb-0" style="color: #a2aab7;">Today</p>
+                  </div>
+                </div>
+    
+              </div>
+
+              <div class="card-footer text-muted d-flex justify-content-start align-items-center " style="box-shadow: 0 -5px 5px -5px #1e3879; margin-top: 5px">
+                <i-feather class="fea icon-sm icon" name="paperclip"></i-feather>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg" 
+                  id="exampleFormControlInput1"
+                  placeholder="Escribe un mensaje..."
+                  [(ngModel)] = "response"
+                  (keyup.enter)="sendResponse()"
+                  >
+                <a class="ms-3" href="#!" (click)="sendResponse()">
+                    <i-feather class="fea icon-sm icon" name="send"></i-feather>
+                </a>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+    
+    </div>
+</div>
+
+<button id="chatButton" style="display: flex;" (click)="hideChatBotWindow()" [hidden]="hideChatBot">
+    <div class="button">
+        <img src="../../../assets/images/iconos-svg/chat-tecnoria.svg" alt="">
+    </div>
+</button>
+

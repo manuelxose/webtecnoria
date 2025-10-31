@@ -1,0 +1,19 @@
+<section clas="bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+              <p>
+                <ng-container *ngFor="let location of ciudades;let last = last">
+                  <a class="text-muted" 
+                    style="cursor: pointer;"
+                    (click)="navigateTo('/posicionamiento-seo-empresas/'+location.type)">
+                    {{location.name}}
+                  </a>
+                  <span *ngIf="!last; else end"> - </span>
+                  <ng-template #end></ng-template>
+                </ng-container>
+              </p>
+            </div>
+          </div>
+    </div>
+</section>
