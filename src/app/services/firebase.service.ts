@@ -1,5 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID, Optional } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
+import { Observable, of } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -42,9 +43,11 @@ export class FirestoreService {
   }
 
   // CRUD
-  public getAll() {
-    if (!this.isBrowser || !this.collRef) return Promise.resolve({ docs: [] });
-    return this.collRef.get().toPromise();
+  // Return an Observable so callers can `subscribe()`.
+  public getAll(): Observable<any> {
+    if (!this.isBrowser || !this.collRef) return of({ docs: [] });
+    // AngularFire compat collection.get() returns an Observable<QuerySnapshot>.
+    return this.collRef.get();
   }
 
   public async getDoc(id: string) {

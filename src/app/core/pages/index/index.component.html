@@ -1,36 +1,54 @@
 <!-- Hero Start -->
-<section class="bg-half-260 d-table w-100 top-image "
-          style="background:url('{{imagePath}}diseno-web-landing.webp') center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;"
-          data-jarallax='{"speed": 0.5}'  id="home">
-    <div class="container bg-animation-left">
-        <div class="row">
-            <div class="col-12 " style="z-index: 1;">
-                <div class="title-heading">
-                    <h2 class="heading fw-bold mb-3">
-                        <ngx-typed-js [strings]="[ 'Empresa', 'Negocio', 'Startup', 'Proyecto' ]" [shuffle]="true"
-                            [typeSpeed]="200" [loop]="true">
-                            Ayuda a tu  <span class="element text-primary typing"></span>
-                        </ngx-typed-js>
-                        a alcanzar el siguiente nivel
-                    </h2>
-                    <h1 class="display-5 font-weight-bold mb-3">Agencia de Marketing Digital en Galicia</h1>
+<section
+  class="bg-half-260 d-table w-100 top-image"
+  style="background:url('{{
+    imagePath
+  }}diseno-web-landing.webp') center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;"
+  data-jarallax='{"speed": 0.5}'
+  id="home"
+>
+  <div class="container bg-animation-left">
+    <div class="row">
+      <div class="col-12" style="z-index: 1">
+        <div class="title-heading">
+          <h2 class="heading fw-bold mb-3" *ngIf="isBrowser">
+            <ngx-typed-js
+              [strings]="['Empresa', 'Negocio', 'Startup', 'Proyecto']"
+              [shuffle]="true"
+              [typeSpeed]="200"
+              [loop]="true"
+            >
+              Ayuda a tu <span class="element text-primary typing"></span>
+            </ngx-typed-js>
+            a alcanzar el siguiente nivel
+          </h2>
+          <h2 class="heading fw-bold mb-3" *ngIf="!isBrowser">
+            Ayuda a tu <span class="text-primary">Negocio</span> a alcanzar el
+            siguiente nivel
+          </h2>
+          <h1 class="display-5 font-weight-bold mb-3">
+            Agencia de Marketing Digital en Galicia
+          </h1>
 
-                    <div class="mt-4">
-                      <a  class="btn btn-primary mt-2 me-2" [ngxScrollTo]="'#contacto'">
-                        <i class="uil uil-envelope"></i> Solicita Presupuesto
-                      </a>
-                      <a  (click)="Subscribeopen(Subscribecontent)" class="btn btn-outline-primary mt-2">
-                        <i class="uil uil-book-alt"></i>
-                        Te llamamos
-                      </a>
-                    </div>
-                </div>
-            </div>
-            <!--end col-->
+          <div class="mt-4">
+            <a class="btn btn-primary mt-2 me-2" [ngxScrollTo]="'#contacto'">
+              <i class="uil uil-envelope"></i> Solicita Presupuesto
+            </a>
+            <a
+              (click)="Subscribeopen(Subscribecontent)"
+              class="btn btn-outline-primary mt-2"
+            >
+              <i class="uil uil-book-alt"></i>
+              Te llamamos
+            </a>
+          </div>
         </div>
-        <!--end row-->
+      </div>
+      <!--end col-->
     </div>
-    <!--end container-->
+    <!--end row-->
+  </div>
+  <!--end container-->
 </section>
 
 <!--end section-->
@@ -38,135 +56,144 @@
 <!-- Start Features -->
 <section class="bg-light">
   <div class="container-fluid px-0">
-      
     <div class="row g-0 align-items-center">
-        
       <div class="col-xl-2 col-lg-2 col-md-4">
-          <div class="  d-flex features pt-4 pb-4 px-lg-4 px-2">
-            <div class="flex-1">
-                <h4 class="title">
-                  Diseño Web              
-                </h4>
-                <p class="text-muted para mb-0">
-                  Creamos sitios atractivos y fáciles de usar para atraer clientes potenciales.
-                  </p>
-              </div>
+        <div class="d-flex features pt-4 pb-4 px-lg-4 px-2">
+          <div class="flex-1">
+            <h4 class="title">Diseño Web</h4>
+            <p class="text-muted para mb-0">
+              Creamos sitios atractivos y fáciles de usar para atraer clientes
+              potenciales.
+            </p>
           </div>
-      </div>
-        
-         
-          <!--end col-->
-
-          <div class="col-xl-2 col-lg-2 col-md-4">
-            <div class="d-flex features pt-4 pb-4 px-2">
-              <div class="flex-1">
-                  <h4 class="title">
-                    Mantenimiento Web              
-                  </h4>
-                  <p class="text-muted para mb-0">
-                    Mantenemos tu sitio web actualizado y seguro para que puedas concentrarte en tu negocio.
-                  </p>
-              </div>
-          </div>
-          </div>
-          <!--end col-->
-
-          <div class="col-xl-2 col-lg-2 col-md-4">
-            <div class="d-flex features pt-4 pb-4 px-2">
-              <div class="flex-1">
-                  <h4 class="title">
-                    Marketing Digital
-                  </h4>
-                  <p class="text-muted para mb-0">
-                    Creamos campañas de marketing digital para que tu negocio aparezca en los primeros resultados.
-                  </p>
-              </div>
-          </div>
-          </div>
-          <!--end col-->
-
-          <div class="col-xl-2 col-lg-2 col-md-4">
-            <div class="d-flex features pt-4 pb-4 px-2">
-            
-            <div class="flex-1">
-                <h4 class="title">
-                  Posicionamiento Web              
-                </h4>
-                <p class="text-muted para mb-0">
-                  Mejoramos tu posicionamiento en buscadores para que tu negocio aparezca en los primeros resultados.
-                </p>
-            </div>
         </div>
-          </div>
-          <!--end col-->
-
-          <div class="col-xl-2 col-lg-2 col-md-4">
-            <div class="d-flex features pt-4 pb-4 px-2">
-              
-              <div class="flex-1">
-                  <h4 class="title">
-                    Publicidad Online              
-                  </h4>
-                  <p class="text-muted para mb-0">
-                    Creamos campañas de publicidad online para que tu negocio aparezca en los primeros resultados.
-                  </p>
-              </div>
-          </div>
-          </div>
-          <!--end col-->
-
-          <div class="col-xl-2 col-lg-2 col-md-4">
-            <div class="d-flex features pt-4 pb-4 px-2 px-lg-4">
- 
-              <div class="flex-1">
-                  <h4 class="title">
-                    Desarrollo Web              
-                  </h4>
-                  <p class="text-muted para mb-0">
-                    Creamos aplicaciones web para que tu negocio sea más productivo y eficiente.
-                  </p>
-              </div>
-          </div>
-          </div>
-          <!--end col-->
       </div>
-      <!--end row-->
+
+      <!--end col-->
+
+      <div class="col-xl-2 col-lg-2 col-md-4">
+        <div class="d-flex features pt-4 pb-4 px-2">
+          <div class="flex-1">
+            <h4 class="title">Mantenimiento Web</h4>
+            <p class="text-muted para mb-0">
+              Mantenemos tu sitio web actualizado y seguro para que puedas
+              concentrarte en tu negocio.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-xl-2 col-lg-2 col-md-4">
+        <div class="d-flex features pt-4 pb-4 px-2">
+          <div class="flex-1">
+            <h4 class="title">Marketing Digital</h4>
+            <p class="text-muted para mb-0">
+              Creamos campañas de marketing digital para que tu negocio aparezca
+              en los primeros resultados.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-xl-2 col-lg-2 col-md-4">
+        <div class="d-flex features pt-4 pb-4 px-2">
+          <div class="flex-1">
+            <h4 class="title">Posicionamiento Web</h4>
+            <p class="text-muted para mb-0">
+              Mejoramos tu posicionamiento en buscadores para que tu negocio
+              aparezca en los primeros resultados.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-xl-2 col-lg-2 col-md-4">
+        <div class="d-flex features pt-4 pb-4 px-2">
+          <div class="flex-1">
+            <h4 class="title">Publicidad Online</h4>
+            <p class="text-muted para mb-0">
+              Creamos campañas de publicidad online para que tu negocio aparezca
+              en los primeros resultados.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="col-xl-2 col-lg-2 col-md-4">
+        <div class="d-flex features pt-4 pb-4 px-2 px-lg-4">
+          <div class="flex-1">
+            <h4 class="title">Desarrollo Web</h4>
+            <p class="text-muted para mb-0">
+              Creamos aplicaciones web para que tu negocio sea más productivo y
+              eficiente.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end row-->
   </div>
   <!--end container-->
 </section>
 <!--end section-->
 <!-- End Features -->
 
-
 <!-- About Start -->
 <section class="section">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-5 col-md-6 col-12">
-        <img src="{{imagePath}}diseno-web-1.webp" class="img-fluid rounded img" alt="diseño-web-vigo">
+        <img
+          src="{{ imagePath }}diseno-web-1.webp"
+          class="img-fluid rounded img"
+          alt="diseño-web-vigo"
+        />
       </div>
       <!--end col-->
 
       <div class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
         <div class="section-title ms-lg-4">
           <div class="badge rounded-pill bg-soft-primary mb-4" role="alert">
-            <span class="content"> Marketing Digital en  Galicia</span>
-        </div>
-          <h4 class="title mb-4">Mejora tu visibilidad en línea y atrae a más clientes</h4>
+            <span class="content"> Marketing Digital en Galicia</span>
+          </div>
+          <h4 class="title mb-4">
+            Mejora tu visibilidad en línea y atrae a más clientes
+          </h4>
           <p class="text-muted">
-            Llegó el momento de que tu empresa suba su juego en línea. No te vamos a engañar, todos queremos trabajar con una agencia que sea clara, que no nos hable en chino cuando preguntamos cómo va el proyecto y que entendamos lo que estamos pagando. <br><br>
-            <span class="text-dark-50 fw-bold">En TecnoRia somos los reyes del Marketing Digital en Galicia.</span>
-            Hemos llegado hasta aquí gracias a nuestra dedicación a comprender las necesidades y metas de nuestros clientes, nuestra constante disposición a mejorar gracias a su retroalimentación y nuestro enfoque en entregar diseños web excepcionales.  <br><br>
-            Trabajar con <span class="text-dark-50 fw-bold">TecnoRia</span> significa contar con un equipo dedicado y comunicación eficiente para crear un diseño web único y moderno que supere tus expectativas. Valoramos la experiencia del cliente y evitamos el juego de pasar de una persona a otra, siempre estaremos disponibles para responder a tus preguntas y necesidades.          </p>
-            <div class="mt-4">
-              <a [ngxScrollTo]="'#contacto'" class="btn btn-primary mt-2 me-2">
-                <i class="uil uil-envelope"></i> Contacta ahora
-              </a>
-              <a  [routerLink]="'/nosotros'" class="btn btn-outline-primary mt-2">
-                <i class="uil uil-book-alt"></i>
-                Nosotros
-              </a>
-            </div>
+            Llegó el momento de que tu empresa suba su juego en línea. No te
+            vamos a engañar, todos queremos trabajar con una agencia que sea
+            clara, que no nos hable en chino cuando preguntamos cómo va el
+            proyecto y que entendamos lo que estamos pagando. <br /><br />
+            <span class="text-dark-50 fw-bold"
+              >En TecnoRia somos los reyes del Marketing Digital en
+              Galicia.</span
+            >
+            Hemos llegado hasta aquí gracias a nuestra dedicación a comprender
+            las necesidades y metas de nuestros clientes, nuestra constante
+            disposición a mejorar gracias a su retroalimentación y nuestro
+            enfoque en entregar diseños web excepcionales. <br /><br />
+            Trabajar con
+            <span class="text-dark-50 fw-bold">TecnoRia</span> significa contar
+            con un equipo dedicado y comunicación eficiente para crear un diseño
+            web único y moderno que supere tus expectativas. Valoramos la
+            experiencia del cliente y evitamos el juego de pasar de una persona
+            a otra, siempre estaremos disponibles para responder a tus preguntas
+            y necesidades.
+          </p>
+          <div class="mt-4">
+            <a [ngxScrollTo]="'#contacto'" class="btn btn-primary mt-2 me-2">
+              <i class="uil uil-envelope"></i> Contacta ahora
+            </a>
+            <a [routerLink]="'/nosotros'" class="btn btn-outline-primary mt-2">
+              <i class="uil uil-book-alt"></i>
+              Nosotros
+            </a>
+          </div>
         </div>
       </div>
       <!--end col-->
@@ -178,50 +205,68 @@
 <!--end section-->
 <!-- About End -->
 
-
-
-
 <!-- Diseño y desarrollo web -->
 <section class="section pt-0 bg-light pt-4" id="disenio">
   <div class="container">
-    <div class="row align-items-center  d-flex">
-
+    <div class="row align-items-center d-flex">
       <div class="col-lg-5 col-md-6 col-12 cont order-1 order-lg-2">
-        <img src="{{imagePath}}/diseno-web-2.webp" class="img-fluid shadow rounded img" alt="diseño-web-galicia">
+        <img
+          src="{{ imagePath }}/diseno-web-2.webp"
+          class="img-fluid shadow rounded img"
+          alt="diseño-web-galicia"
+        />
       </div>
 
-      <div class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0 order-2 order-lg-1">
+      <div
+        class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0 order-2 order-lg-1"
+      >
         <div class="section-title ms-lg-4">
-          
           <div class="badge rounded-pill bg-soft-primary mb-4" role="alert">
             <span class="content"> Diseño y Desarrollo Web en Galicia</span>
           </div>
 
           <h2 class="title mb-4">Diseño Web y Desarrollo</h2>
-          <p class="text-muted">¿Te has preguntado alguna vez en que prestas atención cuando quieres contratar un servicio o comprar algo en línea? ¿Qué te hizo decidir seguir adelante o salir corriendo? <br><br>
+          <p class="text-muted">
+            ¿Te has preguntado alguna vez en que prestas atención cuando quieres
+            contratar un servicio o comprar algo en línea? ¿Qué te hizo decidir
+            seguir adelante o salir corriendo? <br /><br />
 
-            A nosotros nos pasa lo mismo, nos gusta investigar antes de tomar una decisión. Con un diseño web profesional para tu empresa, ofrecerás una experiencia de usuario única a cada persona que visite tu sitio. <br><br>
-            
-            Imagina a tus potenciales clientes llegando a tu sitio web y encontrando una estructura fácil de navegar. Toda la información importante para ayudarles a tomar una decisión estará estratégicamente colocada con un botón de llamado a la acción (CTA) para atraparlos en el momento en que su interés sea despertado.
-            
-            Si tu sitio web es fácil de usar, es más probable que tus visitantes se conviertan en clientes. <br><br>
+            A nosotros nos pasa lo mismo, nos gusta investigar antes de tomar
+            una decisión. Con un diseño web profesional para tu empresa,
+            ofrecerás una experiencia de usuario única a cada persona que visite
+            tu sitio. <br /><br />
+
+            Imagina a tus potenciales clientes llegando a tu sitio web y
+            encontrando una estructura fácil de navegar. Toda la información
+            importante para ayudarles a tomar una decisión estará
+            estratégicamente colocada con un botón de llamado a la acción (CTA)
+            para atraparlos en el momento en que su interés sea despertado. Si
+            tu sitio web es fácil de usar, es más probable que tus visitantes se
+            conviertan en clientes. <br /><br />
           </p>
 
           <h3 class="title pb-4">¿Cómo funciona?</h3>
           <p class="text-muted">
-            Entendemos tus necesidades, analizamos el público objetivo de tu empresa en Galicia y comenzamos con la propuesta de diseño web. Nos aseguramos de mantenerte informado en todo momento durante el proceso de diseño y desarrollo, para que sepas cada paso que damos. Nos enorgullecemos de nuestra gran atención al detalle al crear diseños de interfaz de usuario modernos que capten la atención de los visitantes. No mostramos un diseño de sitio web de demostración a menos que estemos orgullosos de él primero.
-          
+            Entendemos tus necesidades, analizamos el público objetivo de tu
+            empresa en Galicia y comenzamos con la propuesta de diseño web. Nos
+            aseguramos de mantenerte informado en todo momento durante el
+            proceso de diseño y desarrollo, para que sepas cada paso que damos.
+            Nos enorgullecemos de nuestra gran atención al detalle al crear
+            diseños de interfaz de usuario modernos que capten la atención de
+            los visitantes. No mostramos un diseño de sitio web de demostración
+            a menos que estemos orgullosos de él primero.
           </p>
-         
-          <a routerLink="/agencia-de-desarrollo-web" class="btn btn-primary mt-3 text-center ">Nuestro Proceso de Diseño</a>
+
+          <a
+            routerLink="/agencia-de-desarrollo-web"
+            class="btn btn-primary mt-3 text-center"
+            >Nuestro Proceso de Diseño</a
+          >
         </div>
       </div>
 
-
-    
       <!--end col-->
 
-      
       <!--end col-->
     </div>
     <!--end row-->
@@ -231,37 +276,51 @@
 <!--end section-->
 <!-- About End -->
 
-
 <!-- Manteniento Web -->
 <section class="section pt-0 pt-4" id="mantenimiento">
   <div class="container">
     <div class="row align-items-center">
-
       <div class="col-lg-5 col-md-6 col-12">
-        <img src="{{imagePath}}diseno-web-3.webp" class="img-fluid shadow rounded img" alt="mantenimiento-web-vigo">
+        <img
+          src="{{ imagePath }}diseno-web-3.webp"
+          class="img-fluid shadow rounded img"
+          alt="mantenimiento-web-vigo"
+        />
       </div>
 
       <div class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
         <div class="section-title ms-lg-4">
           <div class="badge rounded-pill bg-soft-primary mb-4" role="alert">
             <span class="content"> Mantenimiento Web Galicia</span>
-        </div>
+          </div>
           <h4 class="title mb-4">Mantenimiento Web</h4>
-          <p class="text-muted">¿Quieres saber cómo es pasar horas tratando de averiguar por qué apareció un error en tu página de inicio después de hacer clic en "actualizar" en un plugin? <br><br>
-            Pues te puedo asegurar que no es nada divertido, y suele pasar justo cuando menos lo esperas. Y lo último que necesitas es perder el tiempo aprendiendo sobre desarrollo web solo para solucionar un problema, en lugar de centrarte en hacer crecer tu negocio en Galicia.<br><br>
-            Por eso, tener un servicio de mantenimiento y gestión de sitios web es crucial. Cualquier sitio web necesita ser mantenido, ya sea para hacer cambios básicos en el contenido o para hacer una revisión general y asegurarnos de que todo sigue funcionando como debe. Y si algo sale mal, siempre tenemos una copia de seguridad lista para subir. En Tecnoria, nuestra meta es asegurarnos de que tu sitio web siga funcionando sin problemas las 24/7, porque sabemos lo importante que es para tu negocio.<br><br>
-          
+          <p class="text-muted">
+            ¿Quieres saber cómo es pasar horas tratando de averiguar por qué
+            apareció un error en tu página de inicio después de hacer clic en
+            "actualizar" en un plugin? <br /><br />
+            Pues te puedo asegurar que no es nada divertido, y suele pasar justo
+            cuando menos lo esperas. Y lo último que necesitas es perder el
+            tiempo aprendiendo sobre desarrollo web solo para solucionar un
+            problema, en lugar de centrarte en hacer crecer tu negocio en
+            Galicia.<br /><br />
+            Por eso, tener un servicio de mantenimiento y gestión de sitios web
+            es crucial. Cualquier sitio web necesita ser mantenido, ya sea para
+            hacer cambios básicos en el contenido o para hacer una revisión
+            general y asegurarnos de que todo sigue funcionando como debe. Y si
+            algo sale mal, siempre tenemos una copia de seguridad lista para
+            subir. En Tecnoria, nuestra meta es asegurarnos de que tu sitio web
+            siga funcionando sin problemas las 24/7, porque sabemos lo
+            importante que es para tu negocio.<br /><br />
           </p>
-         
-          <a [ngxScrollTo]="'#contacto'" class="btn btn-primary mt-3">Detalles de Mantenimiento Web</a>
+
+          <a [ngxScrollTo]="'#contacto'" class="btn btn-primary mt-3"
+            >Detalles de Mantenimiento Web</a
+          >
         </div>
       </div>
 
-
-  
       <!--end col-->
 
-      
       <!--end col-->
     </div>
     <!--end row-->
@@ -272,39 +331,64 @@
 <!-- About End -->
 
 <!-- Marketing digital -->
-<section class="section pt-0 bg-light pt-4"  id="marketing">
+<section class="section pt-0 bg-light pt-4" id="marketing">
   <div class="container">
     <div class="row align-items-center">
-
-      <div class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0 order-2 order-lg-1">
+      <div
+        class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0 order-2 order-lg-1"
+      >
         <div class="section-title ms-lg-4">
           <div class="badge rounded-pill bg-soft-primary mb-4" role="alert">
             <span class="content"> Marketing Digital </span>
-        </div>
+          </div>
           <h2 class="title mb-4">Marketing Digital en Galicia</h2>
-          <p class="text-muted">¿Quieres que tu negocio en Galicia se destaque en línea? ¡Nosotros podemos ayudarte! En Tecnoria, estamos especializados en darle un empujón a tu presencia en línea con nuestras campañas de marketing digital. Nuestros expertos en marketing digital analizarán tu público objetivo y crearán campañas publicitarias personalizadas para llegar a ellos.<br><br>
+          <p class="text-muted">
+            ¿Quieres que tu negocio en Galicia se destaque en línea? ¡Nosotros
+            podemos ayudarte! En Tecnoria, estamos especializados en darle un
+            empujón a tu presencia en línea con nuestras campañas de marketing
+            digital. Nuestros expertos en marketing digital analizarán tu
+            público objetivo y crearán campañas publicitarias personalizadas
+            para llegar a ellos.<br /><br />
 
-            Sabemos que cada negocio es único, por eso ofrecemos una variedad de servicios de marketing digital, desde el posicionamiento en buscadores hasta la publicidad en redes sociales. Trabajaremos contigo para entender tus objetivos y asegurarnos de que nuestras campañas estén en sintonía con ellos. <br><br>
-            
-            Imagina a tus potenciales clientes llegando a tu sitio web y encontrando una estructura fácil de navegar. Toda la información importante para ayudarles a tomar una decisión estará estratégicamente colocada con un botón de llamado a la acción (CTA) para atraparlos en el momento en que su interés sea despertado.
-            
-            Si tu sitio web es fácil de usar, es más probable que tus visitantes se conviertan en clientes. <br><br>
-            
-            ¡Y lo mejor de todo! Te mantendremos al tanto de los resultados de nuestras campañas y haremos los ajustes necesarios para asegurarnos de que estemos alcanzando tus metas. Con Tecnoria, puedes estar seguro de que tu negocio en Galicia estará en buenas manos y tu presencia en línea se verá mejorada. ¡Así que no esperes más y dale un empujón a tu negocio con nuestras campañas de marketing digital!
-          
+            Sabemos que cada negocio es único, por eso ofrecemos una variedad de
+            servicios de marketing digital, desde el posicionamiento en
+            buscadores hasta la publicidad en redes sociales. Trabajaremos
+            contigo para entender tus objetivos y asegurarnos de que nuestras
+            campañas estén en sintonía con ellos. <br /><br />
+
+            Imagina a tus potenciales clientes llegando a tu sitio web y
+            encontrando una estructura fácil de navegar. Toda la información
+            importante para ayudarles a tomar una decisión estará
+            estratégicamente colocada con un botón de llamado a la acción (CTA)
+            para atraparlos en el momento en que su interés sea despertado. Si
+            tu sitio web es fácil de usar, es más probable que tus visitantes se
+            conviertan en clientes. <br /><br />
+
+            ¡Y lo mejor de todo! Te mantendremos al tanto de los resultados de
+            nuestras campañas y haremos los ajustes necesarios para asegurarnos
+            de que estemos alcanzando tus metas. Con Tecnoria, puedes estar
+            seguro de que tu negocio en Galicia estará en buenas manos y tu
+            presencia en línea se verá mejorada. ¡Así que no esperes más y dale
+            un empujón a tu negocio con nuestras campañas de marketing digital!
           </p>
-         
-          <a routerLink="/agencia-marketing-contenidos" class="btn btn-outline-primary mt-3">Nuestro Proceso de Diseño</a>
+
+          <a
+            routerLink="/agencia-marketing-contenidos"
+            class="btn btn-outline-primary mt-3"
+            >Nuestro Proceso de Diseño</a
+          >
         </div>
       </div>
 
-
       <div class="col-lg-5 col-md-6 col-12 order-1 order-lg-2">
-        <img src="{{imagePath}}diseno-web-6.webp" class="img-fluid shadow rounded img" alt="marketing-vigo">
+        <img
+          src="{{ imagePath }}diseno-web-6.webp"
+          class="img-fluid shadow rounded img"
+          alt="marketing-vigo"
+        />
       </div>
       <!--end col-->
 
-      
       <!--end col-->
     </div>
     <!--end row-->
@@ -314,37 +398,52 @@
 <!--end section-->
 <!-- About End -->
 
-
 <!-- SEO -->
 <section class="section pt-4" id="posicion">
   <div class="container">
     <div class="row align-items-center">
-
       <div class="col-lg-5 col-md-6 col-12">
-        <img src="{{imagePath}}diseno-web-5.webp" class="img-fluid shadow rounded img" alt="posicionamiento-seo-vigo">
+        <img
+          src="{{ imagePath }}diseno-web-5.webp"
+          class="img-fluid shadow rounded img"
+          alt="posicionamiento-seo-vigo"
+        />
       </div>
 
       <div class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
         <div class="section-title ms-lg-4">
           <div class="badge rounded-pill bg-soft-primary mb-4" role="alert">
             <span class="content"> Agencia SEO en Galicia</span>
-        </div>
+          </div>
           <h4 class="title mb-4">Posicionamiento Web</h4>
-          <p class="text-muted"> Es indudable que tener un buen posicionamiento en Google es importante.<br><br>
-            Lo que probablemente no sabías es que puedes clasificar para muchas combinaciones de palabras clave en función de su volumen de búsqueda, competitividad y dificultad general de clasificación.<br><br>
-            En Tecnoria, como empresa líder en SEO, te mostraremos lo que se debe hacer para superar a tu competencia, siempre ser encontrado y comenzar nuevas relaciones comerciales. Al mejorar la estructura de backend de tu sitio web, experimentarás un gran cambio en tu clasificación.<br><br>
-            Mejora tu SEO local con Tecnoria, haz que sea fácil para los clientes encontrarte simplemente escribiendo las palabras clave relacionadas con tu negocio. ¡Así de fácil! No pierdas la oportunidad de estar en la cima de los resultados de búsqueda y aumentar tu visibilidad en línea.
+          <p class="text-muted">
+            Es indudable que tener un buen posicionamiento en Google es
+            importante.<br /><br />
+            Lo que probablemente no sabías es que puedes clasificar para muchas
+            combinaciones de palabras clave en función de su volumen de
+            búsqueda, competitividad y dificultad general de clasificación.<br /><br />
+            En Tecnoria, como empresa líder en SEO, te mostraremos lo que se
+            debe hacer para superar a tu competencia, siempre ser encontrado y
+            comenzar nuevas relaciones comerciales. Al mejorar la estructura de
+            backend de tu sitio web, experimentarás un gran cambio en tu
+            clasificación.<br /><br />
+            Mejora tu SEO local con Tecnoria, haz que sea fácil para los
+            clientes encontrarte simplemente escribiendo las palabras clave
+            relacionadas con tu negocio. ¡Así de fácil! No pierdas la
+            oportunidad de estar en la cima de los resultados de búsqueda y
+            aumentar tu visibilidad en línea.
           </p>
-         
-          <a routerLink="/posicionamiento-seo-empresas" class="btn btn-primary mt-3">Más Información</a>
+
+          <a
+            routerLink="/posicionamiento-seo-empresas"
+            class="btn btn-primary mt-3"
+            >Más Información</a
+          >
         </div>
       </div>
 
-
-  
       <!--end col-->
 
-      
       <!--end col-->
     </div>
     <!--end row-->
@@ -358,31 +457,44 @@
 <section class="section pt-0 bg-light pt-4" id="publi">
   <div class="container">
     <div class="row align-items-center">
-
-      <div class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0 order-2 order-lg-1">
+      <div
+        class="col-lg-7 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0 order-2 order-lg-1"
+      >
         <div class="section-title ms-lg-4">
           <div class="badge rounded-pill bg-soft-primary mb-4" role="alert">
             <span class="content"> Publicidad Online en Galicia</span>
-        </div>
+          </div>
           <h4 class="title mb-4">Campañas Publicitarias</h4>
-          <p class="text-muted">En Tecnoria, nos especializamos en crear campañas publicitarias en línea para mejorar tu visibilidad y alcanzar a más clientes potenciales. Sabemos que cada plataforma es diferente, por eso creamos campañas publicitarias específicas para Google, Facebook, LinkedIn e Instagram.
-            <br><br>
+          <p class="text-muted">
+            En Tecnoria, nos especializamos en crear campañas publicitarias en
+            línea para mejorar tu visibilidad y alcanzar a más clientes
+            potenciales. Sabemos que cada plataforma es diferente, por eso
+            creamos campañas publicitarias específicas para Google, Facebook,
+            LinkedIn e Instagram. <br /><br />
 
-            Trabajamos contigo para entender tus objetivos y asegurarnos de que nuestras campañas estén alineadas con ellos. Te mantenemos informado sobre los resultados de nuestras campañas y hacemos los ajustes necesarios para garantizar que estamos alcanzando tus metas. Con Tecnoria, puedes estar seguro de que tu presencia en línea se verá mejorada.
-          
+            Trabajamos contigo para entender tus objetivos y asegurarnos de que
+            nuestras campañas estén alineadas con ellos. Te mantenemos informado
+            sobre los resultados de nuestras campañas y hacemos los ajustes
+            necesarios para garantizar que estamos alcanzando tus metas. Con
+            Tecnoria, puedes estar seguro de que tu presencia en línea se verá
+            mejorada.
           </p>
-         
-          <a routerLink="agencia-adwords" class="btn btn-primary mt-3">Descubre nuestro proceso</a>
+
+          <a routerLink="agencia-adwords" class="btn btn-primary mt-3"
+            >Descubre nuestro proceso</a
+          >
         </div>
       </div>
 
-
       <div class="col-lg-5 col-md-6 col-12 order-1 order-lg-2">
-        <img src="{{imagePath}}diseno-web-4.webp" class="img-fluid shadow rounded img" alt="">
+        <img
+          src="{{ imagePath }}diseno-web-4.webp"
+          class="img-fluid shadow rounded img"
+          alt=""
+        />
       </div>
       <!--end col-->
 
-      
       <!--end col-->
     </div>
     <!--end row-->
@@ -392,7 +504,7 @@
 <!--end section-->
 <!-- About End -->
 
-<!-- OTROS SERVICIOS --> 
+<!-- OTROS SERVICIOS -->
 <section class="section">
   <div class="container">
     <div class="row justify-content-center">
@@ -400,103 +512,138 @@
         <div class="section-title mb-4 pb-2">
           <h4 class="title mb-4 mt-4">También podemos ofrecerte ayuda con:</h4>
         </div>
-        </div>
+      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-lg-4 col-md-6 mt-4 pt-2">
-          <div class="card border-0 features feature-clean course-feature p-4 overflow-hidden shadow text-center">
-              <div class="icons text-primary text-center mx-auto">
-                  <i class="uil uil-file-contract-dollar d-block rounded h3 mb-0"></i>
-              </div>
-              <div class="card-body p-0 mt-4">
-                  <a routerLink="/agencia-marketing-contenidos" class="title h5 text-dark">Video Marketing</a>
-                  <p class="text-muted mt-2">Los videos atraen la atención y ayudan a mejorar la comprensión y el recuerdo de tu mensaje, generando confianza y credibilidad en tu marca. Además, pueden aumentar tus tasas de conversión y ventas.
-                  </p>
-                  <a routerLink="/agencia-marketing-contenidos" class="text-primary read-more">Más Información<i
-                          class="uil uil-angle-right-b"></i></a>
-                  <i class="uil uil-file-contract-dollar text-primary full-img "></i>
-              </div>
+        <div
+          class="card border-0 features feature-clean course-feature p-4 overflow-hidden shadow text-center"
+        >
+          <div class="icons text-primary text-center mx-auto">
+            <i class="uil uil-file-contract-dollar d-block rounded h3 mb-0"></i>
           </div>
+          <div class="card-body p-0 mt-4">
+            <a
+              routerLink="/agencia-marketing-contenidos"
+              class="title h5 text-dark"
+              >Video Marketing</a
+            >
+            <p class="text-muted mt-2">
+              Los videos atraen la atención y ayudan a mejorar la comprensión y
+              el recuerdo de tu mensaje, generando confianza y credibilidad en
+              tu marca. Además, pueden aumentar tus tasas de conversión y
+              ventas.
+            </p>
+            <a
+              routerLink="/agencia-marketing-contenidos"
+              class="text-primary read-more"
+              >Más Información<i class="uil uil-angle-right-b"></i
+            ></a>
+            <i class="uil uil-file-contract-dollar text-primary full-img"></i>
+          </div>
+        </div>
       </div>
       <!--end col-->
-  
+
       <div class="col-lg-4 col-md-6 mt-4 pt-2">
-          <div class="card border-0 features feature-clean course-feature p-4 overflow-hidden shadow text-center">
-              <div class="icons text-primary text-center mx-auto">
-                  <i class="uil uil-analytics d-block rounded h3 mb-0"></i>
-              </div>
-              <div class="card-body p-0 mt-4">
-                  <a routerLink="/gestion-redes-sociales" class="title h5 text-dark">Redes Sociales</a>
-                  <p class="text-muted mt-2">Nos encargamos de crear y publicar contenido atractivo y relevante en plataformas como Facebook, Instagram, Twitter y LinkedIn, además de monitorear y responder a las interacciones de los usuarios.
-                  </p>
-                  <a routerLink="/gestion-redes-sociales" class="text-primary read-more">Como lo hacemos <i
-                          class="uil uil-angle-right-b"></i></a>
-                  <i class="uil uil-analytics text-primary full-img"></i>
-              </div>
+        <div
+          class="card border-0 features feature-clean course-feature p-4 overflow-hidden shadow text-center"
+        >
+          <div class="icons text-primary text-center mx-auto">
+            <i class="uil uil-analytics d-block rounded h3 mb-0"></i>
           </div>
+          <div class="card-body p-0 mt-4">
+            <a routerLink="/gestion-redes-sociales" class="title h5 text-dark"
+              >Redes Sociales</a
+            >
+            <p class="text-muted mt-2">
+              Nos encargamos de crear y publicar contenido atractivo y relevante
+              en plataformas como Facebook, Instagram, Twitter y LinkedIn,
+              además de monitorear y responder a las interacciones de los
+              usuarios.
+            </p>
+            <a
+              routerLink="/gestion-redes-sociales"
+              class="text-primary read-more"
+              >Como lo hacemos <i class="uil uil-angle-right-b"></i
+            ></a>
+            <i class="uil uil-analytics text-primary full-img"></i>
+          </div>
+        </div>
       </div>
       <!--end col-->
-  
+
       <div class="col-lg-4 col-md-6 mt-4 pt-2">
-          <div class="card border-0 features feature-clean course-feature p-4 overflow-hidden shadow text-center">
-              <div class="icons text-primary text-center mx-auto">
-                  <i class="uil uil-dashboard d-block rounded h3 mb-0"></i>
-              </div>
-              <div class="card-body p-0 mt-4">
-                  <a routerLink="/agencia-de-ecommerce" class="title h5 text-dark">E-Commerce</a>
-                  <p class="text-muted mt-2">Creamos tiendas en línea personalizadas y fáciles de usar para que puedas vender tus productos o servicios en línea. También ofrecemos opciones de pago y envío seguros y optimización de SEO para aumentar tu visibilidad en línea y atraer más clientes potenciales.
-                  </p>
-                  <a routerLink="/agencia-de-ecommerce" class="text-primary read-more">Crear Tienda<i
-                          class="uil uil-angle-right-b"></i></a>
-                  <i class="uil uil-dashboard text-primary full-img"></i>
-              </div>
+        <div
+          class="card border-0 features feature-clean course-feature p-4 overflow-hidden shadow text-center"
+        >
+          <div class="icons text-primary text-center mx-auto">
+            <i class="uil uil-dashboard d-block rounded h3 mb-0"></i>
           </div>
+          <div class="card-body p-0 mt-4">
+            <a routerLink="/agencia-de-ecommerce" class="title h5 text-dark"
+              >E-Commerce</a
+            >
+            <p class="text-muted mt-2">
+              Creamos tiendas en línea personalizadas y fáciles de usar para que
+              puedas vender tus productos o servicios en línea. También
+              ofrecemos opciones de pago y envío seguros y optimización de SEO
+              para aumentar tu visibilidad en línea y atraer más clientes
+              potenciales.
+            </p>
+            <a routerLink="/agencia-de-ecommerce" class="text-primary read-more"
+              >Crear Tienda<i class="uil uil-angle-right-b"></i
+            ></a>
+            <i class="uil uil-dashboard text-primary full-img"></i>
+          </div>
+        </div>
       </div>
       <!--end col-->
     </div>
   </div>
-
 </section>
-
- 
 
 <section class="section">
-  <div class="bg-half-170" style="background-image: url('{{imagePath}}diseno-web-tecnoria.webp');">
-    
+  <div
+    class="bg-half-170"
+    style="background-image: url('{{ imagePath }}diseno-web-tecnoria.webp');"
+  >
     <div class="container">
-        <div class="rounded  bg-overlay bg-gradient p-lg-5 p-4">
-          <div class="row align-items-center">
-
-            <div class="col-md-12">
-              <div class="section-title  text-center">
-                <h2 class="title mb-3 text-white title-dark">No esperes más, aumenta tus ventas ahora</h2>
-                <h5 class="text-white ">Todos estamos aqui por lo mismo, queremos vender más.</h5>
-                <h5 class="text-white ">En cuanto contactes, nos pondremos a ello de inmediato.</h5>
-              </div>
+      <div class="rounded bg-overlay bg-gradient p-lg-5 p-4">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="section-title text-center">
+              <h2 class="title mb-3 text-white title-dark">
+                No esperes más, aumenta tus ventas ahora
+              </h2>
+              <h5 class="text-white">
+                Todos estamos aqui por lo mismo, queremos vender más.
+              </h5>
+              <h5 class="text-white">
+                En cuanto contactes, nos pondremos a ello de inmediato.
+              </h5>
             </div>
-            <!--end col-->
-    
-            <div class="col-12">
-              <div class="text-center">
-                <a [ngxScrollTo]="'#contacto'" class="btn btn-light m-4">Empezar ahora</a>
-                <a href="tel:+34682047802" class="btn btn-light ">682 04 78 02</a>
-              </div>
-            </div>
-            <!--end col-->
           </div>
-          <!--end row-->
-        </div>
-      </div>
-</div>
+          <!--end col-->
 
+          <div class="col-12">
+            <div class="text-center">
+              <a [ngxScrollTo]="'#contacto'" class="btn btn-light m-4"
+                >Empezar ahora</a
+              >
+              <a href="tel:+34682047802" class="btn btn-light">682 04 78 02</a>
+            </div>
+          </div>
+          <!--end col-->
+        </div>
+        <!--end row-->
+      </div>
+    </div>
+  </div>
 </section>
 
-
-
-  <!--end row-->
-  <!-- <app-services [servicesData]="servicesData"></app-services> -->
-
- 
+<!--end row-->
+<!-- <app-services [servicesData]="servicesData"></app-services> -->
 
 <section class="section bg-light bg-gradient">
   <!-- Companies Start -->
@@ -504,7 +651,9 @@
     <div class="row justify-content-center">
       <div class="col-12 text-center">
         <div class="section-title mb-4 pb-2">
-          <h4 class="title mb-4">Tecnologías Empleadas en nuestro proceso de diseño</h4>
+          <h4 class="title mb-4">
+            Tecnologías Empleadas en nuestro proceso de diseño
+          </h4>
         </div>
       </div>
       <!--end col-->
@@ -513,20 +662,28 @@
 
     <div class="row">
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/html.svg" class="avatar avatar-ex-sm" alt="diseño-web-html">
-            <div class="flex-1 ms-3">
-              <h4 class="title mb-0 text-dark">HTML</h4>
-              <p class="text-muted mb-0">Desarrollo FrontEnd</p>
-            </div>
+        <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+          <img
+            src="assets/images/iconos-svg/html.svg"
+            class="avatar avatar-ex-sm"
+            alt="diseño-web-html"
+          />
+          <div class="flex-1 ms-3">
+            <h4 class="title mb-0 text-dark">HTML</h4>
+            <p class="text-muted mb-0">Desarrollo FrontEnd</p>
           </div>
+        </div>
       </div>
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
         <a routerLink="/page-job-detail">
           <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/css.svg" class="avatar avatar-ex-sm" alt="diseño-web-css">
+            <img
+              src="assets/images/iconos-svg/css.svg"
+              class="avatar avatar-ex-sm"
+              alt="diseño-web-css"
+            />
             <div class="flex-1 ms-3">
               <h4 class="title mb-0 text-dark">CSS</h4>
               <p class="text-muted mb-0">Desarrollo FrontEnd</p>
@@ -537,31 +694,43 @@
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/javascript.svg" class="avatar avatar-ex-sm" alt="diseño-web-javascript">
-            <div class="flex-1 ms-3">
-              <h4 class="title mb-0 text-dark">JavaScript</h4>
-              <p class="text-muted mb-0">Desarrollo FrontEnd</p>
-            </div>
+        <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+          <img
+            src="assets/images/iconos-svg/javascript.svg"
+            class="avatar avatar-ex-sm"
+            alt="diseño-web-javascript"
+          />
+          <div class="flex-1 ms-3">
+            <h4 class="title mb-0 text-dark">JavaScript</h4>
+            <p class="text-muted mb-0">Desarrollo FrontEnd</p>
           </div>
+        </div>
       </div>
       <!--end col-->
 
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2"> 
-          <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/angular.svg" class="avatar avatar-ex-sm" alt="diseño-web-angular">
-            <div class="flex-1 ms-3">
-              <h4 class="title mb-0 text-dark">Angular</h4>
-              <p class="text-muted mb-0">Framework</p>
-            </div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+        <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+          <img
+            src="assets/images/iconos-svg/angular.svg"
+            class="avatar avatar-ex-sm"
+            alt="diseño-web-angular"
+          />
+          <div class="flex-1 ms-3">
+            <h4 class="title mb-0 text-dark">Angular</h4>
+            <p class="text-muted mb-0">Framework</p>
           </div>
+        </div>
       </div>
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
         <a routerLink="/page-job-detail">
           <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/react.svg" class="avatar avatar-ex-sm" alt="diseño-web-react">
+            <img
+              src="assets/images/iconos-svg/react.svg"
+              class="avatar avatar-ex-sm"
+              alt="diseño-web-react"
+            />
             <div class="flex-1 ms-3">
               <h4 class="title mb-0 text-dark">React</h4>
               <p class="text-muted mb-0">Feamework</p>
@@ -572,34 +741,46 @@
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/php.svg" class="avatar avatar-ex-sm" alt="diseño-web-php">
-            <div class="flex-1 ms-3">
-              <h4 class="title mb-0 text-dark">PHP</h4>
-              <p class="text-muted mb-0">Tecnología Backend</p>
-            </div>
+        <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+          <img
+            src="assets/images/iconos-svg/php.svg"
+            class="avatar avatar-ex-sm"
+            alt="diseño-web-php"
+          />
+          <div class="flex-1 ms-3">
+            <h4 class="title mb-0 text-dark">PHP</h4>
+            <p class="text-muted mb-0">Tecnología Backend</p>
           </div>
+        </div>
       </div>
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/python.svg" class="avatar avatar-ex-sm" alt="diseño-web-python">
-            <div class="flex-1 ms-3">
-              <h4 class="title mb-0 text-dark">Python</h4>
-              <p class="text-muted mb-0">Tecnología Backend </p>
-            </div>
+        <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+          <img
+            src="assets/images/iconos-svg/python.svg"
+            class="avatar avatar-ex-sm"
+            alt="diseño-web-python"
+          />
+          <div class="flex-1 ms-3">
+            <h4 class="title mb-0 text-dark">Python</h4>
+            <p class="text-muted mb-0">Tecnología Backend</p>
           </div>
+        </div>
       </div>
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
         <a routerLink="/page-job-detail">
           <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/nodejs.svg" class="avatar avatar-ex-sm" alt="diseño-web-node">
+            <img
+              src="assets/images/iconos-svg/nodejs.svg"
+              class="avatar avatar-ex-sm"
+              alt="diseño-web-node"
+            />
             <div class="flex-1 ms-3">
               <h4 class="title mb-0 text-dark">NodeJS</h4>
-              <p class="text-muted mb-0">Tecnología Backend </p>
+              <p class="text-muted mb-0">Tecnología Backend</p>
             </div>
           </div>
         </a>
@@ -607,46 +788,62 @@
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/wordpress.svg" class="avatar avatar-ex-sm" alt="diseño-web-wordpress">
-            <div class="flex-1 ms-3">
-              <h4 class="title mb-0 text-dark">Wordpress</h4>
-              <p class="text-muted mb-0">Gestor de Contenidos</p>
-            </div>
+        <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+          <img
+            src="assets/images/iconos-svg/wordpress.svg"
+            class="avatar avatar-ex-sm"
+            alt="diseño-web-wordpress"
+          />
+          <div class="flex-1 ms-3">
+            <h4 class="title mb-0 text-dark">Wordpress</h4>
+            <p class="text-muted mb-0">Gestor de Contenidos</p>
           </div>
+        </div>
       </div>
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/shopify.svg" class="avatar avatar-ex-sm" alt="diseño-web-shopify">
-            <div class="flex-1 ms-3">
-              <h4 class="title mb-0 text-dark">Shopify</h4>
-              <p class="text-muted mb-0">Tiendas Online</p>
-            </div>
+        <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+          <img
+            src="assets/images/iconos-svg/shopify.svg"
+            class="avatar avatar-ex-sm"
+            alt="diseño-web-shopify"
+          />
+          <div class="flex-1 ms-3">
+            <h4 class="title mb-0 text-dark">Shopify</h4>
+            <p class="text-muted mb-0">Tiendas Online</p>
           </div>
+        </div>
       </div>
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/woocommerce.svg" class="avatar avatar-ex-sm" alt="diseño-web-woocommerce">
-            <div class="flex-1 ms-3">
-              <h4 class="title mb-0 text-dark">Woocommerce</h4>
-              <p class="text-muted mb-0">Comercio Electrónico</p>
-            </div>
+        <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+          <img
+            src="assets/images/iconos-svg/woocommerce.svg"
+            class="avatar avatar-ex-sm"
+            alt="diseño-web-woocommerce"
+          />
+          <div class="flex-1 ms-3">
+            <h4 class="title mb-0 text-dark">Woocommerce</h4>
+            <p class="text-muted mb-0">Comercio Electrónico</p>
           </div>
+        </div>
       </div>
       <!--end col-->
 
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="d-flex key-feature align-items-center p-3 rounded shadow">
-            <img src="assets/images/iconos-svg/magento.svg" class="avatar avatar-ex-sm" alt="diseño-web-magento">
-            <div class="flex-1 ms-3">
-              <h4 class="title mb-0 text-dark">Magento</h4>
-              <p class="text-muted mb-0">Comercio Electrónico</p>
-            </div>
+        <div class="d-flex key-feature align-items-center p-3 rounded shadow">
+          <img
+            src="assets/images/iconos-svg/magento.svg"
+            class="avatar avatar-ex-sm"
+            alt="diseño-web-magento"
+          />
+          <div class="flex-1 ms-3">
+            <h4 class="title mb-0 text-dark">Magento</h4>
+            <p class="text-muted mb-0">Comercio Electrónico</p>
           </div>
+        </div>
       </div>
       <!--end col-->
     </div>
@@ -656,16 +853,21 @@
   <!-- Companies End -->
 </section>
 
-
 <!-- Work Process Start -->
-<section class="section ">
+<section class="section">
   <!--(.work-process) css write in (_feature.scss)-->
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 text-center">
         <div class="section-title mb-4 pb-2">
           <h4 class="title mb-4">Proceso de Diseño</h4>
-          <p class="text-muted para-desc mx-auto mb-0">Nuestra metodología es simple: entendemos tus necesidades, creamos un plan de acción personalizado y trabajamos juntos para alcanzar tus objetivos. Nos aseguramos de mantenerte en el loop durante todo el proceso para asegurarnos de estar en la misma sintonía. ¡Es así de fácil!</p>
+          <p class="text-muted para-desc mx-auto mb-0">
+            Nuestra metodología es simple: entendemos tus necesidades, creamos
+            un plan de acción personalizado y trabajamos juntos para alcanzar
+            tus objetivos. Nos aseguramos de mantenerte en el loop durante todo
+            el proceso para asegurarnos de estar en la misma sintonía. ¡Es así
+            de fácil!
+          </p>
         </div>
       </div>
       <!--end col-->
@@ -677,10 +879,16 @@
         <div class="card work-process border-0 rounded shadow">
           <div class="card-body">
             <h4 class="title">Descubrimiento</h4>
-            <p class="text-muted para">En esta etapa, aprendemos activamente sobre las necesidades y objetivos del proyecto y discutimos varias soluciones y direcciones a seguir.</p>
+            <p class="text-muted para">
+              En esta etapa, aprendemos activamente sobre las necesidades y
+              objetivos del proyecto y discutimos varias soluciones y
+              direcciones a seguir.
+            </p>
             <ul class="list-unstyled d-flex justify-content-between mb-0 mt-2">
               <li class="step h1 mb-0 fw-bold">Paso 01.</li>
-              <li class="step-icon"><i class="uil uil-angle-double-right h1 mb-0"></i></li>
+              <li class="step-icon">
+                <i class="uil uil-angle-double-right h1 mb-0"></i>
+              </li>
             </ul>
           </div>
         </div>
@@ -691,10 +899,16 @@
         <div class="card work-process border-0 rounded shadow">
           <div class="card-body">
             <h4 class="title">Diseño</h4>
-            <p class="text-muted para">Esta fase se centra en el aspecto visual creativo, comenzando con bocetos y esquemas y progresando hacia el diseño final de la marca o sitio web.</p>
+            <p class="text-muted para">
+              Esta fase se centra en el aspecto visual creativo, comenzando con
+              bocetos y esquemas y progresando hacia el diseño final de la marca
+              o sitio web.
+            </p>
             <ul class="list-unstyled d-flex justify-content-between mb-0 mt-2">
               <li class="step h1 mb-0 fw-bold">Paso 02.</li>
-              <li class="step-icon"><i class="uil uil-angle-double-right h1 mb-0"></i></li>
+              <li class="step-icon">
+                <i class="uil uil-angle-double-right h1 mb-0"></i>
+              </li>
             </ul>
           </div>
         </div>
@@ -705,10 +919,16 @@
         <div class="card work-process border-0 rounded shadow">
           <div class="card-body">
             <h4 class="title">Desarrollo</h4>
-            <p class="text-muted para">Esta etapa implica el lado técnico, incluyendo el desarrollo del diseño del sitio web en la plataforma o la creación de bocetos para la marca.</p>
+            <p class="text-muted para">
+              Esta etapa implica el lado técnico, incluyendo el desarrollo del
+              diseño del sitio web en la plataforma o la creación de bocetos
+              para la marca.
+            </p>
             <ul class="list-unstyled d-flex justify-content-between mb-0 mt-2">
               <li class="step h1 mb-0 fw-bold">Paso 03.</li>
-              <li class="step-icon"><i class="uil uil-file-check-alt h1 mb-0"></i></li>
+              <li class="step-icon">
+                <i class="uil uil-file-check-alt h1 mb-0"></i>
+              </li>
             </ul>
           </div>
         </div>
@@ -718,10 +938,16 @@
         <div class="card work-process border-0 rounded shadow">
           <div class="card-body">
             <h4 class="title">Lanzamiento</h4>
-            <p class="text-muted para">El paso final incluye la finalización de cualquier revisión necesaria, pruebas de usuario, corrección de errores, capacitación y entrega del producto al cliente.</p>
+            <p class="text-muted para">
+              El paso final incluye la finalización de cualquier revisión
+              necesaria, pruebas de usuario, corrección de errores, capacitación
+              y entrega del producto al cliente.
+            </p>
             <ul class="list-unstyled d-flex justify-content-between mb-0 mt-2">
               <li class="step h1 mb-0 fw-bold">Paso 04.</li>
-              <li class="step-icon"><i class="uil uil-file-check-alt h1 mb-0"></i></li>
+              <li class="step-icon">
+                <i class="uil uil-file-check-alt h1 mb-0"></i>
+              </li>
             </ul>
           </div>
         </div>
@@ -731,55 +957,72 @@
     <!--end row-->
   </div>
   <!--end container-->
-
- 
 </section>
-
 
 <section class="section bg-light">
   <div class="container mt-100 mt-60">
     <div class="row align-items-center">
- 
       <!--end col-->
       <div class="col-12 text-center">
-
         <div class="section-title me-lg-5">
-          <h4 class="title mb-4">Colaborando con los mejores de la industria</h4>
-          <p class="text-muted">En Tecnoria, nos enorgullece haber trabajado con algunas de las mejores empresas y sectores en todo el mundo. Estas alianzas nos han permitido aprender y crecer, y nos han ayudado a mejorar constantemente nuestros servicios y entregar resultados impresionantes a nuestros clientes. ¡Nos encanta trabajar con los mejores y ayudarles a alcanzar sus metas!</p>
+          <h4 class="title mb-4">
+            Colaborando con los mejores de la industria
+          </h4>
+          <p class="text-muted">
+            En Tecnoria, nos enorgullece haber trabajado con algunas de las
+            mejores empresas y sectores en todo el mundo. Estas alianzas nos han
+            permitido aprender y crecer, y nos han ayudado a mejorar
+            constantemente nuestros servicios y entregar resultados
+            impresionantes a nuestros clientes. ¡Nos encanta trabajar con los
+            mejores y ayudarles a alcanzar sus metas!
+          </p>
         </div>
       </div>
       <div class="col-12">
         <div class="row">
           <div class="col-md-4 col-xs-12 col-sm-12" *ngFor="let item of list">
-            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" closeOthers="true">
-                <ngb-panel cardClass="border-0 rounded shadow mb-2">
-                    <ng-template ngbPanelTitle class="ngb-panel" >
-                      <div class="d-flex key-feature align-items-center p-3 rounded "id="headingtwo">
-                        <div class="icon text-center rounded-circle h4 text-primary me-3 mb-0">
-                          <i-feather name={{item.icon}} class="fea icon-sm"> </i-feather>
-                        </div>
-                        <div class="flex-1">
-                          <h4 class="title text-dark mb-0" style="text-decoration: none;"> {{item.title}} </h4>
-                        </div>
-                      </div>
-                    </ng-template>
-                    <ng-template ngbPanelContent>
-                      <p class="text-muted mb-0 faq-ans">{{item.description}}</p>
-                      <div class="text-center pt-2">
-                        <!-- <button class="btn btn-primary">Conocer más</button> -->
-                      </div>
-                    </ng-template>
-                </ngb-panel>
+            <ngb-accordion
+              #acc="ngbAccordion"
+              activeIds="ngb-panel-0"
+              closeOthers="true"
+            >
+              <ngb-panel cardClass="border-0 rounded shadow mb-2">
+                <ng-template ngbPanelTitle class="ngb-panel">
+                  <div
+                    class="d-flex key-feature align-items-center p-3 rounded"
+                    id="headingtwo"
+                  >
+                    <div
+                      class="icon text-center rounded-circle h4 text-primary me-3 mb-0"
+                    >
+                      <i-feather name="{{ item.icon }}" class="fea icon-sm">
+                      </i-feather>
+                    </div>
+                    <div class="flex-1">
+                      <h4
+                        class="title text-dark mb-0"
+                        style="text-decoration: none"
+                      >
+                        {{ item.title }}
+                      </h4>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <p class="text-muted mb-0 faq-ans">{{ item.description }}</p>
+                  <div class="text-center pt-2">
+                    <!-- <button class="btn btn-primary">Conocer más</button> -->
+                  </div>
+                </ng-template>
+              </ngb-panel>
             </ngb-accordion>
+          </div>
         </div>
-        </div>
-       
-    </div>
-    
       </div>
-      <!--end col-->
     </div>
-    <!--end row-->
+    <!--end col-->
+  </div>
+  <!--end row-->
   <!--end container-->
   <!--end section-->
   <!-- Work Process End -->
@@ -790,23 +1033,32 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-3 col-md-6 col-12 p-4">
-        <div class="under_industry-images _1 rounded" style="background: url('{{imagePath}}image-1.webp')"></div>
-      </div> 
+        <div
+          class="under_industry-images _1 rounded"
+          style="background: url('{{ imagePath }}image-1.webp')"
+        ></div>
+      </div>
       <div class="col-lg-3 col-md-6 col-12 p-4">
-        <div class="under_industry-images _2 rounded"style="background: url('{{imagePath}}image-2.webp')"></div>
-      </div> 
+        <div
+          class="under_industry-images _2 rounded"
+          style="background: url('{{ imagePath }}image-2.webp')"
+        ></div>
+      </div>
       <div class="col-lg-3 col-md-6 col-12 p-4">
-        <div class="under_industry-images _3 rounded"style="background: url('{{imagePath}}image-3.webp')"></div>
-      </div> 
+        <div
+          class="under_industry-images _3 rounded"
+          style="background: url('{{ imagePath }}image-3.webp')"
+        ></div>
+      </div>
       <div class="col-lg-3 col-md-6 col-12 p-4">
-        <div class="under_industry-images _4 rounded" style="background: url('{{imagePath}}image-4.webp')"></div>
-      </div>    
+        <div
+          class="under_industry-images _4 rounded"
+          style="background: url('{{ imagePath }}image-4.webp')"
+        ></div>
+      </div>
     </div>
   </div>
-
-
 </section>
-
 
 <!-- FAQ n Contact Start -->
 <section class="section">
@@ -815,33 +1067,45 @@
       <div class="col-12">
         <div class="section-title mb-4 pb-2 text-center">
           <h4 class="title mb-4">Kit Digital para Empresas y Autónomos</h4>
-          <p class="text-muted para-desc mb-0 mx-auto">Consigue hasta <span
-              class="text-primary fw-bold"> 12.000€ en subvenciones</span> para tu negocio, gracias al plan NextGenerationEU, podrás darle el impulso digital que necesita tu negocio</p>
+          <p class="text-muted para-desc mb-0 mx-auto">
+            Consigue hasta
+            <span class="text-primary fw-bold"> 12.000€ en subvenciones</span>
+            para tu negocio, gracias al plan NextGenerationEU, podrás darle el
+            impulso digital que necesita tu negocio
+          </p>
         </div>
       </div>
       <div class="col-12 justify-content-center text-center">
-        <img src="../../../../assets/images/kitdigital/kitdigital.svg" alt="" style="width:inherit; max-width:100vh">
+        <img
+          src="../../../../assets/images/kitdigital/kitdigital.svg"
+          alt=""
+          style="width: inherit; max-width: 100vh"
+        />
       </div>
       <!--end col-->
     </div>
   </div>
 </section>
 
-
-
 <section class="section bg-light">
-
-
-
   <div class="container">
-    
     <div class="row">
       <div class="col-md-6 col-12">
         <div class="d-flex">
-          <i-feather name="help-circle" class="fea icon-ex-md text-primary me-2 mt-1"></i-feather>
+          <i-feather
+            name="help-circle"
+            class="fea icon-ex-md text-primary me-2 mt-1"
+          ></i-feather>
           <div class="flex-1">
-            <h5 class="mt-0">¿ Qué es el<span class="text-primary"> Kit Digital </span> para autonomos y pymes ?</h5>
-            <p class="answer text-muted mb-0">El gobierno invertirá más de 3.000 millones de euros entre 2021 y 2023, para impulsar la digitalización de empresas y autónomos dentro del territorio español.</p>
+            <h5 class="mt-0">
+              ¿ Qué es el<span class="text-primary"> Kit Digital </span> para
+              autonomos y pymes ?
+            </h5>
+            <p class="answer text-muted mb-0">
+              El gobierno invertirá más de 3.000 millones de euros entre 2021 y
+              2023, para impulsar la digitalización de empresas y autónomos
+              dentro del territorio español.
+            </p>
           </div>
         </div>
       </div>
@@ -849,10 +1113,19 @@
 
       <div class="col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
         <div class="d-flex">
-          <i-feather name="help-circle" class="fea icon-ex-md text-primary me-2 mt-1"></i-feather>
+          <i-feather
+            name="help-circle"
+            class="fea icon-ex-md text-primary me-2 mt-1"
+          ></i-feather>
           <div class="flex-1">
-            <h5 class="mt-0">¿ Me podré beneficiar de la ayuda del Kit Digital ?</h5>
-            <p class="answer text-muted mb-0">Si eres una pequeña empresa, microempresa o autonomo, estas al corriente en la Seguridad Social y no has recibido más de 200.000€ en ayudas los ultimos 3 años.</p>
+            <h5 class="mt-0">
+              ¿ Me podré beneficiar de la ayuda del Kit Digital ?
+            </h5>
+            <p class="answer text-muted mb-0">
+              Si eres una pequeña empresa, microempresa o autonomo, estas al
+              corriente en la Seguridad Social y no has recibido más de 200.000€
+              en ayudas los ultimos 3 años.
+            </p>
           </div>
         </div>
       </div>
@@ -860,10 +1133,17 @@
 
       <div class="col-md-6 col-12 mt-4 pt-2">
         <div class="d-flex">
-          <i-feather name="help-circle" class="fea icon-ex-md text-primary me-2 mt-1"></i-feather>
+          <i-feather
+            name="help-circle"
+            class="fea icon-ex-md text-primary me-2 mt-1"
+          ></i-feather>
           <div class="flex-1">
-            <h5 class="mt-0"> ¿Cómo solicito el Kit Digital?</h5>
-            <p class="answer text-muted mb-0"><span class="text-primary">Nosotros nos encargamos de todo</span>, solo tienes que ponerte en contacto ya sea por teléfono, email, o iniciando un chat con uno de nuestros técnicos</p>
+            <h5 class="mt-0">¿Cómo solicito el Kit Digital?</h5>
+            <p class="answer text-muted mb-0">
+              <span class="text-primary">Nosotros nos encargamos de todo</span>,
+              solo tienes que ponerte en contacto ya sea por teléfono, email, o
+              iniciando un chat con uno de nuestros técnicos
+            </p>
           </div>
         </div>
       </div>
@@ -871,10 +1151,19 @@
 
       <div class="col-md-6 col-12 mt-4 pt-2">
         <div class="d-flex">
-          <i-feather name="help-circle" class="fea icon-ex-md text-primary me-2 mt-1"></i-feather>
+          <i-feather
+            name="help-circle"
+            class="fea icon-ex-md text-primary me-2 mt-1"
+          ></i-feather>
           <div class="flex-1">
-            <h5 class="mt-0">¿Qué sucede si supero el importe de mi bono del Kit Digital?</h5>
-            <p class="answer text-muted mb-0">Absolutamente nada, simplemente la empresa beneficiaria del bono tendrá que asumir la diferencia entre el importe de la solución y el importe de su Bono.</p>
+            <h5 class="mt-0">
+              ¿Qué sucede si supero el importe de mi bono del Kit Digital?
+            </h5>
+            <p class="answer text-muted mb-0">
+              Absolutamente nada, simplemente la empresa beneficiaria del bono
+              tendrá que asumir la diferencia entre el importe de la solución y
+              el importe de su Bono.
+            </p>
           </div>
         </div>
       </div>
@@ -885,14 +1174,19 @@
     <div class="row my-md-5 pt-md-3 my-4 pt-2 pb-lg-4 justify-content-center">
       <div class="col-12 text-center">
         <div class="section-title">
-          <h4 class="title mb-4">¿ Quieres Digitalizar tu Negocio ? Ponte en contato!</h4>
+          <h4 class="title mb-4">
+            ¿ Quieres Digitalizar tu Negocio ? Ponte en contato!
+          </h4>
           <!-- <p class="text-muted para-desc mx-auto">Start working with <span class="text-primary fw-bold">Landrick</span>
             that can provide everything you need to generate awareness, drive traffic, connect.</p> -->
-            <div class="mt-4">
-              <a [ngxScrollTo]="'#contacto'" class="btn btn-primary mt-2 me-2"><i class="uil uil-envelope"></i> Contacta</a>
-              <a routerLink="/pagina-web" class="btn btn-outline-primary mt-2"><i class="uil uil-book-alt"></i>
-                Kit Digital</a>
-            </div>
+          <div class="mt-4">
+            <a [ngxScrollTo]="'#contacto'" class="btn btn-primary mt-2 me-2"
+              ><i class="uil uil-envelope"></i> Contacta</a
+            >
+            <a routerLink="/pagina-web" class="btn btn-outline-primary mt-2"
+              ><i class="uil uil-book-alt"></i> Kit Digital</a
+            >
+          </div>
         </div>
       </div>
       <!--end col-->
@@ -900,142 +1194,227 @@
     <!--end row-->
   </div>
   <!--end container-->
-
-  
 </section>
 <!--end section-->
 
-
-
 <section class="section">
-
   <div class="container mb-100 mb-60">
-
     <div class="row justify-content-center">
       <div class="col-12 text-center">
         <div class="section-title mb-4 pb-2">
-          <h4 class="title mb-4">Preguntas frecuentes sobre Tecnoria, tu empresa de diseño web en Galicia</h4>
-          <p class="text-muted para-desc mx-auto mb-0">¿Quieres saber más sobre cómo hacemos las cosas en Tecnoria? Hemos reunido algunas preguntas comunes para darte más información sobre Tecnoria y nuestros servicios como empresa de diseño web y marketing en Galicia.</p>
+          <h4 class="title mb-4">
+            Preguntas frecuentes sobre Tecnoria, tu empresa de diseño web en
+            Galicia
+          </h4>
+          <p class="text-muted para-desc mx-auto mb-0">
+            ¿Quieres saber más sobre cómo hacemos las cosas en Tecnoria? Hemos
+            reunido algunas preguntas comunes para darte más información sobre
+            Tecnoria y nuestros servicios como empresa de diseño web y marketing
+            en Galicia.
+          </p>
         </div>
       </div>
       <!--end col-->
     </div>
-      <!--end col-->
-      <div class="row align-items-center">
-        <div class="col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-          <div class="faq-content">
-            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" closeOthers="true">
-              <ngb-panel cardClass="border-0 rounded shadow mb-2">
-                <ng-template ngbPanelTitle>
-                  <div class="border-0 bg-light" id="headingone">
-                    <h6 class="title mb-0 text-dark"> ¿Cúantos sois en el equipo? </h6>
-                  </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                  <p class="text-muted mb-0 faq-ans">Somos un equipo de profesionales en diseño web y marketing digital, somos un equipo pequeño pero con mucha experiencia y conocimiento en el campo, trabajamos con una metodología ágil y colaborativa para poder ofrecer el mejor servicio a nuestros clientes.</p>
-                </ng-template>
-              </ngb-panel>
-              <ngb-panel cardClass="border-0 rounded shadow mb-2">
-                <ng-template ngbPanelTitle>
-                  <div class="border-0 bg-light" id="headingtwo">
-                    <h6 class="title mb-0 text-dark"> ¿Ofreceis servicios de copywriting? </h6>
-                  </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                  <p class="text-muted mb-0 faq-ans">Sí, ofrecemos servicios de copywriting para ayudar a nuestros clientes a crear contenido atractivo y efectivo para su sitio web o campañas de marketing. contamos con un equipo de profesionales en redacción, marketing y SEO para garantizar que su mensaje llegue a su audiencia de manera clara y efectiva.</p>
-                </ng-template>
-              </ngb-panel>
-              <ngb-panel cardClass="border-0 rounded shadow mb-2">
-                <ng-template ngbPanelTitle>
-                  <div class="border-0 bg-light" id="headingthree">
-                    <h6 class="title mb-0 text-dark"> ¿Con que tipo de clientes trabajais? </h6>
-                  </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                  <p class="text-muted mb-0 faq-ans">Trabajamos con todo tipo de clietes ya sean B2B o B2C. Proporcionamos servicios tanto a pequeños negocios o startups así como a empresas ya consolidadas.</p>
-                </ng-template>
-              </ngb-panel>
-              <ngb-panel cardClass="border-0 rounded shadow mb-2">
-                <ng-template ngbPanelTitle>
-                  <div class="border-0 bg-light" id="headingfour">
-                    <h6 class="title mb-0 text-dark"> ¿En que plataformas estais especializados? </h6>
-                  </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                  <p class="text-muted mb-0 faq-ans">Nuestro equipo de diseñadores web trabaja con multitud de tecnologias, siendo las mas comunes plataformas tan conocidas como WordPress, Wix, Magento entre otras.También ofrecemos soluciones de diseño a medida, empleando lenguajes como Angular y React para el desarrollo de aplicaciones web.</p>
-                </ng-template>
-              </ngb-panel>
-            </ngb-accordion>
-  
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-          <div class="faq-content">
-            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" closeOthers="true">
-              <ngb-panel cardClass="border-0 rounded shadow mb-2">
-                <ng-template ngbPanelTitle>
-                  <div class="border-0 bg-light" id="headingone">
-                    <h6 class="title mb-0 text-dark"> ¿Qué servicios ofreceis? </h6>
-                  </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                  <p class="text-muted mb-0 faq-ans">En Tecnoria ofrecemos una amplia variedad de servicios de diseño web y marketing digital para ayudar a nuestros clientes a destacar en su mercado e industria. Nuestros servicios incluyen diseño web, desarrollo web, branding, diseño gráfico, posicionamiento web, publicidad en línea y mucho más. Estamos enfocados en ayudar a nuestros clientes a crear una presencia en línea sólida y efectiva para su negocio.</p>
-                </ng-template>
-              </ngb-panel>
-              <ngb-panel cardClass="border-0 rounded shadow mb-2">
-                <ng-template ngbPanelTitle>
-                  <div class="border-0 bg-light" id="headingtwo">
-                    <h6 class="title mb-0 text-dark"> ¿Cuanto cuesta una página web? </h6>
-                  </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                  <p class="text-muted mb-0 faq-ans">En Tecnoria, entendemos que cada proyecto es único y por lo tanto, cada presupuesto también lo es. El precio de una página web depende de varios factores, como el tamaño y complejidad del sitio, las funcionalidades personalizadas que se requieran, y la integración con otras herramientas o plataformas. En general, podemos decir que nuestros precios para una página web varían desde unos pocos cientos hasta varios miles de euros. Sin embargo, siempre estamos dispuestos a discutir las necesidades específicas de cada cliente y trabajar juntos para encontrar una solución que se ajuste a su presupuesto.</p>
-                </ng-template>
-              </ngb-panel>
-              <ngb-panel cardClass="border-0 rounded shadow mb-2">
-                <ng-template ngbPanelTitle>
-                  <div class="border-0 bg-light" id="headingthree">
-                    <h6 class="title mb-0 text-dark"> ¿En cuanto tiempo tendría mi web? </h6>
-                  </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                  <p class="text-muted mb-0 faq-ans">En Tecnoria, el tiempo que tardamos en hacer una página web varía dependiendo del proyecto en cuestión. Sin embargo, nuestra meta es siempre entregar el trabajo lo más pronto posible, mientras mantenemos un alto nivel de calidad en nuestros diseños. En promedio, nuestro plazo estándar para entregar una página web es de 4 a 6 semanas. Sin embargo, esto puede variar dependiendo de la complejidad del proyecto y de la disponibilidad de nuestros recursos.</p>
-                </ng-template>
-              </ngb-panel>
-              <ngb-panel cardClass="border-0 rounded shadow mb-2">
-                <ng-template ngbPanelTitle>
-                  <div class="border-0 bg-light" id="headingfour">
-                    <h6 class="title mb-0 text-dark"> ¿Diseñais tiendas en linea? </h6>
-                  </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                  <p class="text-muted mb-0 faq-ans">Sí, en Tecnoria ofrecemos servicios de desarrollo de tiendas en línea o e-commerce. Empleamos diferentes tecnologías para crear tiendas en línea personalizadas y adaptadas a las necesidades de nuestros clientes. Utilizamos plataformas como Magento, Woocommerce, Shopify y Prestashop, así como también desarrollamos con tecnologías web como HTML, CSS, JavaScript y PHP. Además, nos aseguramos de que nuestras tiendas en línea sean seguras, escalables y fáciles de usar para los clientes.</p>
-                </ng-template>
-              </ngb-panel>
-            </ngb-accordion>
-  
-          </div>
+    <!--end col-->
+    <div class="row align-items-center">
+      <div class="col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <div class="faq-content">
+          <ngb-accordion
+            #acc="ngbAccordion"
+            activeIds="ngb-panel-0"
+            closeOthers="true"
+          >
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingone">
+                  <h6 class="title mb-0 text-dark">
+                    ¿Cúantos sois en el equipo?
+                  </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">
+                  Somos un equipo de profesionales en diseño web y marketing
+                  digital, somos un equipo pequeño pero con mucha experiencia y
+                  conocimiento en el campo, trabajamos con una metodología ágil
+                  y colaborativa para poder ofrecer el mejor servicio a nuestros
+                  clientes.
+                </p>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingtwo">
+                  <h6 class="title mb-0 text-dark">
+                    ¿Ofreceis servicios de copywriting?
+                  </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">
+                  Sí, ofrecemos servicios de copywriting para ayudar a nuestros
+                  clientes a crear contenido atractivo y efectivo para su sitio
+                  web o campañas de marketing. contamos con un equipo de
+                  profesionales en redacción, marketing y SEO para garantizar
+                  que su mensaje llegue a su audiencia de manera clara y
+                  efectiva.
+                </p>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingthree">
+                  <h6 class="title mb-0 text-dark">
+                    ¿Con que tipo de clientes trabajais?
+                  </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">
+                  Trabajamos con todo tipo de clietes ya sean B2B o B2C.
+                  Proporcionamos servicios tanto a pequeños negocios o startups
+                  así como a empresas ya consolidadas.
+                </p>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingfour">
+                  <h6 class="title mb-0 text-dark">
+                    ¿En que plataformas estais especializados?
+                  </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">
+                  Nuestro equipo de diseñadores web trabaja con multitud de
+                  tecnologias, siendo las mas comunes plataformas tan conocidas
+                  como WordPress, Wix, Magento entre otras.También ofrecemos
+                  soluciones de diseño a medida, empleando lenguajes como
+                  Angular y React para el desarrollo de aplicaciones web.
+                </p>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
         </div>
       </div>
-      
-      <!--end col-->
+      <div class="col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+        <div class="faq-content">
+          <ngb-accordion
+            #acc="ngbAccordion"
+            activeIds="ngb-panel-0"
+            closeOthers="true"
+          >
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingone">
+                  <h6 class="title mb-0 text-dark">¿Qué servicios ofreceis?</h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">
+                  En Tecnoria ofrecemos una amplia variedad de servicios de
+                  diseño web y marketing digital para ayudar a nuestros clientes
+                  a destacar en su mercado e industria. Nuestros servicios
+                  incluyen diseño web, desarrollo web, branding, diseño gráfico,
+                  posicionamiento web, publicidad en línea y mucho más. Estamos
+                  enfocados en ayudar a nuestros clientes a crear una presencia
+                  en línea sólida y efectiva para su negocio.
+                </p>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingtwo">
+                  <h6 class="title mb-0 text-dark">
+                    ¿Cuanto cuesta una página web?
+                  </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">
+                  En Tecnoria, entendemos que cada proyecto es único y por lo
+                  tanto, cada presupuesto también lo es. El precio de una página
+                  web depende de varios factores, como el tamaño y complejidad
+                  del sitio, las funcionalidades personalizadas que se
+                  requieran, y la integración con otras herramientas o
+                  plataformas. En general, podemos decir que nuestros precios
+                  para una página web varían desde unos pocos cientos hasta
+                  varios miles de euros. Sin embargo, siempre estamos dispuestos
+                  a discutir las necesidades específicas de cada cliente y
+                  trabajar juntos para encontrar una solución que se ajuste a su
+                  presupuesto.
+                </p>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingthree">
+                  <h6 class="title mb-0 text-dark">
+                    ¿En cuanto tiempo tendría mi web?
+                  </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">
+                  En Tecnoria, el tiempo que tardamos en hacer una página web
+                  varía dependiendo del proyecto en cuestión. Sin embargo,
+                  nuestra meta es siempre entregar el trabajo lo más pronto
+                  posible, mientras mantenemos un alto nivel de calidad en
+                  nuestros diseños. En promedio, nuestro plazo estándar para
+                  entregar una página web es de 4 a 6 semanas. Sin embargo, esto
+                  puede variar dependiendo de la complejidad del proyecto y de
+                  la disponibilidad de nuestros recursos.
+                </p>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel cardClass="border-0 rounded shadow mb-2">
+              <ng-template ngbPanelTitle>
+                <div class="border-0 bg-light" id="headingfour">
+                  <h6 class="title mb-0 text-dark">
+                    ¿Diseñais tiendas en linea?
+                  </h6>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <p class="text-muted mb-0 faq-ans">
+                  Sí, en Tecnoria ofrecemos servicios de desarrollo de tiendas
+                  en línea o e-commerce. Empleamos diferentes tecnologías para
+                  crear tiendas en línea personalizadas y adaptadas a las
+                  necesidades de nuestros clientes. Utilizamos plataformas como
+                  Magento, Woocommerce, Shopify y Prestashop, así como también
+                  desarrollamos con tecnologías web como HTML, CSS, JavaScript y
+                  PHP. Además, nos aseguramos de que nuestras tiendas en línea
+                  sean seguras, escalables y fáciles de usar para los clientes.
+                </p>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </div>
+      </div>
     </div>
-    <!--end row-->
 
+    <!--end col-->
+  </div>
+  <!--end row-->
 
-    <!--end row-->
+  <!--end row-->
   <!--end container-->
 </section>
 <!--end section-->
 
-
-<section class="section bg-light ">
+<section class="section bg-light">
   <div class="container mt-100 mt-60">
     <div class="row pt-md-5 justify-content-center">
       <div class="col-12">
         <div class="section-title text-center mb-4 pb-2">
           <h4 class="title mb-4">¿Sigues sin estar del todo convencido?</h4>
-          <p class="text-muted para-desc mx-auto mb-0">Estos son algunos de los comentarios de nuestros clientes, juramos que no hemos malatrado a (casi) ninguno para conseguirlos. Esperamos que proximamente también figures entre nuestras reseñas positivas. </p>
+          <p class="text-muted para-desc mx-auto mb-0">
+            Estos son algunos de los comentarios de nuestros clientes, juramos
+            que no hemos malatrado a (casi) ninguno para conseguirlos. Esperamos
+            que proximamente también figures entre nuestras reseñas positivas.
+          </p>
         </div>
       </div>
       <!--end col-->
@@ -1046,107 +1425,143 @@
   </div>
 </section>
 
-
 <section class="section bg-soft-primary">
   <div class="container mb-100">
-
     <div class="row pt-md-5 justify-content-center">
       <div class="col-12">
         <div class="section-title text-center mb-4 pb-2">
           <h4 class="title mb-4">Últimas entradas en nuestro Blog</h4>
-          <p class="text-muted para-desc mx-auto mb-0">Seguro que encontras información relevante para tu negocio, has llegado hasta aquí abajo, no pierdes nada por darle un vistazo. </p>
+          <p class="text-muted para-desc mx-auto mb-0">
+            Seguro que encontras información relevante para tu negocio, has
+            llegado hasta aquí abajo, no pierdes nada por darle un vistazo.
+          </p>
           <div class="mt-4">
             <a routerLink="/blog" class="btn btn-primary mt-2 me-2">
-              <i class="uil uil-blog"></i> Entrar al Blog</a>
+              <i class="uil uil-blog"></i> Entrar al Blog</a
+            >
           </div>
         </div>
       </div>
       <!--end col-->
     </div>
 
-
     <app-blog [blogData]="blogData"></app-blog>
   </div>
 </section>
-
 
 <!-- SECCION DE CONTACTO FINAL -->
 
 <app-form-bottom id="contacto"></app-form-bottom>
 
-
 <!-- FAQ n Contact End -->
 
+<!-- Subscribe Modal Content Start -->
+<ng-template #Subscribecontent let-modal>
+  <div class="modal-content rounded shadow border-0">
+    <div
+      class="modal-body p-4"
+      style="background: url('assets/images/illustrator/faq.svg') no-repeat"
+    >
+      <button
+        type="button"
+        class="btn-close float-end m-1"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+      <div class="clearfix"></div>
+      <div class="container-fluid px-0">
+        <div class="row align-items-center g-0">
+          <div class="col-lg-6 offset-lg-6">
+            <div class="pb-5 pt-4 px-4">
+              <h4>¿Quieres que te llamemos?</h4>
 
-
-
-   <!-- Subscribe Modal Content Start -->
-   <ng-template #Subscribecontent let-modal>
-    <div class="modal-content rounded shadow border-0">
-      <div class="modal-body p-4" style="background: url('assets/images/illustrator/faq.svg') no-repeat;">
-        <button type="button" class="btn-close float-end m-1" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        </button>
-        <div class="clearfix"></div>
-        <div class="container-fluid px-0">
-          <div class="row align-items-center g-0">
-            <div class="col-lg-6 offset-lg-6">
-              <div class="pb-5 pt-4 px-4">
-                <h4 >¿Quieres que te llamemos?</h4>
-
-                <h6 class="text-muted">Dejanos tus datos y nos ponemos en contacto</h6>
-                <!-- <p class="text-muted mb-0">Subscribe to the Landrick mailing list to receive updates on new
+              <h6 class="text-muted">
+                Dejanos tus datos y nos ponemos en contacto
+              </h6>
+              <!-- <p class="text-muted mb-0">Subscribe to the Landrick mailing list to receive updates on new
                   arrivals, special offers and our promotions.</p> -->
-                  <form [formGroup]="form2" class="mt-4">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="foot-subscribe mb-3">
-                          <div class="form-icon position-relative">
-                            <i-feather name="user" class="fea icon-sm icons"></i-feather>
-                            <input type="email" name="name" id="daily-updates"
-                              class="form-control ps-5 rounded" placeholder="Nombre : "
-                              formControlName ="nameControl"  >
-                          </div>
-                        </div>
-                      </div>
-              
-                      <div class="col-lg-12">
-                        <div class="foot-subscribe mb-3">
-                          <div class="form-icon position-relative">
-                            <i-feather name="phone" class="fea icon-sm icons"></i-feather>
-                            <input type="tel" name="phone" id="daily-updates"
-                              class="form-control ps-5 rounded" placeholder="Tlf : "
-                              formControlName ="phoneControl" >
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div class="col-lg-12">
-                        <div class="foot-subscribe mb-3">
-                          <div class="form-icon position-relative">
-                            <i-feather name="mail" class="fea icon-sm icons"></i-feather>
-                            <input type="email" name="email" id="daily-updates"
-                              class="form-control ps-5 rounded" placeholder="Email : "
-                              formControlName ="emailControl" >
-                          </div>
-                        </div>
-                      </div>
-              
-                      <div class="col-lg-12">
-                        <div class="d-grid">
-                          <input type="submit" id="submitsubscribe" name="send" class="btn btn-primary"
-                            value="Enviar" (click)="sendEmail()" [disabled]="form2.invalid">
-                        </div>
+              <form [formGroup]="form2" class="mt-4">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="foot-subscribe mb-3">
+                      <div class="form-icon position-relative">
+                        <i-feather
+                          name="user"
+                          class="fea icon-sm icons"
+                        ></i-feather>
+                        <input
+                          type="email"
+                          name="name"
+                          id="daily-updates"
+                          class="form-control ps-5 rounded"
+                          placeholder="Nombre : "
+                          formControlName="nameControl"
+                        />
                       </div>
                     </div>
-                  </form>
-              </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="foot-subscribe mb-3">
+                      <div class="form-icon position-relative">
+                        <i-feather
+                          name="phone"
+                          class="fea icon-sm icons"
+                        ></i-feather>
+                        <input
+                          type="tel"
+                          name="phone"
+                          id="daily-updates"
+                          class="form-control ps-5 rounded"
+                          placeholder="Tlf : "
+                          formControlName="phoneControl"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="foot-subscribe mb-3">
+                      <div class="form-icon position-relative">
+                        <i-feather
+                          name="mail"
+                          class="fea icon-sm icons"
+                        ></i-feather>
+                        <input
+                          type="email"
+                          name="email"
+                          id="daily-updates"
+                          class="form-control ps-5 rounded"
+                          placeholder="Email : "
+                          formControlName="emailControl"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="d-grid">
+                      <input
+                        type="submit"
+                        id="submitsubscribe"
+                        name="send"
+                        class="btn btn-primary"
+                        value="Enviar"
+                        (click)="sendEmail()"
+                        [disabled]="form2.invalid"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
-            <!--end col-->
           </div>
-          <!--end row-->
+          <!--end col-->
         </div>
-        <!--end container-->
+        <!--end row-->
       </div>
+      <!--end container-->
     </div>
-  </ng-template>
-  <!-- Modal Content End -->
+  </div>
+</ng-template>
+<!-- Modal Content End -->

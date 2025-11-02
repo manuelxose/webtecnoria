@@ -26,8 +26,8 @@ export class AuthService {
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
     private router: Router,
-    @Optional() private afs: AngularFirestore | null, // 👈 Optional en SSR
-    private auth: Auth
+    @Optional() private afs: AngularFirestore | null,
+    @Optional() private auth: Auth | null // 👈 Hacer Auth opcional
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -43,26 +43,37 @@ export class AuthService {
   }
 
   async SignIn(email: string, password: string) {
+    if (!this.isBrowser || !this.auth) {
+      throw new Error("Auth is not available in SSR");
+    }
     const cred = await signInWithEmailAndPassword(this.auth, email, password);
     await this.SetUserData(cred.user);
-    if (this.isBrowser) this.router.navigate(["dashboard"]);
+    this.router.navigate(["dashboard"]);
     return cred;
   }
 
   async GoogleAuth() {
+    if (!this.isBrowser || !this.auth) {
+      throw new Error("Auth is not available in SSR");
+    }
     const provider = new GoogleAuthProvider();
     const cred = await signInWithPopup(this.auth, provider);
     await this.SetUserData(cred.user);
-    if (this.isBrowser) this.router.navigate(["/dashboard"]);
+    this.router.navigate(["/dashboard"]);
     return cred;
   }
 
   async ForgotPassword(email: string) {
+    if (!this.isBrowser || !this.auth) {
+      throw new Error("Auth is not available in SSR");
+    }
     await sendPasswordResetEmail(this.auth, email);
-    if (this.isBrowser) alert("Password reset email sent, check your inbox.");
+    alert("Password reset email sent, check your inbox.");
   }
 
   async SignOut() {
+    if (!this.auth) return;
+
     try {
       await signOut(this.auth);
     } finally {
@@ -75,7 +86,6 @@ export class AuthService {
     }
   }
 
-  /** Guarda/mergea datos del usuario en Firestore (solo en browser) */
   private async SetUserData(user: User | null) {
     if (!user || !this.isBrowser || !this.afs) return;
 

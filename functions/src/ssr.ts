@@ -13,15 +13,13 @@ function getOrInitServer() {
 
   // DOM shim: optional index.html to emulate browser APIs
   try {
-    const idxCandidates = [
-      process.env.SSR_INDEX_HTML ? path.resolve(process.env.SSR_INDEX_HTML) : "",
-      path.resolve(__dirname, "..", "angular-ssr", "index.html"),
-    ].filter(Boolean);
-
-    const idx = idxCandidates.find((p) => p && fs.existsSync(p));
-    if (idx) {
-      const shim = require(path.resolve(__dirname, "../server-dom-shim-lazy.js"));
-      if (typeof shim === "function") shim(idx);
+    const idx = path.resolve(__dirname, "..", "angular-ssr", "index.html");
+    if (fs.existsSync(idx)) {
+      const shimPath = path.resolve(__dirname, "../server-dom-shim-lazy.js");
+      if (fs.existsSync(shimPath)) {
+        const shim = require(shimPath);
+        if (typeof shim === "function") shim(idx);
+      }
     }
   } catch (e) {
     console.warn("DOM shim not loaded:", (e as any)?.message || e);
@@ -33,8 +31,8 @@ function getOrInitServer() {
   cachedServer = moduleLoaded.app
     ? moduleLoaded.app()
     : moduleLoaded.default
-      ? moduleLoaded.default()
-      : moduleLoaded;
+    ? moduleLoaded.default()
+    : moduleLoaded;
 
   return cachedServer;
 }

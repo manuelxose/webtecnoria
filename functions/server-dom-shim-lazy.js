@@ -6,11 +6,19 @@ module.exports = function initializeDOMShim(indexHtmlPath) {
   try {
     require("zone.js/node");
   } catch {
-    try { require("zone.js/dist/zone-node"); } catch {}
+    try {
+      require("zone.js/dist/zone-node");
+    } catch {}
   }
 
   const fs = require("fs");
-  const domino = (() => { try { return require("domino"); } catch { return null; } })();
+  const domino = (() => {
+    try {
+      return require("domino");
+    } catch {
+      return null;
+    }
+  })();
 
   if (domino && indexHtmlPath && fs.existsSync(indexHtmlPath)) {
     const tpl = fs.readFileSync(indexHtmlPath, "utf8");
@@ -24,13 +32,33 @@ module.exports = function initializeDOMShim(indexHtmlPath) {
     global.Node = win.Node;
     global.HTMLDocument = win.HTMLDocument;
     global.DocumentFragment = win.DocumentFragment;
-    if (!global.window.location) global.window.location = { hostname: "localhost", href: "http://localhost" };
-    if (!global.document.location) global.document.location = global.window.location;
+
+    // Add getComputedStyle for ngx-typed-js and other libraries
+    global.getComputedStyle =
+      win.getComputedStyle ||
+      function () {
+        return {
+          getPropertyValue: function () {
+            return "";
+          },
+        };
+      };
+
+    if (!global.window.location)
+      global.window.location = {
+        hostname: "localhost",
+        href: "http://localhost",
+      };
+    if (!global.document.location)
+      global.document.location = global.window.location;
     return;
   }
 
   // Fallback minimal mocks
-  global.window = { navigator: { userAgent: "node" }, location: { hostname: "localhost", href: "http://localhost" } };
+  global.window = {
+    navigator: { userAgent: "node" },
+    location: { hostname: "localhost", href: "http://localhost" },
+  };
   global.document = { body: {}, head: {}, location: global.window.location };
   global.navigator = global.window.navigator;
 };
