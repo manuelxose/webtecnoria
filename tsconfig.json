@@ -1,23 +1,22 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "target": "ES2020",
+    "module": "es2020",
+    "lib": ["ES2020", "DOM"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "es2020",
-    "lib": ["es2018", "dom"],
-    "resolveJsonModule": true,
     "skipLibCheck": true,
+    "downlevelIteration": true,
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/.cache/tsbuildinfo",
+    "noImplicitAny": false,
     "noUnusedLocals": false,
-    "noImplicitAny": false
+    "useDefineForClassFields": false
   }
 }

@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/landrick-angular/browser",
+    "public": "dist/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -14,11 +14,11 @@
     ],
     "headers": [
       {
-        "source": "**/*.@(jpg|jpeg|gif|png|svg|webp)",
+        "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|ico)",
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "public, max-age=31536000"
+            "value": "public, max-age=31536000, immutable"
           }
         ]
       },
@@ -27,31 +27,38 @@
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "public, max-age=31536000"
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(html)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
           }
         ]
       }
     ]
   },
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "default",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log"
-      ]
-    }
-  ],
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs20",
+    "ignore": [
+      "node_modules",
+      ".git",
+      "firebase-debug.log",
+      "firebase-debug.*.log"
+    ]
+  },
   "emulators": {
     "functions": {
-      "host":"192.168.1.100",
+      "host": "127.0.0.1",
       "port": 5001
     },
     "hosting": {
-      "host":"192.168.1.100",
+      "host": "127.0.0.1",
       "port": 5000
     },
     "ui": {

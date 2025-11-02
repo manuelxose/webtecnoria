@@ -1,51 +1,58 @@
-/* eslint-disable linebreak-style */
 import { onRequest } from "firebase-functions/v2/https";
-import { onInit } from "firebase-functions/v2/core";
+import "dotenv/config";
+import * as path from "path";
+import * as fs from "fs";
 
-// Variable para cachear el servidor una vez cargado
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let cachedServer: any = null;
 
-// Usar onInit para la inicialización lenta del servidor SSR
-onInit(async () => {
-  console.log("Initializing SSR server...");
+function getOrInitServer() {
+  if (cachedServer) return cachedServer;
 
+  const mainPathEnv = process.env.SSR_MAIN_PATH || "angular-ssr/main.js";
+  const absMainPath = path.resolve(__dirname, "..", mainPathEnv);
+
+  // DOM shim: optional index.html to emulate browser APIs
   try {
-    // Cargar el shim DOM ANTES de cargar el servidor
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const initDOMShim = require("../server-dom-shim-lazy.js");
-    initDOMShim();
+    const idxCandidates = [
+      process.env.SSR_INDEX_HTML ? path.resolve(process.env.SSR_INDEX_HTML) : "",
+      path.resolve(__dirname, "..", "angular-ssr", "index.html"),
+    ].filter(Boolean);
 
-    // Ahora podemos cargar el servidor Angular Universal
-    // En Cloud Functions, el código está en /workspace, y dist está en /workspace/dist
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const serverPath = require("../dist/landrick-angular/server/main");
-    cachedServer = serverPath.app();
-
-    console.log("✓ SSR server initialized successfully");
-  } catch (error) {
-    console.error("Error initializing SSR server:", error);
-    throw error;
+    const idx = idxCandidates.find((p) => p && fs.existsSync(p));
+    if (idx) {
+      const shim = require(path.resolve(__dirname, "../server-dom-shim-lazy.js"));
+      if (typeof shim === "function") shim(idx);
+    }
+  } catch (e) {
+    console.warn("DOM shim not loaded:", (e as any)?.message || e);
   }
-});
+
+  // Load server bundle
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const moduleLoaded = require(absMainPath);
+  cachedServer = moduleLoaded.app
+    ? moduleLoaded.app()
+    : moduleLoaded.default
+      ? moduleLoaded.default()
+      : moduleLoaded;
+
+  return cachedServer;
+}
 
 export const ssr = onRequest(
   {
-    region: "europe-west1",
+    region: process.env.REGION || "europe-west1",
     memory: "1GiB",
     timeoutSeconds: 60,
+    cors: true,
   },
-  (request, response) => {
-    console.log("SSR request received:", request.url);
-
-    // El servidor ya debería estar inicializado por onInit
-    if (!cachedServer) {
-      console.error("Server not initialized yet");
-      response.status(503).send("Server is initializing, please try again");
-      return;
+  (req, res) => {
+    try {
+      const server = getOrInitServer();
+      return server(req, res);
+    } catch (err) {
+      console.error("SSR error:", err);
+      return res.status(500).send("Internal Server Error");
     }
-
-    // Usar el servidor Express de Angular Universal
-    return cachedServer(request, response);
   }
 );

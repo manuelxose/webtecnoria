@@ -1,3 +1,11 @@
-// Minimal index.ts - only SSR function (otras funciones causaban timeout)
-// Las funciones v1 est�n en index-all-functions.ts.backup
+import * as admin from "firebase-admin";
+import "dotenv/config";
+
+admin.initializeApp();
+
 export * from "./ssr";
+export * from "./sendEmailNotification";
+export * from "./indexBlogPost";
+export * from "./sheets";
+export * from "./companyScraper";
+export * from "./updateSitemap";
