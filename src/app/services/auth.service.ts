@@ -1,8 +1,8 @@
-import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
+import { Injectable, Inject, PLATFORM_ID, Optional } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
 import { Router } from "@angular/router";
 
-// Modular (no compat)
+// Modular Auth
 import {
   Auth,
   signInWithEmailAndPassword,
@@ -13,7 +13,7 @@ import {
   User,
 } from "@angular/fire/auth";
 
-// Puedes seguir usando Firestore compat aquí si ya lo tienes:
+// Firestore compat (solo si existe en browser)
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -26,8 +26,7 @@ export class AuthService {
   constructor(
     @Inject(PLATFORM_ID) platformId: Object,
     private router: Router,
-    private afs: AngularFirestore,
-    // Modular Auth inyectado por provideAuth()
+    @Optional() private afs: AngularFirestore | null, // 👈 Optional en SSR
     private auth: Auth
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -76,12 +75,14 @@ export class AuthService {
     }
   }
 
-  /** Guarda/mergea datos del usuario en Firestore (compat) */
+  /** Guarda/mergea datos del usuario en Firestore (solo en browser) */
   private async SetUserData(user: User | null) {
-    if (!user) return;
+    if (!user || !this.isBrowser || !this.afs) return;
+
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
+
     const data = {
       uid: user.uid,
       email: user.email ?? null,
@@ -90,12 +91,11 @@ export class AuthService {
       emailVerified: user.emailVerified ?? false,
       updatedAt: new Date().toISOString(),
     };
+
     await userRef.set(data, { merge: true });
 
-    if (this.isBrowser) {
-      try {
-        localStorage.setItem("user", JSON.stringify(data));
-      } catch {}
-    }
+    try {
+      localStorage.setItem("user", JSON.stringify(data));
+    } catch {}
   }
 }

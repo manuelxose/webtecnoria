@@ -1,27 +1,23 @@
-// src/app/app.browser.module.ts
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
+import { AngularFireStorageModule } from "@angular/fire/compat/storage";
+import { AngularFireFunctionsModule } from "@angular/fire/compat/functions";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { AppModule } from "./app.module";
+import { environment } from "src/environments/environment";
 import { AppComponent } from "./app.component";
-
-// AngularFire modular (recomendado en v7+)
-import { provideFirebaseApp } from "@angular/fire/app";
-import { initializeApp } from "firebase/app";
-import { provideAuth, getAuth } from "@angular/fire/auth";
-import { provideFirestore, getFirestore } from "@angular/fire/firestore";
-
-import { environment } from "../environments/environment";
+import { AppModule } from "./app.module";
 
 @NgModule({
   imports: [
-    // Imprescindible para error "renderModule[...] requires BrowserModule.withServerTransition"
     BrowserModule.withServerTransition({ appId: "web-empresa" }),
     AppModule,
 
-    // Firebase SOLO en el navegador
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
+    // Firebase compat SOLO en browser:
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireFunctionsModule,
   ],
   bootstrap: [AppComponent],
 })
