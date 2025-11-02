@@ -20,6 +20,9 @@ module.exports = {
   },
   ignorePatterns: [
     "/lib/**/*", // Ignore built files.
+    "/dist/**/*", // Ignore Angular dist files.
+    "server-dom-shim.js", // Ignore DOM shim
+    "server-dom-shim-lazy.js", // Ignore lazy DOM shim
   ],
   plugins: [
     "@typescript-eslint",
@@ -29,5 +32,7 @@ module.exports = {
     "quotes": ["error", "double"],
     "import/no-unresolved": 0,
     "indent": ["error", 2],
+    "linebreak-style": 0,
+    "object-curly-spacing": ["error", "never"],
   },
 };
