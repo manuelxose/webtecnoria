@@ -6,11 +6,10 @@ interface client {
 }
 
 @Component({
-  selector: "app-clients-logo",
-  templateUrl: "./clients-logo.component.html",
-  styleUrls: ["./clients-logo.component.css"],
-  standalone: true,
-  imports: [CommonModule],
+    selector: "app-clients-logo",
+    templateUrl: "./clients-logo.component.html",
+    styleUrls: ["./clients-logo.component.css"],
+    imports: [CommonModule]
 })
 export class ClientsLogoComponent implements OnInit {
   /**

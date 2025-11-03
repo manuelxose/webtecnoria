@@ -1,11 +1,10 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-posicionamiento-seo-local",
-  templateUrl: "./posicionamiento-seo-local.component.html",
-  styleUrls: ["./posicionamiento-seo-local.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-posicionamiento-seo-local",
+    templateUrl: "./posicionamiento-seo-local.component.html",
+    styleUrls: ["./posicionamiento-seo-local.component.css"],
+    imports: []
 })
 export class PosicionamientoSeoLocalComponent {
   public testimonialData = [

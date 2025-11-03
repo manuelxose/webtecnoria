@@ -2,11 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ModalService } from "src/app/services/modal.service";
 
 @Component({
-  selector: "erp",
-  templateUrl: "./erp.component.html",
-  styleUrls: ["./erp.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "erp",
+    templateUrl: "./erp.component.html",
+    styleUrls: ["./erp.component.css"],
+    imports: []
 })
 export class ErpComponent implements OnInit {
   constructor(private mSvc: ModalService) {}

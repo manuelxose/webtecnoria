@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-master-page',
-  templateUrl: './master-page.component.html',
-  styleUrls: ['./master-page.component.css']
+    selector: 'app-master-page',
+    templateUrl: './master-page.component.html',
+    styleUrls: ['./master-page.component.css'],
+    standalone: false
 })
 
 export class MasterPageComponent implements OnInit {

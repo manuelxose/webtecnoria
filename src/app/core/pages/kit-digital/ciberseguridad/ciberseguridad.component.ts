@@ -2,11 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ModalService } from "src/app/services/modal.service";
 
 @Component({
-  selector: "app-ciberseguridad",
-  templateUrl: "./ciberseguridad.component.html",
-  styleUrls: ["./ciberseguridad.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-ciberseguridad",
+    templateUrl: "./ciberseguridad.component.html",
+    styleUrls: ["./ciberseguridad.component.css"],
+    imports: []
 })
 export class CiberseguridadComponent implements OnInit {
   constructor(private mSvc: ModalService) {}

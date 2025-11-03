@@ -2,11 +2,10 @@ import { Component } from "@angular/core";
 import { ImageResizeService } from "src/app/services/image-resize.service";
 
 @Component({
-  selector: "app-disenio-web-corporativo",
-  templateUrl: "./disenio-web-corporativo.component.html",
-  styleUrls: ["./disenio-web-corporativo.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-disenio-web-corporativo",
+    templateUrl: "./disenio-web-corporativo.component.html",
+    styleUrls: ["./disenio-web-corporativo.component.css"],
+    imports: []
 })
 export class DisenioWebCorporativoComponent {
   testimonialData = [

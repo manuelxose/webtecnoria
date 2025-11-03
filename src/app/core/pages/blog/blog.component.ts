@@ -4,11 +4,10 @@ import { BlogService } from "src/app/services/blog.service";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-mainblog",
-  templateUrl: "./blog.component.html",
-  styleUrls: ["./blog.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-mainblog",
+    templateUrl: "./blog.component.html",
+    styleUrls: ["./blog.component.css"],
+    imports: []
 })
 export class MainBlogComponent {
   Menuoption = "center";

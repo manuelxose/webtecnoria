@@ -2,11 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ModalService } from "src/app/services/modal.service";
 
 @Component({
-  selector: "tienda-online",
-  templateUrl: "./tienda-online.component.html",
-  styleUrls: ["./tienda-online.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "tienda-online",
+    templateUrl: "./tienda-online.component.html",
+    styleUrls: ["./tienda-online.component.css"],
+    imports: []
 })
 export class TiendaOnlineComponent implements OnInit {
   constructor(private mSvc: ModalService) {}

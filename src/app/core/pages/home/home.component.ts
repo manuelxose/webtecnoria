@@ -18,9 +18,10 @@ import { isPlatformBrowser } from "@angular/common";
  */
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html", // Temporal: cambiar a index.component.html cuando se migre
-  styleUrls: ["./home.component.css"],
+    selector: "app-home",
+    templateUrl: "./home.component.html", // Temporal: cambiar a index.component.html cuando se migre
+    styleUrls: ["./home.component.css"],
+    standalone: false
 })
 export class HomeComponent implements OnInit {
   private isBrowser: boolean;

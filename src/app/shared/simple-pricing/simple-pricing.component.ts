@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: "app-simple-pricing",
-  templateUrl: "./simple-pricing.component.html",
-  styleUrls: ["./simple-pricing.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-simple-pricing",
+    templateUrl: "./simple-pricing.component.html",
+    styleUrls: ["./simple-pricing.component.css"],
+    imports: []
 })
 export class SimplePricingComponent implements OnInit {
   @Input() simple_pricingData: Array<{

@@ -2,11 +2,10 @@ import { Component } from "@angular/core";
 import { OwlOptions } from "ngx-owl-carousel-o";
 
 @Component({
-  selector: "app-email-marketing",
-  templateUrl: "./email-marketing.component.html",
-  styleUrls: ["./email-marketing.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-email-marketing",
+    templateUrl: "./email-marketing.component.html",
+    styleUrls: ["./email-marketing.component.css"],
+    imports: []
 })
 export class EmailMarketingComponent {
   public testimonialData = [

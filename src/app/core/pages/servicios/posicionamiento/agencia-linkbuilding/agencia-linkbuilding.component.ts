@@ -1,11 +1,10 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-agencia-linkbuilding",
-  templateUrl: "./agencia-linkbuilding.component.html",
-  styleUrls: ["./agencia-linkbuilding.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-agencia-linkbuilding",
+    templateUrl: "./agencia-linkbuilding.component.html",
+    styleUrls: ["./agencia-linkbuilding.component.css"],
+    imports: []
 })
 export class AgenciaLinkbuildingComponent {
   public testimonialData = [

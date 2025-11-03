@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "app-email-confirmation",
-  templateUrl: "./email-confirmation.component.html",
-  styleUrls: ["./email-confirmation.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-email-confirmation",
+    templateUrl: "./email-confirmation.component.html",
+    styleUrls: ["./email-confirmation.component.css"],
+    imports: []
 })
 
 /**

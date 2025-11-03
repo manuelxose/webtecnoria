@@ -4,11 +4,10 @@ import { FirestoreService } from "src/app/services/firebase.service";
 import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "app-chat-bot",
-  templateUrl: "./chat-bot.component.html",
-  styleUrls: ["./chat-bot.component.css"],
-  standalone: true,
-  imports: [CommonModule],
+    selector: "app-chat-bot",
+    templateUrl: "./chat-bot.component.html",
+    styleUrls: ["./chat-bot.component.css"],
+    imports: [CommonModule]
 })
 export class ChatBotComponent {
   public currentMessage: string = "";

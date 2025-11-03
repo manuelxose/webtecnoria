@@ -3,11 +3,10 @@ import { OwlOptions } from "ngx-owl-carousel-o";
 import { ImageResizeService } from "src/app/services/image-resize.service";
 
 @Component({
-  selector: "disenio-web",
-  templateUrl: "./disenio-web.component.html",
-  styleUrls: ["./disenio-web.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "disenio-web",
+    templateUrl: "./disenio-web.component.html",
+    styleUrls: ["./disenio-web.component.css"],
+    imports: []
 })
 export class DisenioWebComponent {
   imagePath: string;

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-auth-cover-signup',
-  templateUrl: './auth-cover-signup.component.html',
-  styleUrls: ['./auth-cover-signup.component.css']
+    selector: 'app-auth-cover-signup',
+    templateUrl: './auth-cover-signup.component.html',
+    styleUrls: ['./auth-cover-signup.component.css'],
+    standalone: false
 })
 
 /**

@@ -2,11 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ModalService } from "src/app/services/modal.service";
 
 @Component({
-  selector: "redes-sociales",
-  templateUrl: "./redes-sociales.component.html",
-  styleUrls: ["./redes-sociales.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "redes-sociales",
+    templateUrl: "./redes-sociales.component.html",
+    styleUrls: ["./redes-sociales.component.css"],
+    imports: []
 })
 export class RedesSocialesComponent implements OnInit {
   constructor(private mSvc: ModalService) {}

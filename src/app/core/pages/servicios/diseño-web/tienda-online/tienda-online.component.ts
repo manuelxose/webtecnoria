@@ -2,11 +2,10 @@ import { Component } from "@angular/core";
 import { ImageResizeService } from "src/app/services/image-resize.service";
 
 @Component({
-  selector: "app-tienda-online",
-  templateUrl: "./tienda-online.component.html",
-  styleUrls: ["./tienda-online.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-tienda-online",
+    templateUrl: "./tienda-online.component.html",
+    styleUrls: ["./tienda-online.component.css"],
+    imports: []
 })
 export class EcoommerceComponent {
   testimonialData = [

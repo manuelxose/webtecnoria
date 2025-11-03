@@ -4,11 +4,10 @@ import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "app-locations",
-  templateUrl: "./locations.component.html",
-  styleUrls: ["./locations.component.css"],
-  standalone: true,
-  imports: [CommonModule],
+    selector: "app-locations",
+    templateUrl: "./locations.component.html",
+    styleUrls: ["./locations.component.css"],
+    imports: [CommonModule]
 })
 export class LocationsComponent {
   ciudades: Array<any> = [];

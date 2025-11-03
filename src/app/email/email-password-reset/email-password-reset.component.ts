@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "app-email-password-reset",
-  templateUrl: "./email-password-reset.component.html",
-  styleUrls: ["./email-password-reset.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-email-password-reset",
+    templateUrl: "./email-password-reset.component.html",
+    styleUrls: ["./email-password-reset.component.css"],
+    imports: []
 })
 
 /**

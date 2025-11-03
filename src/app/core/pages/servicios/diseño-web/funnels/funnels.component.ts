@@ -2,11 +2,10 @@ import { Component } from "@angular/core";
 import { ImageResizeService } from "src/app/services/image-resize.service";
 
 @Component({
-  selector: "app-funnels",
-  templateUrl: "./funnels.component.html",
-  styleUrls: ["./funnels.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-funnels",
+    templateUrl: "./funnels.component.html",
+    styleUrls: ["./funnels.component.css"],
+    imports: []
 })
 export class FunnelsComponent {
   faqList: any[] = [

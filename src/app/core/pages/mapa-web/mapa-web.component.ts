@@ -1,10 +1,9 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-mapa-web",
-  templateUrl: "./mapa-web.component.html",
-  styleUrls: ["./mapa-web.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-mapa-web",
+    templateUrl: "./mapa-web.component.html",
+    styleUrls: ["./mapa-web.component.css"],
+    imports: []
 })
 export class MapaWebComponent {}

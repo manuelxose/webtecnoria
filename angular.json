@@ -102,18 +102,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "web-empresa:build"
+            "buildTarget": "web-empresa:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "web-empresa:build:production"
+              "buildTarget": "web-empresa:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "web-empresa:build"
+            "buildTarget": "web-empresa:build"
           }
         },
         "test": {

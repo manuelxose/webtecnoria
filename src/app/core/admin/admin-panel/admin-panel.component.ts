@@ -7,9 +7,10 @@ import { Ng2ImgMaxService } from 'ng2-img-max';
 import { fromEvent, map, Observable, switchMap } from 'rxjs';
 
 @Component({
-  selector: 'app-admin-panel',
-  templateUrl: './admin-panel.component.html',
-  styleUrls: ['./admin-panel.component.css']
+    selector: 'app-admin-panel',
+    templateUrl: './admin-panel.component.html',
+    styleUrls: ['./admin-panel.component.css'],
+    standalone: false
 })
 
 

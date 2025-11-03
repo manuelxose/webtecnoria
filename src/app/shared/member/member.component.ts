@@ -2,11 +2,10 @@ import { Component, OnInit, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "app-member",
-  templateUrl: "./member.component.html",
-  styleUrls: ["./member.component.css"],
-  standalone: true,
-  imports: [CommonModule],
+    selector: "app-member",
+    templateUrl: "./member.component.html",
+    styleUrls: ["./member.component.css"],
+    imports: [CommonModule]
 })
 export class MemberComponent implements OnInit {
   @Input() memberData: Array<{

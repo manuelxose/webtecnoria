@@ -3,11 +3,10 @@ import { BlogService } from "src/app/services/blog.service";
 import { ImageResizeService } from "src/app/services/image-resize.service";
 
 @Component({
-  selector: "app-software-medida",
-  templateUrl: "./software-medida.component.html",
-  styleUrls: ["./software-medida.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-software-medida",
+    templateUrl: "./software-medida.component.html",
+    styleUrls: ["./software-medida.component.css"],
+    imports: []
 })
 export class SoftwareMedidaComponent {
   blogData = [];

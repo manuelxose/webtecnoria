@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "app-switcher",
-  templateUrl: "./switcher.component.html",
-  styleUrls: ["./switcher.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-switcher",
+    templateUrl: "./switcher.component.html",
+    styleUrls: ["./switcher.component.css"],
+    imports: []
 })
 
 /**

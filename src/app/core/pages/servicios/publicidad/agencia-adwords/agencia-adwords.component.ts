@@ -3,11 +3,10 @@ import { OwlOptions } from "ngx-owl-carousel-o";
 import { ImageResizeService } from "src/app/services/image-resize.service";
 
 @Component({
-  selector: "app-agencia-adwords",
-  templateUrl: "./agencia-adwords.component.html",
-  styleUrls: ["./agencia-adwords.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-agencia-adwords",
+    templateUrl: "./agencia-adwords.component.html",
+    styleUrls: ["./agencia-adwords.component.css"],
+    imports: []
 })
 export class AgenciaAdwordsComponent {
   public testimonialData = [

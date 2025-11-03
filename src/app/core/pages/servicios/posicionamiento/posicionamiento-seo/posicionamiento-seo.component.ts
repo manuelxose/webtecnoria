@@ -1,11 +1,10 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-posicionamiento-seo-amazon",
-  templateUrl: "./posicionamiento-seo.component.html",
-  styleUrls: ["./posicionamiento-seo.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-posicionamiento-seo-amazon",
+    templateUrl: "./posicionamiento-seo.component.html",
+    styleUrls: ["./posicionamiento-seo.component.css"],
+    imports: []
 })
 export class PosicionamientoSeoComponent {
   public testimonialData = [

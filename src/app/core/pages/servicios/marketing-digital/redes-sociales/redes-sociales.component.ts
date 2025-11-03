@@ -2,11 +2,10 @@ import { Component } from "@angular/core";
 import { OwlOptions } from "ngx-owl-carousel-o";
 
 @Component({
-  selector: "app-redes-sociales",
-  templateUrl: "./redes-sociales.component.html",
-  styleUrls: ["./redes-sociales.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-redes-sociales",
+    templateUrl: "./redes-sociales.component.html",
+    styleUrls: ["./redes-sociales.component.css"],
+    imports: []
 })
 export class GestionRedesSocialesComponent {
   public testimonialData = [

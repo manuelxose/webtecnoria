@@ -4,11 +4,10 @@ import { FirestoreService } from "src/app/services/firebase.service";
 import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "app-form-bottom",
-  templateUrl: "./form-bottom.component.html",
-  styleUrls: ["./form-bottom.component.css"],
-  standalone: true,
-  imports: [CommonModule],
+    selector: "app-form-bottom",
+    templateUrl: "./form-bottom.component.html",
+    styleUrls: ["./form-bottom.component.css"],
+    imports: [CommonModule]
 })
 export class FormBottomComponent {
   public form: FormGroup;

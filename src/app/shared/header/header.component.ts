@@ -4,11 +4,10 @@ import { NgbModal, NgbOffcanvas } from "@ng-bootstrap/ng-bootstrap";
 import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.css"],
-  standalone: true,
-  imports: [CommonModule],
+    selector: "app-header",
+    templateUrl: "./header.component.html",
+    styleUrls: ["./header.component.css"],
+    imports: [CommonModule]
 })
 
 /***

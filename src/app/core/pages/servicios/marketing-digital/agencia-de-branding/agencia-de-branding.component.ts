@@ -2,11 +2,10 @@ import { Component } from "@angular/core";
 import { OwlOptions } from "ngx-owl-carousel-o";
 
 @Component({
-  selector: "app-agencia-de-branding",
-  templateUrl: "./agencia-de-branding.component.html",
-  styleUrls: ["./agencia-de-branding.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-agencia-de-branding",
+    templateUrl: "./agencia-de-branding.component.html",
+    styleUrls: ["./agencia-de-branding.component.css"],
+    imports: []
 })
 export class AgenciaDeBrandingComponent {
   public testimonialData = [

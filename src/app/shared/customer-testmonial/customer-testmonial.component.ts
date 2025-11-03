@@ -3,11 +3,10 @@ import { Component, OnInit, Input } from "@angular/core";
 import { OwlOptions } from "ngx-owl-carousel-o";
 
 @Component({
-  selector: "app-customer-testmonial",
-  templateUrl: "./customer-testmonial.component.html",
-  styleUrls: ["./customer-testmonial.component.css"],
-  standalone: true,
-  imports: [CommonModule],
+    selector: "app-customer-testmonial",
+    templateUrl: "./customer-testmonial.component.html",
+    styleUrls: ["./customer-testmonial.component.css"],
+    imports: [CommonModule]
 })
 export class CustomerTestmonialComponent implements OnInit {
   @Input() customerData: Array<{

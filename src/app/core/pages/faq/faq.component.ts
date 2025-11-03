@@ -1,11 +1,10 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-faq",
-  templateUrl: "./faq.component.html",
-  styleUrls: ["./faq.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-faq",
+    templateUrl: "./faq.component.html",
+    styleUrls: ["./faq.component.css"],
+    imports: []
 })
 export class FaqComponent {
   public faqContent: any = [

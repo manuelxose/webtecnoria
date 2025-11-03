@@ -4,9 +4,10 @@ import { BlogI } from 'src/app/models/blog';
 import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
-  selector: 'app-blog-detail',
-  templateUrl: './blog-detail.component.html',
-  styleUrls: ['./blog-detail.component.css']
+    selector: 'app-blog-detail',
+    templateUrl: './blog-detail.component.html',
+    styleUrls: ['./blog-detail.component.css'],
+    standalone: false
 })
 export class BlogDetailComponent {
      // Set Topbar Option

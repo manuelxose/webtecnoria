@@ -3,11 +3,10 @@ import { BlogService } from "src/app/services/blog.service";
 import { ImageResizeService } from "src/app/services/image-resize.service";
 
 @Component({
-  selector: "app-app-web",
-  templateUrl: "./app-web.component.html",
-  styleUrls: ["./app-web.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-app-web",
+    templateUrl: "./app-web.component.html",
+    styleUrls: ["./app-web.component.css"],
+    imports: []
 })
 export class AppWebComponent {
   blogData: any = [];

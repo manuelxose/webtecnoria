@@ -1,11 +1,10 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-auditoria-seo",
-  templateUrl: "./auditoria-seo.component.html",
-  styleUrls: ["./auditoria-seo.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-auditoria-seo",
+    templateUrl: "./auditoria-seo.component.html",
+    styleUrls: ["./auditoria-seo.component.css"],
+    imports: []
 })
 export class AuditoriaSeoComponent {
   public testimonialData = [

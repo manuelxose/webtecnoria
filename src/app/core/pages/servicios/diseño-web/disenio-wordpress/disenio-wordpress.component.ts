@@ -2,11 +2,10 @@ import { Component } from "@angular/core";
 import { ImageResizeService } from "src/app/services/image-resize.service";
 
 @Component({
-  selector: "app-disenio-wordpress",
-  templateUrl: "./disenio-wordpress.component.html",
-  styleUrls: ["./disenio-wordpress.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-disenio-wordpress",
+    templateUrl: "./disenio-wordpress.component.html",
+    styleUrls: ["./disenio-wordpress.component.css"],
+    imports: []
 })
 export class DisenioWordpressComponent {
   testimonialData = [

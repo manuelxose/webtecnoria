@@ -1,11 +1,10 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-posicionamiento-sem",
-  templateUrl: "./posicionamiento-sem.component.html",
-  styleUrls: ["./posicionamiento-sem.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-posicionamiento-sem",
+    templateUrl: "./posicionamiento-sem.component.html",
+    styleUrls: ["./posicionamiento-sem.component.css"],
+    imports: []
 })
 export class PosicionamientoSemComponent {
   public testimonialData = [

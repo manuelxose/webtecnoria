@@ -2,11 +2,10 @@ import { Component } from "@angular/core";
 import { ImageResizeService } from "src/app/services/image-resize.service";
 
 @Component({
-  selector: "app-agencia-linkeding-ads",
-  templateUrl: "./agencia-linkeding-ads.component.html",
-  styleUrls: ["./agencia-linkeding-ads.component.css"],
-  standalone: true,
-  imports: [],
+    selector: "app-agencia-linkeding-ads",
+    templateUrl: "./agencia-linkeding-ads.component.html",
+    styleUrls: ["./agencia-linkeding-ads.component.css"],
+    imports: []
 })
 export class AgenciaLinkedingAdsComponent {
   public testimonialData = [
