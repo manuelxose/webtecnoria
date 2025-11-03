@@ -1,168 +1,57 @@
-import { ngExpressEngine } from "@nguniversal/express-engine";
-import * as express from "express";
-import { join } from "path";
-import { existsSync } from "fs";
-import { APP_BASE_HREF } from "@angular/common";
+import { APP_BASE_HREF } from '@angular/common';
+import { CommonEngine } from '@angular/ssr';
+import express from 'express';
+import { fileURLToPath } from 'node:url';
+import { dirname, join, resolve } from 'node:path';
+import bootstrap from './src/main.server';
 
-// We now use the default bootstrap function exported by src/main.server.ts which
-// bootstraps the standalone AppComponent via bootstrapApplication. This removes
-// the dependency on NgModules at server runtime.
+// The Express app is exported so that it can be used by serverless Functions.
+export function app(): express.Express {
+  const server = express();
+  const serverDistFolder = dirname(fileURLToPath(import.meta.url));
+  const browserDistFolder = resolve(serverDistFolder, '../browser');
+  const indexHtml = join(serverDistFolder, 'index.server.html');
 
-export function app() {
-  const server = (express as any)();
+  const commonEngine = new CommonEngine();
 
-  // Preferente: dist/browser. Fallback: dist/ por si empaquetas distinto.
-  let distFolder = join(process.cwd(), "dist", "browser");
-  console.log("🔍 Checking distFolder:", distFolder);
+  server.set('view engine', 'html');
+  server.set('views', browserDistFolder);
 
-  if (!existsSync(distFolder)) {
-    console.log("⚠️  dist/browser not found, using fallback");
-    distFolder = join(process.cwd(), "dist");
-  }
+  // Example Express Rest API endpoints
+  // server.get('/api/**', (req, res) => { });
+  // Serve static files from /browser
+  server.get('**', express.static(browserDistFolder, {
+    maxAge: '1y',
+    index: 'index.html',
+  }));
 
-  console.log("✅ Using distFolder:", distFolder);
-  console.log("📁 distFolder exists:", existsSync(distFolder));
+  // All regular routes use the Angular engine
+  server.get('**', (req, res, next) => {
+    const { protocol, originalUrl, baseUrl, headers } = req;
 
-  const indexHtml = "index.html";
-  const indexPath = join(distFolder, indexHtml);
-  console.log("📄 Index HTML path:", indexPath);
-  console.log("📄 Index HTML exists:", existsSync(indexPath));
-
-  server.engine(
-    "html",
-    // The ngExpressEngine expects a bootstrap module or factory. We provide a
-    // small wrapper that dynamically imports the server bootstrap function and
-    // calls it to obtain the application reference. This avoids referencing an
-    // NgModule entry point.
-    ngExpressEngine({
-      // Cast the async factory to any to satisfy the Type<{}> typing expected by ngExpressEngine.
-      bootstrap: (async () => {
-        const server = await import("./src/main.server");
-        // The default export is a function that returns an ApplicationRef-like
-        // bootstrap promise (bootstrapApplication). ngExpressEngine accepts a
-        // factory function that resolves the module/factory. Returning an
-        // object with ngModuleFactory compatibility is sufficient for the engine.
-        return server.default();
-      }) as any,
-    }) as any
-  );
-  server.set("view engine", "html");
-  server.set("views", distFolder);
-
-  console.log("🚀 Express engine configured");
-  console.log("🚀 View engine set to: html");
-  console.log("🚀 Views directory:", distFolder);
-
-  // Log static file requests
-  server.use((req, res, next) => {
-    if (
-      req.url.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)
-    ) {
-      console.log("📦 Static file request:", req.method, req.url);
-    }
-    next();
-  });
-
-  server.get("*.*", express.static(distFolder, { maxAge: "1y" }));
-
-  server.get("*", (req, res) => {
-    console.log("\n🌐 ========== NEW REQUEST ==========");
-    console.log("📍 URL:", req.url);
-    console.log("📍 Method:", req.method);
-    console.log("📍 Headers:", JSON.stringify(req.headers, null, 2));
-    console.log("🎬 Starting SSR render...");
-
-    const startTime = Date.now();
-    let renderCompleted = false;
-
-    // Add a timeout to prevent infinite hanging
-    const timeout = setTimeout(() => {
-      if (!renderCompleted) {
-        console.error(
-          "⏱️ TIMEOUT: SSR render did not complete within 30 seconds"
-        );
-        console.error(
-          "⏱️ This suggests an infinite subscription or async operation that never resolves"
-        );
-        if (!res.headersSent) {
-          res.status(500).send("SSR Timeout: Rendering took too long");
-        }
-      }
-    }, 30000); // 30 second timeout
-
-    res.render(
-      indexHtml,
-      {
-        req,
-        providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
-      },
-      (err, html) => {
-        renderCompleted = true;
-        clearTimeout(timeout);
-        const renderTime = Date.now() - startTime;
-
-        if (err) {
-          console.error("❌ SSR Error after", renderTime, "ms");
-          console.error("❌ Error details:", err);
-          console.error("❌ Error stack:", err.stack);
-          if (!res.headersSent) {
-            res.status(500).send("Error rendering page: " + err.message);
-          }
-          return;
-        }
-
-        console.log("✅ SSR rendered successfully in", renderTime, "ms");
-        console.log("📏 HTML length:", html ? html.length : 0, "characters");
-        console.log(
-          "🔍 HTML preview (first 500 chars):",
-          html ? html.substring(0, 500) : "EMPTY"
-        );
-        console.log(
-          "🔍 Contains <app-root>:",
-          html ? html.includes("<app-root") : false
-        );
-        console.log(
-          "🔍 Contains <script>:",
-          html ? html.includes("<script") : false
-        );
-        console.log("🌐 ========== REQUEST COMPLETE ==========\n");
-
-        if (!res.headersSent) {
-          res.send(html);
-        }
-      }
-    );
+    commonEngine
+      .render({
+        bootstrap,
+        documentFilePath: indexHtml,
+        url: `${protocol}://${headers.host}${originalUrl}`,
+        publicPath: browserDistFolder,
+        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+      })
+      .then((html) => res.send(html))
+      .catch((err) => next(err));
   });
 
   return server;
 }
 
-// Solo arranca en local si ejecutas el bundle directamente:
-function run() {
-  const port = process.env.PORT || 4000;
+function run(): void {
+  const port = process.env['PORT'] || 4000;
 
-  // Add global error handlers to catch silent failures
-  process.on("unhandledRejection", (reason, promise) => {
-    console.error("🚨 Unhandled Rejection at:", promise);
-    console.error("🚨 Reason:", reason);
-  });
-
-  process.on("uncaughtException", (error) => {
-    console.error("🚨 Uncaught Exception:", error);
-    console.error("🚨 Stack:", error.stack);
-  });
-
+  // Start up the Node server
   const server = app();
-  server.listen(port, () =>
-    console.log(`SSR listening on http://localhost:${port}`)
-  );
+  server.listen(port, () => {
+    console.log(`Node Express server listening on http://localhost:${port}`);
+  });
 }
 
-declare const __non_webpack_require__: NodeRequire;
-const mainModule = __non_webpack_require__.main;
-const moduleFilename = (mainModule && mainModule.filename) || "";
-if (moduleFilename === __filename || moduleFilename.includes("iisnode")) {
-  run();
-}
-
-export * from "./src/main.server";
+run();
