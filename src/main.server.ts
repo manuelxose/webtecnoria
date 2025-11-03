@@ -1,5 +1,5 @@
 import { enableProdMode } from "@angular/core";
-import { bootstrapApplication, BootstrapContext } from "@angular/platform-browser";
+import { bootstrapApplication } from "@angular/platform-browser";
 import { environment } from "./environments/environment";
 
 import { AppComponent } from "./app/app.component";
@@ -11,7 +11,5 @@ if (environment.production) {
 
 // Export a default bootstrap function used by server bundles
 export default function bootstrap() {
-  return bootstrapApplication(AppComponent, { providers: serverProviders }, context);
+  return bootstrapApplication(AppComponent, { providers: serverProviders });
 }
-
-export { renderModule, renderModuleFactory } from "@angular/platform-server";
