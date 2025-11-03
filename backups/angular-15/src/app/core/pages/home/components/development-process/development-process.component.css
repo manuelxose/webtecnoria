@@ -1,0 +1,260 @@
+/* ===================================
+   DEVELOPMENT PROCESS - TIMELINE
+   =================================== */
+
+/* Timeline Container */
+.process-timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Process Phase */
+.process-phase {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.process-phase:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.process-phase:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.process-phase:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.process-phase:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.process-phase:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.process-phase:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* Phase Number */
+.process-phase-number {
+  position: relative;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--gradient-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  flex-shrink: 0;
+}
+
+.process-phase-active .process-phase-number {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Phase Line (connector) */
+.process-phase-line {
+  position: absolute;
+  left: 30px;
+  top: 60px;
+  bottom: -3rem;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-primary-600),
+    var(--color-primary-300)
+  );
+  z-index: 1;
+}
+
+/* Phase Content */
+.process-phase-content {
+  background: white;
+  border-radius: var(--border-radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-gray-200);
+  transition: all 0.3s ease;
+}
+
+.process-phase-content:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+}
+
+/* Dark Mode */
+[data-theme="dark"] .process-phase-content {
+  background: var(--color-gray-800);
+  border-color: var(--color-gray-700);
+}
+
+/* Phase Icon */
+.process-phase-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--border-radius-lg);
+  background: var(--color-primary-50);
+  color: var(--color-primary-600);
+  margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .process-phase-icon {
+  background: var(--color-primary-900);
+  color: var(--color-primary-400);
+}
+
+/* Phase Title */
+.process-phase-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+/* Phase Description */
+.process-phase-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Phase Tasks */
+.process-phase-tasks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.process-phase-tasks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.process-phase-tasks li svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-success);
+}
+
+/* Phase Duration */
+.process-phase-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  border-radius: var(--border-radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .process-phase-duration {
+  background: var(--color-primary-900);
+  color: var(--color-primary-300);
+}
+
+.process-phase-duration svg {
+  color: var(--color-primary-600);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 768px) {
+  .process-phase {
+    grid-template-columns: 50px 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .process-phase-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  .process-phase-line {
+    left: 25px;
+    top: 50px;
+    bottom: -2rem;
+  }
+
+  .process-phase-content {
+    padding: 1.5rem;
+  }
+
+  .process-phase-title {
+    font-size: 1.25rem;
+  }
+
+  .process-phase-description {
+    font-size: 0.95rem;
+  }
+
+  .process-phase-tasks li {
+    font-size: 0.875rem;
+  }
+}
+
+/* ===================================
+   ANIMATIONS
+   =================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 24px rgba(102, 126, 234, 0.6);
+  }
+}
+
+/* Respeta preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .process-phase {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .process-phase-active .process-phase-number {
+    animation: none;
+  }
+
+  .process-phase-content:hover {
+    transform: none;
+  }
+}

@@ -3,10 +3,13 @@ import * as express from "express";
 import { join } from "path";
 import { existsSync } from "fs";
 import { APP_BASE_HREF } from "@angular/common";
-import { AppServerModule } from "./src/main.server";
+
+// We now use the default bootstrap function exported by src/main.server.ts which
+// bootstraps the standalone AppComponent via bootstrapApplication. This removes
+// the dependency on NgModules at server runtime.
 
 export function app() {
-  const server = express();
+  const server = (express as any)();
 
   // Preferente: dist/browser. Fallback: dist/ por si empaquetas distinto.
   let distFolder = join(process.cwd(), "dist", "browser");
@@ -25,7 +28,24 @@ export function app() {
   console.log("📄 Index HTML path:", indexPath);
   console.log("📄 Index HTML exists:", existsSync(indexPath));
 
-  server.engine("html", ngExpressEngine({ bootstrap: AppServerModule }) as any);
+  server.engine(
+    "html",
+    // The ngExpressEngine expects a bootstrap module or factory. We provide a
+    // small wrapper that dynamically imports the server bootstrap function and
+    // calls it to obtain the application reference. This avoids referencing an
+    // NgModule entry point.
+    ngExpressEngine({
+      // Cast the async factory to any to satisfy the Type<{}> typing expected by ngExpressEngine.
+      bootstrap: (async () => {
+        const server = await import("./src/main.server");
+        // The default export is a function that returns an ApplicationRef-like
+        // bootstrap promise (bootstrapApplication). ngExpressEngine accepts a
+        // factory function that resolves the module/factory. Returning an
+        // object with ngModuleFactory compatibility is sufficient for the engine.
+        return server.default();
+      }) as any,
+    }) as any
+  );
   server.set("view engine", "html");
   server.set("views", distFolder);
 

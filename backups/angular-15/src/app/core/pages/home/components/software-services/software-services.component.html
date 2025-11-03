@@ -1,0 +1,47 @@
+<section
+  class="software-services-section section"
+  aria-label="Servicios de desarrollo software empresarial"
+>
+  <div class="container">
+    <!-- Header -->
+    <div class="software-services__header">
+      <h2 class="software-services__title">
+        Soluciones de <span class="text-gradient">Software Empresarial</span>
+      </h2>
+      <div class="tecnoria-section-divider"></div>
+      <p class="software-services__subtitle">
+        Desarrollo software personalizado, implementación de sistemas de gestión
+        e integración de aplicaciones empresariales en Galicia
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="software-services__grid">
+      <app-service-card
+        *ngFor="let service of services; let i = index"
+        [service]="service"
+        [index]="i"
+      >
+      </app-service-card>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="software-services__bottom-cta">
+      <h3 class="software-services__cta-title">
+        ¿No encuentras lo que buscas?
+      </h3>
+      <p class="software-services__cta-text">
+        Cada empresa es única. Cuéntanos tu caso y diseñamos una solución a
+        medida.
+      </p>
+      <div class="software-services__cta-buttons">
+        <a href="#contact-form" class="btn btn-primary btn-lg">
+          Consultar mi Proyecto
+        </a>
+        <a href="tel:+34682047802" class="btn btn-outline-primary btn-lg">
+          Llamar al 682 04 78 02
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

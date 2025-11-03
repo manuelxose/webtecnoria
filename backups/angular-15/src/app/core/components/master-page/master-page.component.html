@@ -1,0 +1,7 @@
+<app-header [navClass]="addclass" [buttonList]="buttonShow" [sliderTopbar]="TopbarShow" 
+[isdeveloper]="developerPage" [shopPages]="shopPages" [appicons]="appicons" [Nfticons]="Nfticons" [Menuoption]="Menuoption" [Settingicon]="Settingicon"></app-header>
+
+<router-outlet (activate)="onActivate($event)" ></router-outlet>
+<app-chat-bot ></app-chat-bot>
+<app-arriba-flecha></app-arriba-flecha>
+<app-footer [footerVariant]="footerClass" [hideFooter]="hideFooter"></app-footer> 

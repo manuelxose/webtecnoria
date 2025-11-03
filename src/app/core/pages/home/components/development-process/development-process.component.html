@@ -1,0 +1,96 @@
+<section class="section" id="proceso-desarrollo">
+  <div class="container">
+    <!-- Encabezado de sección -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        Proceso de Desarrollo <span class="text-gradient">Profesional</span>
+      </h2>
+      <p class="text-lg text-secondary max-w-3xl mx-auto">
+        Metodología ágil y estructurada para garantizar el éxito de tu proyecto empresarial
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="process-timeline">
+      <div 
+        *ngFor="let phase of phases; let i = index; let isLast = last"
+        class="process-phase"
+        [class.process-phase-active]="i === 0"
+      >
+        <!-- Número de fase -->
+        <div class="process-phase-number">
+          <span>{{ i + 1 }}</span>
+        </div>
+
+        <!-- Línea conectora (no mostrar en última fase) -->
+        <div *ngIf="!isLast" class="process-phase-line"></div>
+
+        <!-- Contenido de fase -->
+        <div class="process-phase-content">
+          <div class="process-phase-icon">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="32" 
+              height="32" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+            >
+              <path [attr.d]="phase.icon"></path>
+            </svg>
+          </div>
+
+          <h3 class="process-phase-title">{{ phase.title }}</h3>
+          <p class="process-phase-description">{{ phase.description }}</p>
+
+          <ul class="process-phase-tasks">
+            <li *ngFor="let task of phase.tasks">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              {{ task }}
+            </li>
+          </ul>
+
+          <div class="process-phase-duration">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="16" 
+              height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            {{ phase.duration }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA final -->
+    <div class="text-center mt-12">
+      <a href="#contact-form" class="btn btn-primary btn-lg">
+        Iniciar Mi Proyecto
+      </a>
+    </div>
+  </div>
+</section>

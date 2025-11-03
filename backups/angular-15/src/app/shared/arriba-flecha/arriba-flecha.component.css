@@ -1,0 +1,38 @@
+
+.btn-up{
+    display: none;
+    background-repeat: no-repeat;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+   
+    z-index: 200;
+   
+
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    height: 72px;
+    width: 72px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    outline: none;
+    border: 1px solid #DCDCDC;
+    padding: 13px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+  }
+
+  .up{
+    display: none;
+  }
+
+  .button {
+    border-radius: 50%;
+    background: #1e3ab7;
+    padding: 10px;
+    display: flex;
+}

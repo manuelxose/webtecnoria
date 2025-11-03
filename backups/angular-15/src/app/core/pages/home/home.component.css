@@ -1,0 +1,345 @@
+/* ========== MODERN STYLES 2025 ========== */
+
+/* Hero Section Modern Gradient Overlay */
+.bg-half-260 {
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-half-260::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(47, 85, 212, 0.85) 0%, rgba(33, 150, 243, 0.75) 50%, rgba(26, 188, 156, 0.65) 100%);
+    z-index: 0;
+}
+
+.bg-half-260 .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Modern Card Styles with Glassmorphism */
+.card {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
+/* Modern Features Section */
+.features {
+    border-left: 3px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%) border-box;
+    transition: all 0.4s ease;
+}
+
+.features:hover {
+    border-left-color: #667eea;
+    transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+}
+
+/* Modern Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-outline-primary {
+    border: 2px solid #667eea;
+    color: #667eea;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Modern Typography */
+.title {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.heading {
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+/* Modern Section Backgrounds */
+.bg-light {
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%) !important;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+/* Modern Badge Styles */
+.badge {
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+/* Image Hover Effects */
+.img {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(1);
+}
+
+.img:hover {
+    filter: brightness(1.05);
+    transform: scale(1.02);
+}
+
+/* Modern Work Process Cards */
+.work-process {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.work-process:hover {
+    border-color: #667eea;
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
+}
+
+.work-process .step {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Modern FAQ Accordion */
+::ng-deep .accordion .card-header {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%) !important;
+    border-radius: 12px !important;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+::ng-deep .accordion .card-header:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%) !important;
+    transform: translateX(5px);
+}
+
+::ng-deep .accordion .card-header .title {
+    text-decoration: none !important;
+    font-weight: 600;
+}
+
+/* Modern Key Features */
+.key-feature {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    background: white;
+}
+
+.key-feature:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    transform: translateY(-4px);
+}
+
+/* Animated Gradient Background */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.bg-gradient {
+    background: linear-gradient(270deg, #f8f9fa, #e9ecef, #f8f9fa);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+}
+
+/* Modern Industry Images */
+.under_industry-images {
+    aspect-ratio: 1/1;
+    width: 100%;
+    min-height: 100px;
+    background-position: 50% 50%;
+    background-size: cover;
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.under_industry-images::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.under_industry-images:hover::after {
+    opacity: 1;
+}
+
+.under_industry-images:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.under_industry-content {
+    display: flex;
+    width: 90%;
+    min-height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    grid-column-gap: 16px;
+}
+
+/* Responsive Design - Desktop */
+@media screen and (min-width: 991px) {
+    .img {
+        object-fit: cover;
+        height: 600px;
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Responsive Design - Mobile */
+@media screen and (max-width: 768px) {
+    .img {
+        object-fit: cover;
+        height: 300px;
+        width: 100%;
+        border-radius: 12px;
+    }
+
+    .top-image {
+        display: none;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+}
+
+/* Smooth Slide Animations */
+.column-left {
+    position: absolute;
+    left: -100%;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.column-right {
+    position: absolute;
+    right: -100%;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.show-columns {
+    left: 0;
+    right: 0;
+}
+
+/* Modern Shadow Utilities */
+.shadow {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+.shadow:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Modern Loading Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Accessibility Improvements */
+*:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Modern Testimonial Styles */
+.testimonial-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(102, 126, 234, 0.15);
+    border-color: #667eea;
+}

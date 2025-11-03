@@ -1,0 +1,84 @@
+<section
+  class="pain-points-section section"
+  aria-label="Problemas que resolvemos"
+>
+  <div class="container">
+    <!-- Section Header -->
+    <div class="pain-points__header">
+      <h2 class="pain-points__title">
+        ¿Te resultan familiares estos
+        <span class="text-gradient">problemas</span>?
+      </h2>
+      <div class="tecnoria-section-divider"></div>
+      <p class="pain-points__subtitle">
+        Ayudamos a empresas en Galicia a superar estos desafíos con software
+        empresarial personalizado
+      </p>
+    </div>
+
+    <!-- Pain Points Grid -->
+    <div class="pain-points__grid">
+      <article
+        *ngFor="let point of painPoints; let i = index"
+        class="pain-point-card"
+        [style.animation-delay.s]="i * 0.1"
+      >
+        <!-- Icon -->
+        <div class="pain-point-card__icon-wrapper">
+          <svg
+            class="pain-point-card__icon"
+            width="32"
+            height="32"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              [attr.d]="point.icon"
+            />
+          </svg>
+        </div>
+
+        <!-- Content -->
+        <div class="pain-point-card__content">
+          <h3 class="pain-point-card__title">{{ point.title }}</h3>
+
+          <!-- Problem -->
+          <div class="pain-point-card__problem">
+            <span
+              class="pain-point-card__label pain-point-card__label--problem"
+            >
+              ❌ Problema
+            </span>
+            <p class="pain-point-card__text">{{ point.problem }}</p>
+          </div>
+
+          <!-- Solution -->
+          <div class="pain-point-card__solution">
+            <span
+              class="pain-point-card__label pain-point-card__label--solution"
+            >
+              ✅ Solución TecnoRia
+            </span>
+            <p class="pain-point-card__text">{{ point.solution }}</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- CTA -->
+    <div class="pain-points__cta">
+      <p class="pain-points__cta-text">
+        <strong>¿Necesitas automatizar tu empresa?</strong><br />
+        Analiza tu situación y te proponemos la mejor solución
+      </p>
+      <a href="#contact-form" class="btn btn-primary btn-lg">
+        Solicitar Análisis Gratuito
+      </a>
+    </div>
+  </div>
+</section>

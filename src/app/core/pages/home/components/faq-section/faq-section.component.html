@@ -1,0 +1,73 @@
+<section
+  class="faq-section section"
+  aria-labelledby="faq-title"
+  itemscope
+  itemtype="https://schema.org/FAQPage"
+>
+  <div class="container">
+    <div class="faq-section__header">
+      <h2 id="faq-title" class="faq-section__title">
+        Preguntas <span class="text-gradient">Frecuentes</span>
+      </h2>
+      <div class="tecnoria-section-divider"></div>
+      <p class="faq-section__subtitle">
+        Resolvemos las dudas más comunes sobre desarrollo software empresarial
+      </p>
+    </div>
+
+    <div class="faq-section__list">
+      <article
+        *ngFor="let faq of faqs; let i = index"
+        class="faq-item"
+        itemscope
+        itemprop="mainEntity"
+        itemtype="https://schema.org/Question"
+      >
+        <button
+          class="faq-item__question"
+          [class.is-open]="openIndex === i"
+          (click)="toggle(i)"
+          [attr.aria-expanded]="openIndex === i"
+          [attr.aria-controls]="'faq-answer-' + i"
+        >
+          <span itemprop="name">{{ faq.question }}</span>
+          <svg
+            class="faq-item__icon"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+
+        <div
+          [id]="'faq-answer-' + i"
+          class="faq-item__answer"
+          [class.is-open]="openIndex === i"
+          itemscope
+          itemprop="acceptedAnswer"
+          itemtype="https://schema.org/Answer"
+        >
+          <div class="faq-item__answer-content" itemprop="text">
+            {{ faq.answer }}
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="faq-section__cta">
+      <p><strong>¿No encuentras respuesta a tu pregunta?</strong></p>
+      <a href="#contact-form" class="btn btn-primary"
+        >Pregúntanos Directamente</a
+      >
+    </div>
+  </div>
+</section>

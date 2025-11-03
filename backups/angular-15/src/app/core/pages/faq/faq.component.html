@@ -1,0 +1,172 @@
+<!-- Hero Start -->
+<section class="bg-half-260 d-table w-100 top-image "
+          style="background:url('assets/images/faq/preguntas-frecuentes-tecnoria.jpg') center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;"
+          data-jarallax='{"speed": 0.5}'  id="home">
+    <div class="container bg-animation-left">
+        <div class="row">
+            <div class="col-12 " style="z-index: 1;">
+                <div class="pages-heading">
+                  <h6 class="text-dark-50">Soluciones Digitales</h6>
+                    <h4 class="title mb-0"> Preguntas Frecuentes sobre TecnoRia </h4>
+                </div>
+            </div> <!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section><!--end section-->
+<!-- Hero End -->
+
+<!-- Shape Start -->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-color-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!--Shape End-->
+
+<!-- Start -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-buying" role="tabpanel"
+                        aria-labelledby="pills-buying-tab">
+                        <div class="section-title align-items-center" id="tech">
+                            <h5 class="text-center">FAQ</h5>
+                        </div>
+
+                        <div class="accordion mt-4 pt-2" id="buyingquestion{{i}}" *ngFor="let item of faqContent;index as i">
+                            <div class="accordion-item rounded">
+                                <h2 class="accordion-header" id="headingOne{{i}}">
+                                    <button class="accordion-button border-0 bg-light text-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseOne{{i}}" aria-expanded="true"
+                                        aria-controls="collapseOne{{i}}">
+                                        {{item.title}}
+                                    </button>
+                                </h2>
+                                <div id="collapseOne{{i}}" class="accordion-collapse border-0 collapse show"
+                                    aria-labelledby="headingOne{{i}}" data-bs-parent="#buyingquestion{{i}}">
+                                    <div class="accordion-body text-muted">
+                                      {{item.desciption}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                    </div><!--end teb pane-->
+
+                </div><!--end tab content-->
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+
+    <div class="position-absolute top-50 end-0 translate-middle-y" style="z-index: -1; opacity: 0.1;">
+        <img src="assets/images/icon-gradient.png" height="550" alt="">
+    </div>
+</section><!--end section-->
+<!-- End -->
+
+<!-- SECCION DE CONTACTO FINAL -->
+
+<section class="section bg-light">
+    <div class="container ">
+      <div class="row pt-md-5 justify-content-center">
+        <div class="col-12">
+          <div class="section-title text-center mb-4 pb-2">
+            <h2 class="title mb-4">Contacta con Nosotros </h2>
+            <h4 class="mb-4">Responderemos en el Menor Tiempo Posible</h4>
+            <p class="text-muted para-desc mx-auto mb-0">Siempre respondemos a vuestras peticiones y os enviamos una propuesta inicial para que podamos hacer una idea por donde podemos empezar. Según vuestra petición os contactará uno de nuestros expertos en ese campo, para poder realizar esa primera propuesta de la forma más acertada posible. </p>
+          </div>
+        </div>
+  
+        <div class="col-12">
+          <div class="custom-form">
+            <form action="">
+              <div class="row">
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Nombre Completo</label>
+                    <div class="form-icon position-relative">
+                      <i-feather class="fea icon-sm icons" name="user"></i-feather>
+                      <input type="text" name="name" id="name" placeholder="Nombre Completo" class="form-control ps-5">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Empresa</label>
+                    <div class="form-icon position-relative">
+                      <i-feather class="fea icon-sm icons" name="user"></i-feather>
+                      <input type="text" name="name" id="name" placeholder="Empresa" class="form-control ps-5">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Email de Contacto</label>
+                    <div class="form-icon position-relative">
+                      <i-feather class="fea icon-sm icons" name="mail"></i-feather>
+                      <input type="text" name="mail" id="name" placeholder="Email" class="form-control ps-5">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Teléfono de Contacto</label>
+                    <div class="form-icon position-relative">
+                      <i-feather class="fea icon-sm icons" name="phone"></i-feather>
+                      <input type="text" name="phone" id="name" placeholder="Telefono" class="form-control ps-5">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">¿Qué servicio estas buscando?</label>
+                    <div class="form-icon position-relative">
+                      <i-feather class="fea icon-sm icons" name="phone"></i-feather>
+                      <input type="text" name="phone" id="name" placeholder="Telefono" class="form-control ps-5">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Cuentanos más sobre tu proyecto</label>
+                    <div class="form-icon position-relative">
+                      <i-feather class="fea icon-sm icons" name="phone"></i-feather>
+                      <textarea type="text" name="phone" id="name" placeholder="Cuentanos todo lo que creas necesario sobre tu proyecto" class="form-control ps-5"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="d-grid">
+                    <button type="submit" id="submit" name="send" class="btn btn-primary">Enviar Mensaje</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+  
+    </div>
+  </section>
+  
+  
+<!-- Back to top -->
+<a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" [ngxScrollTo]="'#home'">
+    <i-feather name="arrow-up" class="icons"></i-feather>
+</a>
+<!-- Back to top -->

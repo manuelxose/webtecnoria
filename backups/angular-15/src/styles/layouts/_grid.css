@@ -1,0 +1,350 @@
+/**
+ * =====================================================
+ * LAYOUTS: GRID Y CONTAINERS
+ * =====================================================
+ * Sistema de grid moderno con CSS Grid y Flexbox
+ * Mobile-first responsive
+ * =====================================================
+ */
+
+/* ==================== CONTAINERS ==================== */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.container-fluid {
+  width: 100%;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: var(--container-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--container-lg);
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--container-xl);
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: var(--container-2xl);
+  }
+}
+
+/* ==================== SECTIONS ==================== */
+.section {
+  padding: var(--space-12) 0;
+}
+
+.section-sm {
+  padding: var(--space-8) 0;
+}
+
+.section-lg {
+  padding: var(--space-16) 0;
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: var(--space-8) 0;
+  }
+  
+  .section-lg {
+    padding: var(--space-10) 0;
+  }
+}
+
+/* ==================== GRID SYSTEM ==================== */
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.grid-gap-sm {
+  gap: var(--grid-gap-sm);
+}
+
+.grid-gap-lg {
+  gap: var(--grid-gap-lg);
+}
+
+/* Grid Columns - Mobile First */
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+/* Responsive Grid Columns */
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .lg\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+
+/* Auto Fit Grid */
+.grid-auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-auto-fill {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* Column Span */
+.col-span-2 { grid-column: span 2 / span 2; }
+.col-span-3 { grid-column: span 3 / span 3; }
+.col-span-4 { grid-column: span 4 / span 4; }
+.col-span-full { grid-column: 1 / -1; }
+
+/* ==================== ROW SYSTEM (Bootstrap-like) ==================== */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--grid-gap) * -0.5);
+  margin-right: calc(var(--grid-gap) * -0.5);
+}
+
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-left: calc(var(--grid-gap) * 0.5);
+  padding-right: calc(var(--grid-gap) * 0.5);
+}
+
+/* Columns */
+.col { flex: 1 0 0%; }
+.col-auto { flex: 0 0 auto; width: auto; }
+
+.col-1 { flex: 0 0 auto; width: 8.333333%; }
+.col-2 { flex: 0 0 auto; width: 16.666667%; }
+.col-3 { flex: 0 0 auto; width: 25%; }
+.col-4 { flex: 0 0 auto; width: 33.333333%; }
+.col-5 { flex: 0 0 auto; width: 41.666667%; }
+.col-6 { flex: 0 0 auto; width: 50%; }
+.col-7 { flex: 0 0 auto; width: 58.333333%; }
+.col-8 { flex: 0 0 auto; width: 66.666667%; }
+.col-9 { flex: 0 0 auto; width: 75%; }
+.col-10 { flex: 0 0 auto; width: 83.333333%; }
+.col-11 { flex: 0 0 auto; width: 91.666667%; }
+.col-12 { flex: 0 0 auto; width: 100%; }
+
+/* Responsive Columns */
+@media (min-width: 640px) {
+  .col-sm-6 { flex: 0 0 auto; width: 50%; }
+  .col-sm-12 { flex: 0 0 auto; width: 100%; }
+}
+
+@media (min-width: 768px) {
+  .col-md-4 { flex: 0 0 auto; width: 33.333333%; }
+  .col-md-6 { flex: 0 0 auto; width: 50%; }
+  .col-md-8 { flex: 0 0 auto; width: 66.666667%; }
+  .col-md-12 { flex: 0 0 auto; width: 100%; }
+}
+
+@media (min-width: 1024px) {
+  .col-lg-3 { flex: 0 0 auto; width: 25%; }
+  .col-lg-4 { flex: 0 0 auto; width: 33.333333%; }
+  .col-lg-6 { flex: 0 0 auto; width: 50%; }
+  .col-lg-8 { flex: 0 0 auto; width: 66.666667%; }
+}
+
+/* ==================== FLEX UTILITIES ==================== */
+.flex-row-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-column-nowrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--hero-min-height);
+  height: var(--hero-height);
+  padding: var(--hero-padding-y) 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--hero-overlay);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  color: var(--text-on-dark);
+}
+
+.hero-full-height {
+  height: 100vh;
+}
+
+.hero-centered {
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-centered .hero-content {
+  margin: 0 auto;
+}
+
+/* Parallax effect */
+.hero-parallax {
+  background-attachment: fixed;
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 500px;
+  }
+  
+  .hero-parallax {
+    background-attachment: scroll;
+  }
+}
+
+/* ==================== TWO COLUMN LAYOUT ==================== */
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .two-column-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .two-column-layout-40-60 {
+    grid-template-columns: 40% 60%;
+  }
+  
+  .two-column-layout-60-40 {
+    grid-template-columns: 60% 40%;
+  }
+}
+
+/* ==================== STICKY SIDEBAR ==================== */
+.layout-with-sidebar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+  .layout-with-sidebar {
+    grid-template-columns: 250px 1fr;
+  }
+  
+  .layout-with-sidebar-wide {
+    grid-template-columns: 350px 1fr;
+  }
+  
+  .sidebar-sticky {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-6));
+    align-self: start;
+  }
+}
+
+/* ==================== MASONRY LAYOUT ==================== */
+.masonry {
+  column-count: 1;
+  column-gap: var(--grid-gap);
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: var(--grid-gap);
+}
+
+@media (min-width: 640px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+
+/* ==================== ASPECT RATIO CONTAINERS ==================== */
+.aspect-ratio-16-9 {
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+}
+
+.aspect-ratio-4-3 {
+  position: relative;
+  padding-top: 75%;
+  overflow: hidden;
+}
+
+.aspect-ratio-1-1 {
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.aspect-ratio-16-9 > *,
+.aspect-ratio-4-3 > *,
+.aspect-ratio-1-1 > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

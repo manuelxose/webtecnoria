@@ -1,0 +1,147 @@
+/**
+ * =====================================================
+ * THEME: MODO OSCURO
+ * =====================================================
+ * Tema oscuro profesional con paleta adaptada
+ * para B2B
+ * =====================================================
+ */
+
+[data-theme="dark"] {
+  /* ==================== COLORES BASE ==================== */
+  color-scheme: dark;
+  
+  /* Backgrounds */
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-tertiary: #334155;
+  --bg-overlay: rgba(0, 0, 0, 0.8);
+  --bg-blur: rgba(15, 23, 42, 0.8);
+  
+  /* Texts */
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-tertiary: #94A3B8;
+  --text-muted: #64748B;
+  
+  /* Borders */
+  --border-color: #334155;
+  --card-border: #334155;
+  
+  /* Components */
+  --card-bg: #1E293B;
+  --input-bg: #1E293B;
+  --input-border: #334155;
+  
+  /* Glassmorphism dark */
+  --glass-bg: rgba(0, 0, 0, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  
+  /* Shadows adaptadas */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.8);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+}
+
+/* ==================== TRANSICIÓN SUAVE AL CAMBIAR TEMA ==================== */
+[data-theme] {
+  transition: background-color var(--transition-base) var(--ease-out),
+              color var(--transition-base) var(--ease-out);
+}
+
+/* ==================== TOGGLE DE TEMA ==================== */
+.theme-toggle {
+  position: relative;
+  width: 3.5rem;
+  height: 2rem;
+  background-color: var(--color-gray-300);
+  border-radius: var(--border-radius-full);
+  cursor: pointer;
+  transition: background-color var(--transition-base) var(--ease-out);
+  border: none;
+  padding: 0;
+}
+
+.theme-toggle::before {
+  content: '☀️';
+  position: absolute;
+  top: 50%;
+  left: 0.25rem;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  transition: opacity var(--transition-base) var(--ease-out);
+}
+
+.theme-toggle::after {
+  content: '🌙';
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity var(--transition-base) var(--ease-out);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background-color: var(--color-primary-600);
+}
+
+[data-theme="dark"] .theme-toggle::before {
+  opacity: 0;
+}
+
+[data-theme="dark"] .theme-toggle::after {
+  opacity: 1;
+}
+
+.theme-toggle-indicator {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: white;
+  border-radius: var(--border-radius-full);
+  transition: transform var(--transition-base) var(--ease-out);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .theme-toggle-indicator {
+  transform: translateX(1.5rem);
+}
+
+/* ==================== ADAPTACIONES ESPECÍFICAS ==================== */
+
+/* Código en modo oscuro */
+[data-theme="dark"] code {
+  background-color: var(--color-gray-800);
+  color: var(--color-primary-300);
+}
+
+/* Selección de texto en modo oscuro */
+[data-theme="dark"] ::selection {
+  background-color: var(--color-primary-800);
+  color: var(--color-primary-100);
+}
+
+/* Imágenes en modo oscuro (reducir brillo) */
+[data-theme="dark"] img:not([class*="logo"]) {
+  opacity: 0.9;
+}
+
+/* Scrollbar en modo oscuro */
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--color-gray-600);
+  border-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-500);
+}
