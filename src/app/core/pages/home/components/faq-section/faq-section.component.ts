@@ -9,6 +9,8 @@ interface FAQ {
   selector: "app-faq-section",
   templateUrl: "./faq-section.component.html",
   styleUrls: ["./faq-section.component.css"],
+  standalone: true,
+  imports: [],
 })
 export class FaqSectionComponent {
   openIndex: number | null = null;

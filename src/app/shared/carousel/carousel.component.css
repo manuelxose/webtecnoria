@@ -1,0 +1,7 @@
+.app-carousel{position:relative;overflow:hidden}
+.carousel-viewport{display:flex;will-change:transform;-webkit-overflow-scrolling:touch}
+.app-carousel ::slotted(*){flex:0 0 100%;box-sizing:border-box}
+.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);color:#fff;border:0;padding:6px 10px;border-radius:4px;cursor:pointer}
+.carousel-nav.prev{left:8px}
+.carousel-nav.next{right:8px}
+.carousel-nav:focus{outline:2px solid #fff}

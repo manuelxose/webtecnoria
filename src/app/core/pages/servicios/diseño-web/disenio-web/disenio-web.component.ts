@@ -1,12 +1,29 @@
 import { Component } from "@angular/core";
+import {
+  NgbAccordionModule,
+  NgbNav,
+  NgbNavOutlet,
+} from "@ng-bootstrap/ng-bootstrap";
+import { FeatherModule } from "angular-feather";
 import { OwlOptions } from "ngx-owl-carousel-o";
 import { ImageResizeService } from "src/app/services/image-resize.service";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
+import { ScrollToDirective as ngxscrollto } from "src/app/shared/scroll-to.directive";
+import { TestimonialComponent } from "src/app/shared/testimonial/testimonial.component";
 
 @Component({
-    selector: "disenio-web",
-    templateUrl: "./disenio-web.component.html",
-    styleUrls: ["./disenio-web.component.css"],
-    imports: []
+  selector: "disenio-web",
+  templateUrl: "./disenio-web.component.html",
+  styleUrls: ["./disenio-web.component.css"],
+  imports: [
+    ngxscrollto,
+    FormBottomComponent,
+    FeatherModule,
+    TestimonialComponent,
+    NgbAccordionModule,
+    NgbNav,
+    NgbNavOutlet,
+  ],
 })
 export class DisenioWebComponent {
   imagePath: string;

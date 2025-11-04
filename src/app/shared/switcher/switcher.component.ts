@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
-    selector: "app-switcher",
-    templateUrl: "./switcher.component.html",
-    styleUrls: ["./switcher.component.css"],
-    imports: []
+  selector: "app-switcher",
+  templateUrl: "./switcher.component.html",
+  styleUrls: ["./switcher.component.css"],
+  imports: [],
 })
 
 /**
@@ -14,7 +15,7 @@ export class SwitcherComponent implements OnInit {
   // set variable
   isVisible: boolean;
 
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
     // assign value
@@ -25,6 +26,8 @@ export class SwitcherComponent implements OnInit {
    * Change theme color
    */
   onChangeColor(color: string) {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     document
       .getElementById("color-opt")
       .setAttribute("href", "./assets/css/colors/" + color + ".css");
@@ -34,6 +37,8 @@ export class SwitcherComponent implements OnInit {
    * Set dark theme
    */
   setDark() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     document
       .getElementById("theme-opt")
       .setAttribute("href", "./assets/css/style-dark.min.css");
@@ -43,6 +48,8 @@ export class SwitcherComponent implements OnInit {
    * Set light theme
    */
   setLight() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     document
       .getElementById("theme-opt")
       .setAttribute("href", "./assets/css/style.min.css");
@@ -52,6 +59,8 @@ export class SwitcherComponent implements OnInit {
    * Set dark-rtl theme
    */
   darkRtl() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     document
       .getElementById("theme-opt")
       .setAttribute("href", "./assets/css/style-dark-rtl.min.css");
@@ -60,6 +69,8 @@ export class SwitcherComponent implements OnInit {
    * Set dark-light theme
    */
   darkLtr() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     document
       .getElementById("theme-opt")
       .setAttribute("href", "./assets/css/style-dark.min.css");
@@ -68,6 +79,8 @@ export class SwitcherComponent implements OnInit {
    * Set rtl theme
    */
   setRtl() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     document
       .getElementById("theme-opt")
       .setAttribute("href", "./assets/css/style-rtl.min.css");
@@ -76,6 +89,8 @@ export class SwitcherComponent implements OnInit {
    * Set light theme
    */
   setLtr() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     document
       .getElementById("theme-opt")
       .setAttribute("href", "./assets/css/style.min.css");

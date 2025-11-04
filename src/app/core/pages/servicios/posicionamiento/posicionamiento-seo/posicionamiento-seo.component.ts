@@ -1,10 +1,27 @@
 import { Component } from "@angular/core";
+import { ScrollToDirective as ngxSclollTo } from "src/app/shared/scroll-to.directive";
+import { NgbNav, NgbNavOutlet } from "@ng-bootstrap/ng-bootstrap";
+import { TestimonialComponent } from "src/app/shared/testimonial/testimonial.component";
+import { FeatherModule } from "angular-feather";
+import { NgbAccordion, NgbPanel } from "@ng-bootstrap/ng-bootstrap";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
+import { LocationsComponent } from "src/app/shared/locations/locations.component";
 
 @Component({
-    selector: "app-posicionamiento-seo-amazon",
-    templateUrl: "./posicionamiento-seo.component.html",
-    styleUrls: ["./posicionamiento-seo.component.css"],
-    imports: []
+  selector: "app-posicionamiento-seo-amazon",
+  templateUrl: "./posicionamiento-seo.component.html",
+  styleUrls: ["./posicionamiento-seo.component.css"],
+  imports: [
+    ngxSclollTo,
+    NgbNav,
+    NgbNavOutlet,
+    TestimonialComponent,
+    FeatherModule,
+    NgbAccordion,
+    NgbPanel,
+    FormBottomComponent,
+    LocationsComponent,
+  ],
 })
 export class PosicionamientoSeoComponent {
   public testimonialData = [

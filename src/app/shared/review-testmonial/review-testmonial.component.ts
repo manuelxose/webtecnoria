@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { OwlOptions } from "ngx-owl-carousel-o";
+import { CarouselComponent } from "../carousel/carousel.component";
 
 @Component({
-    selector: "app-review-testmonial",
-    templateUrl: "./review-testmonial.component.html",
-    styleUrls: ["./review-testmonial.component.css"],
-    imports: []
+  selector: "app-review-testmonial",
+  templateUrl: "./review-testmonial.component.html",
+  styleUrls: ["./review-testmonial.component.css"],
+  standalone: true,
+  imports: [CarouselComponent],
 })
 export class ReviewTestmonialComponent implements OnInit {
   @Input() reviewData: Array<{
@@ -15,29 +16,13 @@ export class ReviewTestmonialComponent implements OnInit {
     designation: string;
   }>;
 
-  /***
-   * Review Owl Slider
-   */
-  customOptions: OwlOptions = {
+  // new carousel configuration (used in template binding)
+  public carouselConfig = {
     loop: true,
-    mouseDrag: true,
-    touchDrag: false,
-    pullDrag: false,
     autoplay: true,
-    navSpeed: 700,
-    navText: ["", ""],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 1,
-      },
-      900: {
-        items: 1,
-      },
-    },
-    nav: false,
+    interval: 5000,
+    pauseOnHover: true,
+    slidesToShow: 1,
   };
 
   constructor() {}

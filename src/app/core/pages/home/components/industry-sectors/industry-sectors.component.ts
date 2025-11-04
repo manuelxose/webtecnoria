@@ -11,6 +11,8 @@ interface Industry {
   selector: "app-industry-sectors",
   templateUrl: "./industry-sectors.component.html",
   styleUrls: ["./industry-sectors.component.css"],
+  standalone: true,
+  imports: [],
 })
 export class IndustrySectorsComponent {
   industries: Industry[] = [

@@ -1,18 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ImageResizeService {
+  private screenWidth: number;
+  private isBrowser: boolean;
 
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
 
-private screenWidth: number;
-
-  constructor() {
-    this.screenWidth = window.innerWidth;
-    window.onresize = () => {
+    if (this.isBrowser) {
       this.screenWidth = window.innerWidth;
-    };
+      window.onresize = () => {
+        this.screenWidth = window.innerWidth;
+      };
+    } else {
+      // Default value for SSR
+      this.screenWidth = 1920;
+    }
   }
 
   getScreenWidth(): number {

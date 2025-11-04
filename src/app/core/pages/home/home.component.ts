@@ -1,6 +1,15 @@
 import { Component, OnInit, PLATFORM_ID, Inject } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { isPlatformBrowser } from "@angular/common";
+import { HeroSectionComponent } from "./components/hero-section/hero-section.component";
+import { PainPointsComponent } from "./components/pain-points/pain-points.component";
+import { SoftwareServicesComponent } from "./components/software-services/software-services.component";
+import { IndustrySectorsComponent } from "./components/industry-sectors/industry-sectors.component";
+import { DevelopmentProcessComponent } from "./components/development-process/development-process.component-EXAMPLE";
+import { TechStackComponent } from "./components/tech-stack/tech-stack.component";
+import { FaqSectionComponent } from "./components/faq-section/faq-section.component";
+import { ContactFormComponent } from "./components/contact-form/contact-form.component";
+import { CtaFinalComponent } from "./components/cta-final/cta-final.component";
 
 /**
  * ═══════════════════════════════════════════════════════════════════
@@ -18,10 +27,21 @@ import { isPlatformBrowser } from "@angular/common";
  */
 
 @Component({
-    selector: "app-home",
-    templateUrl: "./home.component.html", // Temporal: cambiar a index.component.html cuando se migre
-    styleUrls: ["./home.component.css"],
-    standalone: false
+  selector: "app-home",
+  templateUrl: "./home.component.html", // Temporal: cambiar a index.component.html cuando se migre
+  styleUrls: ["./home.component.css"],
+  standalone: true,
+  imports: [
+    HeroSectionComponent,
+    PainPointsComponent,
+    SoftwareServicesComponent,
+    IndustrySectorsComponent,
+    DevelopmentProcessComponent,
+    TechStackComponent,
+    FaqSectionComponent,
+    ContactFormComponent,
+    CtaFinalComponent,
+  ],
 })
 export class HomeComponent implements OnInit {
   private isBrowser: boolean;

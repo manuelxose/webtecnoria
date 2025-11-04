@@ -15,6 +15,8 @@ interface TechCategory {
   selector: "app-tech-stack",
   templateUrl: "./tech-stack.component.html",
   styleUrls: ["./tech-stack.component.css"],
+  standalone: true,
+  imports: [],
 })
 export class TechStackComponent {
   techCategories: TechCategory[] = [

@@ -1,12 +1,25 @@
 import { Component } from "@angular/core";
-import { OwlOptions } from "ngx-owl-carousel-o";
+import { CommonModule } from "@angular/common";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FeatherModule } from "angular-feather";
 import { ImageResizeService } from "src/app/services/image-resize.service";
+import { ScrollToDirective } from "src/app/shared/scroll-to.directive";
+import { TestimonialComponent } from "src/app/shared/testimonial/testimonial.component";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
 
 @Component({
-    selector: "app-agencia-adwords",
-    templateUrl: "./agencia-adwords.component.html",
-    styleUrls: ["./agencia-adwords.component.css"],
-    imports: []
+  selector: "app-agencia-adwords",
+  templateUrl: "./agencia-adwords.component.html",
+  styleUrls: ["./agencia-adwords.component.css"],
+  standalone: true,
+  imports: [
+    CommonModule,
+    NgbModule,
+    FeatherModule,
+    ScrollToDirective,
+    TestimonialComponent,
+    FormBottomComponent,
+  ],
 })
 export class AgenciaAdwordsComponent {
   public testimonialData = [

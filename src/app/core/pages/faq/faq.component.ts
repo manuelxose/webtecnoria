@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
+import { FeatherModule } from "angular-feather";
+import { ScrollToDirective as ngxScrollTo } from "src/app/shared/scroll-to.directive";
 
 @Component({
-    selector: "app-faq",
-    templateUrl: "./faq.component.html",
-    styleUrls: ["./faq.component.css"],
-    imports: []
+  selector: "app-faq",
+  templateUrl: "./faq.component.html",
+  styleUrls: ["./faq.component.css"],
+  imports: [FeatherModule, ngxScrollTo],
 })
 export class FaqComponent {
   public faqContent: any = [

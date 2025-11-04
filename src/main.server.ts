@@ -10,6 +10,7 @@ if (environment.production) {
 }
 
 // Export a default bootstrap function used by server bundles
-export default function bootstrap() {
-  return bootstrapApplication(AppComponent, { providers: serverProviders });
-}
+const bootstrap = () =>
+  bootstrapApplication(AppComponent, { providers: serverProviders });
+
+export default bootstrap;

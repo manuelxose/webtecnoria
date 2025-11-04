@@ -11,6 +11,8 @@ interface PainPoint {
   selector: "app-pain-points",
   templateUrl: "./pain-points.component.html",
   styleUrls: ["./pain-points.component.css"],
+  imports: [],
+  standalone: true,
 })
 export class PainPointsComponent implements OnInit, OnDestroy {
   private observer: IntersectionObserver | null = null;

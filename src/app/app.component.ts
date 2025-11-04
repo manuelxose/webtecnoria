@@ -1,19 +1,22 @@
-import { Component } from "@angular/core";
+import { Component, Inject, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
 import { Meta, Title } from "@angular/platform-browser";
 import { Router, NavigationEnd, RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 
 @Component({
-    selector: "app-root",
-    imports: [CommonModule, RouterModule],
-    templateUrl: "./app.component.html",
-    styleUrls: ["./app.component.css"]
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
 })
 export class AppComponent {
   constructor(
     private router: Router,
     private meta: Meta,
-    private title: Title
+    private title: Title,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.meta.addTags([
       { name: "author", content: "TecnoRia" },
@@ -39,7 +42,11 @@ export class AppComponent {
       if (!(event instanceof NavigationEnd)) {
         return;
       }
-      window.scrollTo(0, 0);
+
+      // Only execute in browser context
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0);
+      }
     });
   }
 

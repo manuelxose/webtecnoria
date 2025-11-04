@@ -7,10 +7,11 @@ interface feature {
 }
 
 @Component({
-    selector: "app-features",
-    templateUrl: "./features.component.html",
-    styleUrls: ["./features.component.css"],
-    imports: [CommonModule]
+  selector: "app-features",
+  templateUrl: "./features.component.html",
+  styleUrls: ["./features.component.css"],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class FeaturesComponent implements OnInit {
   /**

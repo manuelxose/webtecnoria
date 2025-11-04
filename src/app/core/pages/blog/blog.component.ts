@@ -2,12 +2,26 @@ import { Component } from "@angular/core";
 import { BlogI } from "src/app/models/blog";
 import { BlogService } from "src/app/services/blog.service";
 import { Router } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
+import { FeatherModule } from "angular-feather";
+import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgxPaginationModule } from "ngx-pagination";
+import { ScrollToDirective as ngxScrollTo } from "src/app/shared/scroll-to.directive";
 
 @Component({
-    selector: "app-mainblog",
-    templateUrl: "./blog.component.html",
-    styleUrls: ["./blog.component.css"],
-    imports: []
+  selector: "app-mainblog",
+  templateUrl: "./blog.component.html",
+  styleUrls: ["./blog.component.css"],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormBottomComponent,
+    FeatherModule,
+    NgbPaginationModule,
+    NgxPaginationModule,
+    ngxScrollTo,
+  ],
 })
 export class MainBlogComponent {
   Menuoption = "center";

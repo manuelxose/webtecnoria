@@ -1,11 +1,30 @@
 import { Component } from "@angular/core";
 import { ImageResizeService } from "src/app/services/image-resize.service";
+import { ScrollToDirective as ngxSclollTo } from "src/app/shared/scroll-to.directive";
+import {
+  NgbNav,
+  NgbNavOutlet,
+  NgbAccordion,
+  NgbPanel,
+} from "@ng-bootstrap/ng-bootstrap";
+import { TestimonialComponent } from "src/app/shared/testimonial/testimonial.component";
+import { FeatherModule } from "angular-feather";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
 
 @Component({
-    selector: "app-funnels",
-    templateUrl: "./funnels.component.html",
-    styleUrls: ["./funnels.component.css"],
-    imports: []
+  selector: "app-funnels",
+  templateUrl: "./funnels.component.html",
+  styleUrls: ["./funnels.component.css"],
+  imports: [
+    ngxSclollTo,
+    NgbNav,
+    NgbNavOutlet,
+    TestimonialComponent,
+    FeatherModule,
+    NgbAccordion,
+    NgbPanel,
+    FormBottomComponent,
+  ],
 })
 export class FunnelsComponent {
   faqList: any[] = [

@@ -1,15 +1,19 @@
+import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from "@angular/router";
-import { provideAnimations } from "@angular/platform-browser/animations";
-import { provideHttpClient } from "@angular/common/http";
+import { provideHttpClient, withFetch } from "@angular/common/http";
 
 import { routes } from "./app.routes";
 
-// For Angular 15 compatibility export a providers array (no explicit Provider[] type)
-export const appProviders = [
-  provideRouter(routes, withEnabledBlockingInitialNavigation()),
-  provideAnimations(),
-  provideHttpClient(),
-];
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes, withEnabledBlockingInitialNavigation()),
+    provideHttpClient(withFetch()),
+  ],
+};
+
+// For backwards compatibility
+export const appProviders = appConfig.providers;

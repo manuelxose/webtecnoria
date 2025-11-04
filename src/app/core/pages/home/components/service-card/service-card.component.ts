@@ -15,6 +15,8 @@ export interface ServiceData {
   selector: "app-service-card",
   templateUrl: "./service-card.component.html",
   styleUrls: ["./service-card.component.css"],
+  standalone: true,
+  imports: [],
 })
 export class ServiceCardComponent {
   @Input() service!: ServiceData;

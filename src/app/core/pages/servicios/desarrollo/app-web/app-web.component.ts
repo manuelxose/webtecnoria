@@ -1,12 +1,16 @@
 import { Component } from "@angular/core";
+import { FeatherModule } from "angular-feather";
 import { BlogService } from "src/app/services/blog.service";
 import { ImageResizeService } from "src/app/services/image-resize.service";
+import { BlogComponent } from "src/app/shared/blog/blog.component";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
+import { ScrollToDirective as ngxScrollTo } from "src/app/shared/scroll-to.directive";
 
 @Component({
-    selector: "app-app-web",
-    templateUrl: "./app-web.component.html",
-    styleUrls: ["./app-web.component.css"],
-    imports: []
+  selector: "app-app-web",
+  templateUrl: "./app-web.component.html",
+  styleUrls: ["./app-web.component.css"],
+  imports: [FeatherModule, ngxScrollTo, FormBottomComponent, BlogComponent],
 })
 export class AppWebComponent {
   blogData: any = [];

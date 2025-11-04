@@ -1,11 +1,30 @@
 import { Component } from "@angular/core";
+import {
+  NgbAccordion,
+  NgbNav,
+  NgbNavOutlet,
+  NgbPanel,
+} from "@ng-bootstrap/ng-bootstrap";
+import { FeatherModule } from "angular-feather";
 import { ImageResizeService } from "src/app/services/image-resize.service";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
+import { ScrollToDirective as ngxSclollTo } from "src/app/shared/scroll-to.directive";
+import { TestimonialComponent } from "src/app/shared/testimonial/testimonial.component";
 
 @Component({
-    selector: "app-disenio-web-corporativo",
-    templateUrl: "./disenio-web-corporativo.component.html",
-    styleUrls: ["./disenio-web-corporativo.component.css"],
-    imports: []
+  selector: "app-disenio-web-corporativo",
+  templateUrl: "./disenio-web-corporativo.component.html",
+  styleUrls: ["./disenio-web-corporativo.component.css"],
+  imports: [
+    ngxSclollTo,
+    NgbNav,
+    NgbNavOutlet,
+    TestimonialComponent,
+    FeatherModule,
+    NgbAccordion,
+    NgbPanel,
+    FormBottomComponent,
+  ],
 })
 export class DisenioWebCorporativoComponent {
   testimonialData = [

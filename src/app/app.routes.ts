@@ -1,65 +1,6 @@
 import { Routes } from "@angular/router";
 
-import { MasterPageComponent } from "./core/components/master-page/master-page.component";
-import { HomeComponent } from "./core/pages/home/home.component";
-import { PaginaWebComponent } from "./core/pages/kit-digital/pagina-web/pagina-web.component";
-import { ComunicacionesSegurasComponent } from "./core/pages/kit-digital/comunicaciones-seguras/comunicaciones-seguras.component";
-import { TiendaOnlineComponent } from "./core/pages/kit-digital/tienda-online/tienda-online.component";
-import { RedesSocialesComponent } from "./core/pages/kit-digital/redes-sociales/redes-sociales.component";
-import { OficinaVirtualComponent } from "./core/pages/kit-digital/oficina-virtual/oficina-virtual.component";
-import { FacturaDigitalComponent } from "./core/pages/kit-digital/factura-digital/factura-digital.component";
-import { ErpComponent } from "./core/pages/kit-digital/erp/erp.component";
-import { CrmComponent } from "./core/pages/kit-digital/crm/crm.component";
-import { BiAnaliticaComponent } from "./core/pages/kit-digital/bi-analitica/bi-analitica.component";
-import { CiberseguridadComponent } from "./core/pages/kit-digital/ciberseguridad/ciberseguridad.component";
-import { PresenciaAvanzadaComponent } from "./core/pages/kit-digital/presencia-avanzada/presencia-avanzada.component";
-import { MarketplaceComponent } from "./core/pages/kit-digital/marketplace/marketplace.component";
-
-import { DisenioWebComponent } from "./core/pages/servicios/diseño-web/disenio-web/disenio-web.component";
-import { EcoommerceComponent } from "./core/pages/servicios/diseño-web/tienda-online/tienda-online.component";
-import { FunnelsComponent } from "./core/pages/servicios/diseño-web/funnels/funnels.component";
-import { DisenioWordpressComponent } from "./core/pages/servicios/diseño-web/disenio-wordpress/disenio-wordpress.component";
-import { DisenioWebCorporativoComponent } from "./core/pages/servicios/diseño-web/disenio-web-corporativo/disenio-web-corporativo.component";
-
-import { GestionRedesSocialesComponent } from "./core/pages/servicios/marketing-digital/redes-sociales/redes-sociales.component";
-import { AgenciaMarketingContenidosComponent } from "./core/pages/servicios/marketing-digital/agencia-marketing-contenidos/agencia-marketing-contenidos.component";
-import { AgenciaDeBrandingComponent } from "./core/pages/servicios/marketing-digital/agencia-de-branding/agencia-de-branding.component";
-import { EmailMarketingComponent } from "./core/pages/servicios/marketing-digital/email-marketing/email-marketing.component";
-
-import { AgenciaAdwordsComponent } from "./core/pages/servicios/publicidad/agencia-adwords/agencia-adwords.component";
-import { AgenciaFacebookAdsComponent } from "./core/pages/servicios/publicidad/agencia-facebook-ads/agencia-facebook-ads.component";
-import { AgenciaInstagramAdsComponent } from "./core/pages/servicios/publicidad/agencia-instagram-ads/agencia-instagram-ads.component";
-import { AgenciaLinkedingAdsComponent } from "./core/pages/servicios/publicidad/agencia-linkeding-ads/agencia-linkeding-ads.component";
-
-import { PosicionamientoSeoComponent } from "./core/pages/servicios/posicionamiento/posicionamiento-seo/posicionamiento-seo.component";
-import { PosicionamientoSemComponent } from "./core/pages/servicios/posicionamiento/posicionamiento-sem/posicionamiento-sem.component";
-import { PosicionamientoSeoLocalComponent } from "./core/pages/servicios/posicionamiento/posicionamiento-seo-local/posicionamiento-seo-local.component";
-import { AuditoriaSeoComponent } from "./core/pages/servicios/posicionamiento/auditoria-seo/auditoria-seo.component";
-import { PosicionamientoSeoAmazonComponent } from "./core/pages/servicios/posicionamiento/posicionamiento-seo-amazon/posicionamiento-seo-amazon.component";
-import { AgenciaLinkbuildingComponent } from "./core/pages/servicios/posicionamiento/agencia-linkbuilding/agencia-linkbuilding.component";
-
-import { SoftwareMedidaComponent } from "./core/pages/servicios/desarrollo/software-medida/software-medida.component";
-import { AppWebComponent } from "./core/pages/servicios/desarrollo/app-web/app-web.component";
-
-import { MainBlogComponent } from "./core/pages/blog/blog.component";
-import { BlogDetailComponent } from "./core/components/blog-detail/blog-detail.component";
-import { AboutUsComponent } from "./core/pages/about-us/about-us.component";
-import { FaqComponent } from "./core/pages/faq/faq.component";
-import { ContactoComponent } from "./core/pages/contacto/contacto.component";
-import { PoliticaprivacidadComponent } from "./core/pages/politicaprivacidad/politicaprivacidad.component";
-import { MapaWebComponent } from "./core/pages/mapa-web/mapa-web.component";
-
-import { AdminPanelComponent } from "./core/admin/admin-panel/admin-panel.component";
-import { AuthLoginComponent } from "./auth/auth-login/auth-login.component";
-import { AuthCoverLoginComponent } from "./auth/auth-cover-login/auth-cover-login.component";
-import { AuthCoverRePasswordComponent } from "./auth/auth-cover-re-password/auth-cover-re-password.component";
-import { AuthCoverSignupComponent } from "./auth/auth-cover-signup/auth-cover-signup.component";
-import { AuthLoginThreeComponent } from "./auth/auth-login-three/auth-login-three.component";
-import { AuthRePasswordComponent } from "./auth/auth-re-password/auth-re-password.component";
-import { AuthRePasswordThreeComponent } from "./auth/auth-re-password-three/auth-re-password-three.component";
-import { AuthSignupComponent } from "./auth/auth-signup/auth-signup.component";
-import { AuthSignupThreeComponent } from "./auth/auth-signup-three/auth-signup-three.component";
-
+import { MasterPageComponent } from "./core/pages/master-page/master-page.component";
 import { AuthGuard } from "./services/authguard.service";
 
 export const routes: Routes = [
@@ -67,136 +8,419 @@ export const routes: Routes = [
     path: "",
     component: MasterPageComponent,
     children: [
-      { path: "", component: HomeComponent },
+      {
+        path: "",
+        loadComponent: () =>
+          import("./core/pages/home/home.component").then(
+            (m) => m.HomeComponent
+          ),
+      },
 
-      { path: "pagina-web-kit-digital", component: PaginaWebComponent },
+      {
+        path: "pagina-web-kit-digital",
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/pagina-web/pagina-web.component"
+          ).then((m) => m.PaginaWebComponent),
+      },
       {
         path: "comunicaciones-seguras-kit-digital",
-        component: ComunicacionesSegurasComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/comunicaciones-seguras/comunicaciones-seguras.component"
+          ).then((m) => m.ComunicacionesSegurasComponent),
       },
-      { path: "tienda-online-kit-digital", component: TiendaOnlineComponent },
-      { path: "redes-sociales-kit-digital", component: RedesSocialesComponent },
+      {
+        path: "tienda-online-kit-digital",
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/tienda-online/tienda-online.component"
+          ).then((m) => m.TiendaOnlineComponent),
+      },
+      {
+        path: "redes-sociales-kit-digital",
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/redes-sociales/redes-sociales.component"
+          ).then((m) => m.RedesSocialesComponent),
+      },
       {
         path: "oficina-virtual-kit-digital",
-        component: OficinaVirtualComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/oficina-virtual/oficina-virtual.component"
+          ).then((m) => m.OficinaVirtualComponent),
       },
       {
         path: "factura-electronica-kit-digital",
-        component: FacturaDigitalComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/factura-digital/factura-digital.component"
+          ).then((m) => m.FacturaDigitalComponent),
       },
-      { path: "erp-kit-digital", component: ErpComponent },
-      { path: "crm-kit-digital", component: CrmComponent },
-      { path: "bi-analitica-kit-digital", component: BiAnaliticaComponent },
+      {
+        path: "erp-kit-digital",
+        loadComponent: () =>
+          import("./core/pages/kit-digital/erp/erp.component").then(
+            (m) => m.ErpComponent
+          ),
+      },
+      {
+        path: "crm-kit-digital",
+        loadComponent: () =>
+          import("./core/pages/kit-digital/crm/crm.component").then(
+            (m) => m.CrmComponent
+          ),
+      },
+      {
+        path: "bi-analitica-kit-digital",
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/bi-analitica/bi-analitica.component"
+          ).then((m) => m.BiAnaliticaComponent),
+      },
       {
         path: "ciberseguridad-kit-digital",
-        component: CiberseguridadComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/ciberseguridad/ciberseguridad.component"
+          ).then((m) => m.CiberseguridadComponent),
       },
       {
         path: "presencia-avanzada-kit-digital",
-        component: PresenciaAvanzadaComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/presencia-avanzada/presencia-avanzada.component"
+          ).then((m) => m.PresenciaAvanzadaComponent),
       },
-      { path: "marketplace-kit-digital", component: MarketplaceComponent },
+      {
+        path: "marketplace-kit-digital",
+        loadComponent: () =>
+          import(
+            "./core/pages/kit-digital/marketplace/marketplace.component"
+          ).then((m) => m.MarketplaceComponent),
+      },
 
       // Servicios
-      { path: "agencia-de-desarrollo-web", component: DisenioWebComponent },
-      { path: "agencia-de-ecommerce", component: EcoommerceComponent },
-      { path: "agencia-de-funnels", component: FunnelsComponent },
+      {
+        path: "agencia-de-desarrollo-web",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/diseño-web/disenio-web/disenio-web.component"
+          ).then((m) => m.DisenioWebComponent),
+      },
+      {
+        path: "agencia-de-ecommerce",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/diseño-web/tienda-online/tienda-online.component"
+          ).then((m) => m.EcoommerceComponent),
+      },
+      {
+        path: "agencia-de-funnels",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/diseño-web/funnels/funnels.component"
+          ).then((m) => m.FunnelsComponent),
+      },
       {
         path: "agencia-disenio-wordpress",
-        component: DisenioWordpressComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/diseño-web/disenio-wordpress/disenio-wordpress.component"
+          ).then((m) => m.DisenioWordpressComponent),
       },
       {
         path: "agencia-disenio-web-corporativo",
-        component: DisenioWebCorporativoComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/diseño-web/disenio-web-corporativo/disenio-web-corporativo.component"
+          ).then((m) => m.DisenioWebCorporativoComponent),
       },
 
       {
         path: "gestion-redes-sociales",
-        component: GestionRedesSocialesComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/marketing-digital/redes-sociales/redes-sociales.component"
+          ).then((m) => m.GestionRedesSocialesComponent),
       },
       {
         path: "agencia-marketing-contenidos",
-        component: AgenciaMarketingContenidosComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/marketing-digital/agencia-marketing-contenidos/agencia-marketing-contenidos.component"
+          ).then((m) => m.AgenciaMarketingContenidosComponent),
       },
-      { path: "agencia-de-branding", component: AgenciaDeBrandingComponent },
-      { path: "email-marketing", component: EmailMarketingComponent },
+      {
+        path: "agencia-de-branding",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/marketing-digital/agencia-de-branding/agencia-de-branding.component"
+          ).then((m) => m.AgenciaDeBrandingComponent),
+      },
+      {
+        path: "email-marketing",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/marketing-digital/email-marketing/email-marketing.component"
+          ).then((m) => m.EmailMarketingComponent),
+      },
 
-      { path: "agencia-adwords", component: AgenciaAdwordsComponent },
-      { path: "facebook-ads", component: AgenciaFacebookAdsComponent },
-      { path: "instagram-ads", component: AgenciaInstagramAdsComponent },
-      { path: "linkeding-ads", component: AgenciaLinkedingAdsComponent },
+      {
+        path: "agencia-adwords",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/publicidad/agencia-adwords/agencia-adwords.component"
+          ).then((m) => m.AgenciaAdwordsComponent),
+      },
+      {
+        path: "facebook-ads",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/publicidad/agencia-facebook-ads/agencia-facebook-ads.component"
+          ).then((m) => m.AgenciaFacebookAdsComponent),
+      },
+      {
+        path: "instagram-ads",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/publicidad/agencia-instagram-ads/agencia-instagram-ads.component"
+          ).then((m) => m.AgenciaInstagramAdsComponent),
+      },
+      {
+        path: "linkeding-ads",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/publicidad/agencia-linkeding-ads/agencia-linkeding-ads.component"
+          ).then((m) => m.AgenciaLinkedingAdsComponent),
+      },
 
       {
         path: "posicionamiento-seo-empresas",
-        component: PosicionamientoSeoComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/posicionamiento-seo/posicionamiento-seo.component"
+          ).then((m) => m.PosicionamientoSeoComponent),
       },
-      { path: "agencia-sem", component: PosicionamientoSemComponent },
+      {
+        path: "agencia-sem",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/posicionamiento-sem/posicionamiento-sem.component"
+          ).then((m) => m.PosicionamientoSemComponent),
+      },
       {
         path: "agencia-seo-local",
-        component: PosicionamientoSeoLocalComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/posicionamiento-seo-local/posicionamiento-seo-local.component"
+          ).then((m) => m.PosicionamientoSeoLocalComponent),
       },
-      { path: "auditoria-seo", component: AuditoriaSeoComponent },
+      {
+        path: "auditoria-seo",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/auditoria-seo/auditoria-seo.component"
+          ).then((m) => m.AuditoriaSeoComponent),
+      },
       {
         path: "agencia-de-linkbuilding",
-        component: AgenciaLinkbuildingComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/agencia-linkbuilding/agencia-linkbuilding.component"
+          ).then((m) => m.AgenciaLinkbuildingComponent),
       },
       {
         path: "agencia-seo-amazon",
-        component: PosicionamientoSeoAmazonComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/posicionamiento-seo-amazon/posicionamiento-seo-amazon.component"
+          ).then((m) => m.PosicionamientoSeoAmazonComponent),
       },
 
       {
         path: "posicionamiento-seo-empresas/:location",
-        component: PosicionamientoSeoComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/posicionamiento-seo/posicionamiento-seo.component"
+          ).then((m) => m.PosicionamientoSeoComponent),
       },
-      { path: "agencia-sem/:location", component: PosicionamientoSemComponent },
+      {
+        path: "agencia-sem/:location",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/posicionamiento-sem/posicionamiento-sem.component"
+          ).then((m) => m.PosicionamientoSemComponent),
+      },
       {
         path: "agencia-seo-local/:location",
-        component: PosicionamientoSeoLocalComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/posicionamiento-seo-local/posicionamiento-seo-local.component"
+          ).then((m) => m.PosicionamientoSeoLocalComponent),
       },
-      { path: "auditoria-seo/:location", component: AuditoriaSeoComponent },
+      {
+        path: "auditoria-seo/:location",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/auditoria-seo/auditoria-seo.component"
+          ).then((m) => m.AuditoriaSeoComponent),
+      },
       {
         path: "agencia-de-linkbuilding/:location",
-        component: AgenciaLinkbuildingComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/agencia-linkbuilding/agencia-linkbuilding.component"
+          ).then((m) => m.AgenciaLinkbuildingComponent),
       },
       {
         path: "agencia-seo-amazon/:location",
-        component: PosicionamientoSeoAmazonComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/posicionamiento/posicionamiento-seo-amazon/posicionamiento-seo-amazon.component"
+          ).then((m) => m.PosicionamientoSeoAmazonComponent),
       },
 
-      { path: "desarrollo-de-software", component: SoftwareMedidaComponent },
-      { path: "diseño-web-app", component: AppWebComponent },
+      {
+        path: "desarrollo-de-software",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/desarrollo/software-medida/software-medida.component"
+          ).then((m) => m.SoftwareMedidaComponent),
+      },
+      {
+        path: "diseño-web-app",
+        loadComponent: () =>
+          import(
+            "./core/pages/servicios/desarrollo/app-web/app-web.component"
+          ).then((m) => m.AppWebComponent),
+      },
 
       // Blog
-      { path: "blog", component: MainBlogComponent },
-      { path: "blog/:slug", component: BlogDetailComponent },
+      {
+        path: "blog",
+        loadComponent: () =>
+          import("./core/pages/blog/blog.component").then(
+            (m) => m.MainBlogComponent
+          ),
+      },
+      {
+        path: "blog/:slug",
+        loadComponent: () =>
+          import(
+            "./core/pages/blog/components/blog-detail/blog-detail.component"
+          ).then((m) => m.BlogDetailComponent),
+      },
 
-      { path: "nosotros", component: AboutUsComponent },
+      {
+        path: "nosotros",
+        loadComponent: () =>
+          import("./core/pages/about-us/about-us.component").then(
+            (m) => m.AboutUsComponent
+          ),
+      },
 
       // Misc
-      { path: "preguntas-frequentes", component: FaqComponent },
-      { path: "contacto", component: ContactoComponent },
+      {
+        path: "preguntas-frequentes",
+        loadComponent: () =>
+          import("./core/pages/faq/faq.component").then((m) => m.FaqComponent),
+      },
+      {
+        path: "contacto",
+        loadComponent: () =>
+          import("./core/pages/contacto/contacto.component").then(
+            (m) => m.ContactoComponent
+          ),
+      },
       {
         path: "politica-de-privacidad",
-        component: PoliticaprivacidadComponent,
+        loadComponent: () =>
+          import(
+            "./core/pages/politicaprivacidad/politicaprivacidad.component"
+          ).then((m) => m.PoliticaprivacidadComponent),
       },
-      { path: "mapa-web", component: MapaWebComponent },
+      {
+        path: "mapa-web",
+        loadComponent: () =>
+          import("./core/pages/mapa-web/mapa-web.component").then(
+            (m) => m.MapaWebComponent
+          ),
+      },
     ],
   },
 
   {
     path: "dashboard",
-    component: AdminPanelComponent,
+    loadComponent: () =>
+      import("./core/admin/admin-panel/admin-panel.component").then(
+        (m) => m.AdminPanelComponent
+      ),
     canActivate: [AuthGuard],
   },
 
-  { path: "auth-login", component: AuthLoginComponent },
-  { path: "auth-cover-login", component: AuthCoverLoginComponent },
-  { path: "auth-cover-re-password", component: AuthCoverRePasswordComponent },
-  { path: "auth-cover-signup", component: AuthCoverSignupComponent },
-  { path: "auth-login-three", component: AuthLoginThreeComponent },
-  { path: "auth-re-password", component: AuthRePasswordComponent },
-  { path: "auth-re-password-three", component: AuthRePasswordThreeComponent },
-  { path: "auth-signup", component: AuthSignupComponent },
-  { path: "auth-signup-three", component: AuthSignupThreeComponent },
+  {
+    path: "auth-login",
+    loadComponent: () =>
+      import("./auth/auth-login/auth-login.component").then(
+        (m) => m.AuthLoginComponent
+      ),
+  },
+  {
+    path: "auth-cover-login",
+    loadComponent: () =>
+      import("./auth/auth-cover-login/auth-cover-login.component").then(
+        (m) => m.AuthCoverLoginComponent
+      ),
+  },
+  {
+    path: "auth-cover-re-password",
+    loadComponent: () =>
+      import(
+        "./auth/auth-cover-re-password/auth-cover-re-password.component"
+      ).then((m) => m.AuthCoverRePasswordComponent),
+  },
+  {
+    path: "auth-cover-signup",
+    loadComponent: () =>
+      import("./auth/auth-cover-signup/auth-cover-signup.component").then(
+        (m) => m.AuthCoverSignupComponent
+      ),
+  },
+  {
+    path: "auth-login-three",
+    loadComponent: () =>
+      import("./auth/auth-login-three/auth-login-three.component").then(
+        (m) => m.AuthLoginThreeComponent
+      ),
+  },
+  {
+    path: "auth-re-password",
+    loadComponent: () =>
+      import("./auth/auth-re-password/auth-re-password.component").then(
+        (m) => m.AuthRePasswordComponent
+      ),
+  },
+  {
+    path: "auth-re-password-three",
+    loadComponent: () =>
+      import(
+        "./auth/auth-re-password-three/auth-re-password-three.component"
+      ).then((m) => m.AuthRePasswordThreeComponent),
+  },
+  {
+    path: "auth-signup",
+    loadComponent: () =>
+      import("./auth/auth-signup/auth-signup.component").then(
+        (m) => m.AuthSignupComponent
+      ),
+  },
+  {
+    path: "auth-signup-three",
+    loadComponent: () =>
+      import("./auth/auth-signup-three/auth-signup-three.component").then(
+        (m) => m.AuthSignupThreeComponent
+      ),
+  },
 ];

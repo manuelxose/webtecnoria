@@ -1,10 +1,25 @@
 import { Component } from "@angular/core";
+import { ScrollToDirective as ngxSclollTo } from "src/app/shared/scroll-to.directive";
+import { NgbNav, NgbNavOutlet } from "@ng-bootstrap/ng-bootstrap";
+import { TestimonialComponent } from "src/app/shared/testimonial/testimonial.component";
+import { FeatherModule } from "angular-feather";
+import { NgbAccordion, NgbPanel } from "@ng-bootstrap/ng-bootstrap";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
 
 @Component({
-    selector: "app-auditoria-seo",
-    templateUrl: "./auditoria-seo.component.html",
-    styleUrls: ["./auditoria-seo.component.css"],
-    imports: []
+  selector: "app-auditoria-seo",
+  templateUrl: "./auditoria-seo.component.html",
+  styleUrls: ["./auditoria-seo.component.css"],
+  imports: [
+    ngxSclollTo,
+    NgbNav,
+    NgbNavOutlet,
+    TestimonialComponent,
+    FeatherModule,
+    NgbAccordion,
+    NgbPanel,
+    FormBottomComponent,
+  ],
 })
 export class AuditoriaSeoComponent {
   public testimonialData = [

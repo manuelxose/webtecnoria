@@ -5,6 +5,7 @@ import { ServiceData } from "../service-card/service-card.component";
   selector: "app-software-services",
   templateUrl: "./software-services.component.html",
   styleUrls: ["./software-services.component.css"],
+  standalone: true,
 })
 export class SoftwareServicesComponent {
   services: ServiceData[] = [

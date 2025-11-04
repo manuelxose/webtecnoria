@@ -1,13 +1,22 @@
-import { Component, OnInit, Input, TemplateRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  TemplateRef,
+  Inject,
+  PLATFORM_ID,
+} from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
 import { Router, NavigationEnd } from "@angular/router";
 import { NgbModal, NgbOffcanvas } from "@ng-bootstrap/ng-bootstrap";
 import { CommonModule } from "@angular/common";
 
 @Component({
-    selector: "app-header",
-    templateUrl: "./header.component.html",
-    styleUrls: ["./header.component.css"],
-    imports: [CommonModule]
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.css"],
+  standalone: true,
+  imports: [CommonModule],
 })
 
 /***
@@ -25,12 +34,15 @@ export class HeaderComponent implements OnInit {
   @Input() Menuoption: string;
 
   public href: string = "";
+  private isBrowser: boolean;
 
   constructor(
     private router: Router,
     private modalService: NgbModal,
-    private offcanvasService: NgbOffcanvas
+    private offcanvasService: NgbOffcanvas,
+    @Inject(PLATFORM_ID) platformId: Object
   ) {
+    this.isBrowser = isPlatformBrowser(platformId);
     this.router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
         this._activateMenuDropdown();
@@ -41,13 +53,20 @@ export class HeaderComponent implements OnInit {
   isCondensed = false;
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this._activateMenuDropdown();
-    }, 0);
+    if (this.isBrowser) {
+      setTimeout(() => {
+        this._activateMenuDropdown();
+      }, 0);
+    }
   }
 
   ngOnInit(): void {
     this.href = this.router.url;
+
+    if (!this.isBrowser) {
+      return;
+    }
+
     if (this.router.url == "/index-classic-saas") {
       var light_btn = document.querySelectorAll(".login-btn-primary");
       light_btn.forEach((element) => {
@@ -78,6 +97,10 @@ export class HeaderComponent implements OnInit {
   }
 
   _activateMenuDropdown() {
+    if (!this.isBrowser) {
+      return;
+    }
+
     /**
      * Menu activation reset
      */
@@ -155,6 +178,10 @@ export class HeaderComponent implements OnInit {
    */
   // tslint:disable-next-line: typedef
   windowScroll() {
+    if (!this.isBrowser) {
+      return;
+    }
+
     if (
       document.body.scrollTop > 50 ||
       document.documentElement.scrollTop > 50
@@ -178,6 +205,10 @@ export class HeaderComponent implements OnInit {
    * Toggle menu
    */
   toggleMenu() {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.isCondensed = !this.isCondensed;
     if (this.isCondensed) {
       document.getElementById("navigation").style.display = "block";

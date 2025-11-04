@@ -12,6 +12,8 @@ interface ProcessPhase {
   selector: "app-development-process",
   templateUrl: "./development-process.component.html",
   styleUrls: ["./development-process.component.css"],
+  standalone: true,
+  imports: [],
 })
 export class DevelopmentProcessComponent {
   phases: ProcessPhase[] = [
@@ -82,8 +84,7 @@ export class DevelopmentProcessComponent {
     },
     {
       title: "Soporte y Evolución",
-      description:
-        "Acompañamiento post-lanzamiento y mejoras continuas",
+      description: "Acompañamiento post-lanzamiento y mejoras continuas",
       icon: "M13 10V3L4 14h7v7l9-11h-7z", // Lightning icon
       tasks: [
         "Soporte técnico durante estabilización",

@@ -1,12 +1,15 @@
 import { Component } from "@angular/core";
 import { BlogService } from "src/app/services/blog.service";
 import { ImageResizeService } from "src/app/services/image-resize.service";
+import { BlogComponent } from "src/app/shared/blog/blog.component";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
+import { ScrollToDirective as ngxscrollto } from "src/app/shared/scroll-to.directive";
 
 @Component({
-    selector: "app-software-medida",
-    templateUrl: "./software-medida.component.html",
-    styleUrls: ["./software-medida.component.css"],
-    imports: []
+  selector: "app-software-medida",
+  templateUrl: "./software-medida.component.html",
+  styleUrls: ["./software-medida.component.css"],
+  imports: [ngxscrollto, BlogComponent, FormBottomComponent],
 })
 export class SoftwareMedidaComponent {
   blogData = [];

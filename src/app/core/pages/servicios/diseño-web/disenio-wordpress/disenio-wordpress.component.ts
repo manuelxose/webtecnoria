@@ -1,11 +1,26 @@
 import { Component } from "@angular/core";
 import { ImageResizeService } from "src/app/services/image-resize.service";
+import { ScrollToDirective as ngxSclollTo } from "src/app/shared/scroll-to.directive";
+import { NgbAccordion, NgbPanel } from "@ng-bootstrap/ng-bootstrap";
+import { TestimonialComponent } from "src/app/shared/testimonial/testimonial.component";
+import { FeatherModule } from "angular-feather";
+import { NgbNav, NgbNavOutlet } from "@ng-bootstrap/ng-bootstrap";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
 
 @Component({
-    selector: "app-disenio-wordpress",
-    templateUrl: "./disenio-wordpress.component.html",
-    styleUrls: ["./disenio-wordpress.component.css"],
-    imports: []
+  selector: "app-disenio-wordpress",
+  templateUrl: "./disenio-wordpress.component.html",
+  styleUrls: ["./disenio-wordpress.component.css"],
+  imports: [
+    ngxSclollTo,
+    NgbNav,
+    NgbNavOutlet,
+    TestimonialComponent,
+    FeatherModule,
+    NgbAccordion,
+    NgbPanel,
+    FormBottomComponent,
+  ],
 })
 export class DisenioWordpressComponent {
   testimonialData = [

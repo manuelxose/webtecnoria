@@ -1,11 +1,28 @@
 import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { CarouselModule } from "ngx-owl-carousel-o";
+import { NgbModule, NgbNav } from "@ng-bootstrap/ng-bootstrap";
+import { FeatherModule } from "angular-feather";
 import { ImageResizeService } from "src/app/services/image-resize.service";
+import { ScrollToDirective } from "src/app/shared/scroll-to.directive";
+import { TestimonialComponent } from "src/app/shared/testimonial/testimonial.component";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
 
 @Component({
-    selector: "app-agencia-instagram-ads",
-    templateUrl: "./agencia-instagram-ads.component.html",
-    styleUrls: ["./agencia-instagram-ads.component.css"],
-    imports: []
+  selector: "app-agencia-instagram-ads",
+  templateUrl: "./agencia-instagram-ads.component.html",
+  styleUrls: ["./agencia-instagram-ads.component.css"],
+  standalone: true,
+  imports: [
+    CommonModule,
+    CarouselModule,
+    NgbModule,
+    FeatherModule,
+    ScrollToDirective,
+    NgbNav,
+    TestimonialComponent,
+    FormBottomComponent,
+  ],
 })
 export class AgenciaInstagramAdsComponent {
   public testimonialData = [

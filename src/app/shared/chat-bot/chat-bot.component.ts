@@ -2,12 +2,15 @@ import { Component, ElementRef, HostListener } from "@angular/core";
 import { ChatBotService } from "src/app/services/chat-bot.service";
 import { FirestoreService } from "src/app/services/firebase.service";
 import { CommonModule } from "@angular/common";
+import { FeatherModule } from "angular-feather";
+import { FormsModule } from "@angular/forms";
 
 @Component({
-    selector: "app-chat-bot",
-    templateUrl: "./chat-bot.component.html",
-    styleUrls: ["./chat-bot.component.css"],
-    imports: [CommonModule]
+  selector: "app-chat-bot",
+  templateUrl: "./chat-bot.component.html",
+  styleUrls: ["./chat-bot.component.css"],
+  imports: [CommonModule, FeatherModule, FormsModule],
+  standalone: true,
 })
 export class ChatBotComponent {
   public currentMessage: string = "";

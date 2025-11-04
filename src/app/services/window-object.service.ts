@@ -1,10 +1,17 @@
-import { Injectable } from '@angular/core';
-function _window(): any {
-  return window;
+import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+
+function _window(platformId: Object): any {
+  return isPlatformBrowser(platformId) ? window : {};
 }
-@Injectable()
+
+@Injectable({
+  providedIn: "root",
+})
 export class WindowRef {
- get nativeWindow(): any {
-   return _window();
- }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  get nativeWindow(): any {
+    return _window(this.platformId);
+  }
 }

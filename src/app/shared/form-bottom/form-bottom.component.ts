@@ -1,13 +1,19 @@
 import { Component } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { FirestoreService } from "src/app/services/firebase.service";
 import { CommonModule } from "@angular/common";
 
 @Component({
-    selector: "app-form-bottom",
-    templateUrl: "./form-bottom.component.html",
-    styleUrls: ["./form-bottom.component.css"],
-    imports: [CommonModule]
+  selector: "app-form-bottom",
+  templateUrl: "./form-bottom.component.html",
+  styleUrls: ["./form-bottom.component.css"],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class FormBottomComponent {
   public form: FormGroup;

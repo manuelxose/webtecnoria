@@ -1,11 +1,25 @@
 import { Component } from "@angular/core";
-import { OwlOptions } from "ngx-owl-carousel-o";
+import { ScrollToDirective as ngxSclollTo } from "src/app/shared/scroll-to.directive";
+import { NgbNav, NgbNavOutlet } from "@ng-bootstrap/ng-bootstrap";
+import { TestimonialComponent } from "src/app/shared/testimonial/testimonial.component";
+import { FeatherModule } from "angular-feather";
+import { NgbAccordion, NgbPanel } from "@ng-bootstrap/ng-bootstrap";
+import { FormBottomComponent } from "src/app/shared/form-bottom/form-bottom.component";
 
 @Component({
-    selector: "app-email-marketing",
-    templateUrl: "./email-marketing.component.html",
-    styleUrls: ["./email-marketing.component.css"],
-    imports: []
+  selector: "app-email-marketing",
+  templateUrl: "./email-marketing.component.html",
+  styleUrls: ["./email-marketing.component.css"],
+  imports: [
+    ngxSclollTo,
+    NgbNav,
+    NgbNavOutlet,
+    TestimonialComponent,
+    FeatherModule,
+    NgbAccordion,
+    NgbPanel,
+    FormBottomComponent,
+  ],
 })
 export class EmailMarketingComponent {
   public testimonialData = [
@@ -46,26 +60,26 @@ export class EmailMarketingComponent {
       message: `" Tecnoria es un equipo muy profesional y con un gran conocimiento en diseño web y marketing digital. Estamos muy satisfechos con el trabajo realizado y recomendamos sus servicios sin duda alguna. "`,
     },
   ];
-  public customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: false,
-    pullDrag: false,
-    navSpeed: 700,
-    navText: ["", ""],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 1,
-      },
-      900: {
-        items: 1,
-      },
-    },
-    nav: false,
-  };
+  // public customOptions: OwlOptions = {
+  //   loop: true,
+  //   mouseDrag: true,
+  //   touchDrag: false,
+  //   pullDrag: false,
+  //   navSpeed: 700,
+  //   navText: ["", ""],
+  //   responsive: {
+  //     0: {
+  //       items: 1,
+  //     },
+  //     600: {
+  //       items: 1,
+  //     },
+  //     900: {
+  //       items: 1,
+  //     },
+  //   },
+  //   nav: false,
+  // };
 
   public redesSociales = [
     {

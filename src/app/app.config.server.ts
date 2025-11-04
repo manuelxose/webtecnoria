@@ -1,16 +1,18 @@
-import { Provider } from "@angular/core";
+import { ApplicationConfig, mergeApplicationConfig } from "@angular/core";
+import { provideServerRendering } from "@angular/platform-server";
+import { provideClientHydration } from "@angular/platform-browser";
+import { provideNoopAnimations } from "@angular/platform-browser/animations";
 import { appProviders } from "./app.config";
 
-// Example: provide simple mocks needed for SSR (replace with real mocks as needed)
-class MockFirestore {}
-class MockStorage {}
-class MockFunctions {}
+const serverConfig: ApplicationConfig = {
+  providers: [
+    provideServerRendering(),
+    provideClientHydration(),
+    provideNoopAnimations(), // Animations don't work on server
+  ],
+};
 
-export const serverProviders: Provider[] = [
-  ...(appProviders as unknown as Provider[]),
-  // provideServerRendering() removed: not exported by @angular/platform-server in this Angular version
-  // Add SSR providers or compatibility mocks only if necessary for your SSR path
-  // { provide: AngularFirestore, useClass: MockFirestore },
-  // { provide: AngularFireStorage, useClass: MockStorage },
-  // { provide: AngularFireFunctions, useClass: MockFunctions },
-];
+export const serverProviders = mergeApplicationConfig(
+  { providers: appProviders },
+  serverConfig
+).providers;

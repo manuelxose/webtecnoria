@@ -1,46 +1,35 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { OwlOptions } from "ngx-owl-carousel-o";
+import { CommonModule } from "@angular/common";
+import { CarouselComponent } from "../carousel/carousel.component";
 
 @Component({
-    selector: "app-testimonial",
-    templateUrl: "./testimonial.component.html",
-    styleUrls: ["./testimonial.component.css"],
-    imports: []
+  selector: "app-testimonial",
+  templateUrl: "./testimonial.component.html",
+  styleUrls: ["./testimonial.component.css"],
+  standalone: true,
+  imports: [CommonModule, CarouselComponent],
 })
 export class TestimonialComponent implements OnInit {
   @Input() testimonialData: Array<{
     profile: string;
-    message: number;
+    message: string;
     name: string;
     designation: string;
   }>;
 
-  /***
-   * Client Owl Slider
-   */
-  customOptions: OwlOptions = {
+  // simplified carousel configuration compatible with app-carousel
+  // include optional 'responsive' so templates that check it won't error
+  customOptions: {
+    loop: boolean;
+    autoplay: boolean;
+    interval: number;
+    slidesToShow: number;
+    responsive?: any;
+  } = {
     loop: true,
-    mouseDrag: false,
-    touchDrag: true,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ["", ""],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      400: {
-        items: 2,
-      },
-      740: {
-        items: 3,
-      },
-      940: {
-        items: 4,
-      },
-    },
-    nav: false,
+    autoplay: true,
+    interval: 5000,
+    slidesToShow: 3,
   };
 
   constructor() {}

@@ -1,0 +1,26 @@
+<div class="app-carousel" tabindex="0">
+  <div
+    #viewport
+    class="carousel-viewport"
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
+  >
+    <ng-content></ng-content>
+  </div>
+  <button
+    type="button"
+    class="carousel-nav prev"
+    aria-label="Previous"
+    (click)="prev()"
+  >
+    ‹
+  </button>
+  <button
+    type="button"
+    class="carousel-nav next"
+    aria-label="Next"
+    (click)="next()"
+  >
+    ›
+  </button>
+</div>

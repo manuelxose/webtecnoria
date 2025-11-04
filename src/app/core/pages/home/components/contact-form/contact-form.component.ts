@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   selector: "app-contact-form",
   templateUrl: "./contact-form.component.html",
   styleUrls: ["./contact-form.component.css"],
+  standalone: true,
+  imports: [],
 })
 export class ContactFormComponent {
   contactForm: FormGroup;
