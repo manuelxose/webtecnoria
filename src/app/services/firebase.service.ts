@@ -47,7 +47,8 @@ export class FirestoreService {
   public getAll(): Observable<any> {
     if (!this.isBrowser || !this.collRef) return of({ docs: [] });
     // AngularFire compat collection.get() returns an Observable<QuerySnapshot>.
-    return this.collRef.get();
+    // Cast through 'unknown' to resolve RxJS version conflicts between @angular/fire and main project
+    return this.collRef.get() as unknown as Observable<any>;
   }
 
   public async getDoc(id: string) {

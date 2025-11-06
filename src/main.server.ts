@@ -1,16 +1,19 @@
-import { enableProdMode } from "@angular/core";
+// src/main.server.ts
+import { ApplicationRef } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
-import { environment } from "./environments/environment";
-
 import { AppComponent } from "./app/app.component";
-import { serverProviders } from "./app/app.config.server";
+import { config } from "./app/app.config.server";
 
-if (environment.production) {
-  enableProdMode();
-}
+// Para CommonEngine, exportamos una función que acepta BootstrapContext
+// El BootstrapContext contiene document y url que CommonEngine inyecta
+const bootstrap = (context?: any): Promise<ApplicationRef> => {
+  // Fusionamos el contexto del servidor (document, url) con nuestra configuración
+  const mergedConfig = {
+    ...config,
+    ...(context || {}),
+  };
 
-// Export a default bootstrap function used by server bundles
-const bootstrap = () =>
-  bootstrapApplication(AppComponent, { providers: serverProviders });
+  return bootstrapApplication(AppComponent, mergedConfig);
+};
 
 export default bootstrap;

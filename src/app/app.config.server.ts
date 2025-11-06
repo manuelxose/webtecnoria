@@ -1,18 +1,10 @@
-import { ApplicationConfig, mergeApplicationConfig } from "@angular/core";
+// src/app/app.config.server.ts
+import { mergeApplicationConfig, ApplicationConfig } from "@angular/core";
 import { provideServerRendering } from "@angular/platform-server";
-import { provideClientHydration } from "@angular/platform-browser";
-import { provideNoopAnimations } from "@angular/platform-browser/animations";
-import { appProviders } from "./app.config";
+import { appConfig } from "./app.config";
 
 const serverConfig: ApplicationConfig = {
-  providers: [
-    provideServerRendering(),
-    provideClientHydration(),
-    provideNoopAnimations(), // Animations don't work on server
-  ],
+  providers: [provideServerRendering()],
 };
 
-export const serverProviders = mergeApplicationConfig(
-  { providers: appProviders },
-  serverConfig
-).providers;
+export const config = mergeApplicationConfig(appConfig, serverConfig);

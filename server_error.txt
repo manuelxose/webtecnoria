@@ -1,0 +1,13 @@
+(node:26328) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Error: NG0401
+    at internalCreateApplication (file:///C:/Users/mgonzalezv.INDRA/Documents/private-workspace/web-empresa/dist/server/chunk-2AXHRC3Q.mjs:26458:11)
+    at bootstrapApplication (file:///C:/Users/mgonzalezv.INDRA/Documents/private-workspace/web-empresa/dist/server/chunk-XGZIMXEB.mjs:1247:10)
+    at bootstrap (file:///C:/Users/mgonzalezv.INDRA/Documents/private-workspace/web-empresa/dist/server/chunk-GUFHXQSH.mjs:34975:23)
+    at file:///C:/Users/mgonzalezv.INDRA/Documents/private-workspace/web-empresa/dist/server/chunk-GUFHXQSH.mjs:16926:36
+    at Generator.next (<anonymous>)
+    at file:///C:/Users/mgonzalezv.INDRA/Documents/private-workspace/web-empresa/dist/server/chunk-YISU7X6U.mjs:90:61
+    at new ZoneAwarePromise (file:///C:/Users/mgonzalezv.INDRA/Documents/private-workspace/web-empresa/dist/server/polyfills.server.mjs:26452:23)
+    at __async (file:///C:/Users/mgonzalezv.INDRA/Documents/private-workspace/web-empresa/dist/server/chunk-YISU7X6U.mjs:74:10)
+    at renderApplication (file:///C:/Users/mgonzalezv.INDRA/Documents/private-workspace/web-empresa/dist/server/chunk-GUFHXQSH.mjs:16918:10)
+    at CommonEngine.<anonymous> (file:///C:/Users/mgonzalezv.INDRA/Documents/private-workspace/web-empresa/dist/server/server.mjs:23871:47)
