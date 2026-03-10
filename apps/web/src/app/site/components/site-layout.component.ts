@@ -1,0 +1,38 @@
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { RouterModule, RouterOutlet } from "@angular/router";
+import { SiteFooterComponent } from "./site-footer.component";
+import { SiteHeaderComponent } from "./site-header.component";
+
+@Component({
+  selector: "app-site-layout",
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterOutlet,
+    SiteHeaderComponent,
+    SiteFooterComponent,
+  ],
+  template: `
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <div class="site-shell">
+      <app-site-header></app-site-header>
+
+      <main id="main-content" class="site-main">
+        <router-outlet></router-outlet>
+      </main>
+
+      <app-site-footer></app-site-footer>
+
+      <div class="floating-bar">
+        <span>Diagnostico inicial sin compromiso</span>
+        <div class="floating-bar__actions">
+          <a class="button button-ghost" href="tel:+34682047802">682 04 78 02</a>
+          <a class="button button-primary" routerLink="/contacto">Pedir reunion</a>
+        </div>
+      </div>
+    </div>
+  `,
+})
+export class SiteLayoutComponent {}
