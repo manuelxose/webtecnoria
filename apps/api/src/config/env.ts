@@ -9,19 +9,38 @@ const EnvSchema = z.object({
   CORS_ORIGIN: z.string().default("http://localhost:4000"),
   COOKIE_NAME: z.string().default("tecnoria_session"),
   UPLOADS_DIR: z.string().default("./uploads"),
+  GOOGLE_CLIENT_ID: z.string().min(1),
+  SMTP_HOST: z.string().min(1),
+  SMTP_PORT: z.coerce.number().int().positive(),
+  SMTP_USER: z.string().min(1),
+  SMTP_PASS: z.string().min(1),
+  SMTP_FROM: z.string().email(),
+  ADMIN_NOTIFICATION_EMAIL: z.string().email(),
   CUTOVER_AUTH: z.string().default("true"),
   CUTOVER_BLOG: z.string().default("true"),
   CUTOVER_CONTACT: z.string().default("true"),
   CUTOVER_SCRAPER: z.string().default("true"),
 });
 
-const parsed = EnvSchema.parse(process.env);
+const parsed = EnvSchema.safeParse(process.env);
+if (!parsed.success) {
+  const issues = parsed.error.issues.map((issue) => {
+    const key = issue.path.join(".") || "UNKNOWN_ENV";
+    return `${key}: ${issue.message}`;
+  });
+
+  console.error("[api] Missing or invalid environment variables:");
+  issues.forEach((issue) => console.error(`- ${issue}`));
+  console.error("[api] Revisa tu .env antes de arrancar la API.");
+  process.exit(1);
+}
+
 const parseBool = (value: string): boolean => value.toLowerCase() === "true";
 
 export const env = {
-  ...parsed,
-  CUTOVER_AUTH: parseBool(parsed.CUTOVER_AUTH),
-  CUTOVER_BLOG: parseBool(parsed.CUTOVER_BLOG),
-  CUTOVER_CONTACT: parseBool(parsed.CUTOVER_CONTACT),
-  CUTOVER_SCRAPER: parseBool(parsed.CUTOVER_SCRAPER),
+  ...parsed.data,
+  CUTOVER_AUTH: parseBool(parsed.data.CUTOVER_AUTH),
+  CUTOVER_BLOG: parseBool(parsed.data.CUTOVER_BLOG),
+  CUTOVER_CONTACT: parseBool(parsed.data.CUTOVER_CONTACT),
+  CUTOVER_SCRAPER: parseBool(parsed.data.CUTOVER_SCRAPER),
 };

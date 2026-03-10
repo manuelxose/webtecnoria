@@ -6,7 +6,7 @@ export const SITE_PHONE_LABEL = "682 04 78 02";
 export const SITE_REGION = "Galicia, Espana";
 export const SITE_TAGLINE =
   "Software a medida, automatizacion, chatbots e inteligencia artificial para empresas y productos digitales.";
-export const PUBLISH_DATE = "2026-03-06";
+export const PUBLISH_DATE = "2026-03-09";
 
 export interface SeoEntry {
   title: string;
@@ -826,3 +826,383 @@ export const services: ServiceEntry[] = [
     relatedCaseSlugs: ["mvp-saas-comercial", "operaciones-servicios-b2b"],
   },
 ];
+
+export const caseStudies: CaseStudyEntry[] = [
+  {
+    slug: "operaciones-servicios-b2b",
+    title: "Plataforma interna para centralizar operaciones y seguimiento",
+    sector: "Servicios B2B",
+    summary:
+      "Unificamos el trabajo operativo de varios equipos en una herramienta propia con trazabilidad y reporting.",
+    problem:
+      "La operativa se repartia entre correo, hojas de calculo y multiples herramientas sin visibilidad clara del estado real de cada proyecto.",
+    solution:
+      "Disenamos un backoffice a medida con paneles, roles, estados de proceso, alertas y automatizaciones entre sistemas.",
+    impact: [
+      "Menos dependencias manuales para tareas de seguimiento",
+      "Informacion centralizada para operaciones y direccion",
+      "Mejor control de tiempos, bloqueos y volumen de trabajo",
+    ],
+    ctaLabel: "Ver servicio relacionado",
+    ctaLink: "/servicios/desarrollo-software-medida",
+    serviceKeys: ["software", "automation", "consulting"],
+  },
+  {
+    slug: "mvp-saas-comercial",
+    title: "MVP SaaS preparado para validar mercado sin hipotecar la evolucion",
+    sector: "Startup / SaaS",
+    summary:
+      "Aterrizamos una idea de producto en un MVP serio, priorizado y listo para iterar con usuarios reales.",
+    problem:
+      "El equipo fundador necesitaba lanzar rapido pero sin caer en una construccion improvisada que obligara a rehacer el producto al crecer.",
+    solution:
+      "Definimos el alcance del MVP, la logica principal, roles, onboarding y panel de gestion con una arquitectura lista para seguir evolucionando.",
+    impact: [
+      "Salida al mercado con una version valida para vender",
+      "Base tecnica mantenible para iterar con datos",
+      "Claridad sobre el siguiente roadmap de producto",
+    ],
+    ctaLabel: "Explorar desarrollo SaaS",
+    ctaLink: "/servicios/plataformas-saas",
+    serviceKeys: ["saas", "consulting"],
+  },
+  {
+    slug: "automatizacion-conversacional-soporte",
+    title: "Automatizacion conversacional para soporte y cualificacion comercial",
+    sector: "Soporte y ventas",
+    summary:
+      "Combinamos chatbots, reglas e IA aplicada para responder mejor, cualificar demanda y reducir carga operativa.",
+    problem:
+      "Las consultas entraban por varios canales, se clasificaban de forma manual y el equipo invertia demasiado tiempo en tareas repetitivas antes de poder atender casos de valor.",
+    solution:
+      "Creamos un flujo conversacional conectado a formularios, base de conocimiento y CRM para responder preguntas, recoger contexto y activar tareas automaticamente.",
+    impact: [
+      "Menos tiempo en triage y tareas de bajo valor",
+      "Mejor experiencia de respuesta inicial en web y canales conversacionales",
+      "Leads y solicitudes mejor definidos antes de pasar a una persona",
+    ],
+    ctaLabel: "Ver desarrollo de chatbots",
+    ctaLink: "/servicios/desarrollo-chatbots-empresas",
+    serviceKeys: ["chatbots", "ai", "automation"],
+  },
+];
+
+export const articles: ArticleEntry[] = [
+  {
+    slug: "cuanto-cuesta-desarrollar-software-medida",
+    title: "Cuanto cuesta desarrollar software a medida y de que depende",
+    category: "Decision",
+    summary:
+      "Un marco realista para entender coste, alcance, riesgos y prioridades antes de pedir presupuesto.",
+    readingTime: "7 min",
+    ctaLabel: "Solicitar diagnostico",
+    ctaLink: "/contacto",
+    seo: {
+      title: "Cuanto cuesta desarrollar software a medida",
+      description:
+        "Analizamos que influye en el coste de un software a medida, como priorizar alcance y cuando compensa construir una solucion propia.",
+      path: "/blog/cuanto-cuesta-desarrollar-software-medida",
+      keywords: [
+        "cuanto cuesta desarrollar software a medida",
+        "precio software a medida",
+      ],
+    },
+    sections: [
+      {
+        title: "No existe un precio unico porque no compras codigo, compras una solucion",
+        paragraphs: [
+          "El coste depende del problema que quieres resolver, del numero de procesos implicados y del nivel de complejidad tecnica necesario.",
+          "No cuesta lo mismo un backoffice para un flujo interno que una plataforma multiusuario con integraciones, permisos y automatizaciones.",
+        ],
+      },
+      {
+        title: "Que variables disparan o reducen el presupuesto",
+        paragraphs: [
+          "Las variables clave suelen ser el alcance funcional, las integraciones, la calidad esperada, la urgencia y la necesidad de soporte posterior.",
+        ],
+        bullets: [
+          "Numero de flujos y pantallas criticas",
+          "Usuarios, roles y permisos",
+          "Integraciones con terceros o sistemas propios",
+          "Necesidad de automatizaciones, IA o reporting avanzado",
+        ],
+      },
+      {
+        title: "La mejor forma de reducir riesgo",
+        paragraphs: [
+          "Empezar por discovery y una primera fase priorizada suele ser la mejor via para controlar coste y aprender rapido.",
+          "Definir un MVP serio no significa recortar valor, significa concentrar inversion en lo que desbloquea el negocio primero.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "cuando-automatizar-procesos-empresa",
+    title: "Cuando conviene automatizar procesos en una empresa",
+    category: "Operacion",
+    summary:
+      "Senales claras para detectar que un proceso ya no deberia seguir siendo manual.",
+    readingTime: "6 min",
+    ctaLabel: "Ver automatizacion",
+    ctaLink: "/servicios/automatizacion-procesos",
+    seo: {
+      title: "Cuando conviene automatizar procesos en una empresa",
+      description:
+        "Identifica cuando un proceso manual ya esta frenando a tu equipo y como priorizar automatizaciones con impacto real.",
+      path: "/blog/cuando-automatizar-procesos-empresa",
+      keywords: [
+        "cuando automatizar procesos",
+        "automatizacion de procesos empresariales",
+      ],
+    },
+    sections: [
+      {
+        title: "La primera senal es que el equipo repite lo mismo cada semana",
+        paragraphs: [
+          "Si una tarea se repite, requiere copiar datos entre sistemas o depende de recordatorios manuales, probablemente ya sea automatizable.",
+        ],
+      },
+      {
+        title: "No todo se automatiza a la vez",
+        paragraphs: [
+          "La prioridad debe salir de una combinacion entre volumen, coste de error e impacto en cliente o negocio.",
+        ],
+        bullets: [
+          "Empieza por el flujo con mas carga y menos excepciones",
+          "Mide tiempo ahorrado y errores evitados",
+          "Conecta primero sistemas criticos antes de anadir capas complejas",
+        ],
+      },
+      {
+        title: "Automatizar no es complicar",
+        paragraphs: [
+          "Una buena automatizacion simplifica la operativa y deja trazabilidad. Si crea mas opacidad que la que resuelve, esta mal planteada.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "software-medida-vs-herramienta-estandar",
+    title: "Software a medida vs herramienta estandar: como decidir bien",
+    category: "Comparativa",
+    summary:
+      "La decision no va de construir siempre, sino de saber cuando la herramienta estandar deja de encajar.",
+    readingTime: "8 min",
+    ctaLabel: "Hablar con un consultor",
+    ctaLink: "/servicios/consultoria-tecnologica",
+    seo: {
+      title: "Software a medida vs herramienta estandar",
+      description:
+        "Comparativa para decidir cuando conviene usar una herramienta estandar y cuando tiene sentido desarrollar una solucion propia.",
+      path: "/blog/software-medida-vs-herramienta-estandar",
+      keywords: [
+        "software a medida vs herramienta estandar",
+        "cuando desarrollar software propio",
+      ],
+    },
+    sections: [
+      {
+        title: "Una herramienta estandar es buena cuando el proceso es estandar",
+        paragraphs: [
+          "Si tu necesidad encaja bien en un producto probado y no necesitas diferenciarte por operativa, suele ser la via mas rapida.",
+        ],
+      },
+      {
+        title: "El software a medida compensa cuando el proceso es una ventaja",
+        paragraphs: [
+          "Si tu flujo es critico, especifico o genera demasiado trabajo de adaptacion, una herramienta generica acaba costando en friccion, licencias y limites operativos.",
+        ],
+        bullets: [
+          "Procesos internos muy particulares",
+          "Necesidad de integrar varias fuentes de datos",
+          "Restricciones comerciales o de experiencia que el software actual no cubre",
+        ],
+      },
+      {
+        title: "La mejor decision a veces es hibrida",
+        paragraphs: [
+          "Muchas empresas combinan herramientas estandar con capas a medida para lo realmente diferencial. Esa suele ser la via mas inteligente.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "que-necesitas-antes-de-crear-un-saas",
+    title: "Que necesitas tener claro antes de crear un SaaS",
+    category: "Producto",
+    summary:
+      "Checklist para fundadores y equipos que quieren lanzar un producto digital sin empezar por el lado equivocado.",
+    readingTime: "7 min",
+    ctaLabel: "Explorar plataformas SaaS",
+    ctaLink: "/servicios/plataformas-saas",
+    seo: {
+      title: "Que necesitas antes de crear un SaaS",
+      description:
+        "Checklist de negocio, producto y tecnologia para lanzar un SaaS con alcance realista y base solida desde el inicio.",
+      path: "/blog/que-necesitas-antes-de-crear-un-saas",
+      keywords: ["crear saas", "que necesito antes de crear un saas"],
+    },
+    sections: [
+      {
+        title: "Primero define el problema y el usuario",
+        paragraphs: [
+          "Antes de hablar de funcionalidades, necesitas claridad sobre quien paga, que dolor resuelves y que cambio concreto produce el producto.",
+        ],
+      },
+      {
+        title: "Despues define el MVP real",
+        paragraphs: [
+          "Un MVP serio no es una demo. Debe resolver el flujo minimo para que alguien lo use, lo entienda y pueda pagar o validar.",
+        ],
+        bullets: [
+          "Flujo principal de alta y uso",
+          "Modelo de roles o permisos",
+          "Panel de administracion o soporte minimo",
+          "Medicion de uso desde el inicio",
+        ],
+      },
+      {
+        title: "La tecnologia debe facilitar aprender rapido",
+        paragraphs: [
+          "El objetivo inicial es lanzar con criterio, observar comportamiento real y evolucionar con orden. La tecnologia tiene que permitir eso.",
+        ],
+      },
+    ],
+  },
+];
+
+export const editorialBacklog: BacklogEntry[] = [
+  {
+    title: "Cuando implementar un chatbot en una empresa",
+    intent: "Decision comercial",
+  },
+  {
+    title: "Chatbot para atencion al cliente vs soporte manual",
+    intent: "Comparativa",
+  },
+  {
+    title: "Casos de uso de asistentes internos y bots con IA",
+    intent: "Consideracion",
+  },
+];
+
+export const generalFaqs: FaqEntry[] = [
+  {
+    question: "Que tipo de proyectos realizais?",
+    answer:
+      "Trabajamos en software a medida, automatizacion de procesos, desarrollo de chatbots, asistentes con IA, plataformas SaaS y consultoria tecnologica.",
+  },
+  {
+    question: "Trabajais con empresas pequenas?",
+    answer:
+      "Si. Muchas veces el mayor impacto esta precisamente en pymes con procesos manuales, herramientas dispersas o necesidades de soporte que ya no escalan.",
+  },
+  {
+    question: "Tambien trabajais con emprendedores o particulares?",
+    answer:
+      "Si, siempre que el proyecto tenga una necesidad clara y orientacion comercial o de uso real. Podemos ayudar a definir, lanzar y evolucionar.",
+  },
+  {
+    question: "Desarrollais chatbots para web o WhatsApp?",
+    answer:
+      "Si. Podemos plantear chatbots para web, canales conversacionales como WhatsApp o asistentes internos conectados a sistemas y documentacion propia.",
+  },
+  {
+    question: "Cuanto tarda un proyecto?",
+    answer:
+      "Depende del alcance. Un discovery o auditoria puede resolverse en pocas semanas; un MVP, automatizacion o chatbot serio suele plantearse por fases para acelerar el primer valor.",
+  },
+  {
+    question: "Podeis mejorar software ya existente?",
+    answer:
+      "Si. Podemos auditar, reorganizar, integrar o evolucionar sistemas existentes sin necesidad de rehacer todo desde cero.",
+  },
+  {
+    question: "Ofreceis mantenimiento y evolucion?",
+    answer:
+      "Si. La mayoria de soluciones digitales necesitan seguimiento, mejoras, nuevos desarrollos o entrenamiento progresivo despues del lanzamiento inicial.",
+  },
+  {
+    question: "Como es el proceso de trabajo?",
+    answer:
+      "Empezamos por entender el problema, definimos una solucion viable, construimos por fases y acompanamos la puesta en marcha y la evolucion.",
+  },
+  {
+    question: "Que necesitais para empezar?",
+    answer:
+      "Necesitamos contexto de negocio, objetivos, procesos actuales, restricciones, canales implicados y cualquier referencia que ayude a priorizar el alcance correcto.",
+  },
+];
+
+export const solutionNeeds = [
+  {
+    title: "Digitalizar operaciones internas",
+    description:
+      "Herramientas propias para gestionar procesos, personas, expedientes, clientes o tareas con mas control.",
+  },
+  {
+    title: "Conectar sistemas y eliminar duplicidades",
+    description:
+      "Integraciones, automatizaciones y flujos que conectan datos, departamentos y herramientas.",
+  },
+  {
+    title: "Atender y cualificar mejor con chatbots",
+    description:
+      "Experiencias conversacionales que responden, filtran y activan procesos en web, WhatsApp o canales internos.",
+  },
+  {
+    title: "Lanzar un producto digital serio",
+    description:
+      "MVPs, plataformas y SaaS pensados para validar y evolucionar sin rehacer la base tecnica.",
+  },
+];
+
+export const footerLinks: NavEntry[] = [
+  { label: "Inicio", path: "/" },
+  { label: "Servicios", path: "/servicios" },
+  { label: "Casos de exito", path: "/casos-de-exito" },
+  { label: "Blog", path: "/blog" },
+  { label: "FAQ", path: "/faq" },
+  { label: "Contacto", path: "/contacto" },
+  { label: "Acceso privado", path: "/auth-login" },
+];
+
+export const sitemapGroups: SitemapGroup[] = [
+  {
+    title: "Paginas principales",
+    links: [
+      { label: "Home", path: "/" },
+      { label: "Servicios", path: "/servicios" },
+      { label: "Casos de exito", path: "/casos-de-exito" },
+      { label: "Soluciones", path: "/soluciones" },
+      { label: "Metodologia", path: "/metodologia" },
+      { label: "Empresa", path: "/empresa" },
+      { label: "Blog", path: "/blog" },
+      { label: "FAQ", path: "/faq" },
+      { label: "Contacto", path: "/contacto" },
+      { label: "Acceso privado", path: "/auth-login" },
+    ],
+  },
+  {
+    title: "Landings de servicio",
+    links: services.map((service) => ({
+      label: service.name,
+      path: service.seo.path,
+    })),
+  },
+  {
+    title: "Contenido editorial",
+    links: articles.map((article) => ({
+      label: article.title,
+      path: article.seo.path,
+    })),
+  },
+];
+
+export function getServiceByKey(key: string): ServiceEntry | undefined {
+  return services.find((service) => service.key === key);
+}
+
+export function getArticleBySlug(slug: string): ArticleEntry | undefined {
+  return articles.find((article) => article.slug === slug);
+}

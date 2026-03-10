@@ -2,7 +2,7 @@ export type AuthUser = {
   id: string;
   email: string;
   displayName?: string | null;
-  role?: "admin" | "editor" | "viewer";
+  role: "admin" | "editor" | "viewer";
 };
 
 export type BlogPost = {

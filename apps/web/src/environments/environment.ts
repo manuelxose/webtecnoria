@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "http://localhost:3001",
+  apiBaseUrl: "",
+  chatWidgetEnabled: true,
+  chatWidgetOrigin: "http://localhost:4102",
+  chatWidgetApiBaseUrl: "http://localhost:4101",
+  chatWidgetSiteKey: "tecnoria-public-site-key",
 };
 
 /*

@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { ContactFormComponent } from "../../core/pages/home/components/contact-form/contact-form.component";
+import { ContactFormComponent } from "../components/contact-form.component";
 import {
   audienceSegments,
   benefitBlocks,
   caseStudies,
+  chatbotSpotlight,
   differentiators,
   generalFaqs,
   heroHighlights,
@@ -24,15 +25,15 @@ import { SeoService } from "../services/seo.service";
     <section class="hero-section section">
       <div class="site-container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Software a medida para negocio real</span>
+          <span class="eyebrow">Software, automatizacion, IA y chatbots</span>
           <h1>
-            Desarrollamos software, automatizacion e IA para empresas que
-            necesitan digitalizar, operar mejor y escalar con orden.
+            Desarrollamos software, automatizacion, IA y chatbots para empresas
+            que necesitan operar mejor y crecer con una base solida.
           </h1>
           <p class="lead">
-            Creamos herramientas internas, plataformas y flujos inteligentes
-            para eliminar trabajo manual, conectar sistemas y convertir
-            tecnologia en una ventaja operativa y comercial.
+            Creamos herramientas internas, plataformas y sistemas
+            conversacionales para eliminar trabajo manual, conectar procesos y
+            convertir tecnologia en una ventaja operativa y comercial.
           </p>
 
           <div class="hero-actions">
@@ -53,12 +54,12 @@ import { SeoService } from "../services/seo.service";
         </div>
 
         <aside class="hero-panel surface-card surface-card--contrast">
-          <span class="panel-label">Que resolvemos</span>
-          <h2>Menos caos operativo. Mas control. Mejor capacidad de crecer.</h2>
+          <span class="panel-label">Diagnostico inicial</span>
+          <h2>Menos caos operativo. Mas control. Mejor capacidad de respuesta.</h2>
           <p>
-            No vendemos horas de programacion. Disenamos soluciones para
-            procesos, plataformas y decisiones tecnologicas que deben funcionar
-            en el dia a dia.
+            Analizamos que frena hoy al negocio y proponemos la siguiente mejor
+            decision: software, automatizacion, chatbot, IA o una combinacion
+            razonable entre ellas.
           </p>
 
           <div class="panel-stack">
@@ -70,10 +71,32 @@ import { SeoService } from "../services/seo.service";
       </div>
     </section>
 
-    <section class="section trust-strip">
+    <section class="section section-accent">
+      <div class="site-container card-grid card-grid--three">
+        <article class="surface-card trust-card">
+          <span class="chip chip-soft">Metodo</span>
+          <h3>Discovery antes de construir</h3>
+          <p>Empezamos por contexto, prioridades y riesgos para no vender una solucion incorrecta.</p>
+        </article>
+        <article class="surface-card trust-card">
+          <span class="chip chip-soft">Encaje</span>
+          <h3>Empresas y proyectos con necesidad real</h3>
+          <p>La web esta pensada para captar demanda cualificada, no visitas curiosas sin encaje.</p>
+        </article>
+        <article class="surface-card trust-card">
+          <span class="chip chip-soft">Respuesta</span>
+          <h3>Contacto claro y sin humo</h3>
+          <p>Respondemos rapido, decimos si encaja y proponemos un siguiente paso realista.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="site-container split-head split-head--compact">
-        <span class="eyebrow">Problemas habituales</span>
-        <h2>Cuando la tecnologia no acompana, el negocio lo paga en tiempo, errores y friccion.</h2>
+        <div>
+          <span class="eyebrow">Problemas habituales</span>
+          <h2>Cuando la tecnologia no acompana, el negocio lo paga en tiempo, errores y friccion.</h2>
+        </div>
       </div>
       <div class="site-container card-grid card-grid--two">
         <article class="surface-card" *ngFor="let pain of pains">
@@ -84,34 +107,61 @@ import { SeoService } from "../services/seo.service";
 
     <section class="section">
       <div class="site-container section-head">
-        <span class="eyebrow">Servicios</span>
-        <h2>Soluciones tecnicas pensadas para impacto, no para llenar un portfolio.</h2>
+        <span class="eyebrow">Servicios principales</span>
+        <h2>Seis lineas de servicio pensadas para captar necesidad real y llevarla a una propuesta viable.</h2>
         <p>
-          Cada servicio esta planteado para atacar una necesidad comercial clara
-          y llevar al usuario hacia una conversacion de alto valor.
+          Chatbots entra como servicio pilar dentro de la oferta, con su propia
+          landing, su propio mensaje y una relacion clara con automatizacion e IA.
         </p>
       </div>
 
-      <div class="site-container card-grid">
-        <article class="service-card surface-card" *ngFor="let service of serviceCards">
+      <div class="site-container card-grid card-grid--three">
+        <article class="service-card surface-card service-card--stacked" *ngFor="let service of serviceCards">
           <span class="chip">{{ service.badge }}</span>
           <h3>{{ service.name }}</h3>
           <p>{{ service.summary }}</p>
           <ul class="plain-list">
             <li *ngFor="let useCase of service.useCases.slice(0, 3)">{{ useCase }}</li>
           </ul>
-          <a class="text-link" [routerLink]="service.seo.path">Explorar servicio</a>
+          <div class="service-card__footer">
+            <a class="text-link" [routerLink]="service.seo.path">Explorar servicio</a>
+          </div>
         </article>
       </div>
     </section>
 
-    <section class="section section-accent">
+    <section class="section section-dark">
+      <div class="site-container section-head section-head--light">
+        <span class="eyebrow">Automatizacion conversacional</span>
+        <h2>Chatbots y asistentes virtuales para captar, responder y activar procesos.</h2>
+        <p>
+          No se plantean como un extra decorativo. Se disenan como una capa
+          operativa conectada a negocio, soporte y conversion.
+        </p>
+      </div>
+      <div class="site-container card-grid card-grid--four">
+        <article class="surface-card surface-card--soft-dark" *ngFor="let item of chatbotCases">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      </div>
+      <div class="site-container spotlight-actions">
+        <a class="button button-primary" routerLink="/servicios/desarrollo-chatbots-empresas">
+          Ver landing de chatbots
+        </a>
+        <a class="button button-ghost" routerLink="/servicios/inteligencia-artificial-empresas">
+          Ver IA aplicada
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="site-container section-head">
         <span class="eyebrow">Beneficios</span>
         <h2>Que gana el cliente cuando la solucion esta bien planteada.</h2>
       </div>
 
-      <div class="site-container card-grid">
+      <div class="site-container card-grid card-grid--four">
         <article class="surface-card" *ngFor="let benefit of benefits">
           <h3>{{ benefit.title }}</h3>
           <p>{{ benefit.description }}</p>
@@ -150,13 +200,13 @@ import { SeoService } from "../services/seo.service";
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-accent">
       <div class="site-container section-head">
         <span class="eyebrow">Para quien trabajamos</span>
-        <h2>Una web preparada para captar empresas y proyectos emprendedores sin mezclar mensajes.</h2>
+        <h2>Captamos empresas, startups y proyectos emprendedores sin mezclar mensajes.</h2>
       </div>
 
-      <div class="site-container card-grid">
+      <div class="site-container card-grid card-grid--three">
         <article class="surface-card" *ngFor="let segment of segments">
           <h3>{{ segment.title }}</h3>
           <p>{{ segment.description }}</p>
@@ -167,14 +217,14 @@ import { SeoService } from "../services/seo.service";
       </div>
     </section>
 
-    <section class="section section-dark">
-      <div class="site-container section-head section-head--light">
+    <section class="section">
+      <div class="site-container section-head">
         <span class="eyebrow">Metodologia</span>
         <h2>Un proceso claro reduce miedo, ordena prioridades y mejora la conversion.</h2>
       </div>
 
-      <div class="site-container timeline-grid">
-        <article class="timeline-step" *ngFor="let step of steps">
+      <div class="site-container timeline-grid timeline-grid--light">
+        <article class="timeline-step timeline-step--light" *ngFor="let step of steps">
           <h3>{{ step.title }}</h3>
           <p>{{ step.description }}</p>
         </article>
@@ -187,7 +237,7 @@ import { SeoService } from "../services/seo.service";
         <h2>Diferenciadores pensados para aumentar confianza antes del contacto.</h2>
       </div>
 
-      <div class="site-container card-grid">
+      <div class="site-container card-grid card-grid--four">
         <article class="surface-card" *ngFor="let item of differentiatorBlocks">
           <h3>{{ item.title }}</h3>
           <p>{{ item.description }}</p>
@@ -216,7 +266,7 @@ import { SeoService } from "../services/seo.service";
       <div class="site-container final-cta">
         <div>
           <span class="eyebrow">Diagnostico inicial</span>
-          <h2>Si tienes un proceso que no escala o una idea que necesita ejecutarse bien, hablemos.</h2>
+          <h2>Si tienes un proceso que no escala, un chatbot que debe integrarse o una idea que necesita ejecutarse bien, hablemos.</h2>
           <p>
             Revisamos contexto, prioridad y siguiente mejor paso para mover el
             proyecto sin humo y sin comprometer mas de lo necesario.
@@ -224,7 +274,9 @@ import { SeoService } from "../services/seo.service";
         </div>
         <div class="cta-actions">
           <a class="button button-primary" routerLink="/contacto">Solicitar reunion</a>
-          <a class="button button-ghost" routerLink="/casos-de-exito">Ver resultados</a>
+          <a class="button button-ghost" routerLink="/servicios/desarrollo-chatbots-empresas">
+            Ver servicio de chatbots
+          </a>
         </div>
       </div>
     </section>
@@ -237,26 +289,27 @@ export class HomePageComponent implements OnInit {
   trust = trustStatements;
   pains = painPoints;
   serviceCards = services;
+  chatbotCases = chatbotSpotlight;
   benefits = benefitBlocks;
   cases = caseStudies;
   segments = audienceSegments;
   steps = processSteps;
   differentiatorBlocks = differentiators;
-  homeFaqs = generalFaqs.slice(0, 4);
+  homeFaqs = generalFaqs.slice(0, 5);
 
   constructor(private readonly seo: SeoService) {}
 
   ngOnInit(): void {
     this.seo.update({
-      title: "Software a medida, automatizacion e IA para empresas",
+      title: "Software a medida, automatizacion, IA y chatbots para empresas",
       description:
-        "Creamos software a medida, plataformas, automatizaciones e integraciones de IA para empresas, startups y proyectos digitales con foco en captacion y eficiencia.",
+        "Creamos software a medida, plataformas, automatizaciones, chatbots e integraciones de IA para empresas, startups y proyectos digitales con foco en eficiencia y conversion.",
       path: "/",
       keywords: [
         "software a medida para empresas",
         "automatizacion de procesos",
+        "chatbots para empresas",
         "inteligencia artificial para empresas",
-        "desarrollo de plataformas",
       ],
       schemas: [this.seo.createFaqSchema(this.homeFaqs)],
     });

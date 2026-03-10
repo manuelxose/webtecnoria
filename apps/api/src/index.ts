@@ -5,9 +5,11 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "node:path";
 import { env } from "./config/env.js";
+import { pool } from "./db/pool.js";
 import v1Router from "./routes/v1/index.js";
 
 const app = express();
+app.set("trust proxy", 1);
 
 app.use(helmet());
 app.use(
@@ -44,7 +46,27 @@ app.use((req, res) => {
   res.status(404).json({ code: "NOT_FOUND", message: `Route ${req.path} not found` });
 });
 
-app.listen(env.PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`API listening on http://localhost:${env.PORT}`);
-});
+async function ensureDatabaseConnection(): Promise<void> {
+  try {
+    await pool.query("SELECT 1");
+  } catch (error) {
+    console.error("[api] DATABASE_URL is configured but the database is not reachable.");
+
+    if (error instanceof Error) {
+      console.error(`[api] ${error.message}`);
+    }
+
+    process.exit(1);
+  }
+}
+
+async function start(): Promise<void> {
+  await ensureDatabaseConnection();
+
+  app.listen(env.PORT, () => {
+    // eslint-disable-next-line no-console
+    console.log(`API listening on http://localhost:${env.PORT}`);
+  });
+}
+
+void start();

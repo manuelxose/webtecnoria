@@ -12,10 +12,15 @@ async function main(): Promise<void> {
 
   const passwordHash = await bcrypt.hash(password, 10);
   await pool.query(
-    `INSERT INTO users (email, password_hash, role)
-     VALUES ($1, $2, 'admin')
+    `INSERT INTO users (email, password_hash, role, display_name, email_verified_at)
+     VALUES ($1, $2, 'admin', 'Admin TecnoRia', NOW())
      ON CONFLICT (email)
-     DO UPDATE SET password_hash = EXCLUDED.password_hash, role = 'admin', updated_at = NOW()`,
+     DO UPDATE SET
+       password_hash = EXCLUDED.password_hash,
+       role = 'admin',
+       display_name = EXCLUDED.display_name,
+       email_verified_at = COALESCE(users.email_verified_at, NOW()),
+       updated_at = NOW()`,
     [email, passwordHash]
   );
 

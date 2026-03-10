@@ -1,8 +1,0 @@
-/* PARA PANTALLAS GRANDES */
-
-@media (min-width: 992px) {
-  .footer {
-    color: #fff;
-    padding: 20px 0;
-  }
-}

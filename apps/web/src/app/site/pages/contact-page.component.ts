@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { ContactFormComponent } from "../../core/pages/home/components/contact-form/contact-form.component";
+import { ContactFormComponent } from "../components/contact-form.component";
 import {
   SITE_EMAIL,
   SITE_PHONE,
@@ -18,10 +18,11 @@ import { SeoService } from "../services/seo.service";
       <div class="site-container page-hero__inner page-hero__split">
         <div>
           <span class="eyebrow">Contacto</span>
-          <h1>La web debe hacer facil el contacto, no esconderlo.</h1>
+          <h1>Hacemos facil el contacto para software, automatizacion, IA y chatbots.</h1>
           <p class="lead">
             Cuentanos tu caso, tu bloqueo o tu idea. Te diremos si encaja, que
-            nivel de prioridad tiene y cual puede ser el siguiente paso realista.
+            nivel de prioridad tiene y cual puede ser el siguiente paso
+            realista, sin compromiso y sin rodeos.
           </p>
         </div>
         <aside class="surface-card">
@@ -31,6 +32,7 @@ import { SeoService } from "../services/seo.service";
             <li><a [href]="'mailto:' + email">{{ email }}</a></li>
             <li>{{ region }}</li>
             <li>Respuesta inicial en menos de 24 horas laborables.</li>
+            <li>Podemos orientarte aunque todavia no sepas si necesitas software, automatizacion o un chatbot.</li>
           </ul>
         </aside>
       </div>
@@ -49,11 +51,15 @@ export class ContactPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.update({
-      title: "Contacto para software a medida, automatizacion e IA",
+      title: "Contacto para software, automatizacion, chatbots e IA",
       description:
-        "Pagina de contacto optimizada para conversion: formulario claro, canales directos y propuesta de diagnostico inicial sin compromiso.",
+        "Pagina de contacto optimizada para conversion: formulario claro, canales directos y propuesta de diagnostico inicial sin compromiso para software, chatbots y automatizacion.",
       path: "/contacto",
-      keywords: ["contacto empresa desarrollo software", "pedir presupuesto software a medida"],
+      keywords: [
+        "contacto empresa desarrollo software",
+        "pedir presupuesto software a medida",
+        "contacto desarrollo chatbots",
+      ],
       schemas: [
         this.seo.createBreadcrumbSchema([
           { name: "Home", path: "/" },

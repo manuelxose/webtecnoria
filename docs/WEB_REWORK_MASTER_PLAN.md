@@ -1,5 +1,15 @@
 # Web Rework Master Plan
 
+## Update v2 - SEO + UX/UI premium + chatbots como servicio pilar
+
+- Se incorpora la landing `/servicios/desarrollo-chatbots-empresas` como sexto servicio principal del sitio publico.
+- Se reasigna la intencion SEO para separar claramente `chatbots para empresas` de `inteligencia artificial para empresas` y evitar solape semantico.
+- Home y pagina de servicios pasan a nombrar de forma explicita software, automatizacion, chatbots e IA como lineas visibles desde primer scroll.
+- El formulario de contacto ya incluye `Chatbot / asistente virtual` como tipo de proyecto.
+- Se anade enlazado interno fijo hacia la nueva landing desde home, servicios, FAQ, casos y contacto.
+- La capa visual mantiene direccion `light premium tech`, pero gana mas aire, mejor jerarquia responsive y un bloque diferencial de automatizacion conversacional.
+- El backlog editorial queda definido para una siguiente fase con tres piezas iniciales sobre decision, comparativa y casos de uso de chatbots.
+
 ## A. Auditoria de la web actual
 
 ### 1. Problemas de conversion

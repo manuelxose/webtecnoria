@@ -15,7 +15,7 @@ import { SeoService } from "../services/seo.service";
         <h1>Preguntas frecuentes que reducen dudas y mejoran conversion.</h1>
         <p class="lead">
           Esta pagina ayuda a resolver objeciones habituales sobre encaje,
-          presupuesto, tiempos, mantenimiento y forma de trabajo.
+          presupuesto, tiempos, mantenimiento, chatbots y forma de trabajo.
         </p>
       </div>
     </section>
@@ -37,7 +37,9 @@ import { SeoService } from "../services/seo.service";
         </div>
         <div class="cta-actions">
           <a class="button button-primary" routerLink="/contacto">Hablar con nosotros</a>
-          <a class="button button-ghost" routerLink="/servicios">Ver servicios</a>
+          <a class="button button-ghost" routerLink="/servicios/desarrollo-chatbots-empresas">
+            Ver chatbots
+          </a>
         </div>
       </div>
     </section>
@@ -50,11 +52,15 @@ export class FaqPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.update({
-      title: "Preguntas frecuentes sobre software, automatizacion e IA",
+      title: "Preguntas frecuentes sobre software, automatizacion, chatbots e IA",
       description:
-        "FAQ comercial para resolver dudas sobre proyectos, tiempos, presupuesto, mantenimiento y encaje de servicios tecnologicos.",
+        "FAQ comercial para resolver dudas sobre proyectos, tiempos, presupuesto, mantenimiento, chatbots y encaje de servicios tecnologicos.",
       path: "/faq",
-      keywords: ["faq software a medida", "preguntas frecuentes automatizacion"],
+      keywords: [
+        "faq software a medida",
+        "preguntas frecuentes automatizacion",
+        "chatbots para empresas faq",
+      ],
       schemas: [
         this.seo.createBreadcrumbSchema([
           { name: "Home", path: "/" },

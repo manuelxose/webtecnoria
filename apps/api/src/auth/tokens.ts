@@ -5,6 +5,7 @@ export type SessionClaims = {
   sub: string;
   email: string;
   role: "admin" | "editor" | "viewer";
+  displayName?: string | null;
 };
 
 export function signSessionToken(claims: SessionClaims): string {

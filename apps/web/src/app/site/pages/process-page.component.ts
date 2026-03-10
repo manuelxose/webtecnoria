@@ -24,7 +24,7 @@ import { SeoService } from "../services/seo.service";
     <section class="section">
       <div class="site-container timeline-grid timeline-grid--light">
         <article class="timeline-step timeline-step--light" *ngFor="let step of steps">
-          <h2>{{ step.title }}</h2>
+          <h3>{{ step.title }}</h3>
           <p>{{ step.description }}</p>
         </article>
       </div>

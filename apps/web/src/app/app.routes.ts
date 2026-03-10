@@ -177,6 +177,36 @@ const legacyRedirects: Routes = [
 
 export const routes: Routes = [
   {
+    path: "auth-cover-login",
+    redirectTo: "auth-login",
+    pathMatch: "full",
+  },
+  {
+    path: "auth-cover-re-password",
+    redirectTo: "auth-re-password",
+    pathMatch: "full",
+  },
+  {
+    path: "auth-cover-signup",
+    redirectTo: "auth-signup",
+    pathMatch: "full",
+  },
+  {
+    path: "auth-login-three",
+    redirectTo: "auth-login",
+    pathMatch: "full",
+  },
+  {
+    path: "auth-re-password-three",
+    redirectTo: "auth-re-password",
+    pathMatch: "full",
+  },
+  {
+    path: "auth-signup-three",
+    redirectTo: "auth-signup",
+    pathMatch: "full",
+  },
+  {
     path: "dashboard",
     loadComponent: () =>
       import("./core/admin/admin-panel/admin-panel.component").then(
@@ -185,38 +215,17 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: "acceso-restringido",
+    loadComponent: () =>
+      import("./auth/access-restricted/access-restricted.component").then(
+        (m) => m.AccessRestrictedComponent
+      ),
+  },
+  {
     path: "auth-login",
     loadComponent: () =>
       import("./auth/auth-login/auth-login.component").then(
         (m) => m.AuthLoginComponent
-      ),
-  },
-  {
-    path: "auth-cover-login",
-    loadComponent: () =>
-      import("./auth/auth-cover-login/auth-cover-login.component").then(
-        (m) => m.AuthCoverLoginComponent
-      ),
-  },
-  {
-    path: "auth-cover-re-password",
-    loadComponent: () =>
-      import(
-        "./auth/auth-cover-re-password/auth-cover-re-password.component"
-      ).then((m) => m.AuthCoverRePasswordComponent),
-  },
-  {
-    path: "auth-cover-signup",
-    loadComponent: () =>
-      import("./auth/auth-cover-signup/auth-cover-signup.component").then(
-        (m) => m.AuthCoverSignupComponent
-      ),
-  },
-  {
-    path: "auth-login-three",
-    loadComponent: () =>
-      import("./auth/auth-login-three/auth-login-three.component").then(
-        (m) => m.AuthLoginThreeComponent
       ),
   },
   {
@@ -227,24 +236,10 @@ export const routes: Routes = [
       ),
   },
   {
-    path: "auth-re-password-three",
-    loadComponent: () =>
-      import(
-        "./auth/auth-re-password-three/auth-re-password-three.component"
-      ).then((m) => m.AuthRePasswordThreeComponent),
-  },
-  {
     path: "auth-signup",
     loadComponent: () =>
       import("./auth/auth-signup/auth-signup.component").then(
         (m) => m.AuthSignupComponent
-      ),
-  },
-  {
-    path: "auth-signup-three",
-    loadComponent: () =>
-      import("./auth/auth-signup-three/auth-signup-three.component").then(
-        (m) => m.AuthSignupThreeComponent
       ),
   },
   {
@@ -276,6 +271,14 @@ export const routes: Routes = [
       {
         path: "servicios/automatizacion-procesos",
         data: { serviceKey: "automation" },
+        loadComponent: () =>
+          import("./site/pages/service-detail-page.component").then(
+            (m) => m.ServiceDetailPageComponent
+          ),
+      },
+      {
+        path: "servicios/desarrollo-chatbots-empresas",
+        data: { serviceKey: "chatbots" },
         loadComponent: () =>
           import("./site/pages/service-detail-page.component").then(
             (m) => m.ServiceDetailPageComponent

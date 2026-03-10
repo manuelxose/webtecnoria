@@ -1,95 +1,130 @@
-import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { CommonModule, DOCUMENT, isPlatformBrowser } from "@angular/common";
+import {
+  Component,
+  DestroyRef,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnDestroy,
+  PLATFORM_ID,
+  ViewChild,
+  inject,
+} from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import {
   primaryNavigation,
+  SITE_EMAIL,
   SITE_NAME,
+  SITE_PHONE,
+  SITE_PHONE_LABEL,
 } from "../content/site-content";
 
 @Component({
   selector: "app-site-header",
   standalone: true,
   imports: [CommonModule, RouterModule],
-  template: `
-    <header class="site-header">
-      <div class="site-container header-bar">
-        <a class="brand" routerLink="/" aria-label="Ir a la home de TecnoRia">
-          <span class="brand-mark">TR</span>
-          <span class="brand-copy">
-            <strong>{{ siteName }}</strong>
-            <small>Software, automatizacion e IA</small>
-          </span>
-        </a>
-
-        <nav class="desktop-nav" aria-label="Navegacion principal">
-          <a
-            *ngFor="let item of navigation"
-            [routerLink]="item.path"
-            routerLinkActive="is-active"
-            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-          >
-            {{ item.label }}
-          </a>
-        </nav>
-
-        <div class="header-actions">
-          <a class="button button-secondary hide-mobile" href="tel:+34682047802">
-            Llamar ahora
-          </a>
-          <a class="button button-primary" routerLink="/contacto">
-            Solicitar diagnostico
-          </a>
-          <button
-            class="menu-toggle"
-            type="button"
-            [attr.aria-expanded]="menuOpen"
-            aria-label="Abrir menu"
-            (click)="toggleMenu()"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-
-      <div class="mobile-panel" [class.is-open]="menuOpen">
-        <nav class="mobile-nav site-container" aria-label="Menu movil">
-          <a
-            *ngFor="let item of navigation"
-            [routerLink]="item.path"
-            routerLinkActive="is-active"
-            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-          >
-            {{ item.label }}
-          </a>
-          <div class="mobile-nav-actions">
-            <a class="button button-primary" routerLink="/contacto">
-              Pedir presupuesto
-            </a>
-            <a class="button button-secondary" href="mailto:oficina@tecnoriasl.com">
-              Escribir email
-            </a>
-          </div>
-        </nav>
-      </div>
-    </header>
-  `,
+  templateUrl: "./site-header.component.html",
+  styleUrls: ["./site-header.component.css"],
 })
-export class SiteHeaderComponent {
-  navigation = primaryNavigation;
-  menuOpen = false;
-  siteName = SITE_NAME;
+export class SiteHeaderComponent implements OnDestroy {
+  private static readonly INLINE_NAV_BREAKPOINT = 1440;
 
-  constructor(private readonly router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.menuOpen = false;
-      }
-    });
+  @ViewChild("menuButton")
+  private readonly menuButton?: ElementRef<HTMLButtonElement>;
+
+  @ViewChild("drawerCloseButton")
+  private readonly drawerCloseButton?: ElementRef<HTMLButtonElement>;
+
+  readonly navigation = primaryNavigation;
+  readonly siteName = SITE_NAME;
+  readonly phone = SITE_PHONE;
+  readonly phoneLabel = SITE_PHONE_LABEL;
+  readonly email = SITE_EMAIL;
+  readonly menuPanelId = "site-header-drawer";
+
+  menuOpen = false;
+
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly isBrowser: boolean;
+
+  constructor(
+    private readonly router: Router,
+    @Inject(DOCUMENT) private readonly document: Document,
+    @Inject(PLATFORM_ID) platformId: object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+
+    this.router.events
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.closeMenu(false);
+        }
+      });
   }
 
   toggleMenu(): void {
-    this.menuOpen = !this.menuOpen;
+    if (this.menuOpen) {
+      this.closeMenu();
+      return;
+    }
+
+    this.menuOpen = true;
+    this.syncBodyScroll();
+
+    if (this.isBrowser) {
+      queueMicrotask(() => this.drawerCloseButton?.nativeElement.focus());
+    }
+  }
+
+  closeMenu(restoreFocus = true): void {
+    if (!this.menuOpen) {
+      return;
+    }
+
+    this.menuOpen = false;
+    this.syncBodyScroll();
+
+    if (restoreFocus && this.isBrowser) {
+      queueMicrotask(() => this.menuButton?.nativeElement.focus());
+    }
+  }
+
+  closeMenuAndFollow(): void {
+    this.closeMenu(false);
+  }
+
+  @HostListener("document:keydown", ["$event"])
+  handleDocumentKeydown(event: KeyboardEvent): void {
+    if (event.key === "Escape" && this.menuOpen) {
+      event.preventDefault();
+      this.closeMenu();
+    }
+  }
+
+  @HostListener("window:resize")
+  handleWindowResize(): void {
+    if (!this.isBrowser || !this.menuOpen) {
+      return;
+    }
+
+    if (window.innerWidth >= SiteHeaderComponent.INLINE_NAV_BREAKPOINT) {
+      this.closeMenu(false);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.isBrowser) {
+      this.document.body.classList.remove("site-menu-open");
+    }
+  }
+
+  private syncBodyScroll(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    this.document.body.classList.toggle("site-menu-open", this.menuOpen);
   }
 }

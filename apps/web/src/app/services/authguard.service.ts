@@ -1,5 +1,10 @@
 import { Inject, Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from "@angular/router";
 import {
   AUTH_REPOSITORY,
   AuthRepository,
@@ -8,11 +13,10 @@ import {
 @Injectable({
   providedIn: "root",
 })
-
-export class AuthGuard  {
+export class AuthGuard {
   constructor(
     @Inject(AUTH_REPOSITORY) private readonly authRepository: AuthRepository,
-    private router: Router
+    private readonly router: Router
   ) {}
 
   async canActivate(
@@ -20,10 +24,15 @@ export class AuthGuard  {
     _state: RouterStateSnapshot
   ): Promise<boolean | UrlTree> {
     const user = await this.authRepository.me();
+
     if (!user) {
-      this.router.navigate(["/auth-login"]);
-      return false;
+      return this.router.parseUrl("/auth-login");
     }
+
+    if (user.role !== "admin" && user.role !== "editor") {
+      return this.router.parseUrl("/acceso-restringido");
+    }
+
     return true;
   }
 }

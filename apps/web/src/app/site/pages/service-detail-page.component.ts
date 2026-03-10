@@ -1,8 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { ContactFormComponent } from "../../core/pages/home/components/contact-form/contact-form.component";
-import { caseStudies, getServiceByKey, ServiceEntry } from "../content/site-content";
+import { ContactFormComponent } from "../components/contact-form.component";
+import {
+  caseStudies,
+  CaseStudyEntry,
+  getServiceByKey,
+  ServiceEntry,
+} from "../content/site-content";
 import { SeoService } from "../services/seo.service";
 
 @Component({
@@ -19,7 +24,7 @@ import { SeoService } from "../services/seo.service";
             <p class="lead">{{ current.heroIntro }}</p>
             <div class="hero-actions">
               <a class="button button-primary" routerLink="/contacto">
-                Pedir propuesta
+                {{ current.ctaLabel }}
               </a>
               <a class="button button-secondary" routerLink="/casos-de-exito">
                 Ver casos de exito
@@ -69,7 +74,39 @@ import { SeoService } from "../services/seo.service";
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" *ngFor="let section of current.detailSections ?? []">
+        <div class="site-container section-head">
+          <span class="eyebrow">Detalle del servicio</span>
+          <h2>{{ section.title }}</h2>
+          <p *ngIf="section.intro" class="lead">{{ section.intro }}</p>
+        </div>
+        <div class="site-container card-grid card-grid--four">
+          <article class="surface-card service-feature-card" *ngFor="let item of section.cards">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-accent" *ngIf="current.crossLinks?.length">
+        <div class="site-container section-head">
+          <span class="eyebrow">Tambien puede encajar</span>
+          <h2>Relacionamos este servicio con la siguiente mejor decision.</h2>
+          <p class="lead">
+            Asi evitamos forzar una solucion incorrecta solo porque hayas
+            aterrizado en esta pagina.
+          </p>
+        </div>
+        <div class="site-container card-grid card-grid--two">
+          <article class="surface-card" *ngFor="let link of current.crossLinks">
+            <h3>{{ link.label }}</h3>
+            <p>{{ link.description }}</p>
+            <a class="text-link" [routerLink]="link.path">Explorar landing</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" *ngIf="relatedCases.length">
         <div class="site-container split-head">
           <div>
             <span class="eyebrow">Casos relacionados</span>
@@ -106,11 +143,14 @@ import { SeoService } from "../services/seo.service";
       <section class="section section-dark">
         <div class="site-container final-cta">
           <div>
-            <span class="eyebrow">CTA final</span>
-            <h2>Si este servicio encaja con tu problema, te ayudamos a convertirlo en un plan ejecutable.</h2>
+            <span class="eyebrow">Siguiente paso</span>
+            <h2>Si este servicio encaja con tu problema, lo convertimos en un plan ejecutable.</h2>
+            <p>{{ current.ctaContext }}</p>
           </div>
           <div class="cta-actions">
-            <a class="button button-primary" routerLink="/contacto">Solicitar presupuesto</a>
+            <a class="button button-primary" routerLink="/contacto">
+              {{ current.ctaLabel }}
+            </a>
             <a class="button button-ghost" routerLink="/servicios">Ver todos los servicios</a>
           </div>
         </div>
@@ -122,7 +162,7 @@ import { SeoService } from "../services/seo.service";
 })
 export class ServiceDetailPageComponent implements OnInit {
   service?: ServiceEntry;
-  relatedCases = caseStudies;
+  relatedCases: CaseStudyEntry[] = [];
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -136,6 +176,8 @@ export class ServiceDetailPageComponent implements OnInit {
     if (!this.service) {
       return;
     }
+
+    this.relatedCases = this.getRelatedCases(this.service);
 
     this.seo.update({
       title: this.service.seo.title,
@@ -156,5 +198,15 @@ export class ServiceDetailPageComponent implements OnInit {
         this.seo.createFaqSchema(this.service.faqs),
       ],
     });
+  }
+
+  private getRelatedCases(service: ServiceEntry): CaseStudyEntry[] {
+    if (service.relatedCaseSlugs?.length) {
+      return caseStudies.filter((item) =>
+        service.relatedCaseSlugs?.includes(item.slug)
+      );
+    }
+
+    return caseStudies.filter((item) => item.serviceKeys.includes(service.key));
   }
 }

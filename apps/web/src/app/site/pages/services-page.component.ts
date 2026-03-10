@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
+  chatbotSpotlight,
   processSteps,
   services,
   solutionNeeds,
@@ -16,17 +17,17 @@ import { SeoService } from "../services/seo.service";
     <section class="page-hero section">
       <div class="site-container page-hero__inner">
         <span class="eyebrow">Servicios</span>
-        <h1>Servicios disenados para captar demanda con intencion y convertirla en proyectos viables.</h1>
+        <h1>Servicios orientados a captar demanda con intencion y convertirla en proyectos viables.</h1>
         <p class="lead">
-          La pagina de servicios no actua como listado frio. Ordena problemas,
-          beneficios, encaje y siguiente paso para facilitar contacto
-          cualificado.
+          Ordenamos software, automatizacion, chatbots, IA, plataformas y
+          consultoria para que el usuario entienda rapido que encaja con su
+          necesidad y por que deberia hablar con nosotros.
         </p>
       </div>
     </section>
 
     <section class="section">
-      <div class="site-container card-grid">
+      <div class="site-container card-grid card-grid--three">
         <article class="surface-card service-card service-card--full" *ngFor="let service of serviceCards">
           <div class="service-card__header">
             <span class="chip">{{ service.badge }}</span>
@@ -37,20 +38,44 @@ import { SeoService } from "../services/seo.service";
             <div>
               <strong>Para quien encaja</strong>
               <ul class="plain-list">
-                <li *ngFor="let item of service.fit">{{ item }}</li>
+                <li *ngFor="let item of service.fit.slice(0, 2)">{{ item }}</li>
               </ul>
             </div>
             <div>
               <strong>Que suele desbloquear</strong>
               <ul class="plain-list">
-                <li *ngFor="let outcome of service.outcomes">{{ outcome }}</li>
+                <li *ngFor="let outcome of service.outcomes.slice(0, 2)">{{ outcome }}</li>
               </ul>
             </div>
           </div>
-          <a class="button button-primary" [routerLink]="service.seo.path">
-            Ver detalle del servicio
-          </a>
+          <div class="service-card__footer">
+            <a class="button button-primary" [routerLink]="service.seo.path">
+              Ver detalle del servicio
+            </a>
+          </div>
         </article>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="site-container section-head section-head--light">
+        <span class="eyebrow">Chatbots como servicio pilar</span>
+        <h2>La automatizacion conversacional ya tiene una landing propia dentro de la oferta.</h2>
+        <p>
+          Esto evita diluir chatbots dentro de IA y permite explicar mejor
+          canales, integraciones, soporte, captacion y casos de uso reales.
+        </p>
+      </div>
+      <div class="site-container card-grid card-grid--four">
+        <article class="surface-card surface-card--soft-dark" *ngFor="let item of chatbotCases">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      </div>
+      <div class="site-container spotlight-actions">
+        <a class="button button-primary" routerLink="/servicios/desarrollo-chatbots-empresas">
+          Explorar servicio de chatbots
+        </a>
       </div>
     </section>
 
@@ -87,7 +112,7 @@ import { SeoService } from "../services/seo.service";
           <h2>Si no sabes aun que servicio encaja, empezamos por un diagnostico y definimos el mapa correcto.</h2>
         </div>
         <div class="cta-actions">
-          <a class="button button-primary" routerLink="/contacto">Quiero hablarlo</a>
+          <a class="button button-primary" routerLink="/contacto">Solicitar diagnostico</a>
           <a class="button button-ghost" routerLink="/metodologia">Ver metodologia</a>
         </div>
       </div>
@@ -96,6 +121,7 @@ import { SeoService } from "../services/seo.service";
 })
 export class ServicesPageComponent implements OnInit {
   serviceCards = services;
+  chatbotCases = chatbotSpotlight;
   steps = processSteps;
   needs = solutionNeeds;
 
@@ -103,12 +129,13 @@ export class ServicesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.update({
-      title: "Servicios de software a medida, automatizacion e IA",
+      title: "Servicios de software, automatizacion, chatbots e IA",
       description:
-        "Pagina de servicios orientada a captacion: software a medida, automatizacion de procesos, IA aplicada, plataformas SaaS y consultoria tecnologica.",
+        "Pagina de servicios orientada a captacion: software a medida, automatizacion de procesos, chatbots para empresas, IA aplicada, plataformas SaaS y consultoria tecnologica.",
       path: "/servicios",
       keywords: [
         "servicios de software a medida",
+        "chatbots para empresas",
         "automatizacion empresarial",
         "consultoria tecnologica",
       ],

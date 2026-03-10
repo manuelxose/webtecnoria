@@ -1,0 +1,101 @@
+<header class="site-header" [class.is-menu-open]="menuOpen">
+  <div class="site-container site-header__bar">
+    <a class="site-header__brand" routerLink="/" aria-label="Ir a la home de TecnoRia">
+      <span class="site-header__mark">TR</span>
+      <span class="site-header__brand-copy">
+        <strong>{{ siteName }}</strong>
+      </span>
+    </a>
+
+    <nav class="site-header__desktop-nav" aria-label="Navegacion principal">
+      <a
+        *ngFor="let item of navigation"
+        [routerLink]="item.path"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
+
+    <div class="site-header__desktop-actions">
+      <a class="site-header__private-link" routerLink="/auth-login">Acceso privado</a>
+      <a class="button button-primary site-header__primary-action" routerLink="/contacto">
+        Solicitar diagnostico
+      </a>
+    </div>
+
+    <div class="site-header__mobile-actions">
+      <a class="button button-primary site-header__mobile-cta" routerLink="/contacto">
+        Diagnostico
+      </a>
+      <button
+        #menuButton
+        class="site-header__toggle"
+        type="button"
+        [class.is-open]="menuOpen"
+        [attr.aria-expanded]="menuOpen"
+        [attr.aria-controls]="menuPanelId"
+        [attr.aria-label]="menuOpen ? 'Cerrar menu' : 'Abrir menu'"
+        (click)="toggleMenu()"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div *ngIf="menuOpen" class="site-header__backdrop" aria-hidden="true" (click)="closeMenu()"></div>
+
+<aside
+  *ngIf="menuOpen"
+  class="site-header__drawer"
+  [attr.id]="menuPanelId"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu principal"
+>
+  <div class="site-container site-header__drawer-inner">
+    <div class="site-header__drawer-head">
+      <div class="site-header__drawer-copy">
+        <span class="panel-label">Menu</span>
+        <p>Navegacion principal y accesos de contacto pensados para movil, tablet y desktop compacto.</p>
+      </div>
+
+      <button
+        #drawerCloseButton
+        class="site-header__drawer-close"
+        type="button"
+        aria-label="Cerrar menu"
+        (click)="closeMenu()"
+      >
+        Cerrar
+      </button>
+    </div>
+
+    <nav class="site-header__drawer-nav" aria-label="Menu principal">
+      <a
+        *ngFor="let item of navigation"
+        [routerLink]="item.path"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        (click)="closeMenuAndFollow()"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
+
+    <div class="site-header__drawer-actions">
+      <a class="button button-secondary" routerLink="/auth-login" (click)="closeMenuAndFollow()">
+        Acceso privado
+      </a>
+      <a class="button button-primary" routerLink="/contacto" (click)="closeMenuAndFollow()">
+        Solicitar diagnostico
+      </a>
+      <a class="button button-secondary" [href]="'tel:' + phone">{{ phoneLabel }}</a>
+      <a class="button button-secondary" [href]="'mailto:' + email">{{ email }}</a>
+    </div>
+  </div>
+</aside>

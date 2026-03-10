@@ -28,8 +28,8 @@ import {
           </a>
           <p>
             Disenamos y desarrollamos soluciones para empresas y proyectos que
-            necesitan digitalizar procesos, lanzar plataformas o introducir IA
-            con criterio.
+            necesitan digitalizar procesos, lanzar plataformas, desplegar
+            chatbots o introducir IA con criterio.
           </p>
         </div>
 
@@ -38,6 +38,9 @@ import {
           <ul class="footer-list">
             <li *ngFor="let item of quickLinks">
               <a [routerLink]="item.path">{{ item.label }}</a>
+            </li>
+            <li>
+              <a routerLink="/auth-login">Acceso privado</a>
             </li>
           </ul>
         </div>
@@ -67,6 +70,7 @@ import {
       <div class="site-container footer-bar">
         <p>{{ siteName }} {{ year }}. Web pensada para captar demanda organica y convertirla en conversaciones de negocio.</p>
         <div class="footer-meta">
+          <a routerLink="/auth-login">Acceso privado</a>
           <a routerLink="/politica-de-privacidad">Privacidad</a>
           <a routerLink="/mapa-web">Mapa web</a>
         </div>

@@ -15,7 +15,9 @@ import { SeoService } from "../services/seo.service";
         <h1>Casos de exito contados como problema, solucion e impacto.</h1>
         <p class="lead">
           La prueba de valor no es una galeria de pantallas. Es explicar por que
-          se hizo, que se construyo y que cambio en la operativa del cliente.
+          se hizo, que se construyo y que cambio en la operativa del cliente,
+          tambien cuando la solucion pasa por automatizacion conversacional o
+          chatbots.
         </p>
       </div>
     </section>
@@ -74,11 +76,15 @@ export class CaseStudiesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.update({
-      title: "Casos de exito de software, automatizacion e IA",
+      title: "Casos de exito de software, automatizacion, chatbots e IA",
       description:
-        "Casos de exito con foco en problema, solucion e impacto para reforzar autoridad y conversion en la web de servicios tecnologicos.",
+        "Casos de exito con foco en problema, solucion e impacto para reforzar autoridad y conversion en servicios de software, chatbots y automatizacion.",
       path: "/casos-de-exito",
-      keywords: ["casos de exito software a medida", "proyectos de automatizacion"],
+      keywords: [
+        "casos de exito software a medida",
+        "proyectos de automatizacion",
+        "casos de exito chatbots",
+      ],
       schemas: [
         this.seo.createBreadcrumbSchema([
           { name: "Home", path: "/" },

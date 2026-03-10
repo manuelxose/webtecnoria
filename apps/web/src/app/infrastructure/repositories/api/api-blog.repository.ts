@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
 import { firstValueFrom } from "rxjs";
 import { BlogRepository } from "src/app/domain/repositories/blog.repository";
-import { environment } from "src/environments/environment";
+import { API_BASE_URL } from "../../http/api-base-url.token";
 
 type ApiBlogPost = {
   id: string;
@@ -30,9 +30,14 @@ type BlogSnapshotLike = {
 
 @Injectable()
 export class ApiBlogRepository implements BlogRepository {
-  private readonly baseUrl = environment.apiBaseUrl.replace(/\/$/, "");
+  private readonly baseUrl: string;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    @Inject(API_BASE_URL) baseUrl: string
+  ) {
+    this.baseUrl = baseUrl.replace(/\/$/, "");
+  }
 
   list(): Observable<BlogSnapshotLike> {
     return this.http

@@ -16,7 +16,8 @@ import { SeoService } from "../services/seo.service";
         <p class="lead">
           Esta pagina segmenta la demanda por tipo de cliente y por problema,
           para que cada visitante encuentre rapido por que deberia hablar con
-          nosotros.
+          nosotros, tambien cuando la necesidad pasa por chatbots o soporte
+          conversacional.
         </p>
       </div>
     </section>
@@ -50,7 +51,7 @@ import { SeoService } from "../services/seo.service";
       <div class="site-container final-cta">
         <div>
           <span class="eyebrow">Orientacion</span>
-          <h2>Si no sabes todavia si necesitas software, automatizacion o consultoria, lo ordenamos contigo.</h2>
+          <h2>Si no sabes todavia si necesitas software, automatizacion, chatbots o consultoria, lo ordenamos contigo.</h2>
         </div>
         <div class="cta-actions">
           <a class="button button-primary" routerLink="/contacto">Pedir orientacion</a>
@@ -70,9 +71,13 @@ export class SolutionsPageComponent implements OnInit {
     this.seo.update({
       title: "Soluciones tecnicas para empresas, startups y emprendedores",
       description:
-        "Segmentamos soluciones por tipo de cliente y necesidad para captar mejor demanda de software a medida, automatizacion, IA y plataformas.",
+        "Segmentamos soluciones por tipo de cliente y necesidad para captar mejor demanda de software a medida, automatizacion, chatbots, IA y plataformas.",
       path: "/soluciones",
-      keywords: ["soluciones tecnologicas para empresas", "desarrollo para startups"],
+      keywords: [
+        "soluciones tecnologicas para empresas",
+        "chatbots para empresas",
+        "desarrollo para startups",
+      ],
       schemas: [
         this.seo.createBreadcrumbSchema([
           { name: "Home", path: "/" },
