@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   apiBaseUrl: "",
   chatWidgetEnabled: true,
-  chatWidgetOrigin: "http://localhost:4102",
+  chatWidgetBaseUrl: "http://localhost:4102/",
   chatWidgetApiBaseUrl: "http://localhost:4101",
   chatWidgetSiteKey: "tecnoria-public-site-key",
 };

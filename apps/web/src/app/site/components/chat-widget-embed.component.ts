@@ -6,8 +6,14 @@ type WidgetWindow = Window & typeof globalThis & {
   TecnoriaChatWidgetConfig?: {
     siteKey: string;
     apiBase: string;
+    widgetBaseUrl: string;
     widgetOrigin: string;
   };
+};
+
+type WidgetEnvironment = typeof environment & {
+  chatWidgetBaseUrl?: string;
+  chatWidgetOrigin?: string;
 };
 
 @Component({
@@ -17,6 +23,7 @@ type WidgetWindow = Window & typeof globalThis & {
 })
 export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
   private readonly scriptId = "tecnoria-chat-widget-loader";
+  private readonly runtimeEnvironment = environment as WidgetEnvironment;
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
@@ -24,16 +31,22 @@ export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (!isPlatformBrowser(this.platformId) || !environment.chatWidgetEnabled) {
+    if (!isPlatformBrowser(this.platformId) || !this.runtimeEnvironment.chatWidgetEnabled) {
+      return;
+    }
+
+    const widgetBaseUrl = this.resolveWidgetBaseUrl();
+    if (!widgetBaseUrl) {
       return;
     }
 
     const win = this.document.defaultView as WidgetWindow | null;
     if (win) {
       win.TecnoriaChatWidgetConfig = {
-        siteKey: environment.chatWidgetSiteKey,
-        apiBase: environment.chatWidgetApiBaseUrl,
-        widgetOrigin: environment.chatWidgetOrigin,
+        siteKey: this.runtimeEnvironment.chatWidgetSiteKey,
+        apiBase: this.runtimeEnvironment.chatWidgetApiBaseUrl,
+        widgetBaseUrl,
+        widgetOrigin: widgetBaseUrl,
       };
     }
 
@@ -44,14 +57,32 @@ export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
     const script = this.document.createElement("script");
     script.id = this.scriptId;
     script.async = true;
-    script.src = `${environment.chatWidgetOrigin}/embed.js`;
-    script.dataset["siteKey"] = environment.chatWidgetSiteKey;
-    script.dataset["apiBase"] = environment.chatWidgetApiBaseUrl;
-    script.dataset["widgetOrigin"] = environment.chatWidgetOrigin;
+    script.src = new URL("embed.js", widgetBaseUrl).toString();
+    script.dataset["siteKey"] = this.runtimeEnvironment.chatWidgetSiteKey;
+    script.dataset["apiBase"] = this.runtimeEnvironment.chatWidgetApiBaseUrl;
+    script.dataset["widgetBaseUrl"] = widgetBaseUrl;
+    script.dataset["widgetOrigin"] = widgetBaseUrl;
     this.document.body.appendChild(script);
   }
 
   ngOnDestroy(): void {
     // SiteLayout lives for the full public session; keep the loader mounted.
+  }
+
+  private resolveWidgetBaseUrl(): string {
+    const configuredBaseUrl =
+      this.runtimeEnvironment.chatWidgetBaseUrl
+      ?? this.runtimeEnvironment.chatWidgetOrigin
+      ?? "";
+
+    if (!configuredBaseUrl) {
+      return "";
+    }
+
+    const widgetUrl = new URL(configuredBaseUrl, this.document.baseURI);
+    if (!widgetUrl.pathname.endsWith("/")) {
+      widgetUrl.pathname = `${widgetUrl.pathname}/`;
+    }
+    return widgetUrl.toString();
   }
 }

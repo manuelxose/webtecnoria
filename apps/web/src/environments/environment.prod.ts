@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   apiBaseUrl: "",
   chatWidgetEnabled: true,
-  chatWidgetOrigin: "https://chat.tecnoriasl.com",
-  chatWidgetApiBaseUrl: "https://chat-api.tecnoriasl.com",
+  chatWidgetBaseUrl: "https://tecnoriasl.com/chat-widget/",
+  chatWidgetApiBaseUrl: "https://tecnoriasl.com/chat-api",
   chatWidgetSiteKey: "tecnoria-public-site-key",
 };

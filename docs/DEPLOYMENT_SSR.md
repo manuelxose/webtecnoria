@@ -3,10 +3,14 @@
 ## Objetivo
 - `web`: Angular SSR en `:4000`
 - `api`: Express API en `:3001`
+- `chat-api`: API del chatbot en `:4101`
+- `chat-widget`: assets del widget en `:4102`
+- `ingest-worker`: worker de ingesta del chatbot
+- `chat-postgres`: base del chatbot con pgvector
 - `postgres`: base de datos persistente
 - `nginx`: reverse proxy publico en `:80`
 
-La web publica y el area privada usan la misma URL publica. El navegador habla con `/api` y `/uploads` en el mismo dominio; `nginx` los redirige internamente a la API.
+La web publica y el area privada usan la misma URL publica. El navegador habla con `/api` y `/uploads` en el mismo dominio; `nginx` los redirige internamente a la API. El chatbot se publica tambien en el mismo dominio mediante `/chat-api/*` y `/chat-widget/*`, evitando depender de subdominios adicionales.
 
 ## Desarrollo local
 
@@ -71,6 +75,12 @@ Variables clave:
 - `DATABASE_URL`: conexion Postgres usando el host `postgres`
 - `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`
 - `ADMIN_EMAIL`, `ADMIN_PASSWORD`
+- `CHAT_POSTGRES_DB`, `CHAT_POSTGRES_USER`, `CHAT_POSTGRES_PASSWORD`
+- `CHAT_CORS_ORIGIN`: origen permitido para accesos directos al chat API
+- `CHAT_API_ADMIN_BEARER_TOKEN`: token admin del chat
+- `CHAT_LEAD_WEBHOOK_SHARED_SECRET`: secreto del webhook de leads
+- `CHAT_DEFAULT_LEAD_WEBHOOK_URL`: por defecto `http://api:3001/api/v1/contact`
+- `CHAT_FETCH_TIMEOUT_MS`, `CHAT_CRAWLER_USER_AGENT`: parametros del worker de ingesta
 
 ## Arranque inicial
 
@@ -78,7 +88,7 @@ Desde [infra/docker-compose.yml](/c:/Users/Admin/Documents/workspace/webtecnoria
 
 ```bash
 cp .env.example .env
-docker compose up -d --build postgres api web nginx
+docker compose up -d --build postgres api web chat-postgres chat-api chat-widget ingest-worker nginx
 ```
 
 ## Migraciones y seed del admin
@@ -88,6 +98,15 @@ La imagen de la API ya incluye `src/` para poder ejecutar scripts operativos den
 ```bash
 docker compose exec api npm run migrate
 docker compose exec api npm run seed:admin
+docker compose exec chat-api npm run migrate -w @tecnoria-chat/chat-api
+```
+
+Bootstrap inicial del chatbot:
+
+```bash
+cd ../tecnoria-chat-platform
+npm run cli -- seed-tecnoria
+npm run cli -- run-eval --project tecnoria
 ```
 
 ## Smoke checks obligatorios
@@ -95,6 +114,8 @@ docker compose exec api npm run seed:admin
 ```bash
 curl http://localhost/health
 curl http://localhost/api/v1/feature-flags
+curl http://localhost/chat-api/health
+curl -I http://localhost/chat-widget/embed.js
 curl -I http://localhost/
 curl -I http://localhost/auth-login
 curl -I http://localhost/dashboard
@@ -103,6 +124,8 @@ curl -I http://localhost/dashboard
 Esperado:
 - `/health` responde desde SSR web
 - `/api/v1/feature-flags` responde desde API
+- `/chat-api/health` responde desde la API del chatbot
+- `/chat-widget/embed.js` responde desde el servidor del widget
 - `/dashboard` sin sesion devuelve redireccion a `/auth-login`
 
 ## Flujos privados
@@ -125,23 +148,26 @@ Esperado:
 - `/` -> `web:4000`
 - `/api/` -> `api:3001`
 - `/uploads/` -> `api:3001`
+- `/chat-api/` -> `chat-api:4101` con reescritura de prefijo
+- `/chat-widget/` -> `chat-widget:4102` con reescritura de prefijo
 - cabeceras `X-Forwarded-*` activas
 - cache agresiva para assets y uploads
 
 ## Rollout recomendado
 
 1. `docker compose pull` si cambian imagenes base.
-2. `docker compose up -d --build --force-recreate web nginx`
+2. `docker compose up -d --build --force-recreate web api chat-api chat-widget ingest-worker nginx`
 3. `docker compose exec api npm run migrate`
-4. `docker compose exec api npm run seed:admin` solo si necesitas recrear el admin inicial
-5. Smoke checks
+4. `docker compose exec chat-api npm run migrate -w @tecnoria-chat/chat-api`
+5. `docker compose exec api npm run seed:admin` solo si necesitas recrear el admin inicial
+6. Smoke checks
 
 ## Rollback minimo
 
 1. Conserva una copia del `.env` anterior.
 2. Si la build nueva falla, vuelve al commit previo.
 3. Ejecuta `docker compose up -d --build` con esa revision.
-4. No borres `postgres_data` ni `api_uploads` salvo que quieras perder datos.
+4. No borres `postgres_data`, `api_uploads` ni `chat_postgres_data` salvo que quieras perder datos.
 
 ## TLS
 
@@ -155,6 +181,8 @@ La configuracion actual queda lista para poner Nginx delante de la web y la API.
 - `GET /health`
 - `GET /`
 - `GET /servicios`
+- `GET /chat-api/health`
+- `GET /chat-widget/embed.js`
 - `GET /auth-login`
 - `GET /dashboard` sin sesion
 - `GET /dashboard` con sesion valida
