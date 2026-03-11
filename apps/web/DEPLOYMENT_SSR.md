@@ -1,6 +1,6 @@
 # Deprecated path
 
-La guia activa de despliegue SSR ya no usa Firebase Hosting/Functions.
+La guia activa de despliegue SSR esta en:
 
 Consultar:
 

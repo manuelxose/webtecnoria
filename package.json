@@ -21,8 +21,6 @@
     "build:api": "npm run -w apps/api build",
     "start:api": "npm run -w apps/api start",
     "migrate:api": "npm run -w apps/api migrate",
-    "migrate:firebase": "npm run -w apps/api migrate:firebase",
-    "verify:migration": "npm run -w apps/api verify:migration",
     "seed:admin": "npm run -w apps/api seed:admin",
     "build": "npm run build:types && npm run build:web && npm run build:api"
   }

@@ -848,6 +848,7 @@ h3 {
 .floating-bar__actions {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .auth-shell,
@@ -1179,7 +1180,7 @@ h3 {
   :root {
     --page-gutter: 28px;
     --header-height: 88px;
-    --floating-bar-offset: 118px;
+    --floating-bar-offset: 132px;
   }
 
   .hero-grid,
@@ -1232,11 +1233,15 @@ h3 {
 
   .floating-bar {
     position: fixed;
-    right: var(--page-gutter);
+    left: var(--page-gutter);
+    right: auto;
     bottom: 18px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    justify-content: space-between;
+    gap: 16px 18px;
+    flex-wrap: wrap;
+    max-width: min(560px, calc(100vw - 164px));
     padding: 14px 16px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 22px;
@@ -1244,6 +1249,7 @@ h3 {
     color: #fff;
     box-shadow: var(--shadow-lg);
     backdrop-filter: blur(18px);
+    z-index: 20;
   }
 }
 

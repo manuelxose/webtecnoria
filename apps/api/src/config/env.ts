@@ -20,6 +20,7 @@ const EnvSchema = z.object({
   CUTOVER_BLOG: z.string().default("true"),
   CUTOVER_CONTACT: z.string().default("true"),
   CUTOVER_SCRAPER: z.string().default("true"),
+  AUCTORIO_PUBLISHER_TOKEN: z.string().default(""),
 });
 
 const parsed = EnvSchema.safeParse(process.env);

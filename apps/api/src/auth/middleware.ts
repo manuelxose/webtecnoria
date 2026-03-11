@@ -41,3 +41,36 @@ export function requireAdmin(req: AuthedRequest, res: Response, next: NextFuncti
     next();
   });
 }
+
+export function hasEditorialAccess(req: Request): boolean {
+  const authHeader = req.headers.authorization ?? "";
+  const bearerToken = authHeader.startsWith("Bearer ") ? authHeader.slice(7).trim() : "";
+  if (env.AUCTORIO_PUBLISHER_TOKEN && bearerToken === env.AUCTORIO_PUBLISHER_TOKEN) {
+    return true;
+  }
+
+  const token = req.cookies?.[env.COOKIE_NAME];
+  if (!token) {
+    return false;
+  }
+
+  try {
+    const claims = verifySessionToken(token);
+    return claims.role === "admin" || claims.role === "editor";
+  } catch {
+    return false;
+  }
+}
+
+export function requireAdminOrIntegration(
+  req: AuthedRequest,
+  res: Response,
+  next: NextFunction
+): void {
+  if (hasEditorialAccess(req)) {
+    next();
+    return;
+  }
+
+  res.status(401).json({ code: "UNAUTHENTICATED", message: "Missing editorial access" });
+}

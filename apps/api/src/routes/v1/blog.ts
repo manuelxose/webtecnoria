@@ -4,7 +4,7 @@ import path from "node:path";
 import { type Request, Router } from "express";
 import multer from "multer";
 import { z } from "zod";
-import { requireAdmin } from "../../auth/middleware.js";
+import { hasEditorialAccess, requireAdminOrIntegration } from "../../auth/middleware.js";
 import { env } from "../../config/env.js";
 import { pool } from "../../db/pool.js";
 
@@ -48,18 +48,56 @@ const BlogWriteSchema = z.object({
   image: z.string().optional(),
   tags: z.array(z.string()).default([]),
   author: z.string().min(1),
+  status: z.enum(["draft", "publish"]).default("draft"),
+  publishedAt: z.string().datetime().nullable().optional(),
+  seoTitle: z.string().trim().min(2).optional(),
+  seoDescription: z.string().trim().min(2).optional(),
 });
 
-router.get("/", async (_req, res) => {
+router.get("/", async (req, res) => {
+  const status = String(req.query.status ?? "").trim().toLowerCase();
+  const canReadDrafts = hasEditorialAccess(req);
+  let where = "WHERE status = 'publish'";
+  const values: unknown[] = [];
+
+  if (canReadDrafts) {
+    if (!status || status === "all") {
+      where = "";
+    } else if (status === "draft" || status === "publish") {
+      where = "WHERE status = $1";
+      values.push(status);
+    } else {
+      res.status(400).json({ code: "INVALID_QUERY", message: "status must be all, draft or publish" });
+      return;
+    }
+  }
+
   const query = await pool.query(
-    "SELECT id, slug, title, short_description AS \"shortDescription\", image, tags, author, created_at AS \"createdAt\", updated_at AS \"updatedAt\" FROM blog_posts ORDER BY created_at DESC"
+    `SELECT
+       id,
+       slug,
+       title,
+       short_description AS "shortDescription",
+       image,
+       tags,
+       author,
+       status,
+       published_at AS "publishedAt",
+       seo_title AS "seoTitle",
+       seo_description AS "seoDescription",
+       created_at AS "createdAt",
+       updated_at AS "updatedAt"
+     FROM blog_posts
+     ${where}
+     ORDER BY COALESCE(published_at, created_at) DESC, created_at DESC`,
+    values
   );
   res.json({ items: query.rows });
 });
 
 router.post(
   "/upload-image",
-  requireAdmin,
+  requireAdminOrIntegration,
   upload.single("file"),
   async (req: UploadRequest, res) => {
     if (!req.file) {
@@ -75,8 +113,27 @@ router.post(
 );
 
 router.get("/:slug", async (req, res) => {
+  const canReadDrafts = hasEditorialAccess(req);
   const query = await pool.query(
-    "SELECT id, slug, title, short_description AS \"shortDescription\", content, image, tags, author, created_at AS \"createdAt\", updated_at AS \"updatedAt\" FROM blog_posts WHERE slug = $1 LIMIT 1",
+    `SELECT
+       id,
+       slug,
+       title,
+       short_description AS "shortDescription",
+       content,
+       image,
+       tags,
+       author,
+       status,
+       published_at AS "publishedAt",
+       seo_title AS "seoTitle",
+       seo_description AS "seoDescription",
+       created_at AS "createdAt",
+       updated_at AS "updatedAt"
+     FROM blog_posts
+     WHERE slug = $1
+       ${canReadDrafts ? "" : "AND status = 'publish'"}
+     LIMIT 1`,
     [req.params.slug]
   );
   if (query.rowCount === 0) {
@@ -86,7 +143,7 @@ router.get("/:slug", async (req, res) => {
   res.json(query.rows[0]);
 });
 
-router.post("/", requireAdmin, async (req, res) => {
+router.post("/", requireAdminOrIntegration, async (req, res) => {
   const parsed = BlogWriteSchema.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ code: "INVALID_INPUT", message: "Invalid payload" });
@@ -94,13 +151,29 @@ router.post("/", requireAdmin, async (req, res) => {
   }
   const body = parsed.data;
   const query = await pool.query(
-    "INSERT INTO blog_posts (slug, title, short_description, content, image, tags, author) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id",
-    [body.slug, body.title, body.shortDescription, body.content, body.image ?? null, body.tags, body.author]
+    `INSERT INTO blog_posts (
+       slug, title, short_description, content, image, tags, author, status, published_at, seo_title, seo_description
+     )
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+     RETURNING id, slug, status`,
+    [
+      body.slug,
+      body.title,
+      body.shortDescription,
+      body.content,
+      body.image ?? null,
+      body.tags,
+      body.author,
+      body.status,
+      body.status === "publish" ? body.publishedAt ?? new Date().toISOString() : null,
+      body.seoTitle ?? null,
+      body.seoDescription ?? null,
+    ]
   );
-  res.status(201).json({ id: query.rows[0].id });
+  res.status(201).json(query.rows[0]);
 });
 
-router.put("/:id", requireAdmin, async (req, res) => {
+router.put("/:id", requireAdminOrIntegration, async (req, res) => {
   const parsed = BlogWriteSchema.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ code: "INVALID_INPUT", message: "Invalid payload" });
@@ -108,17 +181,47 @@ router.put("/:id", requireAdmin, async (req, res) => {
   }
   const body = parsed.data;
   const query = await pool.query(
-    "UPDATE blog_posts SET slug = $1, title = $2, short_description = $3, content = $4, image = $5, tags = $6, author = $7, updated_at = NOW() WHERE id = $8",
-    [body.slug, body.title, body.shortDescription, body.content, body.image ?? null, body.tags, body.author, req.params.id]
+    `UPDATE blog_posts
+     SET slug = $1,
+         title = $2,
+         short_description = $3,
+         content = $4,
+         image = $5,
+         tags = $6,
+         author = $7,
+         status = $8,
+         published_at = CASE
+           WHEN $8 = 'publish' THEN COALESCE($9::timestamptz, published_at, NOW())
+           ELSE NULL
+         END,
+         seo_title = $10,
+         seo_description = $11,
+         updated_at = NOW()
+     WHERE id = $12
+     RETURNING id, slug, status`,
+    [
+      body.slug,
+      body.title,
+      body.shortDescription,
+      body.content,
+      body.image ?? null,
+      body.tags,
+      body.author,
+      body.status,
+      body.publishedAt ?? null,
+      body.seoTitle ?? null,
+      body.seoDescription ?? null,
+      req.params.id,
+    ]
   );
   if (query.rowCount === 0) {
     res.status(404).json({ code: "NOT_FOUND", message: "Post not found" });
     return;
   }
-  res.status(204).send();
+  res.status(200).json(query.rows[0]);
 });
 
-router.delete("/:id", requireAdmin, async (req, res) => {
+router.delete("/:id", requireAdminOrIntegration, async (req, res) => {
   const query = await pool.query("DELETE FROM blog_posts WHERE id = $1", [req.params.id]);
   if (query.rowCount === 0) {
     res.status(404).json({ code: "NOT_FOUND", message: "Post not found" });

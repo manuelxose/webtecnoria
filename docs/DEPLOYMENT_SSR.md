@@ -1,14 +1,14 @@
 # Deploy SSR Tecnoria en VPS
 
 ## Objetivo
-- `web`: Angular SSR en `:4000`
+- `web`: Angular SSR en `:4300` en VPS (`:4000` solo en desarrollo legacy)
 - `api`: Express API en `:3001`
 - `chat-api`: API del chatbot en `:4101`
 - `chat-widget`: assets del widget en `:4102`
 - `ingest-worker`: worker de ingesta del chatbot
 - `chat-postgres`: base del chatbot con pgvector
 - `postgres`: base de datos persistente
-- `nginx`: reverse proxy publico en `:80`
+- `nginx`: reverse proxy publico en `:80/:443`
 
 La web publica y el area privada usan la misma URL publica. El navegador habla con `/api` y `/uploads` en el mismo dominio; `nginx` los redirige internamente a la API. El chatbot se publica tambien en el mismo dominio mediante `/chat-api/*` y `/chat-widget/*`, evitando depender de subdominios adicionales.
 
@@ -81,6 +81,59 @@ Variables clave:
 - `CHAT_LEAD_WEBHOOK_SHARED_SECRET`: secreto del webhook de leads
 - `CHAT_DEFAULT_LEAD_WEBHOOK_URL`: por defecto `http://api:3001/api/v1/contact`
 - `CHAT_FETCH_TIMEOUT_MS`, `CHAT_CRAWLER_USER_AGENT`: parametros del worker de ingesta
+
+## Produccion VPS actual
+
+En el VPS de Tecnoria la orquestacion activa no usa Docker ni PM2:
+- codigo en `/var/www/webtecnoria` y `/var/www/tecnoria-chat-platform`
+- configuracion operativa en `/etc/tecnoria/*.env`
+- uploads en `/var/lib/tecnoria/uploads`
+- TLS de origen en `/var/lib/tecnoria/ssl/origin.crt` y `/var/lib/tecnoria/ssl/origin.key`
+- servicios `systemd`: `tecnoria-web`, `tecnoria-api`, `tecnoria-chat-api`, `tecnoria-chat-widget`, `tecnoria-chat-ingest`
+
+Puertos internos del despliegue real:
+- `4300` SSR web
+- `3001` API corporativa
+- `4101` chat API
+- `4102` widget
+
+## Corte Cloudflare
+
+Script preparado:
+
+```bash
+CF_API_TOKEN=... \
+CF_ZONE_NAME=tecnoriasl.com \
+CF_ORIGIN_IPV4=109.123.248.164 \
+CF_SSL_MODE=strict \
+bash infra/cloudflare-cutover.sh
+```
+
+O con Global API Key:
+
+```bash
+CF_AUTH_EMAIL=Oficina@tecnoriasl.com \
+CF_GLOBAL_API_KEY=... \
+CF_ZONE_NAME=tecnoriasl.com \
+CF_ORIGIN_IPV4=109.123.248.164 \
+CF_SSL_MODE=strict \
+bash infra/cloudflare-cutover.sh
+```
+
+Si usas API token, debe incluir como minimo estos permisos sobre la zona:
+- `Zone:Read`
+- `DNS:Edit`
+- `Zone Settings:Edit`
+- `Cache Purge`
+
+El script:
+- valida el token
+- resuelve el `zone_id`
+- hace `upsert` de `tecnoriasl.com` y `www.tecnoriasl.com` hacia `109.123.248.164` con proxy activo
+- cambia el modo SSL a `strict`
+- purga cache
+
+Antes de ejecutarlo, el origen ya debe tener instalado un certificado valido para Cloudflare o un Origin Certificate definitivo.
 
 ## Arranque inicial
 
