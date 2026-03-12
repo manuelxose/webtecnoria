@@ -13,9 +13,9 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import {
+  brandLogos,
   primaryNavigation,
   SITE_EMAIL,
-  SITE_NAME,
   SITE_PHONE,
   SITE_PHONE_LABEL,
 } from "../content/site-content";
@@ -28,7 +28,7 @@ import {
   styleUrls: ["./site-header.component.css"],
 })
 export class SiteHeaderComponent implements OnDestroy {
-  private static readonly INLINE_NAV_BREAKPOINT = 1440;
+  private static readonly INLINE_NAV_BREAKPOINT = 1280;
 
   @ViewChild("menuButton")
   private readonly menuButton?: ElementRef<HTMLButtonElement>;
@@ -37,10 +37,10 @@ export class SiteHeaderComponent implements OnDestroy {
   private readonly drawerCloseButton?: ElementRef<HTMLButtonElement>;
 
   readonly navigation = primaryNavigation;
-  readonly siteName = SITE_NAME;
   readonly phone = SITE_PHONE;
   readonly phoneLabel = SITE_PHONE_LABEL;
   readonly email = SITE_EMAIL;
+  readonly logos = brandLogos;
   readonly menuPanelId = "site-header-drawer";
 
   menuOpen = false;

@@ -1,13 +1,17 @@
 <section class="auth-shell">
   <div class="site-container auth-grid">
     <aside class="auth-panel auth-panel--accent">
-      <a class="brand auth-brand" routerLink="/" aria-label="Volver a TecnoRia">
-        <span class="brand-mark">TR</span>
-        <span class="brand-copy">
-          <strong>TecnoRia</strong>
-          <small>Solicitud de acceso privado</small>
-        </span>
-      </a>
+      <div class="auth-topbar">
+        <a class="brand-logo brand-logo--light auth-brand" routerLink="/" aria-label="Volver a TecnoRia">
+          <img
+            class="brand-logo__asset"
+            [src]="logos.lockup.light.src"
+            [alt]="logos.lockup.light.alt"
+            [attr.width]="logos.lockup.light.width"
+            [attr.height]="logos.lockup.light.height"
+          >
+        </a>
+      </div>
 
       <span class="eyebrow">Alta controlada</span>
       <h1>Solicita acceso al backoffice.</h1>
@@ -113,7 +117,13 @@
 
       <div class="auth-footer">
         <span>Ya tienes acceso?</span>
-        <a class="text-link" routerLink="/auth-login">Volver al login</a>
+        <a
+          class="text-link"
+          routerLink="/auth-login"
+          [queryParams]="returnUrl ? { returnUrl } : null"
+        >
+          Volver al login
+        </a>
       </div>
     </article>
   </div>

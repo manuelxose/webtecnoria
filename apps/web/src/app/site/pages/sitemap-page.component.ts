@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { sitemapGroups } from "../content/site-content";
+import { brandImages, sitemapGroups } from "../content/site-content";
 import { SeoService } from "../services/seo.service";
 
 @Component({
@@ -12,10 +12,10 @@ import { SeoService } from "../services/seo.service";
     <section class="page-hero section">
       <div class="site-container page-hero__inner">
         <span class="eyebrow">Mapa web</span>
-        <h1>Arquitectura de contenidos preparada para SEO y escaneo rapido.</h1>
+        <h1>Arquitectura de contenidos pensada para escaneo rápido, SEO y conversión.</h1>
         <p class="lead">
           Este mapa web recoge la estructura principal, las landings de servicio
-          y el contenido editorial de apoyo a captacion.
+          y el contenido evergreen orientado a captación cualificada.
         </p>
       </div>
     </section>
@@ -43,8 +43,9 @@ export class SitemapPageComponent implements OnInit {
     this.seo.update({
       title: "Mapa web",
       description:
-        "Mapa web con la estructura principal de servicios, soluciones, blog y paginas de conversion de TecnoRia.",
+        "Mapa web con la estructura principal de servicios, soluciones, recursos y páginas de conversión de TecnoRia.",
       path: "/mapa-web",
+      imagePath: brandImages.systems.src,
       schemas: [
         this.seo.createBreadcrumbSchema([
           { name: "Home", path: "/" },

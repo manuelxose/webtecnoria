@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { generalFaqs } from "../content/site-content";
+import { brandImages, generalFaqs } from "../content/site-content";
 import { SeoService } from "../services/seo.service";
 
 @Component({
@@ -12,11 +12,29 @@ import { SeoService } from "../services/seo.service";
     <section class="page-hero section">
       <div class="site-container page-hero__inner">
         <span class="eyebrow">FAQ</span>
-        <h1>Preguntas frecuentes que reducen dudas y mejoran conversion.</h1>
+        <h1>Preguntas frecuentes que resuelven dudas reales antes de dar el siguiente paso.</h1>
         <p class="lead">
-          Esta pagina ayuda a resolver objeciones habituales sobre encaje,
-          presupuesto, tiempos, mantenimiento, chatbots y forma de trabajo.
+          Esta FAQ está pensada para resolver dudas sobre encaje, tiempos,
+          mantenimiento, IA, automatización, software existente y forma de
+          trabajo antes de solicitar un diagnóstico.
         </p>
+      </div>
+    </section>
+
+    <section class="section section-accent">
+      <div class="site-container card-grid card-grid--three">
+        <article class="surface-card contact-card">
+          <span class="chip chip-soft">Encaje</span>
+          <p>Si el proyecto tiene una necesidad clara y un impacto potencial real, nos interesa revisarlo contigo.</p>
+        </article>
+        <article class="surface-card contact-card">
+          <span class="chip chip-soft">Método</span>
+          <p>No saltamos a build sin un mínimo de discovery cuando el problema aún está mal definido.</p>
+        </article>
+        <article class="surface-card contact-card">
+          <span class="chip chip-soft">Evolución</span>
+          <p>Diseñamos para que el sistema pueda seguir creciendo después del lanzamiento inicial.</p>
+        </article>
       </div>
     </section>
 
@@ -32,14 +50,12 @@ import { SeoService } from "../services/seo.service";
     <section class="section section-dark">
       <div class="site-container final-cta">
         <div>
-          <span class="eyebrow">Aun con dudas</span>
-          <h2>Lo mas rapido es contarnos el contexto y decirte si tiene sentido avanzar.</h2>
+          <span class="eyebrow">¿Aún con dudas?</span>
+          <h2>Lo más rápido es revisar tu contexto y decirte si tiene sentido avanzar, redefinir o esperar.</h2>
         </div>
         <div class="cta-actions">
           <a class="button button-primary" routerLink="/contacto">Hablar con nosotros</a>
-          <a class="button button-ghost" routerLink="/servicios/desarrollo-chatbots-empresas">
-            Ver chatbots
-          </a>
+          <a class="button button-ghost" routerLink="/servicios">Ver servicios</a>
         </div>
       </div>
     </section>
@@ -52,14 +68,15 @@ export class FaqPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.update({
-      title: "Preguntas frecuentes sobre software, automatizacion, chatbots e IA",
+      title: "Preguntas frecuentes sobre software, automatización e IA aplicada",
       description:
-        "FAQ comercial para resolver dudas sobre proyectos, tiempos, presupuesto, mantenimiento, chatbots y encaje de servicios tecnologicos.",
+        "FAQ de TecnoRia para resolver dudas sobre proyectos, encaje, tiempos, mantenimiento, chatbots, IA aplicada y evolución de software existente.",
       path: "/faq",
+      imagePath: brandImages.method.src,
       keywords: [
         "faq software a medida",
-        "preguntas frecuentes automatizacion",
-        "chatbots para empresas faq",
+        "preguntas frecuentes automatización",
+        "faq chatbots para empresas",
       ],
       schemas: [
         this.seo.createBreadcrumbSchema([

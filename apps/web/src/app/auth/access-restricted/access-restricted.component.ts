@@ -1,6 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
+import { brandLogos } from "src/app/site/content/site-content";
+import { PrivateNavigationService } from "../private-navigation.service";
 
 @Component({
   selector: "app-access-restricted",
@@ -10,6 +12,21 @@ import { RouterModule } from "@angular/router";
     <section class="auth-shell">
       <div class="site-container auth-grid auth-grid--single">
         <article class="auth-panel auth-panel--form surface-card">
+          <div class="auth-topbar">
+            <a class="brand-logo" routerLink="/" aria-label="Volver a TecnoRia">
+              <img
+                class="brand-logo__asset"
+                [src]="logos.lockup.dark.src"
+                [alt]="logos.lockup.dark.alt"
+                [attr.width]="logos.lockup.dark.width"
+                [attr.height]="logos.lockup.dark.height"
+              >
+            </a>
+            <button class="back-nav" type="button" (click)="goBack()">
+              Volver
+            </button>
+          </div>
+
           <div class="auth-card-head">
             <span class="panel-label">Acceso restringido</span>
             <h1>Tu sesion no tiene permisos para este panel.</h1>
@@ -33,4 +50,15 @@ import { RouterModule } from "@angular/router";
     </section>
   `,
 })
-export class AccessRestrictedComponent {}
+export class AccessRestrictedComponent {
+  logos = brandLogos;
+
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly privateNavigation: PrivateNavigationService
+  ) {}
+
+  async goBack(): Promise<void> {
+    await this.privateNavigation.goBack(this.route, "/");
+  }
+}

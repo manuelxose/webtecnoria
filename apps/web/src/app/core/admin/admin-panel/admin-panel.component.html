@@ -1,13 +1,20 @@
 <section class="dashboard-shell">
   <div class="site-container dashboard-layout">
     <aside class="dashboard-sidebar surface-card">
-      <a class="brand auth-brand" routerLink="/" aria-label="Volver al site de TecnoRia">
-        <span class="brand-mark">TR</span>
-        <span class="brand-copy">
-          <strong>TecnoRia</strong>
-          <small>Dashboard editorial y operativo</small>
-        </span>
-      </a>
+      <div class="auth-topbar">
+        <a class="brand-logo auth-brand" routerLink="/" aria-label="Volver al site de TecnoRia">
+          <img
+            class="brand-logo__asset"
+            [src]="logos.lockup.dark.src"
+            [alt]="logos.lockup.dark.alt"
+            [attr.width]="logos.lockup.dark.width"
+            [attr.height]="logos.lockup.dark.height"
+          >
+        </a>
+        <button class="back-nav" type="button" (click)="goBack()">
+          Volver
+        </button>
+      </div>
 
       <span class="panel-label">Panel privado</span>
       <h1>Gestion centralizada para blog y procesos internos.</h1>
@@ -48,7 +55,7 @@
         <article class="surface-card admin-stat">
           <span class="chip chip-soft">Scraper</span>
           <strong>{{ runningJobsCount }}</strong>
-          <p>Jobs en cola o en ejecucion dentro de la sesion actual.</p>
+          <p>Jobs en cola o en ejecución dentro de la sesión actual.</p>
         </article>
 
         <article class="surface-card admin-stat">
@@ -133,7 +140,7 @@
                   type="text"
                   name="tags"
                   [(ngModel)]="postDraft.tagsText"
-                  placeholder="software, automatizacion, ia"
+                  placeholder="software, automatización, ia"
                 />
               </div>
             </div>

@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, Inject } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import {
   AUTH_REPOSITORY,
   AuthRepository,
 } from "src/app/domain/repositories/auth.repository";
+import { brandLogos } from "src/app/site/content/site-content";
 import { parseApiError } from "../parse-api-error";
 
 @Component({
@@ -24,11 +25,16 @@ export class AuthSignupComponent {
   loading = false;
   errorMessage = "";
   successMessage = "";
+  returnUrl: string | null = null;
+  logos = brandLogos;
 
   constructor(
     @Inject(AUTH_REPOSITORY)
-    private readonly authRepository: AuthRepository
-  ) {}
+    private readonly authRepository: AuthRepository,
+    private readonly route: ActivatedRoute
+  ) {
+    this.returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
+  }
 
   async requestAccess(): Promise<void> {
     this.errorMessage = "";

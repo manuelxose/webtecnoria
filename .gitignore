@@ -35,6 +35,7 @@ Thumbs.db
 # Env and secrets
 .env
 .env.*
+*.env
 !.env.example
 sendgrid.env
 token.json
@@ -55,6 +56,7 @@ credentials.json
 apps/web/node_modules/
 apps/web/.angular/
 apps/web/dist/
+apps/web/releases/
 apps/web/functions/lib/
 apps/web/functions/angular-ssr/
 apps/web/server_output.txt

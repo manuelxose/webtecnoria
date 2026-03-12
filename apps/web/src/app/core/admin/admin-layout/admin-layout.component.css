@@ -1,0 +1,8 @@
+/* Styles are in styles-admin.css — this file adds component-specific overrides */
+
+/* Show hamburger on mobile */
+@media (max-width: 1023px) {
+  #sidebar-toggle {
+    display: flex !important;
+  }
+}

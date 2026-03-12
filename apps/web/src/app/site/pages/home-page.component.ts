@@ -5,14 +5,20 @@ import { ContactFormComponent } from "../components/contact-form.component";
 import {
   audienceSegments,
   benefitBlocks,
+  brandImages,
   caseStudies,
-  chatbotSpotlight,
+  challengeCards,
   differentiators,
+  featuredInsightSlugs,
   generalFaqs,
+  getArticlesBySlugs,
   heroHighlights,
-  painPoints,
+  heroMetrics,
+  proofMoments,
   processSteps,
   services,
+  solutionNeeds,
+  testimonials,
   trustStatements,
 } from "../content/site-content";
 import { SeoService } from "../services/seo.service";
@@ -23,100 +29,150 @@ import { SeoService } from "../services/seo.service";
   imports: [CommonModule, RouterModule, ContactFormComponent],
   template: `
     <section class="hero-section section">
-      <div class="site-container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Software, automatizacion, IA y chatbots</span>
+      <div class="site-container hero-grid hero-grid--premium">
+        <div class="hero-copy hero-copy--flagship">
+          <span class="eyebrow">Ingeniería de software · Automatización · IA aplicada</span>
           <h1>
-            Desarrollamos software, automatizacion, IA y chatbots para empresas
-            que necesitan operar mejor y crecer con una base solida.
+            Software, automatización e IA que transforma cómo opera y escala tu empresa.
           </h1>
-          <p class="lead">
-            Creamos herramientas internas, plataformas y sistemas
-            conversacionales para eliminar trabajo manual, conectar procesos y
-            convertir tecnologia en una ventaja operativa y comercial.
+          <p class="lead lead--hero">
+            Diseñamos y desarrollamos software a medida, automatizaciones,
+            asistentes e IA aplicada sobre problemas reales de operativa,
+            servicio y producto. Sin humo, sin sobreingeniería y con una hoja
+            de ruta defendible desde el primer paso.
           </p>
 
           <div class="hero-actions">
             <a class="button button-primary" routerLink="/contacto">
-              Solicitar diagnostico
+              Solicitar diagnóstico ejecutivo
             </a>
             <a class="button button-secondary" routerLink="/servicios">
-              Ver servicios
+              Ver servicios y escenarios
             </a>
           </div>
 
-          <div class="bullet-list">
+          <div class="bullet-list bullet-list--hero">
             <div class="bullet-list__item" *ngFor="let item of highlights">
               <span class="bullet-dot"></span>
               <span>{{ item }}</span>
             </div>
           </div>
+
+          <div class="hero-status-bar">
+            <article class="hero-status-item" *ngFor="let metric of metrics">
+              <strong>{{ metric.value }}</strong>
+              <span>{{ metric.label }}</span>
+              <p>{{ metric.detail }}</p>
+            </article>
+          </div>
         </div>
 
-        <aside class="hero-panel surface-card surface-card--contrast">
-          <span class="panel-label">Diagnostico inicial</span>
-          <h2>Menos caos operativo. Mas control. Mejor capacidad de respuesta.</h2>
-          <p>
-            Analizamos que frena hoy al negocio y proponemos la siguiente mejor
-            decision: software, automatizacion, chatbot, IA o una combinacion
-            razonable entre ellas.
-          </p>
+        <div class="hero-visual-stack">
+          <figure class="surface-card visual-card visual-card--hero">
+            <img
+              class="hero-visual"
+              [src]="heroImage.src"
+              [alt]="heroImage.alt"
+              [attr.width]="heroImage.width"
+              [attr.height]="heroImage.height"
+              fetchpriority="high"
+            />
+          </figure>
 
-          <div class="panel-stack">
-            <div class="mini-metric" *ngFor="let statement of trust">
-              {{ statement }}
+          <aside class="surface-card hero-strategy-panel">
+            <span class="panel-label">Lo que ordenamos primero</span>
+            <ul class="hero-strategy-panel__list">
+              <li *ngFor="let statement of trust">{{ statement }}</li>
+            </ul>
+
+            <div class="article-callout" *ngIf="featuredInsights[0] as featured">
+              <span class="chip chip-soft">{{ featured.category }}</span>
+              <h3>{{ featured.title }}</h3>
+              <p>{{ featured.summary }}</p>
+              <a class="text-link" [routerLink]="featured.seo.path">Leer insight estratégico</a>
             </div>
-          </div>
-        </aside>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <section class="section section-accent">
-      <div class="site-container card-grid card-grid--three">
-        <article class="surface-card trust-card">
-          <span class="chip chip-soft">Metodo</span>
-          <h3>Discovery antes de construir</h3>
-          <p>Empezamos por contexto, prioridades y riesgos para no vender una solucion incorrecta.</p>
-        </article>
-        <article class="surface-card trust-card">
-          <span class="chip chip-soft">Encaje</span>
-          <h3>Empresas y proyectos con necesidad real</h3>
-          <p>La web esta pensada para captar demanda cualificada, no visitas curiosas sin encaje.</p>
-        </article>
-        <article class="surface-card trust-card">
-          <span class="chip chip-soft">Respuesta</span>
-          <h3>Contacto claro y sin humo</h3>
-          <p>Respondemos rapido, decimos si encaja y proponemos un siguiente paso realista.</p>
+    <section class="section section-accent section-accent--soft">
+      <div class="site-container proof-bar">
+        <article class="proof-bar__item" *ngFor="let item of signature">
+          <strong>{{ item.title }}</strong>
+          <p>{{ item.description }}</p>
         </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="site-container split-head split-head--compact">
-        <div>
-          <span class="eyebrow">Problemas habituales</span>
-          <h2>Cuando la tecnologia no acompana, el negocio lo paga en tiempo, errores y friccion.</h2>
+      <div class="site-container split-stage split-stage--feature">
+        <div class="split-stage__media">
+          <div class="section-copy">
+            <span class="eyebrow">Dónde solemos entrar</span>
+            <h2>Cuando el negocio se tensiona, la tecnología deja de ser una capa secundaria.</h2>
+            <p class="lead">
+              La mayoría de proyectos que llegan a TecnoRia comparten el mismo
+              patrón: procesos demasiado manuales, soporte saturado, sistemas
+              desconectados o un producto que necesita una base más seria para
+              la siguiente etapa.
+            </p>
+          </div>
+
+          <figure class="surface-card visual-card visual-card--feature">
+            <img
+              [src]="systemsImage.src"
+              [alt]="systemsImage.alt"
+              [attr.width]="systemsImage.width"
+              [attr.height]="systemsImage.height"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+
+        <div class="split-stage__cards card-grid card-grid--two">
+          <article class="surface-card insight-card" *ngFor="let pain of challenges">
+            <h3>{{ pain.title }}</h3>
+            <p>{{ pain.description }}</p>
+          </article>
         </div>
       </div>
-      <div class="site-container card-grid card-grid--two">
-        <article class="surface-card" *ngFor="let pain of pains">
-          <h3>{{ pain }}</h3>
-        </article>
+    </section>
+
+    <section class="section section-dark">
+      <div class="site-container split-stage split-stage--aligned">
+        <div class="section-copy">
+          <span class="eyebrow">Lo que desbloqueamos</span>
+          <h2>Orden operativo, mejor servicio y una base técnica preparada para escalar sin rehacer.</h2>
+          <p class="lead">
+            No intervenimos para añadir complejidad. Intervenimos para que el
+            sistema de trabajo gane claridad, capacidad de respuesta y margen
+            real de crecimiento.
+          </p>
+        </div>
+
+        <div class="card-grid card-grid--two">
+          <article class="surface-card surface-card--soft-dark" *ngFor="let benefit of benefits">
+            <h3>{{ benefit.title }}</h3>
+            <p>{{ benefit.description }}</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="site-container section-head">
         <span class="eyebrow">Servicios principales</span>
-        <h2>Seis lineas de servicio pensadas para captar necesidad real y llevarla a una propuesta viable.</h2>
+        <h2>Seis líneas de servicio para cubrir operativa, producto, automatización e IA sin mensajes difusos.</h2>
         <p>
-          Chatbots entra como servicio pilar dentro de la oferta, con su propia
-          landing, su propio mensaje y una relacion clara con automatizacion e IA.
+          Cada servicio responde a una intención concreta y conecta la necesidad
+          con el siguiente movimiento más sensato: discovery, build, mejora o
+          evolución.
         </p>
       </div>
 
       <div class="site-container card-grid card-grid--three">
-        <article class="service-card surface-card service-card--stacked" *ngFor="let service of serviceCards">
+        <article class="surface-card service-card service-card--stacked service-card--premium" *ngFor="let service of serviceCards">
           <span class="chip">{{ service.badge }}</span>
           <h3>{{ service.name }}</h3>
           <p>{{ service.summary }}</p>
@@ -130,41 +186,20 @@ import { SeoService } from "../services/seo.service";
       </div>
     </section>
 
-    <section class="section section-dark">
-      <div class="site-container section-head section-head--light">
-        <span class="eyebrow">Automatizacion conversacional</span>
-        <h2>Chatbots y asistentes virtuales para captar, responder y activar procesos.</h2>
-        <p>
-          No se plantean como un extra decorativo. Se disenan como una capa
-          operativa conectada a negocio, soporte y conversion.
-        </p>
+    <section class="section section-accent">
+      <div class="site-container section-head">
+        <span class="eyebrow">Soluciones por escenario</span>
+        <h2>También puedes entrar por fricción de negocio y no por categoría técnica.</h2>
       </div>
-      <div class="site-container card-grid card-grid--four">
-        <article class="surface-card surface-card--soft-dark" *ngFor="let item of chatbotCases">
+
+      <div class="site-container card-grid card-grid--three">
+        <article class="surface-card solution-card" *ngFor="let item of scenarios">
           <h3>{{ item.title }}</h3>
           <p>{{ item.description }}</p>
-        </article>
-      </div>
-      <div class="site-container spotlight-actions">
-        <a class="button button-primary" routerLink="/servicios/desarrollo-chatbots-empresas">
-          Ver landing de chatbots
-        </a>
-        <a class="button button-ghost" routerLink="/servicios/inteligencia-artificial-empresas">
-          Ver IA aplicada
-        </a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="site-container section-head">
-        <span class="eyebrow">Beneficios</span>
-        <h2>Que gana el cliente cuando la solucion esta bien planteada.</h2>
-      </div>
-
-      <div class="site-container card-grid card-grid--four">
-        <article class="surface-card" *ngFor="let benefit of benefits">
-          <h3>{{ benefit.title }}</h3>
-          <p>{{ benefit.description }}</p>
+          <ul class="plain-list">
+            <li *ngFor="let bullet of item.bullets">{{ bullet }}</li>
+          </ul>
+          <a class="text-link" [routerLink]="item.path">{{ item.label }}</a>
         </article>
       </div>
     </section>
@@ -172,8 +207,8 @@ import { SeoService } from "../services/seo.service";
     <section class="section">
       <div class="site-container split-head">
         <div>
-          <span class="eyebrow">Casos de exito</span>
-          <h2>Historias de resultado orientadas a negocio.</h2>
+          <span class="eyebrow">Casos de éxito</span>
+          <h2>Prueba de aplicación real contada como problema, solución e impacto.</h2>
         </div>
         <a class="button button-secondary" routerLink="/casos-de-exito">
           Ver todos los casos
@@ -181,7 +216,7 @@ import { SeoService } from "../services/seo.service";
       </div>
 
       <div class="site-container card-grid card-grid--three">
-        <article class="surface-card surface-card--story" *ngFor="let item of cases">
+        <article class="surface-card surface-card--story story-card" *ngFor="let item of cases">
           <span class="chip chip-soft">{{ item.sector }}</span>
           <h3>{{ item.title }}</h3>
           <p>{{ item.summary }}</p>
@@ -190,7 +225,7 @@ import { SeoService } from "../services/seo.service";
             <p>{{ item.problem }}</p>
           </div>
           <div class="story-block">
-            <strong>Resultado</strong>
+            <strong>Impacto</strong>
             <ul class="plain-list">
               <li *ngFor="let impact of item.impact">{{ impact }}</li>
             </ul>
@@ -200,83 +235,107 @@ import { SeoService } from "../services/seo.service";
       </div>
     </section>
 
-    <section class="section section-accent">
+    <section class="section testimonials-section">
       <div class="site-container section-head">
-        <span class="eyebrow">Para quien trabajamos</span>
-        <h2>Captamos empresas, startups y proyectos emprendedores sin mezclar mensajes.</h2>
+        <span class="eyebrow">Lo que dicen quienes han trabajado con nosotros</span>
+        <h2>Proyectos reales. Resultados medibles. Relaciones que continúan.</h2>
       </div>
 
       <div class="site-container card-grid card-grid--three">
-        <article class="surface-card" *ngFor="let segment of segments">
-          <h3>{{ segment.title }}</h3>
-          <p>{{ segment.description }}</p>
-          <ul class="plain-list">
-            <li *ngFor="let bullet of segment.bullets">{{ bullet }}</li>
-          </ul>
+        <article class="testimonial-card" *ngFor="let item of testimonialItems">
+          <blockquote>
+            <p>{{ item.quote }}</p>
+          </blockquote>
+          <footer class="testimonial-card__footer">
+            <span class="testimonial-card__role">{{ item.role }}</span>
+            <span class="testimonial-card__company">{{ item.company }}</span>
+          </footer>
         </article>
+      </div>
+    </section>
+
+    <section class="section section-accent section-accent--grid">
+      <div class="site-container section-head">
+        <span class="eyebrow">Método</span>
+        <h2>Una manera de trabajar que reduce incertidumbre, protege la inversión y ordena la ejecución.</h2>
+      </div>
+
+      <div class="site-container split-stage split-stage--feature">
+        <figure class="surface-card visual-card visual-card--feature">
+          <img
+            [src]="processImage.src"
+            [alt]="processImage.alt"
+            [attr.width]="processImage.width"
+            [attr.height]="processImage.height"
+            loading="lazy"
+          />
+        </figure>
+
+        <div class="timeline-grid timeline-grid--light">
+          <article class="timeline-step timeline-step--light" *ngFor="let step of steps">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+            <small>{{ step.deliverable }}</small>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="site-container section-head">
-        <span class="eyebrow">Metodologia</span>
-        <h2>Un proceso claro reduce miedo, ordena prioridades y mejora la conversion.</h2>
+      <div class="site-container split-head">
+        <div>
+          <span class="eyebrow">Insights para comprar mejor</span>
+          <h2>Contenido evergreen creado para educar demanda y resolver objeciones reales.</h2>
+        </div>
+        <a class="button button-secondary" routerLink="/blog">
+          Ver todos los recursos
+        </a>
       </div>
 
-      <div class="site-container timeline-grid timeline-grid--light">
-        <article class="timeline-step timeline-step--light" *ngFor="let step of steps">
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.description }}</p>
+      <div class="site-container editorial-grid">
+        <article class="editorial-card" *ngFor="let article of featuredInsights">
+          <span class="chip chip-soft">{{ article.category }}</span>
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.summary }}</p>
+          <div class="article-meta">{{ article.readingTime }}</div>
+          <div class="editorial-card__footer">
+            <a class="text-link" [routerLink]="article.seo.path">Leer artículo</a>
+          </div>
         </article>
       </div>
     </section>
 
-    <section class="section">
-      <div class="site-container section-head">
-        <span class="eyebrow">Por que TecnoRia</span>
-        <h2>Diferenciadores pensados para aumentar confianza antes del contacto.</h2>
-      </div>
-
-      <div class="site-container card-grid card-grid--four">
-        <article class="surface-card" *ngFor="let item of differentiatorBlocks">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.description }}</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section section-accent">
+    <section class="section section-dark">
       <div class="site-container split-head">
         <div>
           <span class="eyebrow">FAQ comercial</span>
-          <h2>Resolvemos objeciones antes de pedir una reunion.</h2>
+          <h2>Preguntas que suelen aparecer antes de pedir una reunión seria.</h2>
         </div>
         <a class="button button-secondary" routerLink="/faq">Ver FAQ completa</a>
       </div>
 
       <div class="site-container faq-list">
-        <details class="faq-item" *ngFor="let faq of homeFaqs">
+        <details class="faq-item faq-item--dark" *ngFor="let faq of homeFaqs">
           <summary>{{ faq.question }}</summary>
           <p>{{ faq.answer }}</p>
         </details>
       </div>
     </section>
 
-    <section class="section section-dark">
-      <div class="site-container final-cta">
+    <section class="section section-accent">
+      <div class="site-container final-cta final-cta--elevated">
         <div>
-          <span class="eyebrow">Diagnostico inicial</span>
-          <h2>Si tienes un proceso que no escala, un chatbot que debe integrarse o una idea que necesita ejecutarse bien, hablemos.</h2>
+          <span class="eyebrow">Siguiente paso</span>
+          <h2>Si ya sabes que algo se ha quedado pequeño, lo convertimos en una decisión ejecutable.</h2>
           <p>
-            Revisamos contexto, prioridad y siguiente mejor paso para mover el
-            proyecto sin humo y sin comprometer mas de lo necesario.
+            Revisamos contexto, urgencia, encaje y siguiente mejor movimiento:
+            discovery, blueprint, software, automatización, IA o una combinación
+            razonable entre varias capas.
           </p>
         </div>
         <div class="cta-actions">
-          <a class="button button-primary" routerLink="/contacto">Solicitar reunion</a>
-          <a class="button button-ghost" routerLink="/servicios/desarrollo-chatbots-empresas">
-            Ver servicio de chatbots
-          </a>
+          <a class="button button-primary" routerLink="/contacto">Solicitar reunión</a>
+          <a class="button button-secondary" routerLink="/metodologia">Ver método</a>
         </div>
       </div>
     </section>
@@ -285,31 +344,39 @@ import { SeoService } from "../services/seo.service";
   `,
 })
 export class HomePageComponent implements OnInit {
+  heroImage = brandImages.hero;
+  systemsImage = brandImages.systems;
+  processImage = brandImages.method;
   highlights = heroHighlights;
+  metrics = heroMetrics;
+  signature = proofMoments;
   trust = trustStatements;
-  pains = painPoints;
-  serviceCards = services;
-  chatbotCases = chatbotSpotlight;
+  challenges = challengeCards;
   benefits = benefitBlocks;
-  cases = caseStudies;
+  serviceCards = services;
+  scenarios = solutionNeeds;
   segments = audienceSegments;
+  cases = caseStudies.slice(0, 3);
   steps = processSteps;
+  featuredInsights = getArticlesBySlugs(featuredInsightSlugs);
   differentiatorBlocks = differentiators;
-  homeFaqs = generalFaqs.slice(0, 5);
+  homeFaqs = generalFaqs.slice(0, 6);
+  testimonialItems = testimonials;
 
   constructor(private readonly seo: SeoService) {}
 
   ngOnInit(): void {
     this.seo.update({
-      title: "Software a medida, automatizacion, IA y chatbots para empresas",
+      title: "Ingeniería de software, automatización e IA aplicada para empresas",
       description:
-        "Creamos software a medida, plataformas, automatizaciones, chatbots e integraciones de IA para empresas, startups y proyectos digitales con foco en eficiencia y conversion.",
+        "TecnoRia diseña y desarrolla software a medida, automatización, asistentes e inteligencia artificial aplicada para empresas que necesitan operar mejor, vender mejor y escalar con una base técnica seria.",
       path: "/",
+      imagePath: this.heroImage.src,
       keywords: [
         "software a medida para empresas",
-        "automatizacion de procesos",
-        "chatbots para empresas",
+        "automatización de procesos",
         "inteligencia artificial para empresas",
+        "chatbots para empresas",
       ],
       schemas: [this.seo.createFaqSchema(this.homeFaqs)],
     });

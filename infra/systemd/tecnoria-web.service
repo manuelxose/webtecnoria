@@ -1,0 +1,17 @@
+[Unit]
+Description=Tecnoria Web SSR
+After=network.target tecnoria-api.service
+Wants=tecnoria-api.service
+
+[Service]
+Type=simple
+User=tecnoria
+Group=tecnoria
+WorkingDirectory=/var/www/webtecnoria/apps/web
+EnvironmentFile=/etc/tecnoria/web.env
+ExecStart=/var/www/bin/run-release-entry.sh /var/www/webtecnoria/apps/web/releases/current/server/server.mjs
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

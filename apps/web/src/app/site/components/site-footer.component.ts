@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
+  brandLogos,
   footerLinks,
   services,
   SITE_EMAIL,
@@ -15,70 +16,104 @@ import {
   selector: "app-site-footer",
   standalone: true,
   imports: [CommonModule, RouterModule],
+  styleUrls: ["./site-footer.component.css"],
   template: `
     <footer class="site-footer">
-      <div class="site-container footer-grid">
-        <div class="footer-brand">
-          <a class="brand" routerLink="/">
-            <span class="brand-mark">TR</span>
-            <span class="brand-copy">
-              <strong>{{ siteName }}</strong>
-              <small>Tecnologia que mueve negocio real</small>
-            </span>
-          </a>
+      <div class="site-container site-footer__shell">
+        <section class="site-footer__lead">
+          <div class="site-footer__brand-block">
+            <a class="brand-logo brand-logo--light" routerLink="/">
+              <img
+                class="brand-logo__asset"
+                [src]="logos.lockup.light.src"
+                [alt]="logos.lockup.light.alt"
+                [attr.width]="logos.lockup.light.width"
+                [attr.height]="logos.lockup.light.height"
+              >
+            </a>
+            <p>
+              Ingeniería de software, automatización e inteligencia artificial
+              aplicada para empresas que necesitan sistemas sólidos, operativa
+              eficiente y decisiones tecnológicas bien fundamentadas.
+            </p>
+            <div class="site-footer__signals">
+              <span>Galicia, España</span>
+              <span>Respuesta inicial &lt; 24h laborables</span>
+              <span>Software, automatización e IA aplicada</span>
+            </div>
+          </div>
+
+          <div class="site-footer__cta">
+            <span class="panel-label">¿Hablamos?</span>
+            <h2>Tu próximo proyecto merece una base técnica a la altura.</h2>
+            <p>
+              Software a medida, automatización, chatbots o IA aplicada
+              con criterio de negocio. Cuéntanos qué necesitas y te orientamos
+              sin compromiso.
+            </p>
+            <div class="site-footer__actions">
+              <a class="button button-primary" routerLink="/contacto">Solicitar diagnóstico</a>
+              <a class="button button-secondary" [href]="'tel:' + phone">{{ phoneLabel }}</a>
+              <a class="button button-secondary" [href]="'mailto:' + email">{{ email }}</a>
+            </div>
+          </div>
+        </section>
+
+        <div class="footer-grid">
+          <div>
+            <h3>Mapa rápido</h3>
+            <ul class="footer-list">
+              <li *ngFor="let item of quickLinks">
+                <a [routerLink]="item.path">{{ item.label }}</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Servicios</h3>
+            <ul class="footer-list">
+              <li *ngFor="let service of serviceLinks">
+                <a [routerLink]="service.seo.path">{{ service.shortName }}</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Contacto</h3>
+            <ul class="footer-list">
+              <li><a [href]="'tel:' + phone">{{ phoneLabel }}</a></li>
+              <li><a [href]="'mailto:' + email">{{ email }}</a></li>
+              <li>{{ region }}</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Accesos</h3>
+            <ul class="footer-list">
+              <li><a routerLink="/auth-login">Área privada</a></li>
+              <li><a routerLink="/politica-de-privacidad">Política de privacidad</a></li>
+              <li><a routerLink="/mapa-web">Mapa web</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bar">
           <p>
-            Disenamos y desarrollamos soluciones para empresas y proyectos que
-            necesitan digitalizar procesos, lanzar plataformas, desplegar
-            chatbots o introducir IA con criterio.
+            © {{ year }} {{ siteName }}. Ingeniería de software, automatización
+            e inteligencia artificial aplicada para empresas.
           </p>
-        </div>
-
-        <div>
-          <h3>Mapa rapido</h3>
-          <ul class="footer-list">
-            <li *ngFor="let item of quickLinks">
-              <a [routerLink]="item.path">{{ item.label }}</a>
-            </li>
-            <li>
-              <a routerLink="/auth-login">Acceso privado</a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Servicios</h3>
-          <ul class="footer-list">
-            <li *ngFor="let service of serviceLinks">
-              <a [routerLink]="service.seo.path">{{ service.shortName }}</a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Contacto</h3>
-          <ul class="footer-list">
-            <li><a [href]="'tel:' + phone">{{ phoneLabel }}</a></li>
-            <li><a [href]="'mailto:' + email">{{ email }}</a></li>
-            <li>{{ region }}</li>
-          </ul>
-          <a class="button button-primary footer-button" routerLink="/contacto">
-            Cuentanos tu caso
-          </a>
-        </div>
-      </div>
-
-      <div class="site-container footer-bar">
-        <p>{{ siteName }} {{ year }}. Web pensada para captar demanda organica y convertirla en conversaciones de negocio.</p>
-        <div class="footer-meta">
-          <a routerLink="/auth-login">Acceso privado</a>
-          <a routerLink="/politica-de-privacidad">Privacidad</a>
-          <a routerLink="/mapa-web">Mapa web</a>
+          <div class="footer-meta">
+            <a routerLink="/servicios">Servicios</a>
+            <a routerLink="/blog">Recursos</a>
+            <a routerLink="/contacto">Contacto</a>
+          </div>
         </div>
       </div>
     </footer>
   `,
 })
 export class SiteFooterComponent {
+  logos = brandLogos;
   quickLinks = footerLinks;
   serviceLinks = services;
   email = SITE_EMAIL;

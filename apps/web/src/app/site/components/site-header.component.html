@@ -1,33 +1,39 @@
 <header class="site-header" [class.is-menu-open]="menuOpen">
   <div class="site-container site-header__bar">
     <a class="site-header__brand" routerLink="/" aria-label="Ir a la home de TecnoRia">
-      <span class="site-header__mark">TR</span>
-      <span class="site-header__brand-copy">
-        <strong>{{ siteName }}</strong>
-      </span>
+      <img
+        class="site-header__brand-lockup"
+        [src]="logos.lockup.dark.src"
+        [alt]="logos.lockup.dark.alt"
+        [attr.width]="logos.lockup.dark.width"
+        [attr.height]="logos.lockup.dark.height"
+      >
     </a>
 
-    <nav class="site-header__desktop-nav" aria-label="Navegacion principal">
-      <a
-        *ngFor="let item of navigation"
-        [routerLink]="item.path"
-        routerLinkActive="is-active"
-        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-      >
-        {{ item.label }}
-      </a>
+    <nav class="site-header__desktop-nav" aria-label="Navegación principal">
+      <ng-container *ngFor="let item of navigation">
+        <a
+          *ngIf="item.path !== '/contacto'"
+          [routerLink]="item.path"
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        >
+          {{ item.label }}
+        </a>
+      </ng-container>
     </nav>
 
     <div class="site-header__desktop-actions">
-      <a class="site-header__private-link" routerLink="/auth-login">Acceso privado</a>
+      <a class="site-header__utility" routerLink="/auth-login">Área privada</a>
+      <a class="site-header__utility" [href]="'tel:' + phone">{{ phoneLabel }}</a>
       <a class="button button-primary site-header__primary-action" routerLink="/contacto">
-        Solicitar diagnostico
+        Solicitar diagnóstico
       </a>
     </div>
 
     <div class="site-header__mobile-actions">
       <a class="button button-primary site-header__mobile-cta" routerLink="/contacto">
-        Diagnostico
+        Diagnóstico
       </a>
       <button
         #menuButton
@@ -36,7 +42,7 @@
         [class.is-open]="menuOpen"
         [attr.aria-expanded]="menuOpen"
         [attr.aria-controls]="menuPanelId"
-        [attr.aria-label]="menuOpen ? 'Cerrar menu' : 'Abrir menu'"
+        [attr.aria-label]="menuOpen ? 'Cerrar menú' : 'Abrir menú'"
         (click)="toggleMenu()"
       >
         <span></span>
@@ -55,13 +61,22 @@
   [attr.id]="menuPanelId"
   role="dialog"
   aria-modal="true"
-  aria-label="Menu principal"
+  aria-label="Menú principal"
 >
   <div class="site-container site-header__drawer-inner">
     <div class="site-header__drawer-head">
       <div class="site-header__drawer-copy">
-        <span class="panel-label">Menu</span>
-        <p>Navegacion principal y accesos de contacto pensados para movil, tablet y desktop compacto.</p>
+        <img
+          class="site-header__drawer-lockup"
+          [src]="logos.lockup.light.src"
+          [alt]="logos.lockup.light.alt"
+          [attr.width]="logos.lockup.light.width"
+          [attr.height]="logos.lockup.light.height"
+        >
+        <p>
+          Accesos directos para entender el encaje, revisar servicios y mover
+          una conversación comercial sin fricción.
+        </p>
       </div>
 
       <button
@@ -75,7 +90,7 @@
       </button>
     </div>
 
-    <nav class="site-header__drawer-nav" aria-label="Menu principal">
+    <nav class="site-header__drawer-nav" aria-label="Menú principal">
       <a
         *ngFor="let item of navigation"
         [routerLink]="item.path"
@@ -88,14 +103,16 @@
     </nav>
 
     <div class="site-header__drawer-actions">
-      <a class="button button-secondary" routerLink="/auth-login" (click)="closeMenuAndFollow()">
-        Acceso privado
-      </a>
       <a class="button button-primary" routerLink="/contacto" (click)="closeMenuAndFollow()">
-        Solicitar diagnostico
+        Solicitar diagnóstico
       </a>
-      <a class="button button-secondary" [href]="'tel:' + phone">{{ phoneLabel }}</a>
-      <a class="button button-secondary" [href]="'mailto:' + email">{{ email }}</a>
+      <div class="site-header__drawer-meta">
+        <a class="button button-secondary" [href]="'tel:' + phone">{{ phoneLabel }}</a>
+        <a class="button button-secondary" [href]="'mailto:' + email">{{ email }}</a>
+      </div>
+      <a class="site-header__drawer-private" routerLink="/auth-login" (click)="closeMenuAndFollow()">
+        Ir al área privada
+      </a>
     </div>
   </div>
 </aside>

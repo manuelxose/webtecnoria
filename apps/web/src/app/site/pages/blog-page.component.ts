@@ -6,7 +6,12 @@ import {
   BLOG_REPOSITORY,
   BlogRepository,
 } from "src/app/domain/repositories/blog.repository";
-import { articles, editorialBacklog, PUBLISH_DATE } from "../content/site-content";
+import {
+  articles,
+  brandImages,
+  editorialBacklog,
+  PUBLISH_DATE,
+} from "../content/site-content";
 import { SeoService } from "../services/seo.service";
 
 type BlogCardView = {
@@ -26,31 +31,89 @@ type BlogCardView = {
   template: `
     <section class="page-hero section">
       <div class="site-container page-hero__inner">
-        <span class="eyebrow">Blog</span>
-        <h1>Contenido orientado a decision de compra, no a llenar espacio.</h1>
+        <span class="eyebrow">Recursos</span>
+        <h1>Contenido creado para ayudar a decidir mejor, no para rellenar el blog.</h1>
         <p class="lead">
-          El blog responde dudas previas a la contratacion, demuestra criterio y
-          empuja al usuario hacia los servicios y el contacto.
+          Cubrimos coste, arquitectura, automatización, producto, IA aplicada y
+          capas conversacionales con una intención clara: educar demanda
+          cualificada y facilitar decisiones más informadas.
         </p>
+      </div>
+    </section>
+
+    <section class="section" *ngIf="featuredArticle">
+      <div class="site-container">
+        <article class="surface-card featured-article">
+          <div class="featured-article__copy">
+            <span class="chip chip-soft">{{ featuredArticle.category }}</span>
+            <h2>{{ featuredArticle.title }}</h2>
+            <p>{{ featuredArticle.summary }}</p>
+            <div class="article-meta">
+              {{ featuredArticle.readingTime }} | {{ formatDate(featuredArticle.publishedAt) }}
+            </div>
+            <a class="button button-primary" [routerLink]="featuredArticle.path">
+              Leer artículo destacado
+            </a>
+          </div>
+          <div class="featured-article__cluster">
+            <span class="panel-label">Clusters trabajados</span>
+            <ul class="plain-list">
+              <li>Software a medida y arquitectura</li>
+              <li>Automatización operativa y sistemas</li>
+              <li>Chatbots, asistentes e IA aplicada</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-accent">
+      <div class="site-container profile-grid">
+        <article class="profile-card">
+          <span class="chip chip-soft">Cluster 01</span>
+          <h3>Software, arquitectura y decisiones de build</h3>
+          <p>
+            Contenido para equipos que comparan construir, integrar, modernizar
+            o priorizar un roadmap con más criterio.
+          </p>
+        </article>
+        <article class="profile-card">
+          <span class="chip chip-soft">Cluster 02</span>
+          <h3>Automatización, eficiencia operativa y conectividad</h3>
+          <p>
+            Piezas orientadas a detectar fricción manual, elegir el primer caso
+            de uso y evitar automatizaciones mal planteadas.
+          </p>
+        </article>
+        <article class="profile-card">
+          <span class="chip chip-soft">Cluster 03</span>
+          <h3>Chatbots, asistentes e IA aplicada</h3>
+          <p>
+            Artículos pensados para separar hype de uso real y aterrizar capas
+            conversacionales o de IA con gobierno serio.
+          </p>
+        </article>
       </div>
     </section>
 
     <section class="section">
       <div class="site-container" *ngIf="loadError">
-        <div class="alert alert-error">
+        <div class="alert alert-error" role="status">
           {{ loadError }}
         </div>
       </div>
 
-      <div class="site-container card-grid card-grid--three">
-        <article class="surface-card article-card" *ngFor="let article of articleList">
+      <div class="site-container editorial-grid">
+        <article class="editorial-card" *ngFor="let article of secondaryArticles">
           <span class="chip chip-soft">{{ article.category }}</span>
-          <h2>{{ article.title }}</h2>
+          <h3>{{ article.title }}</h3>
           <p>{{ article.summary }}</p>
           <div class="article-meta">
             {{ article.readingTime }} | {{ formatDate(article.publishedAt) }}
           </div>
-          <a class="text-link" [routerLink]="article.path">Leer articulo</a>
+          <div class="editorial-card__footer">
+            <a class="text-link" [routerLink]="article.path">Leer artículo</a>
+          </div>
         </article>
       </div>
     </section>
@@ -60,16 +123,16 @@ type BlogCardView = {
         <article class="surface-card">
           <h2>Objetivo SEO</h2>
           <p>
-            Captar demanda de consideracion comercial con articulos que conecten
-            directamente con software a medida, automatizacion, chatbots,
-            plataformas e IA.
+            Ganar cobertura semántica sobre software a medida, automatización,
+            plataformas, IA aplicada y chatbots sin caer en contenido artificial
+            ni canibalizar las landings comerciales.
           </p>
         </article>
         <article class="surface-card">
-          <h2>Objetivo CRO</h2>
+          <h2>Objetivo comercial</h2>
           <p>
-            Cada contenido incorpora un siguiente paso claro: explorar un
-            servicio, pedir diagnostico o comparar alternativas con criterio.
+            Cada pieza debe acercar al lector a una decisión mejor: explorar un
+            servicio, solicitar un diagnóstico o replantear el problema con criterio.
           </p>
         </article>
       </div>
@@ -78,13 +141,13 @@ type BlogCardView = {
     <section class="section">
       <div class="site-container section-head">
         <span class="eyebrow">Siguiente cluster editorial</span>
-        <h2>Backlog inicial definido para reforzar el pilar de chatbots sin abrir aun nuevas URLs.</h2>
+        <h2>Temas preparados para reforzar topical authority en la siguiente fase.</h2>
       </div>
       <div class="site-container card-grid card-grid--three">
         <article class="surface-card" *ngFor="let item of backlog">
           <span class="chip chip-soft">{{ item.intent }}</span>
           <h3>{{ item.title }}</h3>
-          <p>Contenido preparado para una siguiente iteracion editorial y semantica.</p>
+          <p>Contenido preparado para seguir ampliando autoridad orgánica sin perder foco comercial.</p>
         </article>
       </div>
     </section>
@@ -108,22 +171,31 @@ export class BlogPageComponent implements OnInit {
     @Inject(BLOG_REPOSITORY) private readonly blogRepository: BlogRepository
   ) {}
 
+  get featuredArticle(): BlogCardView | undefined {
+    return this.articleList[0];
+  }
+
+  get secondaryArticles(): BlogCardView[] {
+    return this.articleList.slice(1);
+  }
+
   async ngOnInit(): Promise<void> {
     this.seo.update({
-      title: "Blog sobre software a medida, automatizacion e IA aplicada",
+      title: "Recursos sobre software a medida, automatización e IA aplicada",
       description:
-        "Blog de intencion comercial con articulos sobre software a medida, automatizacion, chatbots, plataformas SaaS y decision tecnologica para empresas.",
+        "Blog de TecnoRia con contenido evergreen sobre software a medida, automatización de procesos, plataformas, chatbots e inteligencia artificial aplicada a negocio.",
       path: "/blog",
+      imagePath: brandImages.systems.src,
       keywords: [
         "blog software a medida",
         "automatizacion para empresas",
         "chatbots para empresas",
-        "crear saas",
+        "ia aplicada para empresas",
       ],
       schemas: [
         this.seo.createBreadcrumbSchema([
           { name: "Home", path: "/" },
-          { name: "Blog", path: "/blog" },
+          { name: "Recursos", path: "/blog" },
         ]),
       ],
     });
@@ -150,7 +222,8 @@ export class BlogPageComponent implements OnInit {
         right.publishedAt.localeCompare(left.publishedAt)
       );
     } catch {
-      this.loadError = "No se pudo cargar el contenido dinamico del blog. Mostramos el contenido editorial principal.";
+      this.loadError =
+        "No se pudo cargar el contenido dinamico del blog. Mostramos el contenido editorial principal.";
     }
   }
 

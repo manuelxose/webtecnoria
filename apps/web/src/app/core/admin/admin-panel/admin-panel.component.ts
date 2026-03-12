@@ -16,6 +16,8 @@ import {
   SCRAPER_REPOSITORY,
   ScraperRepository,
 } from "src/app/domain/repositories/scraper.repository";
+import { brandLogos } from "src/app/site/content/site-content";
+import { PrivateNavigationService } from "src/app/auth/private-navigation.service";
 
 type AdminPostSummary = {
   id: string;
@@ -64,6 +66,7 @@ export class AdminPanelComponent implements OnInit {
   postDraft: AdminPostDraft = this.createEmptyPost();
   selectedImageFile: File | null = null;
   scraperQuery = "";
+  logos = brandLogos;
 
   loadingPosts = true;
   savingPost = false;
@@ -82,7 +85,8 @@ export class AdminPanelComponent implements OnInit {
     @Inject(AUTH_REPOSITORY) private readonly authRepository: AuthRepository,
     @Inject(SCRAPER_REPOSITORY)
     private readonly scraperRepository: ScraperRepository,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly privateNavigation: PrivateNavigationService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -298,6 +302,10 @@ export class AdminPanelComponent implements OnInit {
     } finally {
       await this.router.navigate(["/auth-login"]);
     }
+  }
+
+  async goBack(): Promise<void> {
+    await this.privateNavigation.goBack(undefined, "/");
   }
 
   formatDate(value?: string): string {

@@ -1,13 +1,20 @@
 <section class="auth-shell">
   <div class="site-container auth-grid">
     <aside class="auth-panel auth-panel--accent">
-      <a class="brand auth-brand" routerLink="/" aria-label="Volver a TecnoRia">
-        <span class="brand-mark">TR</span>
-        <span class="brand-copy">
-          <strong>TecnoRia</strong>
-          <small>Area privada y backoffice editorial</small>
-        </span>
-      </a>
+      <div class="auth-topbar">
+        <a class="brand-logo brand-logo--light auth-brand" routerLink="/" aria-label="Volver a TecnoRia">
+          <img
+            class="brand-logo__asset"
+            [src]="logos.lockup.light.src"
+            [alt]="logos.lockup.light.alt"
+            [attr.width]="logos.lockup.light.width"
+            [attr.height]="logos.lockup.light.height"
+          >
+        </a>
+        <button class="back-nav back-nav--light" type="button" (click)="goBack()">
+          Volver
+        </button>
+      </div>
 
       <span class="eyebrow">Acceso seguro</span>
       <h1>Inicia sesion en el panel privado.</h1>
@@ -50,7 +57,13 @@
         <div class="form-group">
           <div class="auth-form-row">
             <label class="form-label form-label-required" for="admin-password">Password</label>
-            <a class="text-link" routerLink="/auth-re-password">Recuperar acceso</a>
+            <a
+              class="text-link"
+              routerLink="/auth-re-password"
+              [queryParams]="returnUrl ? { returnUrl } : null"
+            >
+              Recuperar acceso
+            </a>
           </div>
           <input
             id="admin-password"
@@ -86,7 +99,13 @@
 
       <div class="auth-footer">
         <span>Necesitas un acceso nuevo?</span>
-        <a class="text-link" routerLink="/auth-signup">Solicitar acceso</a>
+        <a
+          class="text-link"
+          routerLink="/auth-signup"
+          [queryParams]="returnUrl ? { returnUrl } : null"
+        >
+          Solicitar acceso
+        </a>
       </div>
     </article>
   </div>

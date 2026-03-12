@@ -3,10 +3,14 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { ContactFormComponent } from "../components/contact-form.component";
 import {
+  ArticleEntry,
+  brandImages,
   caseStudies,
   CaseStudyEntry,
+  getArticlesBySlugs,
   getServiceByKey,
   ServiceEntry,
+  serviceArticleLinks,
 } from "../content/site-content";
 import { SeoService } from "../services/seo.service";
 
@@ -17,8 +21,8 @@ import { SeoService } from "../services/seo.service";
   template: `
     <ng-container *ngIf="service as current">
       <section class="page-hero section">
-        <div class="site-container page-hero__inner page-hero__split">
-          <div>
+        <div class="site-container page-hero__split page-hero__split--visual">
+          <div class="page-hero__copy">
             <span class="eyebrow">{{ current.badge }}</span>
             <h1>{{ current.heroTitle }}</h1>
             <p class="lead">{{ current.heroIntro }}</p>
@@ -27,29 +31,49 @@ import { SeoService } from "../services/seo.service";
                 {{ current.ctaLabel }}
               </a>
               <a class="button button-secondary" routerLink="/casos-de-exito">
-                Ver casos de exito
+                Ver casos relacionados
               </a>
             </div>
           </div>
-          <aside class="surface-card">
-            <span class="panel-label">Ideal para</span>
-            <ul class="plain-list">
-              <li *ngFor="let item of current.fit">{{ item }}</li>
-            </ul>
-          </aside>
+
+          <div class="page-hero__aside">
+            <figure class="surface-card visual-card visual-card--page">
+              <img
+                class="page-hero__visual"
+                [src]="current.heroVisual.src"
+                [alt]="current.heroVisual.alt"
+                [attr.width]="current.heroVisual.width"
+                [attr.height]="current.heroVisual.height"
+                loading="eager"
+              />
+            </figure>
+
+            <aside class="surface-card service-fit-card">
+              <span class="panel-label">Ideal para</span>
+              <ul class="plain-list">
+                <li *ngFor="let item of current.fit">{{ item }}</li>
+              </ul>
+
+              <div class="article-callout">
+                <strong>{{ current.ctaContext }}</strong>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 
       <section class="section">
         <div class="site-container card-grid card-grid--two">
-          <article class="surface-card">
-            <h2>Que problema resuelve</h2>
+          <article class="surface-card insight-card">
+            <span class="chip chip-soft">Problema que resuelve</span>
+            <h2>Dónde solemos intervenir primero</h2>
             <ul class="plain-list">
               <li *ngFor="let item of current.pains">{{ item }}</li>
             </ul>
           </article>
-          <article class="surface-card">
-            <h2>Que gana tu negocio</h2>
+          <article class="surface-card insight-card">
+            <span class="chip chip-soft">Impacto esperado</span>
+            <h2>Qué gana el negocio cuando esta capa está bien resuelta</h2>
             <ul class="plain-list">
               <li *ngFor="let item of current.outcomes">{{ item }}</li>
             </ul>
@@ -59,14 +83,16 @@ import { SeoService } from "../services/seo.service";
 
       <section class="section section-accent">
         <div class="site-container card-grid card-grid--two">
-          <article class="surface-card">
-            <h2>Que incluye</h2>
+          <article class="surface-card insight-card">
+            <span class="chip chip-soft">Entregables</span>
+            <h2>Qué incluye normalmente una fase bien planteada</h2>
             <ul class="plain-list">
               <li *ngFor="let item of current.deliverables">{{ item }}</li>
             </ul>
           </article>
-          <article class="surface-card">
-            <h2>Casos de uso habituales</h2>
+          <article class="surface-card insight-card">
+            <span class="chip chip-soft">Casos de uso</span>
+            <h2>Cómo suele aterrizarse en operativa o producto</h2>
             <ul class="plain-list">
               <li *ngFor="let item of current.useCases">{{ item }}</li>
             </ul>
@@ -88,20 +114,20 @@ import { SeoService } from "../services/seo.service";
         </div>
       </section>
 
-      <section class="section section-accent" *ngIf="current.crossLinks?.length">
-        <div class="site-container section-head">
-          <span class="eyebrow">Tambien puede encajar</span>
-          <h2>Relacionamos este servicio con la siguiente mejor decision.</h2>
+      <section class="section section-dark" *ngIf="current.crossLinks?.length">
+        <div class="site-container section-head section-head--light">
+          <span class="eyebrow">También puede encajar</span>
+          <h2>Relacionamos este servicio con la siguiente mejor decisión.</h2>
           <p class="lead">
-            Asi evitamos forzar una solucion incorrecta solo porque hayas
-            aterrizado en esta pagina.
+            Así evitamos forzar una solución incorrecta solo porque hayas
+            aterrizado en esta landing.
           </p>
         </div>
         <div class="site-container card-grid card-grid--two">
-          <article class="surface-card" *ngFor="let link of current.crossLinks">
+          <article class="surface-card surface-card--soft-dark" *ngFor="let link of current.crossLinks">
             <h3>{{ link.label }}</h3>
             <p>{{ link.description }}</p>
-            <a class="text-link" [routerLink]="link.path">Explorar landing</a>
+            <a class="text-link text-link--light" [routerLink]="link.path">Explorar landing</a>
           </article>
         </div>
       </section>
@@ -110,12 +136,12 @@ import { SeoService } from "../services/seo.service";
         <div class="site-container split-head">
           <div>
             <span class="eyebrow">Casos relacionados</span>
-            <h2>Pruebas de aplicacion real orientadas a conversion.</h2>
+            <h2>Aplicaciones reales donde esta capa ya generó impacto visible.</h2>
           </div>
         </div>
 
         <div class="site-container card-grid card-grid--three">
-          <article class="surface-card surface-card--story" *ngFor="let item of relatedCases">
+          <article class="surface-card surface-card--story story-card" *ngFor="let item of relatedCases">
             <span class="chip chip-soft">{{ item.sector }}</span>
             <h3>{{ item.title }}</h3>
             <p>{{ item.summary }}</p>
@@ -127,10 +153,34 @@ import { SeoService } from "../services/seo.service";
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" *ngIf="relatedInsights.length">
+        <div class="site-container split-head">
+          <div>
+            <span class="eyebrow">Contenido de apoyo</span>
+            <h2>Insights pensados para resolver objeciones y reforzar esta decisión.</h2>
+          </div>
+          <a class="button button-secondary" routerLink="/blog">
+            Ver todos los recursos
+          </a>
+        </div>
+
+        <div class="site-container editorial-grid">
+          <article class="editorial-card" *ngFor="let article of relatedInsights">
+            <span class="chip chip-soft">{{ article.category }}</span>
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.summary }}</p>
+            <div class="article-meta">{{ article.readingTime }}</div>
+            <div class="editorial-card__footer">
+              <a class="text-link" [routerLink]="article.seo.path">Leer insight</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-accent">
         <div class="site-container section-head">
           <span class="eyebrow">Preguntas frecuentes</span>
-          <h2>Objeciones comunes antes del contacto.</h2>
+          <h2>Objeciones habituales antes de pasar a discovery o propuesta.</h2>
         </div>
         <div class="site-container faq-list">
           <details class="faq-item" *ngFor="let faq of current.faqs">
@@ -144,14 +194,16 @@ import { SeoService } from "../services/seo.service";
         <div class="site-container final-cta">
           <div>
             <span class="eyebrow">Siguiente paso</span>
-            <h2>Si este servicio encaja con tu problema, lo convertimos en un plan ejecutable.</h2>
+            <h2>Si este servicio encaja, lo convertimos en un plan ejecutable y no en una promesa ambigua.</h2>
             <p>{{ current.ctaContext }}</p>
           </div>
           <div class="cta-actions">
             <a class="button button-primary" routerLink="/contacto">
               {{ current.ctaLabel }}
             </a>
-            <a class="button button-ghost" routerLink="/servicios">Ver todos los servicios</a>
+            <a class="button button-ghost" routerLink="/servicios">
+              Ver todas las líneas de servicio
+            </a>
           </div>
         </div>
       </section>
@@ -163,6 +215,7 @@ import { SeoService } from "../services/seo.service";
 export class ServiceDetailPageComponent implements OnInit {
   service?: ServiceEntry;
   relatedCases: CaseStudyEntry[] = [];
+  relatedInsights: ArticleEntry[] = [];
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -178,11 +231,15 @@ export class ServiceDetailPageComponent implements OnInit {
     }
 
     this.relatedCases = this.getRelatedCases(this.service);
+    this.relatedInsights = getArticlesBySlugs(
+      serviceArticleLinks[this.service.key] ?? []
+    );
 
     this.seo.update({
       title: this.service.seo.title,
       description: this.service.seo.description,
       path: this.service.seo.path,
+      imagePath: this.resolveSeoImage(this.service.heroVisual.src),
       keywords: this.service.seo.keywords,
       schemas: [
         this.seo.createBreadcrumbSchema([
@@ -208,5 +265,9 @@ export class ServiceDetailPageComponent implements OnInit {
     }
 
     return caseStudies.filter((item) => item.serviceKeys.includes(service.key));
+  }
+
+  private resolveSeoImage(imagePath: string): string {
+    return imagePath.endsWith(".svg") ? brandImages.hero.src : imagePath;
   }
 }

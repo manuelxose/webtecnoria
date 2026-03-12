@@ -21,16 +21,20 @@ export class AuthGuard {
 
   async canActivate(
     _next: ActivatedRouteSnapshot,
-    _state: RouterStateSnapshot
+    state: RouterStateSnapshot
   ): Promise<boolean | UrlTree> {
     const user = await this.authRepository.me();
 
     if (!user) {
-      return this.router.parseUrl("/auth-login");
+      return this.router.createUrlTree(["/auth-login"], {
+        queryParams: { returnUrl: state.url },
+      });
     }
 
     if (user.role !== "admin" && user.role !== "editor") {
-      return this.router.parseUrl("/acceso-restringido");
+      return this.router.createUrlTree(["/acceso-restringido"], {
+        queryParams: { returnUrl: state.url },
+      });
     }
 
     return true;

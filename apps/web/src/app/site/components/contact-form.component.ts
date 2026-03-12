@@ -1,8 +1,4 @@
-import {
-  DOCUMENT,
-  CommonModule,
-  isPlatformBrowser,
-} from "@angular/common";
+import { DOCUMENT, CommonModule, isPlatformBrowser } from "@angular/common";
 import { Component, Inject, PLATFORM_ID } from "@angular/core";
 import {
   FormBuilder,
@@ -27,36 +23,21 @@ export class ContactFormComponent {
   submitSuccess = false;
   submitError = false;
 
-  clientTypes = [
-    "Empresa consolidada",
-    "Pyme o negocio en crecimiento",
-    "Startup",
-    "Emprendedor o proyecto propio",
-  ];
-
   projectTypes = [
     "Software a medida",
-    "Automatizacion de procesos",
-    "Chatbot / asistente virtual",
-    "IA aplicada al negocio",
+    "Automatización de procesos",
+    "Chatbots o asistentes",
+    "IA aplicada a negocio",
     "Plataforma o SaaS",
-    "Consultoria tecnologica",
-    "Evolucion de software existente",
-  ];
-
-  budgetRanges = [
-    "Todavia no lo se",
-    "Menos de 10.000 EUR",
-    "10.000 - 25.000 EUR",
-    "25.000 - 50.000 EUR",
-    "Mas de 50.000 EUR",
+    "Revisión de software existente",
+    "Consultoría tecnológica",
   ];
 
   timelines = [
     "Cuanto antes",
     "En 1-2 meses",
-    "En este trimestre",
-    "Sin fecha cerrada todavia",
+    "Este trimestre",
+    "Sin fecha cerrada todavía",
   ];
 
   constructor(
@@ -69,16 +50,11 @@ export class ContactFormComponent {
     this.contactForm = this.fb.group({
       name: ["", [Validators.required, Validators.minLength(2)]],
       email: ["", [Validators.required, Validators.email]],
-      phone: [
-        "",
-        [Validators.pattern(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{3,6}$/)],
-      ],
-      company: [""],
-      clientType: ["", Validators.required],
+      company: ["", [Validators.required, Validators.minLength(2)]],
+      phone: ["", [Validators.pattern(/^[0-9+()\s.-]{0,24}$/)]],
       projectType: ["", Validators.required],
-      budget: [""],
       timeline: [""],
-      message: ["", [Validators.required, Validators.minLength(20)]],
+      message: ["", [Validators.required, Validators.minLength(30)]],
       privacy: [false, Validators.requiredTrue],
     });
   }
@@ -100,11 +76,7 @@ export class ContactFormComponent {
     this.submitError = false;
 
     try {
-      const service2 = [
-        this.contactForm.value.clientType,
-        this.contactForm.value.timeline,
-        this.contactForm.value.budget,
-      ]
+      const service2 = [this.contactForm.value.timeline]
         .filter(Boolean)
         .join(" | ");
 
@@ -112,8 +84,7 @@ export class ContactFormComponent {
         name: this.contactForm.value.name,
         email: this.contactForm.value.email,
         phone: this.contactForm.value.phone || undefined,
-        company:
-          this.contactForm.value.company || this.contactForm.value.clientType,
+        company: this.contactForm.value.company,
         service1: this.contactForm.value.projectType,
         service2,
         message: this.contactForm.value.message,

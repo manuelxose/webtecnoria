@@ -6,6 +6,7 @@ import {
   AUTH_REPOSITORY,
   AuthRepository,
 } from "src/app/domain/repositories/auth.repository";
+import { brandLogos } from "src/app/site/content/site-content";
 import { parseApiError } from "../parse-api-error";
 
 @Component({
@@ -23,6 +24,8 @@ export class AuthRePasswordComponent implements OnInit {
   loading = false;
   errorMessage = "";
   successMessage = "";
+  returnUrl: string | null = null;
+  logos = brandLogos;
 
   constructor(
     @Inject(AUTH_REPOSITORY)
@@ -32,6 +35,7 @@ export class AuthRePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.token = this.route.snapshot.queryParamMap.get("token") ?? "";
+    this.returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
   }
 
   async requestRecovery(): Promise<void> {

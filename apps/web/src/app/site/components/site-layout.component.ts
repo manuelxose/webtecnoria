@@ -30,12 +30,12 @@ import { SiteHeaderComponent } from "./site-header.component";
 
       <div class="floating-bar" aria-label="Acceso rapido a contacto">
         <div class="floating-bar__copy">
-          <strong>Diagnostico inicial</strong>
-          <span>Para software, chatbots o automatizacion</span>
+          <strong>Detecta el cuello de botella correcto</strong>
+          <span>Software, automatización, producto, chatbots o IA aplicada</span>
         </div>
         <div class="floating-bar__actions">
           <a class="button button-ghost" href="tel:+34682047802">682 04 78 02</a>
-          <a class="button button-primary" routerLink="/contacto">Pedir reunion</a>
+          <a class="button button-primary" routerLink="/contacto">Solicitar diagnóstico</a>
         </div>
       </div>
     </div>

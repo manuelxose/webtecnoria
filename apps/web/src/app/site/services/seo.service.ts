@@ -2,6 +2,8 @@ import { DOCUMENT } from "@angular/common";
 import { Inject, Injectable } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import {
+  brandImages,
+  brandLogos,
   SITE_EMAIL,
   SITE_NAME,
   SITE_PHONE,
@@ -16,6 +18,9 @@ export interface SeoConfig {
   path: string;
   keywords?: string[];
   noIndex?: boolean;
+  imagePath?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
   schemas?: Record<string, unknown>[];
 }
 
@@ -33,6 +38,14 @@ export class SeoService {
     const pageTitle = `${config.title} | ${SITE_NAME}`;
     const canonicalUrl = `${SITE_URL}${config.path === "/" ? "" : config.path}`;
     const keywords = config.keywords?.join(", ");
+    const imagePath = config.imagePath ?? brandImages.social.src;
+    const matchedImage = Object.values(brandImages).find(
+      (image) => image.src === imagePath
+    );
+    const imageAlt = config.imageAlt ?? matchedImage?.alt ?? brandImages.social.alt;
+    const absoluteImageUrl = imagePath.startsWith("http")
+      ? imagePath
+      : `${SITE_URL}${imagePath}`;
 
     this.title.setTitle(pageTitle);
     this.meta.updateTag({ name: "description", content: config.description });
@@ -41,17 +54,25 @@ export class SeoService {
       content: config.noIndex ? "noindex, nofollow" : "index, follow",
     });
     this.meta.updateTag({ name: "author", content: SITE_NAME });
-    this.meta.updateTag({ name: "theme-color", content: "#0b1020" });
+    this.meta.updateTag({ name: "theme-color", content: "#102034" });
     this.meta.updateTag({ name: "application-name", content: SITE_NAME });
     this.meta.updateTag({ property: "og:title", content: pageTitle });
     this.meta.updateTag({
       property: "og:description",
       content: config.description,
     });
-    this.meta.updateTag({ property: "og:type", content: "website" });
+    this.meta.updateTag({
+      property: "og:type",
+      content: config.type ?? "website",
+    });
     this.meta.updateTag({ property: "og:url", content: canonicalUrl });
     this.meta.updateTag({ property: "og:site_name", content: SITE_NAME });
     this.meta.updateTag({ property: "og:locale", content: "es_ES" });
+    this.meta.updateTag({ property: "og:image", content: absoluteImageUrl });
+    this.meta.updateTag({
+      property: "og:image:alt",
+      content: imageAlt,
+    });
     this.meta.updateTag({
       name: "twitter:card",
       content: "summary_large_image",
@@ -61,6 +82,8 @@ export class SeoService {
       name: "twitter:description",
       content: config.description,
     });
+    this.meta.updateTag({ name: "twitter:image", content: absoluteImageUrl });
+    this.meta.updateTag({ name: "twitter:image:alt", content: imageAlt });
 
     if (keywords) {
       this.meta.updateTag({ name: "keywords", content: keywords });
@@ -70,6 +93,7 @@ export class SeoService {
 
     const schemas = [
       this.createOrganizationSchema(),
+      this.createWebsiteSchema(),
       this.createWebPageSchema(pageTitle, config.description, canonicalUrl),
       ...(config.schemas ?? []),
     ];
@@ -121,7 +145,7 @@ export class SeoService {
       description,
       areaServed: {
         "@type": "Country",
-        name: "Espana",
+        name: "España",
       },
       provider: {
         "@type": "ProfessionalService",
@@ -136,8 +160,13 @@ export class SeoService {
     headline: string,
     description: string,
     path: string,
-    datePublished: string
+    datePublished: string,
+    imagePath = brandImages.social.src
   ): Record<string, unknown> {
+    const absoluteImageUrl = imagePath.startsWith("http")
+      ? imagePath
+      : `${SITE_URL}${imagePath}`;
+
     return {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -145,6 +174,7 @@ export class SeoService {
       description,
       datePublished,
       dateModified: datePublished,
+      image: absoluteImageUrl,
       author: {
         "@type": "Organization",
         name: SITE_NAME,
@@ -152,6 +182,10 @@ export class SeoService {
       publisher: {
         "@type": "Organization",
         name: SITE_NAME,
+        logo: {
+          "@type": "ImageObject",
+          url: `${SITE_URL}${brandLogos.mark.dark.src}`,
+        },
       },
       mainEntityOfPage: `${SITE_URL}${path === "/" ? "" : path}`,
     };
@@ -167,6 +201,18 @@ export class SeoService {
       email: SITE_EMAIL,
       telephone: SITE_PHONE,
       areaServed: SITE_REGION,
+      image: `${SITE_URL}${brandImages.social.src}`,
+      logo: `${SITE_URL}${brandLogos.mark.dark.src}`,
+    };
+  }
+
+  private createWebsiteSchema(): Record<string, unknown> {
+    return {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_URL,
+      inLanguage: "es",
     };
   }
 

@@ -9,12 +9,14 @@ import {
   ViewChild,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { Router, RouterModule } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import {
   AUTH_REPOSITORY,
   AuthRepository,
 } from "src/app/domain/repositories/auth.repository";
 import { getPublicRuntimeConfig } from "src/app/infrastructure/runtime/public-runtime-config";
+import { brandLogos } from "src/app/site/content/site-content";
+import { PrivateNavigationService } from "../private-navigation.service";
 import { parseApiError } from "../parse-api-error";
 
 let googleScriptPromise: Promise<void> | null = null;
@@ -37,17 +39,22 @@ export class AuthLoginComponent implements AfterViewInit {
   googleEnabled = false;
   googleLoading = false;
   googleErrorMessage = "";
+  returnUrl: string | null = null;
+  logos = brandLogos;
 
   private readonly isBrowser: boolean;
   private googleButtonRendered = false;
 
   constructor(
     @Inject(AUTH_REPOSITORY) private readonly authRepository: AuthRepository,
+    private readonly route: ActivatedRoute,
     private readonly router: Router,
+    private readonly privateNavigation: PrivateNavigationService,
     private readonly ngZone: NgZone,
     @Inject(PLATFORM_ID) platformId: object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
+    this.returnUrl = this.privateNavigation.getReturnUrl(this.route);
   }
 
   ngAfterViewInit(): void {
@@ -72,7 +79,7 @@ export class AuthLoginComponent implements AfterViewInit {
 
     try {
       await this.authRepository.login(this.email, this.password);
-      await this.router.navigate(["/dashboard"]);
+      await this.router.navigateByUrl(this.privateNavigation.getPostLoginUrl(this.route));
     } catch (error) {
       this.errorMessage = this.parseAuthError(error);
     } finally {
@@ -136,12 +143,16 @@ export class AuthLoginComponent implements AfterViewInit {
 
     try {
       await this.authRepository.loginWithGoogle(credential);
-      await this.router.navigate(["/dashboard"]);
+      await this.router.navigateByUrl(this.privateNavigation.getPostLoginUrl(this.route));
     } catch (error) {
       this.googleErrorMessage = this.parseAuthError(error);
     } finally {
       this.googleLoading = false;
     }
+  }
+
+  async goBack(): Promise<void> {
+    await this.privateNavigation.goBack(this.route, "/");
   }
 
   private parseAuthError(error: unknown): string {

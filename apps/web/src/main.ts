@@ -20,7 +20,7 @@ function showConsoleGreeting(): void {
     "background: #dffcf7; color: #0b1020; padding: 8px 12px; border: 1px solid #18b4a7; border-left: 0; border-radius: 0 999px 999px 0; font: 700 12px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: 0.18em;"
   );
   console.log(
-    "%cSoftware a medida, automatizacion, IA aplicada y chatbots conectados a negocio.",
+    "%cSoftware a medida, automatización, IA aplicada y chatbots conectados a negocio.",
     "color: #0b1020; font: 700 16px/1.45 'Space Grotesk', ui-sans-serif, system-ui, sans-serif; margin-top: 8px;"
   );
   console.log(
@@ -32,7 +32,7 @@ function showConsoleGreeting(): void {
     console.table([
       {
         perfil: "Proyecto",
-        encaje: "Software, automatizacion, IA o chatbots con foco en operativa y conversion",
+        encaje: "Software, automatización, IA o chatbots con foco en operativa y conversión",
         acceso: "https://tecnoriasl.com/contacto",
       },
       {

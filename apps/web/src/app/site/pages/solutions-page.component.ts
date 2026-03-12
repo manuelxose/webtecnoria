@@ -1,7 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { audienceSegments, solutionNeeds } from "../content/site-content";
+import {
+  audienceSegments,
+  brandImages,
+  solutionNeeds,
+} from "../content/site-content";
 import { SeoService } from "../services/seo.service";
 
 @Component({
@@ -10,22 +14,39 @@ import { SeoService } from "../services/seo.service";
   imports: [CommonModule, RouterModule],
   template: `
     <section class="page-hero section">
-      <div class="site-container page-hero__inner">
-        <span class="eyebrow">Soluciones por necesidad</span>
-        <h1>Atraemos empresas y proyectos emprendedores sin mezclar el discurso.</h1>
-        <p class="lead">
-          Esta pagina segmenta la demanda por tipo de cliente y por problema,
-          para que cada visitante encuentre rapido por que deberia hablar con
-          nosotros, tambien cuando la necesidad pasa por chatbots o soporte
-          conversacional.
-        </p>
+      <div class="site-container page-hero__split page-hero__split--visual">
+        <div class="page-hero__copy">
+          <span class="eyebrow">Soluciones por escenario</span>
+          <h1>No todas las empresas entran por una tecnología. Muchas entran por una fricción muy concreta.</h1>
+          <p class="lead">
+            Esta página ayuda a identificar el escenario dominante para decidir
+            si conviene ordenar operaciones, automatizar atención, lanzar una
+            plataforma o introducir IA sobre una base ya madura.
+          </p>
+        </div>
+
+        <figure class="surface-card visual-card visual-card--page">
+          <img
+            class="page-hero__visual"
+            [src]="visual.src"
+            [alt]="visual.alt"
+            [attr.width]="visual.width"
+            [attr.height]="visual.height"
+            loading="eager"
+          />
+        </figure>
       </div>
     </section>
 
     <section class="section">
-      <div class="site-container card-grid">
+      <div class="site-container section-head">
+        <span class="eyebrow">Segmentos con los que trabajamos</span>
+        <h2>Mismo rigor técnico, pero con un encuadre distinto según el punto de partida.</h2>
+      </div>
+
+      <div class="site-container card-grid card-grid--three">
         <article class="surface-card" *ngFor="let segment of segments">
-          <h2>{{ segment.title }}</h2>
+          <h3>{{ segment.title }}</h3>
           <p>{{ segment.description }}</p>
           <ul class="plain-list">
             <li *ngFor="let item of segment.bullets">{{ item }}</li>
@@ -36,13 +57,18 @@ import { SeoService } from "../services/seo.service";
 
     <section class="section section-accent">
       <div class="site-container section-head">
-        <span class="eyebrow">Necesidades tipicas</span>
-        <h2>Palancas comerciales y SEO enfocadas a intencion real.</h2>
+        <span class="eyebrow">Escenarios dominantes</span>
+        <h2>Tres entradas habituales para aterrizar un proyecto con criterio.</h2>
       </div>
-      <div class="site-container card-grid card-grid--two">
-        <article class="surface-card" *ngFor="let need of needs">
+
+      <div class="site-container card-grid card-grid--three">
+        <article class="surface-card solution-card" *ngFor="let need of needs">
           <h3>{{ need.title }}</h3>
           <p>{{ need.description }}</p>
+          <ul class="plain-list">
+            <li *ngFor="let bullet of need.bullets">{{ bullet }}</li>
+          </ul>
+          <a class="button button-secondary" [routerLink]="need.path">{{ need.label }}</a>
         </article>
       </div>
     </section>
@@ -50,11 +76,16 @@ import { SeoService } from "../services/seo.service";
     <section class="section section-dark">
       <div class="site-container final-cta">
         <div>
-          <span class="eyebrow">Orientacion</span>
-          <h2>Si no sabes todavia si necesitas software, automatizacion, chatbots o consultoria, lo ordenamos contigo.</h2>
+          <span class="eyebrow">Orientación</span>
+          <h2>Si tu caso mezcla varias capas, lo más útil es ordenar primero la secuencia correcta.</h2>
+          <p>
+            En muchos proyectos conviven software, automatización y una capa
+            conversacional o de IA. La clave está en construirlas en el orden
+            correcto y con una arquitectura compatible.
+          </p>
         </div>
         <div class="cta-actions">
-          <a class="button button-primary" routerLink="/contacto">Pedir orientacion</a>
+          <a class="button button-primary" routerLink="/contacto">Pedir orientación</a>
           <a class="button button-ghost" routerLink="/servicios">Explorar servicios</a>
         </div>
       </div>
@@ -62,6 +93,7 @@ import { SeoService } from "../services/seo.service";
   `,
 })
 export class SolutionsPageComponent implements OnInit {
+  visual = brandImages.method;
   segments = audienceSegments;
   needs = solutionNeeds;
 
@@ -69,13 +101,15 @@ export class SolutionsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.update({
-      title: "Soluciones tecnicas para empresas, startups y emprendedores",
+      title: "Soluciones para operaciones, automatización, producto e IA aplicada",
       description:
-        "Segmentamos soluciones por tipo de cliente y necesidad para captar mejor demanda de software a medida, automatizacion, chatbots, IA y plataformas.",
+        "Soluciones por escenario y tipo de empresa para orientar mejor la demanda de software a medida, automatización, plataformas, chatbots e IA aplicada.",
       path: "/soluciones",
+      imagePath: this.visual.src,
       keywords: [
-        "soluciones tecnologicas para empresas",
-        "chatbots para empresas",
+        "soluciones tecnológicas para empresas",
+        "software interno para empresas",
+        "automatización de atención al cliente",
         "desarrollo para startups",
       ],
       schemas: [

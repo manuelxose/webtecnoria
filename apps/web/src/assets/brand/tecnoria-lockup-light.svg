@@ -1,0 +1,11 @@
+<svg width="336" height="72" viewBox="0 0 336 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(4 8)">
+    <rect x="0" y="0" width="56" height="56" rx="18" fill="#F7FBFF"/>
+    <path d="M14 17H42" stroke="#0F1A25" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M28 17V47" stroke="#0F1A25" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M28 42L38 47" stroke="#0F7A74" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="40" cy="48" r="3" fill="#BE9058"/>
+  </g>
+  <text x="76" y="33" fill="#F7FBFF" font-family="'Space Grotesk','Manrope','Segoe UI',Arial,sans-serif" font-size="31" font-weight="700" letter-spacing="-1.6">TecnoRia</text>
+  <text x="78" y="53" fill="#AEBFD0" font-family="'Manrope','Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="800" letter-spacing="1.85">SYSTEMS • AUTOMATION • AI</text>
+</svg>
