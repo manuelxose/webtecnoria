@@ -4,8 +4,9 @@ import { env } from "../config/env.js";
 export type SessionClaims = {
   sub: string;
   email: string;
-  role: "admin" | "editor" | "viewer";
+  role: "admin" | "editor" | "viewer" | "client";
   displayName?: string | null;
+  clientId?: string | null;
 };
 
 export function signSessionToken(claims: SessionClaims): string {

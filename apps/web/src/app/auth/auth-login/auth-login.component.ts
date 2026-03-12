@@ -79,7 +79,8 @@ export class AuthLoginComponent implements AfterViewInit {
 
     try {
       await this.authRepository.login(this.email, this.password);
-      await this.router.navigateByUrl(this.privateNavigation.getPostLoginUrl(this.route));
+      const user = await this.authRepository.me();
+      await this.router.navigateByUrl(this.privateNavigation.getPostLoginUrl(this.route, user));
     } catch (error) {
       this.errorMessage = this.parseAuthError(error);
     } finally {
@@ -143,7 +144,8 @@ export class AuthLoginComponent implements AfterViewInit {
 
     try {
       await this.authRepository.loginWithGoogle(credential);
-      await this.router.navigateByUrl(this.privateNavigation.getPostLoginUrl(this.route));
+      const user = await this.authRepository.me();
+      await this.router.navigateByUrl(this.privateNavigation.getPostLoginUrl(this.route, user));
     } catch (error) {
       this.googleErrorMessage = this.parseAuthError(error);
     } finally {

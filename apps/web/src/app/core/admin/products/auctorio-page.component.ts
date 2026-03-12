@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+
+const STUDIO_PUBLIC_URL = "https://auctorio.com/studio/login";
 
 @Component({
   selector: "app-auctorio-page",
@@ -10,116 +12,77 @@ import { CommonModule } from "@angular/common";
       <div class="page-header">
         <div>
           <h1 class="page-title">Auctorio</h1>
-          <p class="page-subtitle">Cockpit editorial con IA</p>
+          <p class="page-subtitle">Producto editorial independiente con Studio propio</p>
+        </div>
+        <a class="a-btn a-btn-primary" [href]="studioUrl" target="_blank" rel="noreferrer">
+          Abrir Studio real
+        </a>
+      </div>
+
+      <div class="a-card" style="margin-bottom:1.5rem;background:#eff6ff;border:1px solid #93c5fd">
+        <div style="display:flex;align-items:center;gap:1rem;padding:.25rem 0;flex-wrap:wrap">
+          <span class="a-badge" style="background:#2563eb;color:#fff;font-size:.85rem;padding:.3rem .75rem">Producto separado</span>
+          <span style="color:var(--a-text-muted)">Entrada operativa:</span>
+          <strong style="color:#1d4ed8">{{ studioUrl }}</strong>
+          <span style="color:var(--a-text-muted);margin-left:auto;font-size:.875rem">SSO por workspace o API key fallback</span>
         </div>
       </div>
 
-      <!-- Status banner -->
-      <div class="a-card" style="margin-bottom:1.5rem;background:var(--a-success-light,#f0fdf4);border:1px solid var(--a-success,#22c55e)">
-        <div style="display:flex;align-items:center;gap:1rem;padding:0.25rem 0">
-          <span class="a-badge" style="background:#22c55e;color:#fff;font-size:0.85rem;padding:0.3rem 0.75rem">Servicio activo</span>
-          <span style="color:var(--a-text-muted)">Motor IA:</span>
-          <strong style="color:#16a34a">Online</strong>
-          <span style="color:var(--a-text-muted);margin-left:auto;font-size:0.875rem">Todos los modelos disponibles</span>
+      <div class="a-grid-3" style="margin-bottom:2rem">
+        <div class="a-card">
+          <div class="a-card-title" style="margin-bottom:.5rem">Acceso</div>
+          <p style="margin:0;color:var(--a-text-muted)">
+            El login se resuelve en el Studio real de Auctorio. TecnoRia solo enlaza y contextualiza el producto.
+          </p>
+        </div>
+        <div class="a-card">
+          <div class="a-card-title" style="margin-bottom:.5rem">Workspaces</div>
+          <p style="margin:0;color:var(--a-text-muted)">
+            Cada tenant opera aislado. Tecnoria, GuíaTV y Talkaris usan workspaces independientes dentro del mismo control plane.
+          </p>
+        </div>
+        <div class="a-card">
+          <div class="a-card-title" style="margin-bottom:.5rem">Modo actual</div>
+          <p style="margin:0;color:var(--a-text-muted)">
+            Si el workspace no tiene OIDC configurado, el login expone fallback por API key sin simular un cockpit dentro de este dashboard.
+          </p>
         </div>
       </div>
 
-      <!-- KPI Grid -->
-      <div class="a-grid-4" style="margin-bottom:2rem">
-        <div class="kpi-card">
-          <div class="kpi-card-label">Artículos generados</div>
-          <div class="kpi-card-value">24</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-card-label">Artículos publicados</div>
-          <div class="kpi-card-value">18</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-card-label">En revisión</div>
-          <div class="kpi-card-value">6</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-card-label">Créditos IA restantes</div>
-          <div class="kpi-card-value">1,240</div>
-        </div>
-      </div>
-
-      <!-- Actividad reciente -->
       <div class="a-card" style="margin-bottom:2rem">
         <div class="a-card-header">
-          <h2 class="a-card-title">Actividad reciente</h2>
+          <h2 class="a-card-title">Qué ocurre desde aquí</h2>
         </div>
-        <div style="overflow-x:auto">
-          <table class="a-table">
-            <thead>
-              <tr>
-                <th>Título</th>
-                <th>Estado</th>
-                <th>Autor IA</th>
-                <th>Fecha</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>5 tendencias en automatización 2025</strong></td>
-                <td><span class="a-badge" style="background:#22c55e;color:#fff">Publicado</span></td>
-                <td><span style="font-family:monospace;font-size:0.8rem;background:#f1f5f9;padding:2px 6px;border-radius:4px">GPT-4o</span></td>
-                <td style="color:var(--a-text-muted)">10 mar</td>
-              </tr>
-              <tr>
-                <td><strong>Cómo la IA transforma el servicio al cliente</strong></td>
-                <td><span class="a-badge" style="background:#f59e0b;color:#fff">En revisión</span></td>
-                <td><span style="font-family:monospace;font-size:0.8rem;background:#f1f5f9;padding:2px 6px;border-radius:4px">Claude 3</span></td>
-                <td style="color:var(--a-text-muted)">11 mar</td>
-              </tr>
-              <tr>
-                <td><strong>Guía completa de chatbots para empresas</strong></td>
-                <td><span class="a-badge" style="background:#6b7280;color:#fff">Borrador</span></td>
-                <td><span style="font-family:monospace;font-size:0.8rem;background:#f1f5f9;padding:2px 6px;border-radius:4px">GPT-4o</span></td>
-                <td style="color:var(--a-text-muted)">12 mar</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Rendimiento SEO -->
-      <div class="a-card" style="margin-bottom:2rem">
-        <div class="a-card-header">
-          <h2 class="a-card-title">Rendimiento SEO</h2>
-        </div>
-        <div class="a-grid-3">
-          <div class="a-card" style="border:1px solid var(--a-border);text-align:center">
-            <div style="font-size:2rem;font-weight:700;color:var(--a-brand)">12.4</div>
-            <div style="font-size:0.85rem;color:var(--a-text-muted);margin-top:0.25rem">Posición media</div>
-            <div style="font-size:0.75rem;color:#22c55e;margin-top:0.5rem">↑ Mejorando</div>
+        <div style="display:grid;gap:1rem">
+          <div style="padding:1rem;border:1px solid var(--a-border);border-radius:.75rem">
+            <strong style="display:block;margin-bottom:.25rem">1. Seleccionas workspace</strong>
+            <span style="color:var(--a-text-muted);font-size:.9rem">El login verifica si el tenant tiene SSO activo o si debe usar fallback temporal.</span>
           </div>
-          <div class="a-card" style="border:1px solid var(--a-border);text-align:center">
-            <div style="font-size:2rem;font-weight:700;color:var(--a-brand)">45,230</div>
-            <div style="font-size:0.85rem;color:var(--a-text-muted);margin-top:0.25rem">Impresiones totales</div>
-            <div style="font-size:0.75rem;color:#22c55e;margin-top:0.5rem">↑ +12% este mes</div>
+          <div style="padding:1rem;border:1px solid var(--a-border);border-radius:.75rem">
+            <strong style="display:block;margin-bottom:.25rem">2. Autenticas en Auctorio Studio</strong>
+            <span style="color:var(--a-text-muted);font-size:.9rem">La sesion vive en el Studio y no en el dashboard interno de TecnoRia.</span>
           </div>
-          <div class="a-card" style="border:1px solid var(--a-border);text-align:center">
-            <div style="font-size:2rem;font-weight:700;color:var(--a-brand)">3.8%</div>
-            <div style="font-size:0.85rem;color:var(--a-text-muted);margin-top:0.25rem">CTR medio</div>
-            <div style="font-size:0.75rem;color:#f59e0b;margin-top:0.5rem">→ Estable</div>
+          <div style="padding:1rem;border:1px solid var(--a-border);border-radius:.75rem">
+            <strong style="display:block;margin-bottom:.25rem">3. Operas contenido y publishing</strong>
+            <span style="color:var(--a-text-muted);font-size:.9rem">Roles, prompts, revisiones y publicaciones se gestionan dentro de Auctorio.</span>
           </div>
         </div>
       </div>
 
-      <!-- Bottom banner -->
-      <div class="a-card" style="background:linear-gradient(135deg,#1e1b4b,#3730a3);color:#fff;border:none">
+      <div class="a-card" style="background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border:none">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
           <div>
-            <h3 style="margin:0 0 0.25rem;color:#fff">Cockpit editorial completo</h3>
-            <p style="margin:0;color:#a5b4fc;font-size:0.9rem">Para gestionar los artículos y configurar los modelos IA, accede a la plataforma Auctorio →</p>
+            <h3 style="margin:0 0 .25rem;color:#fff">Ir al producto real</h3>
+            <p style="margin:0;color:#cbd5e1;font-size:.9rem">Usa el Studio operativo de Auctorio. Este panel ya no intenta simular sus métricas internas.</p>
           </div>
-          <button class="a-btn" disabled style="opacity:0.5;cursor:not-allowed;background:#fff;color:#1e1b4b">
+          <a class="a-btn" [href]="studioUrl" target="_blank" rel="noreferrer" style="background:#fff;color:#0f172a">
             Abrir Auctorio
-          </button>
+          </a>
         </div>
       </div>
     </div>
   `,
 })
-export class AuctorioPageComponent {}
+export class AuctorioPageComponent {
+  readonly studioUrl = STUDIO_PUBLIC_URL;
+}

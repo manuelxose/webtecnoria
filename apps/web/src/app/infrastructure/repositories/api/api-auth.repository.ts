@@ -12,7 +12,8 @@ type ApiAuthUser = {
   id: string;
   email: string | null;
   displayName?: string | null;
-  role: "admin" | "editor" | "viewer";
+  role: "admin" | "editor" | "viewer" | "client";
+  clientId?: string | null;
 };
 
 @Injectable()
@@ -69,6 +70,7 @@ export class ApiAuthRepository implements AuthRepository {
         email: user.email,
         displayName: user.displayName,
         role: user.role,
+        clientId: user.clientId ?? null,
       };
     } catch {
       return null;

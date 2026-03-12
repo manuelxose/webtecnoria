@@ -1,93 +1,58 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { Router, type NextFunction, type Response } from "express";
 import { z } from "zod";
-import { requireAdmin } from "../../auth/middleware.js";
+import { requireAuth, type AuthedRequest } from "../../auth/middleware.js";
 import { pool } from "../../db/pool.js";
 
 const router = Router();
 
-// ─── Portal auth middleware ───────────────────────────────────────────────────
+type PortalRequest = AuthedRequest & {
+  portalClientId?: string;
+  portalClientName?: string;
+};
 
-type PortalRequest = Request & { portalClientId?: string; portalClientName?: string };
+function requirePortal(req: PortalRequest, res: Response, next: NextFunction): void {
+  requireAuth(req, res, () => {
+    void (async () => {
+      if (!req.user) {
+        res.status(401).json({ code: "UNAUTHENTICATED", message: "Missing session" });
+        return;
+      }
 
-async function requirePortal(req: PortalRequest, res: Response, next: NextFunction): Promise<void> {
-  const auth = req.headers.authorization ?? "";
-  const token = auth.startsWith("Bearer ") ? auth.slice(7).trim() : (req.query.token as string);
-  if (!token) {
-    res.status(401).json({ code: "UNAUTHENTICATED", message: "Missing portal token" });
-    return;
-  }
-  try {
-    const { rows } = await pool.query(`
-      SELECT pt.client_id, c.name AS client_name
-      FROM portal_tokens pt
-      JOIN clients c ON c.id = pt.client_id
-      WHERE pt.token = $1
-        AND pt.revoked = false
-        AND (pt.expires_at IS NULL OR pt.expires_at > now())
-    `, [token]);
-    if (!rows.length) {
-      res.status(401).json({ code: "INVALID_TOKEN", message: "Invalid or expired portal token" });
-      return;
-    }
-    req.portalClientId   = rows[0].client_id;
-    req.portalClientName = rows[0].client_name;
-    // Update last_used_at async (fire and forget)
-    pool.query(`UPDATE portal_tokens SET last_used_at = now() WHERE token = $1`, [token]).catch(() => {});
-    next();
-  } catch {
-    res.status(500).json({ error: "Internal error" });
-  }
+      if (req.user.role !== "client") {
+        res.status(403).json({ code: "FORBIDDEN", message: "Client role required" });
+        return;
+      }
+
+      if (!req.user.clientId) {
+        res.status(403).json({
+          code: "CLIENT_NOT_ASSIGNED",
+          message: "This client account is not linked to a customer record",
+        });
+        return;
+      }
+
+      const { rows } = await pool.query<{ id: string; name: string }>(
+        `SELECT id, name
+         FROM clients
+         WHERE id = $1
+         LIMIT 1`,
+        [req.user.clientId]
+      );
+
+      if (!rows.length) {
+        res.status(404).json({ code: "CLIENT_NOT_FOUND", message: "Client not found" });
+        return;
+      }
+
+      req.portalClientId = rows[0].id;
+      req.portalClientName = rows[0].name;
+      next();
+    })().catch(() => {
+      res.status(500).json({ error: "Internal error" });
+    });
+  });
 }
 
-// ─── Admin: manage portal tokens ─────────────────────────────────────────────
-
-// GET /portal/admin/tokens/:clientId — list tokens for a client
-router.get("/admin/tokens/:clientId", requireAdmin, async (req, res) => {
-  try {
-    const { rows } = await pool.query(
-      `SELECT id, label, token, expires_at, last_used_at, revoked, created_at
-       FROM portal_tokens WHERE client_id = $1 ORDER BY created_at DESC`,
-      [req.params.clientId]
-    );
-    res.json(rows);
-  } catch {
-    res.status(500).json({ error: "Internal error" });
-  }
-});
-
-// POST /portal/admin/tokens/:clientId — create a new portal token
-router.post("/admin/tokens/:clientId", requireAdmin, async (req, res) => {
-  const schema = z.object({
-    label:      z.string().min(1).default("Acceso portal"),
-    expires_at: z.string().datetime().optional().nullable(),
-  });
-  const parsed = schema.safeParse(req.body);
-  if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
-  try {
-    const { rows } = await pool.query(
-      `INSERT INTO portal_tokens (client_id, label, expires_at)
-       VALUES ($1, $2, $3) RETURNING *`,
-      [req.params.clientId, parsed.data.label, parsed.data.expires_at ?? null]
-    );
-    res.status(201).json(rows[0]);
-  } catch {
-    res.status(500).json({ error: "Internal error" });
-  }
-});
-
-// DELETE /portal/admin/tokens/:tokenId — revoke a token
-router.delete("/admin/tokens/:tokenId", requireAdmin, async (req, res) => {
-  try {
-    await pool.query(`UPDATE portal_tokens SET revoked = true WHERE id = $1`, [req.params.tokenId]);
-    res.status(204).end();
-  } catch {
-    res.status(500).json({ error: "Internal error" });
-  }
-});
-
-// ─── Portal public API ────────────────────────────────────────────────────────
-
-// GET /portal/me — validate token and return client info
 router.get("/me", requirePortal, async (req: PortalRequest, res) => {
   try {
     const { rows } = await pool.query(
@@ -102,7 +67,6 @@ router.get("/me", requirePortal, async (req: PortalRequest, res) => {
   }
 });
 
-// GET /portal/dashboard — summary data
 router.get("/dashboard", requirePortal, async (req: PortalRequest, res) => {
   const cid = req.portalClientId;
   try {
@@ -147,7 +111,6 @@ router.get("/dashboard", requirePortal, async (req: PortalRequest, res) => {
   }
 });
 
-// GET /portal/projects
 router.get("/projects", requirePortal, async (req: PortalRequest, res) => {
   try {
     const { rows } = await pool.query(
@@ -161,7 +124,6 @@ router.get("/projects", requirePortal, async (req: PortalRequest, res) => {
   }
 });
 
-// GET /portal/invoices
 router.get("/invoices", requirePortal, async (req: PortalRequest, res) => {
   try {
     const { rows } = await pool.query(
@@ -176,7 +138,6 @@ router.get("/invoices", requirePortal, async (req: PortalRequest, res) => {
   }
 });
 
-// GET /portal/tickets
 router.get("/tickets", requirePortal, async (req: PortalRequest, res) => {
   try {
     const { rows } = await pool.query(
@@ -191,12 +152,11 @@ router.get("/tickets", requirePortal, async (req: PortalRequest, res) => {
   }
 });
 
-// POST /portal/tickets — create ticket from portal
 router.post("/tickets", requirePortal, async (req: PortalRequest, res) => {
   const schema = z.object({
     title:       z.string().min(1),
     description: z.string().optional().nullable(),
-    category:    z.enum(["general","bug","feature","billing","access","other"]).default("general"),
+    category:    z.enum(["general", "bug", "feature", "billing", "access", "other"]).default("general"),
   });
   const parsed = schema.safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });

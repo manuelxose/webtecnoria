@@ -19,22 +19,36 @@ export class ApiUserRepository implements UserRepository {
   }
 
   async list(): Promise<AdminUser[]> {
-    return firstValueFrom(this.http.get<AdminUser[]>(`${this.base}/api/v1/users`));
+    return firstValueFrom(
+      this.http.get<AdminUser[]>(`${this.base}/api/v1/users`, { withCredentials: true })
+    );
   }
 
   async get(id: string): Promise<AdminUser | null> {
-    return firstValueFrom(this.http.get<AdminUser>(`${this.base}/api/v1/users/${id}`));
+    return firstValueFrom(
+      this.http.get<AdminUser>(`${this.base}/api/v1/users/${id}`, { withCredentials: true })
+    );
   }
 
   async update(id: string, data: UpdateUserPayload): Promise<AdminUser> {
-    return firstValueFrom(this.http.put<AdminUser>(`${this.base}/api/v1/users/${id}`, data));
+    return firstValueFrom(
+      this.http.put<AdminUser>(`${this.base}/api/v1/users/${id}`, data, {
+        withCredentials: true,
+      })
+    );
   }
 
   async delete(id: string): Promise<void> {
-    await firstValueFrom(this.http.delete(`${this.base}/api/v1/users/${id}`));
+    await firstValueFrom(
+      this.http.delete(`${this.base}/api/v1/users/${id}`, { withCredentials: true })
+    );
   }
 
   async invite(data: InviteUserPayload): Promise<InviteUserResult> {
-    return firstValueFrom(this.http.post<InviteUserResult>(`${this.base}/api/v1/users/invite`, data));
+    return firstValueFrom(
+      this.http.post<InviteUserResult>(`${this.base}/api/v1/users/invite`, data, {
+        withCredentials: true,
+      })
+    );
   }
 }

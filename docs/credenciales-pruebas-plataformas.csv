@@ -1,9 +1,17 @@
-plataforma,perfil,estado_auth,email,password,rol_principal,rol_verificado,ambito,rol_ambito,app_url,login_api_url,verificado_utc,notas
-electroria,admin,public-only,N/A,N/A,N/A,N/A,N/A,N/A,https://electroria.com,N/A,2026-03-12T12:30:42.015Z,"La version actual es publica y ya no tiene login operativo."
-electroria,user,public-only,N/A,N/A,N/A,N/A,N/A,N/A,https://electroria.com,N/A,2026-03-12T12:30:42.015Z,"La version actual es publica y ya no tiene login operativo."
-guiatv,admin,ok,qa.admin.guiatv@tecnoriasl.com,GuiatvAdm26-gyB-PBUsRsUC,admin,admin,plataforma,admin,https://guiaprogramaciontv.com,https://guiaprogramaciontv.com/v2/auth/login,2026-03-12T12:30:42.015Z,"Cuenta QA local verificada por login en la API."
-guiatv,user,ok,qa.user.guiatv@tecnoriasl.com,GuiatvUsr26-6aop8C1yVetq,user,user,plataforma,user,https://guiaprogramaciontv.com,https://guiaprogramaciontv.com/v2/auth/login,2026-03-12T12:30:42.015Z,"Cuenta QA local verificada por login en la API."
-talkaris,admin,ok,qa.admin.talkaris@tecnoriasl.com,TalkarisAdm26-M3Ky0ahDXtta,superadmin,superadmin,plataforma,superadmin,https://talkaris.com,https://talkaris.com/api/v1/auth/login,2026-03-12T12:30:42.015Z,"Admin de plataforma con acceso superadmin."
-talkaris,user,ok,qa.user.talkaris@tecnoriasl.com,TalkarisUsr26-tBT0E7cSYekH,member,member,tenant:platform-default,viewer,https://talkaris.com,https://talkaris.com/api/v1/auth/login,2026-03-12T12:30:42.015Z,"Usuario normal con membership viewer en el tenant platform-default."
-webtecnoria,admin,ok,qa.admin.webtecnoria@tecnoriasl.com,WebTecAdm26-jc4n1YNOoWG4,admin,admin,plataforma,admin,https://tecnoriasl.com,https://tecnoriasl.com/api/v1/auth/login,2026-03-12T12:30:42.015Z,"Cuenta QA del area privada verificada por login en la API."
-webtecnoria,user,ok,qa.user.webtecnoria@tecnoriasl.com,WebTecUsr26-prX2wPm-6c0P,viewer,viewer,plataforma,viewer,https://tecnoriasl.com,https://tecnoriasl.com/api/v1/auth/login,2026-03-12T12:30:42.015Z,"Cuenta QA del area privada verificada por login en la API."
+platform,workspace,profile,auth_type,login_url,email,password_or_api_key,status,notes
+electroria,,admin,none,N/A,N/A,N/A,public-only,Sin login operativo en la version actual
+electroria,,user,none,N/A,N/A,N/A,public-only,Sin login operativo en la version actual
+guiatv,,admin,password,https://guiaprogramaciontv.com/v2/auth/login,qa.admin.guiatv@tecnoriasl.com,GuiatvAdm26-gyB-PBUsRsUC,ok,Verificado por login 2026-03-12
+guiatv,,user,password,https://guiaprogramaciontv.com/v2/auth/login,qa.user.guiatv@tecnoriasl.com,GuiatvUsr26-6aop8C1yVetq,ok,Verificado por login 2026-03-12
+talkaris,,admin,password,https://talkaris.com/api/v1/auth/login,qa.admin.talkaris@tecnoriasl.com,TalkarisAdm26-M3Ky0ahDXtta,ok,superadmin verificado por login 2026-03-12
+talkaris,,user,password,https://talkaris.com/api/v1/auth/login,qa.user.talkaris@tecnoriasl.com,TalkarisUsr26-tBT0E7cSYekH,ok,member con membership viewer verificado por login 2026-03-12
+webtecnoria,,admin,password+session,https://tecnoriasl.com/auth-login,qa.admin.webtecnoria@tecnoriasl.com,WebTecAdm26-jc4n1YNOoWG4,ok,Verificado; entra en /dashboard
+webtecnoria,,editor,password+session,https://tecnoriasl.com/auth-login,qa.editor.webtecnoria@tecnoriasl.com,WebTecEd26-R8N4vP7kYwQ2,ok,Verificado; entra en /dashboard
+webtecnoria,QA Portal Cliente Tecnoria,client,password+session,https://tecnoriasl.com/portal,qa.client.webtecnoria@tecnoriasl.com,WebTecCli26-B6mQ3sJ9pL4x,ok,Verificado; entra en /portal/dashboard
+webtecnoria,,viewer-legacy,password+session,https://tecnoriasl.com/auth-login,qa.user.webtecnoria@tecnoriasl.com,WebTecUsr26-prX2wPm-6c0P,deprecated,Verificado; redirige a /acceso-restringido?reason=viewer
+auctorio,tecnoria,admin,invitation+api_key_fallback,https://auctorio.com/studio/login,qa.admin.auctorio.tecnoria@tecnoriasl.com,93e25cded10da6423c635da714eaa02a8971008a2afaa0be,ok,Workspace activo sin OIDC; fallback API key verificado; usuario Studio invitado
+auctorio,tecnoria,editor,invitation+api_key_fallback,https://auctorio.com/studio/login,qa.editor.auctorio.tecnoria@tecnoriasl.com,93e25cded10da6423c635da714eaa02a8971008a2afaa0be,invited,Usuario Studio invitado; usar fallback API key mientras no haya OIDC
+auctorio,guiaprogramaciontv,admin,invitation+api_key_fallback,https://auctorio.com/studio/login,qa.admin.auctorio.guiatv@tecnoriasl.com,4cae2a89e6e8f5b98e4df568932adefc2d75e7d056e6af94,ok,Workspace activo sin OIDC; fallback API key verificado; usuario Studio invitado
+auctorio,guiaprogramaciontv,editor,invitation+api_key_fallback,https://auctorio.com/studio/login,qa.editor.auctorio.guiatv@tecnoriasl.com,4cae2a89e6e8f5b98e4df568932adefc2d75e7d056e6af94,invited,Usuario Studio invitado; usar fallback API key mientras no haya OIDC
+auctorio,talkaris,admin,invitation+api_key_fallback,https://auctorio.com/studio/login,qa.admin.auctorio.talkaris@tecnoriasl.com,7b536454026598062d9a42bceb3ee5739790f009276e2210,ok,Workspace activo sin OIDC; fallback API key verificado; usuario Studio invitado
+auctorio,talkaris,editor,invitation+api_key_fallback,https://auctorio.com/studio/login,qa.editor.auctorio.talkaris@tecnoriasl.com,7b536454026598062d9a42bceb3ee5739790f009276e2210,invited,Usuario Studio invitado; usar fallback API key mientras no haya OIDC

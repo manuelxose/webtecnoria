@@ -12,17 +12,6 @@ export type PortalClient = {
   country: string;
 };
 
-export type PortalToken = {
-  id: string;
-  client_id: string;
-  token: string;
-  label: string;
-  expires_at: string | null;
-  last_used_at: string | null;
-  revoked: boolean;
-  created_at: string;
-};
-
 export type PortalDashboard = {
   kpis: {
     active_projects: string;
@@ -65,10 +54,6 @@ export interface PortalRepository {
   invoices(): Promise<PortalInvoice[]>;
   tickets(): Promise<PortalTicket[]>;
   createTicket(data: CreatePortalTicketPayload): Promise<PortalTicket>;
-  // Admin token management
-  listTokens(clientId: string): Promise<PortalToken[]>;
-  createToken(clientId: string, data: { label: string; expires_at?: string | null }): Promise<PortalToken>;
-  revokeToken(tokenId: string): Promise<void>;
 }
 
 export const PORTAL_REPOSITORY = new InjectionToken<PortalRepository>("PORTAL_REPOSITORY");

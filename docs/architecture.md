@@ -63,7 +63,7 @@ error   = signal("");
 
 - Public site: `SiteLayoutComponent` shell at `/`
 - Admin: `AdminLayoutComponent` shell at `/dashboard` (auth-guarded)
-- Portal: `PortalLayoutComponent` shell at `/portal` (token-guarded)
+- Portal: `PortalLayoutComponent` shell at `/portal` (session-guarded for role `client`)
 
 All routes use `loadComponent()` for lazy loading.
 
@@ -84,7 +84,7 @@ apps/api/src/
 
 - `requireAuth` — validates JWT session cookie
 - `requireAdmin` — requires role `admin` or `editor`
-- `requirePortal` — validates portal Bearer token
+- `requirePortal` — requires a valid session plus role `client` and linked `client_id`
 
 ### Database
 
@@ -104,4 +104,4 @@ See `apps/api/migrations/` for the full migration history:
 | `005_finance.sql` | contracts, invoices, invoice_items, payments |
 | `006_support.sql` | tickets, ticket_messages |
 | `007_users_upgrade.sql` | users: full_name, avatar_url, client_id, role expansion |
-| `008_portal.sql` | portal_tokens |
+| `008_portal.sql` | legacy portal token table (deprecated in live flow) |

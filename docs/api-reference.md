@@ -2,7 +2,7 @@
 
 Base URL: `https://your-domain.com/api/v1`
 
-All admin endpoints require a valid session cookie (set on login). The portal endpoints use a Bearer token.
+All admin and portal endpoints require a valid session cookie (set on login).
 
 ---
 
@@ -12,7 +12,7 @@ All admin endpoints require a valid session cookie (set on login). The portal en
 Login with email and password.
 
 **Body:** `{ email, password }`
-**Response:** `{ id, email, displayName, role }`
+**Response:** `{ id, email, displayName, role, clientId }`
 Sets an `HttpOnly` session cookie.
 
 ### POST /auth/logout
@@ -185,11 +185,11 @@ Extended analytics: monthly revenue, lead funnel, top clients, ticket stats, inv
 ### GET /users/:id
 
 ### POST /users/invite
-**Body:** `{ email*, full_name, role }`
+**Body:** `{ email*, full_name, role, client_id }`
 **Response:** includes `temp_password`.
 
 ### PUT /users/:id
-**Body:** `{ full_name, role, avatar_url }`
+**Body:** `{ full_name, role, avatar_url, client_id }`
 
 ### DELETE /users/:id
 
@@ -197,10 +197,10 @@ Extended analytics: monthly revenue, lead funnel, top clients, ticket stats, inv
 
 ## Client Portal
 
-Portal endpoints use `Authorization: Bearer <token>` header.
+Portal endpoints require an authenticated session cookie for a user with role `client`.
 
 ### GET /portal/me
-Validates token and returns client info.
+Returns the linked client info for the current client session.
 
 ### GET /portal/dashboard
 Returns KPIs, active projects, pending invoices, open tickets.
@@ -213,13 +213,3 @@ Returns KPIs, active projects, pending invoices, open tickets.
 
 ### POST /portal/tickets
 **Body:** `{ title*, description, category }`
-
-### GET /portal/admin/tokens/:clientId *(admin)*
-List portal tokens for a client.
-
-### POST /portal/admin/tokens/:clientId *(admin)*
-**Body:** `{ label, expires_at }`
-Returns the new token.
-
-### DELETE /portal/admin/tokens/:tokenId *(admin)*
-Revokes a token.

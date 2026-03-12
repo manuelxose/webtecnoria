@@ -1,6 +1,6 @@
 import { InjectionToken } from "@angular/core";
 
-export type UserRole = "admin" | "editor" | "viewer";
+export type UserRole = "admin" | "editor" | "viewer" | "client";
 
 export type AdminUser = {
   id: string;
@@ -8,6 +8,8 @@ export type AdminUser = {
   full_name: string | null;
   role: UserRole;
   avatar_url: string | null;
+  client_id: string | null;
+  client_name?: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -16,12 +18,14 @@ export type UpdateUserPayload = {
   full_name?: string | null;
   role?: UserRole;
   avatar_url?: string | null;
+  client_id?: string | null;
 };
 
 export type InviteUserPayload = {
   email: string;
   full_name?: string | null;
   role?: UserRole;
+  client_id?: string | null;
 };
 
 export type InviteUserResult = AdminUser & { temp_password: string };

@@ -41,10 +41,11 @@ type DbUser = {
   id: string;
   email: string;
   password_hash: string | null;
-  role: "admin" | "editor" | "viewer";
+  role: "admin" | "editor" | "viewer" | "client";
   display_name: string | null;
   google_sub: string | null;
   email_verified_at: string | null;
+  client_id: string | null;
 };
 
 router.post("/login", async (req, res) => {
@@ -295,6 +296,7 @@ router.post("/refresh", requireAuth, (req: AuthedRequest, res) => {
     email: req.user.email,
     role: req.user.role,
     display_name: req.user.displayName ?? null,
+    client_id: req.user.clientId ?? null,
   });
 
   res.json(req.user);
@@ -316,7 +318,14 @@ router.get("/me", requireAuth, (req: AuthedRequest, res) => {
 
 async function findUserByEmail(email: string): Promise<DbUser | null> {
   const query = await pool.query<DbUser>(
-    `SELECT id, email, password_hash, role, display_name, google_sub, email_verified_at
+    `SELECT id,
+            email,
+            password_hash,
+            role,
+            COALESCE(display_name, full_name) AS display_name,
+            google_sub,
+            email_verified_at,
+            client_id
      FROM users
      WHERE email = $1
      LIMIT 1`,
@@ -338,7 +347,14 @@ async function upsertGoogleIdentity(
          email_verified_at = COALESCE(email_verified_at, NOW()),
          updated_at = NOW()
      WHERE id = $3
-     RETURNING id, email, password_hash, role, display_name, google_sub, email_verified_at`,
+     RETURNING id,
+               email,
+               password_hash,
+               role,
+               COALESCE(display_name, full_name) AS display_name,
+               google_sub,
+               email_verified_at,
+               client_id`,
     [googleSub, displayName?.trim() || null, user.id]
   );
 
@@ -351,6 +367,7 @@ function toAuthUser(user: DbUser) {
     email: user.email,
     displayName: user.display_name,
     role: user.role,
+    clientId: user.client_id,
   };
 }
 
@@ -358,12 +375,16 @@ function hashToken(value: string): string {
   return createHash("sha256").update(value).digest("hex");
 }
 
-function setSessionCookie(res: Response, user: Pick<DbUser, "id" | "email" | "role" | "display_name">): void {
+function setSessionCookie(
+  res: Response,
+  user: Pick<DbUser, "id" | "email" | "role" | "display_name" | "client_id">
+): void {
   const token = signSessionToken({
     sub: user.id,
     email: user.email,
     role: user.role,
     displayName: user.display_name,
+    clientId: user.client_id,
   });
 
   res.cookie(env.COOKIE_NAME, token, {

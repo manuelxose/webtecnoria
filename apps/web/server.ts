@@ -9,8 +9,9 @@ import bootstrap from "./src/main.server";
 type SessionUser = {
   id: string;
   email: string;
-  role: "admin" | "editor" | "viewer";
+  role: "admin" | "editor" | "viewer" | "client";
   displayName?: string | null;
+  clientId?: string | null;
 };
 
 let lastSessionApiWarningAt = 0;
@@ -148,6 +149,30 @@ async function fetchSessionUser(
   }
 }
 
+function isDashboardPath(path: string): boolean {
+  return path === "/dashboard" || path.startsWith("/dashboard/");
+}
+
+function isPortalRootPath(path: string): boolean {
+  return path === "/portal";
+}
+
+function isPortalProtectedPath(path: string): boolean {
+  return path.startsWith("/portal/");
+}
+
+function getPrivateHome(user: SessionUser): string {
+  if (user.role === "client") {
+    return "/portal/dashboard";
+  }
+
+  if (user.role === "admin" || user.role === "editor") {
+    return "/dashboard";
+  }
+
+  return "/acceso-restringido";
+}
+
 export function app(): express.Express {
   const server = express();
   server.set("trust proxy", 1);
@@ -184,25 +209,47 @@ export function app(): express.Express {
       ? await fetchSessionUser(cookieHeader, apiTarget)
       : null;
 
-    if (req.path === "/dashboard") {
+    if (isDashboardPath(req.path)) {
       if (!sessionUser) {
-        res.redirect(302, "/auth-login");
+        res.redirect(302, `/auth-login?returnUrl=${encodeURIComponent(req.originalUrl)}`);
+        return;
+      }
+
+      if (sessionUser.role === "client") {
+        res.redirect(302, "/portal/dashboard");
         return;
       }
 
       if (sessionUser.role !== "admin" && sessionUser.role !== "editor") {
-        res.redirect(302, "/acceso-restringido");
+        res.redirect(302, `/acceso-restringido?reason=${encodeURIComponent(sessionUser.role)}`);
+        return;
+      }
+    }
+
+    if (isPortalRootPath(req.path) && sessionUser) {
+      res.redirect(302, getPrivateHome(sessionUser));
+      return;
+    }
+
+    if (isPortalProtectedPath(req.path)) {
+      if (!sessionUser) {
+        res.redirect(302, `/portal?returnUrl=${encodeURIComponent(req.originalUrl)}`);
+        return;
+      }
+
+      if (sessionUser.role === "client") {
+        // allow
+      } else if (sessionUser.role === "admin" || sessionUser.role === "editor") {
+        res.redirect(302, "/dashboard");
+        return;
+      } else {
+        res.redirect(302, `/acceso-restringido?reason=${encodeURIComponent(sessionUser.role)}`);
         return;
       }
     }
 
     if (authPages.has(req.path) && sessionUser) {
-      if (sessionUser.role === "admin" || sessionUser.role === "editor") {
-        res.redirect(302, "/dashboard");
-        return;
-      }
-
-      res.redirect(302, "/acceso-restringido");
+      res.redirect(302, getPrivateHome(sessionUser));
       return;
     }
 
@@ -212,8 +259,8 @@ export function app(): express.Express {
     }
 
     if (req.path === "/acceso-restringido" && sessionUser) {
-      if (sessionUser.role === "admin" || sessionUser.role === "editor") {
-        res.redirect(302, "/dashboard");
+      if (sessionUser.role !== "viewer") {
+        res.redirect(302, getPrivateHome(sessionUser));
         return;
       }
     }

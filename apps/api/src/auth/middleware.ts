@@ -6,8 +6,9 @@ export type AuthedRequest = Request & {
   user?: {
     id: string;
     email: string;
-    role: "admin" | "editor" | "viewer";
+    role: "admin" | "editor" | "viewer" | "client";
     displayName?: string | null;
+    clientId?: string | null;
   };
 };
 
@@ -25,6 +26,7 @@ export function requireAuth(req: AuthedRequest, res: Response, next: NextFunctio
       email: claims.email,
       role: claims.role,
       displayName: claims.displayName,
+      clientId: claims.clientId ?? null,
     };
     next();
   } catch {

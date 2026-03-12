@@ -4,7 +4,8 @@ export type AuthUser = {
   id: string;
   email: string | null;
   displayName?: string | null;
-  role: "admin" | "editor" | "viewer";
+  role: "admin" | "editor" | "viewer" | "client";
+  clientId?: string | null;
 };
 
 export type AccessRequestPayload = {

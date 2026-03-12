@@ -31,9 +31,13 @@ export class AuthGuard {
       });
     }
 
+    if (user.role === "client") {
+      return this.router.createUrlTree(["/portal/dashboard"]);
+    }
+
     if (user.role !== "admin" && user.role !== "editor") {
       return this.router.createUrlTree(["/acceso-restringido"], {
-        queryParams: { returnUrl: state.url },
+        queryParams: { returnUrl: state.url, reason: user.role },
       });
     }
 

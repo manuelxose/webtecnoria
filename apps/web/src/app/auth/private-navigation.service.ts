@@ -1,6 +1,7 @@
 import { DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import type { AuthUser } from "src/app/domain/repositories/auth.repository";
 
 @Injectable({ providedIn: "root" })
 export class PrivateNavigationService {
@@ -18,8 +19,13 @@ export class PrivateNavigationService {
     return this.normalizeInternalUrl(route.snapshot.queryParamMap.get("returnUrl"));
   }
 
-  getPostLoginUrl(route: ActivatedRoute): string {
-    return this.getReturnUrl(route) ?? "/dashboard";
+  getPostLoginUrl(route: ActivatedRoute, user?: Pick<AuthUser, "role"> | null): string {
+    const returnUrl = this.getReturnUrl(route);
+    if (returnUrl && user && this.canAccessProtectedPath(returnUrl, user.role)) {
+      return returnUrl;
+    }
+
+    return this.getDefaultPrivateUrl(user?.role);
   }
 
   getPublicFallback(route: ActivatedRoute, fallback = "/"): string {
@@ -55,9 +61,35 @@ export class PrivateNavigationService {
     return (
       url === "/dashboard"
       || url.startsWith("/dashboard/")
+      || url === "/portal"
+      || url.startsWith("/portal/")
       || url.startsWith("/auth-")
       || url.startsWith("/acceso-restringido")
     );
+  }
+
+  private canAccessProtectedPath(url: string, role: AuthUser["role"]): boolean {
+    if (url === "/dashboard" || url.startsWith("/dashboard/")) {
+      return role === "admin" || role === "editor";
+    }
+
+    if (url === "/portal" || url.startsWith("/portal/")) {
+      return role === "client";
+    }
+
+    return false;
+  }
+
+  private getDefaultPrivateUrl(role: AuthUser["role"] | undefined): string {
+    if (role === "client") {
+      return "/portal/dashboard";
+    }
+
+    if (role === "viewer") {
+      return "/acceso-restringido";
+    }
+
+    return "/dashboard";
   }
 
   private canUseHistoryBack(): boolean {

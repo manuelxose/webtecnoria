@@ -2,7 +2,10 @@ import { Component, Inject, OnInit, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Router } from "@angular/router";
 import { PORTAL_REPOSITORY, PortalRepository, PortalClient } from "src/app/domain/repositories/portal.repository";
-import { ApiPortalRepository } from "src/app/infrastructure/repositories/api/api-portal.repository";
+import {
+  AUTH_REPOSITORY,
+  AuthRepository,
+} from "src/app/domain/repositories/auth.repository";
 
 @Component({
   selector: "app-portal-layout",
@@ -77,6 +80,7 @@ export class PortalLayoutComponent implements OnInit {
 
   constructor(
     @Inject(PORTAL_REPOSITORY) private readonly portalRepo: PortalRepository,
+    @Inject(AUTH_REPOSITORY) private readonly authRepo: AuthRepository,
     private readonly router: Router
   ) {}
 
@@ -85,8 +89,11 @@ export class PortalLayoutComponent implements OnInit {
     catch { await this.router.navigate(["/portal"]); }
   }
 
-  logout(): void {
-    ApiPortalRepository.clearToken();
-    this.router.navigate(["/portal"]);
+  async logout(): Promise<void> {
+    try {
+      await this.authRepo.logout();
+    } finally {
+      await this.router.navigate(["/portal"]);
+    }
   }
 }

@@ -10,20 +10,20 @@ https://your-domain.com/portal
 
 ## How it Works
 
-1. Admin generates a **portal token** for a client
-2. Token is shared with the client (copy/paste or email)
-3. Client visits `/portal`, enters the token
-4. Token is saved in `localStorage` — client stays logged in until they log out or the token expires
+1. Admin creates a private user with role `client` and links it to a `client_id`
+2. The client signs in at `/portal` with email/password or Google
+3. The same secure `HttpOnly` session cookie used by the private area is reused for the portal
+4. Portal routes only accept authenticated users with role `client`
 
-## Generating a Portal Token (Admin)
+## Creating a Portal User (Admin)
 
-1. Go to `/dashboard/clients/:id`
-2. Click the **Portal** tab
-3. Click **Generar token**
-4. Optionally set a label (e.g., "Main contact") and expiry date
-5. Copy the token and share it securely with the client
+1. Go to `/dashboard/users`
+2. Click **Invitar usuario**
+3. Select **Cliente**
+4. Link the account to the target client record
+5. Share the temporary password securely with the client
 
-You can create multiple tokens per client (e.g., one per contact person). Each token can be revoked independently.
+Legacy `portal_tokens` are deprecated and are no longer used by the live portal flow.
 
 ## Client Experience
 
@@ -50,11 +50,10 @@ Once logged in, clients can:
 
 ## Security
 
-- Tokens are 64-character hex strings (256 bits of entropy)
-- Stored as plaintext in the DB for lookup (consider hashing for higher security deployments)
-- Tokens can be revoked at any time by an admin
-- Optional expiry date per token
-- `last_used_at` tracked for audit purposes
+- Portal access is scoped by the authenticated user's `client_id`
+- Sessions are stored in an `HttpOnly` cookie, not in `localStorage`
+- Only users with role `client` can access `/portal/*`
+- Admin/editor users are redirected back to `/dashboard`
 
 ## Customisation
 
