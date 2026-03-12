@@ -287,8 +287,22 @@ export const routes: Routes = [
       {
         path: "blog",
         loadComponent: () =>
-          import("./core/admin/admin-panel/admin-panel.component").then(
-            (m) => m.AdminPanelComponent
+          import("./core/admin/lista-blogs/lista-blogs.component").then(
+            (m) => m.ListaBlogsComponent
+          ),
+      },
+      {
+        path: "blog/new",
+        loadComponent: () =>
+          import("./core/admin/editor-blog/editor-blog.component").then(
+            (m) => m.EditorBlogComponent
+          ),
+      },
+      {
+        path: "blog/:id",
+        loadComponent: () =>
+          import("./core/admin/editor-blog/editor-blog.component").then(
+            (m) => m.EditorBlogComponent
           ),
       },
       // ── FINANCE ──────────────────────────────────────────────────────────

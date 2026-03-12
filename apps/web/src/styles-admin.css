@@ -565,6 +565,10 @@
   color: var(--a-text-muted);
   margin-bottom: 5px;
 }
+.a-label-required::after {
+  content: " *";
+  color: var(--a-danger);
+}
 
 .a-input,
 .a-select,

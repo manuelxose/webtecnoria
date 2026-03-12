@@ -1,2 +1,272 @@
-<p>editor-blog works!</p>
-asdddsssssssssssssssssssssssssssssssssssssssssss
+<div class="a-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <a routerLink="/dashboard/blog" class="a-btn a-btn-ghost a-btn-sm" style="margin-bottom:8px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Volver al listado
+      </a>
+      <h1 class="page-title">{{ isEdit() ? 'Editar artículo' : 'Nuevo artículo' }}</h1>
+      <p class="page-subtitle">{{ isEdit() ? 'Modifica el contenido y guarda los cambios.' : 'Rellena los campos y publica el artículo.' }}</p>
+    </div>
+    <div class="page-actions">
+      <a routerLink="/dashboard/blog" class="a-btn a-btn-secondary">Cancelar</a>
+      <button class="a-btn a-btn-primary" [disabled]="saving()" (click)="save()">
+        @if (saving()) {
+          <span class="a-spinner" style="width:13px;height:13px"></span>
+          Guardando…
+        } @else {
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+            <polyline points="17 21 17 13 7 13 7 21"/>
+            <polyline points="7 3 7 8 15 8"/>
+          </svg>
+          {{ isEdit() ? 'Guardar cambios' : 'Publicar artículo' }}
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  @if (loading()) {
+    <div style="display:flex;align-items:center;gap:10px;color:var(--a-text-muted);padding:48px 0">
+      <span class="a-spinner"></span> Cargando artículo…
+    </div>
+  }
+
+  @if (!loading()) {
+
+    <!-- Alerts -->
+    @if (error()) {
+      <div style="padding:12px 16px;background:var(--a-danger-muted);border:1px solid var(--a-danger);border-radius:var(--a-r-md);color:var(--a-danger);font-size:13px;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        {{ error() }}
+      </div>
+    }
+    @if (success()) {
+      <div style="padding:12px 16px;background:var(--a-success-muted);border:1px solid var(--a-success);border-radius:var(--a-r-md);color:var(--a-success);font-size:13px;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ success() }}
+      </div>
+    }
+
+    <!-- Form layout -->
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start">
+
+      <!-- Main column -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <!-- Título + Slug -->
+        <div class="a-card">
+          <div class="a-card-header" style="padding-bottom:0">
+            <span class="a-card-title">Identificación</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;padding:16px 20px 20px">
+
+            <div class="a-form-group">
+              <label class="a-label a-label-required">Título</label>
+              <input
+                class="a-input"
+                type="text"
+                placeholder="Ej: Cómo automatizar procesos con IA en tu empresa"
+                [value]="draft().title"
+                (input)="draft.update(v => ({ ...v, title: $any($event.target).value }))"
+                (blur)="onTitleBlur()"
+              />
+            </div>
+
+            <div class="a-form-group">
+              <label class="a-label a-label-required">
+                Slug
+                <span style="font-weight:400;color:var(--a-text-muted);margin-left:6px">· Se genera automáticamente desde el título</span>
+              </label>
+              <div style="position:relative">
+                <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--a-text-muted);font-size:12px;font-family:var(--a-font-mono)">/blog/</span>
+                <input
+                  class="a-input"
+                  type="text"
+                  style="padding-left:48px;font-family:var(--a-font-mono);font-size:13px"
+                  placeholder="nombre-del-articulo"
+                  [value]="draft().slug"
+                  (input)="draft.update(v => ({ ...v, slug: $any($event.target).value }))"
+                />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Descripción corta -->
+        <div class="a-card">
+          <div class="a-card-header" style="padding-bottom:0">
+            <span class="a-card-title">Descripción corta</span>
+            <span style="font-size:12px;color:var(--a-text-muted)">Aparece en el listado y en SEO</span>
+          </div>
+          <div style="padding:16px 20px 20px">
+            <div class="a-form-group">
+              <label class="a-label a-label-required">Resumen</label>
+              <textarea
+                class="a-input"
+                rows="3"
+                placeholder="Una o dos frases que resumen el artículo…"
+                style="resize:vertical"
+                [value]="draft().shortDescription"
+                (input)="draft.update(v => ({ ...v, shortDescription: $any($event.target).value }))"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenido -->
+        <div class="a-card">
+          <div class="a-card-header" style="padding-bottom:0">
+            <span class="a-card-title">Contenido</span>
+            <span style="font-size:12px;color:var(--a-text-muted)">Admite HTML para estructura rica</span>
+          </div>
+          <div style="padding:16px 20px 20px">
+            <div class="a-form-group">
+              <label class="a-label a-label-required">Cuerpo del artículo</label>
+              <textarea
+                class="a-input"
+                rows="18"
+                style="resize:vertical;font-family:var(--a-font-mono);font-size:12.5px;line-height:1.65"
+                placeholder="Escribe el contenido aquí. Puedes usar HTML si necesitas estructura rica."
+                [value]="draft().content"
+                (input)="draft.update(v => ({ ...v, content: $any($event.target).value }))"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar column -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <!-- Metadatos -->
+        <div class="a-card">
+          <div class="a-card-header" style="padding-bottom:0">
+            <span class="a-card-title">Metadatos</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;padding:16px 20px 20px">
+
+            <div class="a-form-group">
+              <label class="a-label a-label-required">Autor</label>
+              <input
+                class="a-input"
+                type="text"
+                placeholder="TecnoRia"
+                [value]="draft().author"
+                (input)="draft.update(v => ({ ...v, author: $any($event.target).value }))"
+              />
+            </div>
+
+            <div class="a-form-group">
+              <label class="a-label">Tags</label>
+              <input
+                class="a-input"
+                type="text"
+                placeholder="software, automatización, ia"
+                [value]="draft().tagsText"
+                (input)="draft.update(v => ({ ...v, tagsText: $any($event.target).value }))"
+              />
+              <span style="font-size:11px;color:var(--a-text-muted);margin-top:4px">Separados por comas</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Imagen destacada -->
+        <div class="a-card">
+          <div class="a-card-header" style="padding-bottom:0">
+            <span class="a-card-title">Imagen destacada</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;padding:16px 20px 20px">
+
+            @if (draft().imageUrl && !selectedFile()) {
+              <div style="border-radius:var(--a-r-sm);overflow:hidden;background:var(--a-bg-raised);border:1px solid var(--a-border)">
+                <img
+                  [src]="draft().imageUrl"
+                  alt="Imagen actual"
+                  style="width:100%;height:140px;object-fit:cover;display:block"
+                  (error)="$any($event.target).style.display='none'"
+                />
+              </div>
+              <div style="font-size:11px;color:var(--a-text-muted);word-break:break-all">{{ draft().imageUrl }}</div>
+            }
+
+            @if (selectedFile()) {
+              <div style="padding:10px 12px;background:var(--a-success-muted);border:1px solid var(--a-success);border-radius:var(--a-r-sm);display:flex;align-items:center;justify-content:space-between;gap:8px">
+                <div>
+                  <div style="font-size:12px;font-weight:500;color:var(--a-success)">Nuevo archivo</div>
+                  <div style="font-size:11px;color:var(--a-text-muted)">{{ selectedFile()!.name }}</div>
+                </div>
+                <button class="a-btn a-btn-ghost a-btn-sm" style="color:var(--a-danger)" (click)="clearFile()">Quitar</button>
+              </div>
+            }
+
+            <div class="a-form-group" style="margin:0">
+              <label class="a-label">{{ selectedFile() || draft().imageUrl ? 'Reemplazar imagen' : 'Subir imagen' }}</label>
+              <input
+                class="a-input"
+                type="file"
+                accept="image/*"
+                style="padding:6px 10px;font-size:12px"
+                (change)="onFileChange($event)"
+              />
+            </div>
+
+            @if (!selectedFile() && !draft().imageUrl) {
+              <div class="a-form-group" style="margin:0">
+                <label class="a-label">O pegar URL</label>
+                <input
+                  class="a-input"
+                  type="url"
+                  placeholder="https://..."
+                  [value]="draft().imageUrl"
+                  (input)="draft.update(v => ({ ...v, imageUrl: $any($event.target).value }))"
+                />
+              </div>
+            }
+
+          </div>
+        </div>
+
+        <!-- Acciones rápidas -->
+        <div class="a-card" style="background:var(--a-bg-raised)">
+          <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px">
+            <button
+              class="a-btn a-btn-primary"
+              style="width:100%;justify-content:center"
+              [disabled]="saving()"
+              (click)="save()"
+            >
+              @if (saving()) {
+                <span class="a-spinner" style="width:13px;height:13px"></span> Guardando…
+              } @else {
+                {{ isEdit() ? 'Guardar cambios' : 'Publicar artículo' }}
+              }
+            </button>
+            <a
+              routerLink="/dashboard/blog"
+              class="a-btn a-btn-ghost"
+              style="width:100%;justify-content:center"
+            >
+              Cancelar
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  }
+
+</div>
