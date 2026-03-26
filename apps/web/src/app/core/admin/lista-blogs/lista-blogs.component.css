@@ -1,0 +1,234 @@
+.blog-admin-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.blog-admin-page__actions {
+  flex-wrap: wrap;
+}
+
+.blog-admin-sync-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.16), transparent 42%),
+    linear-gradient(135deg, rgba(17, 24, 39, 0.94), rgba(9, 14, 24, 0.98));
+  border: 1px solid rgba(59, 130, 246, 0.18);
+}
+
+.blog-admin-sync-card h2 {
+  margin: 10px 0 8px;
+  font-size: 20px;
+}
+
+.blog-admin-sync-card p {
+  margin: 0;
+  max-width: 72ch;
+  color: #c5d1e0;
+  line-height: 1.7;
+}
+
+.blog-admin-sync-card__badge {
+  background: rgba(37, 99, 235, 0.18);
+  color: #bfdbfe;
+}
+
+.blog-admin-sync-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.blog-admin-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.blog-admin-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--a-r-md);
+  border: 1px solid var(--a-border);
+}
+
+.blog-admin-alert--error {
+  background: var(--a-danger-muted);
+  color: var(--a-danger);
+}
+
+.blog-admin-alert button {
+  margin-left: auto;
+}
+
+.blog-admin-toolbar {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.blog-admin-toolbar__search {
+  position: relative;
+}
+
+.blog-admin-toolbar__search svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--a-text-muted);
+}
+
+.blog-admin-toolbar__search .a-input {
+  padding-left: 36px;
+}
+
+.blog-admin-toolbar__hint {
+  margin: 0;
+  color: var(--a-text-muted);
+  line-height: 1.6;
+}
+
+.blog-admin-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--a-text-muted);
+  padding: 40px 0;
+}
+
+.blog-admin-empty {
+  padding: 64px 0;
+}
+
+.blog-admin-table-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.blog-admin-table__actions-head {
+  text-align: right;
+}
+
+.blog-admin-row-title {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.blog-admin-row-title__main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.blog-admin-row-title__main strong {
+  color: var(--a-text);
+  font-weight: 600;
+}
+
+.blog-admin-row-title__main span {
+  color: var(--a-text-muted);
+  font-family: var(--a-font-mono);
+  font-size: 11px;
+}
+
+.blog-admin-row-title p {
+  margin: 0;
+  color: var(--a-text-muted);
+  line-height: 1.6;
+}
+
+.blog-admin-state {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.blog-admin-state__badge--draft {
+  background: rgba(245, 158, 11, 0.14);
+  color: #fbbf24;
+}
+
+.blog-admin-state__visibility {
+  font-size: 12px;
+  color: var(--a-text-muted);
+}
+
+.blog-admin-source {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.blog-admin-source strong {
+  color: var(--a-text);
+  font-size: 13px;
+}
+
+.blog-admin-source__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.blog-admin-date-cell {
+  color: var(--a-text-muted);
+}
+
+.blog-admin-date-cell small {
+  display: block;
+  margin-top: 4px;
+  color: var(--a-text-subtle);
+}
+
+.blog-admin-row-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.blog-admin-delete {
+  color: var(--a-danger);
+}
+
+.blog-admin-footer-meta {
+  color: var(--a-text-muted);
+  font-size: 12px;
+}
+
+@media (max-width: 1180px) {
+  .blog-admin-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .blog-admin-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-admin-sync-card {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-admin-sync-card__actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 860px) {
+  .blog-admin-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-admin-row-actions {
+    justify-content: flex-start;
+  }
+}

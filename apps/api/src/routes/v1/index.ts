@@ -12,6 +12,7 @@ import invoicesRouter from "./invoices.js";
 import ticketsRouter from "./tickets.js";
 import usersRouter from "./users.js";
 import portalRouter from "./portal.js";
+import integrationsRouter from "./integrations.js";
 
 const v1Router = Router();
 
@@ -28,5 +29,6 @@ v1Router.use("/invoices", invoicesRouter);
 v1Router.use("/tickets", ticketsRouter);
 v1Router.use("/users", usersRouter);
 v1Router.use("/portal", portalRouter);
+v1Router.use("/integrations", integrationsRouter);
 
 export default v1Router;

@@ -14,16 +14,21 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 34px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 20px 44px rgba(0, 0, 0, 0.08);
+    0 24px 54px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(24px);
 }
 
 .site-footer__brand-block,
 .site-footer__cta {
   display: grid;
   gap: 16px;
+}
+
+.site-footer__brand-block {
+  align-content: center;
 }
 
 .site-footer__brand-block p,
@@ -50,7 +55,7 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.05);
-  color: rgba(233, 240, 248, 0.84);
+  color: rgba(237, 244, 255, 0.9);
   font-size: 0.85rem;
   font-weight: 700;
 }
@@ -60,11 +65,11 @@
   width: fit-content;
   border-color: rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.08);
-  color: #f7fbff;
+  color: #bfdbfe;
 }
 
 .site-footer__cta h2 {
-  max-width: 12ch;
+  max-width: 10ch;
   margin-bottom: 0;
   color: #f7fbff;
   font-size: clamp(2rem, 4vw, 3.2rem);
@@ -89,6 +94,7 @@
   border-color: rgba(255, 255, 255, 0.16);
   background: rgba(255, 255, 255, 0.06);
   color: #f7fbff;
+  backdrop-filter: blur(16px);
 }
 
 .site-footer__actions .button-secondary:hover {
@@ -102,8 +108,12 @@
 
 @media (min-width: 1024px) {
   .site-footer__lead {
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.95fr);
-    gap: 28px;
-    align-items: end;
+    grid-template-columns: minmax(320px, 0.88fr) minmax(0, 1.12fr);
+    gap: 40px;
+    align-items: center;
+  }
+
+  .site-footer__cta {
+    align-content: center;
   }
 }

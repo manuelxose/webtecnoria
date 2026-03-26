@@ -156,6 +156,87 @@ export class SeoService {
     };
   }
 
+  createLocalBusinessSchema(): Record<string, unknown> {
+    return {
+      "@context": "https://schema.org",
+      "@type": ["ProfessionalService", "LocalBusiness"],
+      name: SITE_NAME,
+      description: SITE_TAGLINE,
+      url: SITE_URL,
+      telephone: SITE_PHONE,
+      email: SITE_EMAIL,
+      logo: `${SITE_URL}${brandLogos.mark.dark.src}`,
+      image: `${SITE_URL}${brandImages.social.src}`,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Galicia",
+        addressCountry: "ES",
+      },
+      areaServed: [
+        { "@type": "Country", name: "España" },
+        { "@type": "State", name: "Galicia" },
+      ],
+      knowsAbout: [
+        "Software a medida",
+        "Automatización de procesos",
+        "Inteligencia Artificial aplicada",
+        "Chatbots empresariales",
+        "Plataformas SaaS",
+        "Consultoría tecnológica",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Servicios de ingeniería de software e IA",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Software a medida" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Automatización de procesos" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Inteligencia Artificial aplicada" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Chatbots empresariales" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Plataformas SaaS" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Consultoría tecnológica" } },
+        ],
+      },
+    };
+  }
+
+  createProductSchema(data: {
+    name: string;
+    description: string;
+    url: string;
+    image?: string;
+    category?: string;
+  }): Record<string, unknown> {
+    const imageUrl = data.image
+      ? data.image.startsWith("http") ? data.image : `${SITE_URL}${data.image}`
+      : `${SITE_URL}${brandImages.social.src}`;
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: data.name,
+      description: data.description,
+      url: data.url,
+      applicationCategory: data.category ?? "BusinessApplication",
+      operatingSystem: "Web",
+      inLanguage: "es",
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
+        seller: {
+          "@type": "Organization",
+          name: SITE_NAME,
+          url: SITE_URL,
+        },
+      },
+      author: {
+        "@type": "Organization",
+        name: SITE_NAME,
+        url: SITE_URL,
+      },
+      image: imageUrl,
+    };
+  }
+
   createArticleSchema(
     headline: string,
     description: string,

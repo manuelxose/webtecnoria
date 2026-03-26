@@ -2,30 +2,31 @@ import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
 import { firstValueFrom } from "rxjs";
-import { BlogRepository } from "src/app/domain/repositories/blog.repository";
+import {
+  BlogFetchOptions,
+  BlogPostRecord,
+  BlogRepository,
+  BlogSnapshotLike,
+  BlogWriteInput,
+} from "src/app/domain/repositories/blog.repository";
 import { API_BASE_URL } from "../../http/api-base-url.token";
 
-type ApiBlogPost = {
+type ApiBlogPost = Partial<BlogPostRecord> & {
   id: string;
   slug: string;
   title: string;
-  shortDescription: string;
+  shortDescription?: string;
   content: string;
   image?: string | File;
   tags?: string[];
   author?: string;
   date?: string;
+  status?: string;
+  publishedAt?: string | null;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
   createdAt?: string;
   updatedAt?: string;
-};
-
-type BlogSnapshotDoc = {
-  id: string;
-  data: () => ApiBlogPost;
-};
-
-type BlogSnapshotLike = {
-  docs: BlogSnapshotDoc[];
 };
 
 @Injectable()
@@ -39,9 +40,17 @@ export class ApiBlogRepository implements BlogRepository {
     this.baseUrl = baseUrl.replace(/\/$/, "");
   }
 
-  list(): Observable<BlogSnapshotLike> {
+  list(options?: BlogFetchOptions): Observable<BlogSnapshotLike> {
+    const includeDrafts = Boolean(options?.includeDrafts);
+    const statusQuery = includeDrafts ? "all" : "publish";
+
     return this.http
-      .get<{ items: ApiBlogPost[] }>(`${this.baseUrl}/api/v1/blog`)
+      .get<{ items: ApiBlogPost[] }>(
+        `${this.baseUrl}/api/v1/blog?status=${statusQuery}`,
+        {
+          withCredentials: includeDrafts,
+        }
+      )
       .pipe(
         map((response) => ({
           docs: (response.items ?? []).map((item) => ({
@@ -52,10 +61,21 @@ export class ApiBlogRepository implements BlogRepository {
       );
   }
 
-  async detailBySlug(slug: string): Promise<ApiBlogPost | null> {
+  async detailBySlug(
+    slug: string,
+    options?: BlogFetchOptions
+  ): Promise<BlogPostRecord | null> {
+    const includeDrafts = Boolean(options?.includeDrafts);
+    const statusQuery = includeDrafts ? "" : "?status=publish";
+
     try {
       const post = await firstValueFrom(
-        this.http.get<ApiBlogPost>(`${this.baseUrl}/api/v1/blog/${slug}`)
+        this.http.get<ApiBlogPost>(
+          `${this.baseUrl}/api/v1/blog/${slug}${statusQuery}`,
+          {
+            withCredentials: includeDrafts,
+          }
+        )
       );
       return this.normalizePost(post);
     } catch {
@@ -63,7 +83,7 @@ export class ApiBlogRepository implements BlogRepository {
     }
   }
 
-  async create(data: ApiBlogPost): Promise<void> {
+  async create(data: BlogWriteInput): Promise<void> {
     const payload = { ...data };
 
     if (this.isFile(payload.image)) {
@@ -77,7 +97,7 @@ export class ApiBlogRepository implements BlogRepository {
     );
   }
 
-  async update(id: string, data: ApiBlogPost): Promise<void> {
+  async update(id: string, data: BlogWriteInput): Promise<void> {
     const payload = { ...data };
 
     if (this.isFile(payload.image)) {
@@ -123,13 +143,21 @@ export class ApiBlogRepository implements BlogRepository {
     return typeof File !== "undefined" && value instanceof File;
   }
 
-  private normalizePost(post: ApiBlogPost): ApiBlogPost {
-    const dateFallback = post.date ?? post.createdAt ?? new Date().toISOString();
+  private normalizePost(post: ApiBlogPost): BlogPostRecord {
+    const dateFallback =
+      post.publishedAt ?? post.date ?? post.createdAt ?? new Date().toISOString();
+
     return {
       ...post,
-      date: dateFallback,
+      shortDescription: post.shortDescription ?? "",
       tags: Array.isArray(post.tags) ? post.tags : [],
       author: post.author ?? "TecnoRia",
+      status: post.status === "publish" ? "publish" : "draft",
+      publishedAt: post.publishedAt ?? dateFallback,
+      seoTitle: post.seoTitle ?? null,
+      seoDescription: post.seoDescription ?? null,
+      createdAt: post.createdAt ?? dateFallback,
+      updatedAt: post.updatedAt ?? dateFallback,
     };
   }
 }

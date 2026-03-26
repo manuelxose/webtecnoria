@@ -1,0 +1,295 @@
+:host {
+  display: block;
+}
+
+.services-section-head,
+.services-scenario-head {
+  max-width: 68rem;
+}
+
+.services-card-grid,
+.services-scenario-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.services-service-card {
+  position: relative;
+  gap: 24px;
+  padding: 28px;
+  border-color: rgba(23, 58, 99, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(29, 78, 216, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(244, 248, 253, 0.92) 100%);
+  box-shadow: 0 28px 70px rgba(9, 17, 31, 0.08);
+}
+
+.services-service-card__header,
+.services-service-card__copy,
+.services-service-card__clusters,
+.services-service-card__cluster,
+.services-scenario-card,
+.services-final-cta__copy,
+.services-final-cta__panel {
+  display: grid;
+  gap: 16px;
+}
+
+.services-service-card__topline,
+.services-scenario-card__topline,
+.services-service-card__cluster-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.services-service-card__icon,
+.services-scenario-card__icon,
+.services-service-card__cluster-icon {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.services-service-card__icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.9), transparent 60%),
+    linear-gradient(135deg, rgba(29, 78, 216, 0.18) 0%, rgba(29, 78, 216, 0.08) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 16px 30px rgba(29, 78, 216, 0.12);
+}
+
+.services-service-card__icon svg,
+.services-scenario-card__icon svg,
+.services-service-card__cluster-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.services-service-card__badge,
+.services-scenario-card__label {
+  margin-bottom: 0;
+}
+
+.services-service-card__badge {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.services-service-card__copy h3,
+.services-scenario-card h3 {
+  margin-bottom: 0;
+}
+
+.services-service-card__copy p,
+.services-final-cta__copy p {
+  margin-bottom: 0;
+  color: var(--ink-soft);
+}
+
+.services-service-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.services-service-card__tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(29, 78, 216, 0.12);
+  border-radius: 999px;
+  background: rgba(29, 78, 216, 0.06);
+  color: var(--brand);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.services-service-card__clusters {
+  gap: 14px;
+}
+
+.services-service-card__cluster {
+  align-content: start;
+  padding: 18px;
+  border: 1px solid rgba(15, 26, 37, 0.08);
+  border-radius: 22px;
+  background: rgba(248, 251, 255, 0.86);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.services-service-card__cluster-head strong {
+  margin: 0;
+  font-size: 0.98rem;
+  letter-spacing: -0.02em;
+}
+
+.services-service-card__cluster-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(29, 78, 216, 0.08);
+}
+
+.plain-list--service li {
+  margin-bottom: 12px;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.plain-list--service li:last-child,
+.services-scenario-card__list li:last-child,
+.services-final-cta__list li:last-child {
+  margin-bottom: 0;
+}
+
+.services-service-card__footer {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding-top: 2px;
+}
+
+.services-service-card__context {
+  color: var(--brand);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.services-scenario-head__eyebrow {
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.services-scenario-card {
+  height: 100%;
+  align-content: start;
+  padding: 30px;
+  border-color: rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(29, 78, 216, 0.16), transparent 35%),
+    linear-gradient(180deg, rgba(10, 15, 30, 0.9) 0%, rgba(6, 6, 14, 0.96) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 28px 64px rgba(0, 0, 0, 0.24);
+}
+
+.services-scenario-card__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(29, 78, 216, 0.16);
+  color: #bfdbfe;
+}
+
+.services-scenario-card__label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(219, 234, 254, 0.92);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.services-scenario-card p {
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.services-scenario-card__list {
+  gap: 0;
+}
+
+.services-scenario-card__list li {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.services-scenario-card__link {
+  margin-top: auto;
+  color: #dbeafe;
+}
+
+.services-final-cta {
+  gap: 24px;
+  padding: 34px;
+  border-color: rgba(15, 26, 37, 0.08);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 248, 253, 0.92) 100%);
+}
+
+.services-final-cta__panel {
+  align-content: start;
+  padding: 22px;
+  border: 1px solid rgba(15, 26, 37, 0.08);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(29, 78, 216, 0.08), transparent 36%),
+    rgba(248, 251, 255, 0.94);
+}
+
+.services-final-cta__panel .panel-label {
+  width: fit-content;
+  margin-bottom: 0;
+}
+
+.services-final-cta__list li {
+  color: var(--ink-soft);
+}
+
+.services-final-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .services-card-grid,
+  .services-scenario-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-service-card__clusters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-service-card__cluster--deliverables {
+    grid-column: 1 / -1;
+  }
+
+  .services-final-cta {
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+    align-items: center;
+  }
+}
+
+@media (min-width: 1400px) {
+  .services-card-grid,
+  .services-scenario-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .services-service-card,
+  .services-scenario-card,
+  .services-final-cta,
+  .services-final-cta__panel {
+    padding: 24px;
+  }
+}

@@ -21,6 +21,11 @@ const EnvSchema = z.object({
   CUTOVER_CONTACT: z.string().default("true"),
   CUTOVER_SCRAPER: z.string().default("true"),
   AUCTORIO_PUBLISHER_TOKEN: z.string().default(""),
+  AUCTORIO_STUDIO_INTERNAL_URL: z.string().url().default("http://127.0.0.1:4400"),
+  AUCTORIO_PUBLIC_LOGIN_URL: z.string().url().default("https://auctorio.com/login"),
+  AUCTORIO_LAUNCH_CLIENT_ID: z.string().default("webtecnoria"),
+  AUCTORIO_LAUNCH_SHARED_SECRET: z.string().min(16).default("studio-launch-dev-secret-change-me"),
+  AUCTORIO_FIRST_PARTY_WORKSPACES: z.string().default("tecnoria"),
 });
 
 const parsed = EnvSchema.safeParse(process.env);

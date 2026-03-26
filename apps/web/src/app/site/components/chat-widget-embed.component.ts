@@ -3,21 +3,28 @@ import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from "@angular/core
 import { RouterModule } from "@angular/router";
 import { environment } from "src/environments/environment";
 
+type WidgetRuntimeConfig = {
+  siteKey: string;
+  apiBase: string;
+  widgetBaseUrl: string;
+  widgetOrigin: string;
+  assetVersion?: string;
+  brandLabel?: string;
+  sourceSite?: string;
+  contactUrl?: string;
+};
+
 type WidgetWindow = Window & typeof globalThis & {
-  TecnoriaChatWidgetConfig?: {
-    siteKey: string;
-    apiBase: string;
-    widgetBaseUrl: string;
-    widgetOrigin: string;
-    brandLabel?: string;
-    sourceSite?: string;
-    contactUrl?: string;
-  };
+  TecnoriaChatWidgetConfig?: WidgetRuntimeConfig;
+  TalkarisWidgetConfig?: WidgetRuntimeConfig;
+  ChatPortalWidgetConfig?: WidgetRuntimeConfig;
+  __talkarisWidgetRuntime?: { destroy?: () => void };
 };
 
 type WidgetEnvironment = typeof environment & {
   chatWidgetBaseUrl?: string;
   chatWidgetOrigin?: string;
+  chatWidgetAssetVersion?: string;
 };
 
 @Component({
@@ -59,7 +66,12 @@ type WidgetEnvironment = typeof environment & {
 })
 export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
   private readonly scriptId = "tecnoria-chat-widget-loader";
-  private readonly iframeTitle = "Tecnoria Chat Widget";
+  private readonly iframeSelector = [
+    'iframe[title="Tecnoria Chat Widget"]',
+    'iframe[title="Talkaris Widget"]',
+    'iframe[aria-label="Tecnoria Chat Widget"]',
+    'iframe[aria-label="Talkaris Widget"]',
+  ].join(", ");
   private readonly runtimeEnvironment = environment as WidgetEnvironment;
   private observer?: MutationObserver;
   private readinessTimeoutId?: number;
@@ -115,6 +127,7 @@ export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.cleanupWidgetArtifacts(false);
     this.widgetState = "loading";
     this.shouldRenderFallback = true;
     this.configureWidgetRuntime(widgetBaseUrl);
@@ -123,11 +136,16 @@ export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
     const script = this.document.createElement("script");
     script.id = this.scriptId;
     script.async = true;
-    script.src = new URL("embed.js", widgetBaseUrl).toString();
+    const embedUrl = new URL("embed.js", widgetBaseUrl);
+    if (this.runtimeEnvironment.chatWidgetAssetVersion) {
+      embedUrl.searchParams.set("v", this.runtimeEnvironment.chatWidgetAssetVersion);
+    }
+    script.src = embedUrl.toString();
     script.dataset["siteKey"] = this.runtimeEnvironment.chatWidgetSiteKey;
     script.dataset["apiBase"] = this.runtimeEnvironment.chatWidgetApiBaseUrl;
     script.dataset["widgetBaseUrl"] = widgetBaseUrl;
     script.dataset["widgetOrigin"] = widgetBaseUrl;
+    script.dataset["assetVersion"] = this.runtimeEnvironment.chatWidgetAssetVersion || "";
     script.dataset["brandLabel"] = "TecnoRia";
     script.dataset["sourceSite"] = this.document.location.origin;
     script.dataset["contactUrl"] = new URL("/contacto", this.document.baseURI).toString();
@@ -149,15 +167,20 @@ export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
       return;
     }
 
-    win.TecnoriaChatWidgetConfig = {
+    const config: WidgetRuntimeConfig = {
       siteKey: this.runtimeEnvironment.chatWidgetSiteKey,
       apiBase: this.runtimeEnvironment.chatWidgetApiBaseUrl,
       widgetBaseUrl,
       widgetOrigin: widgetBaseUrl,
+      assetVersion: this.runtimeEnvironment.chatWidgetAssetVersion,
       brandLabel: "TecnoRia",
       sourceSite: this.document.location.origin,
       contactUrl: new URL("/contacto", this.document.baseURI).toString(),
     };
+
+    win.TecnoriaChatWidgetConfig = config;
+    win.TalkarisWidgetConfig = config;
+    win.ChatPortalWidgetConfig = config;
   }
 
   private observeWidgetFrame(): void {
@@ -198,8 +221,9 @@ export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
     this.clearTimers();
     this.observer?.disconnect();
 
-    this.document.getElementById(this.scriptId)?.remove();
-    this.findWidgetFrame()?.remove();
+    (this.document.defaultView as WidgetWindow | null)?.__talkarisWidgetRuntime?.destroy?.();
+    this.document.querySelectorAll(`#${this.scriptId}`).forEach((node) => node.remove());
+    this.document.querySelectorAll(this.iframeSelector).forEach((node) => node.remove());
 
     if (resetState) {
       this.widgetState = "idle";
@@ -216,8 +240,6 @@ export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
   }
 
   private findWidgetFrame(): HTMLIFrameElement | null {
-    return this.document.querySelector<HTMLIFrameElement>(
-      `iframe[title="${this.iframeTitle}"]`
-    );
+    return this.document.querySelector<HTMLIFrameElement>(this.iframeSelector);
   }
 }

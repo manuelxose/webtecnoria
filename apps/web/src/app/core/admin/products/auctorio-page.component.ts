@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-
-const STUDIO_PUBLIC_URL = "https://auctorio.com/studio/login";
+import { buildAuctorioPublicLoginUrl } from "../../../services/auctorio-links";
+import { AuctorioLaunchService } from "../integrations/auctorio-launch";
 
 @Component({
   selector: "app-auctorio-page",
@@ -14,17 +14,26 @@ const STUDIO_PUBLIC_URL = "https://auctorio.com/studio/login";
           <h1 class="page-title">Auctorio</h1>
           <p class="page-subtitle">Producto editorial independiente con Studio propio</p>
         </div>
-        <a class="a-btn a-btn-primary" [href]="studioUrl" target="_blank" rel="noreferrer">
+        <button class="a-btn a-btn-primary" type="button" [disabled]="launching" (click)="openStudio()">
+          @if (launching) {
+            <span class="a-spinner" style="width:13px;height:13px"></span>
+          }
           Abrir Studio real
-        </a>
+        </button>
       </div>
+
+      @if (launchError) {
+        <div class="a-card" style="margin-bottom:1rem;border-color:#fca5a5;background:#fff1f2;color:#991b1b">
+          {{ launchError }}
+        </div>
+      }
 
       <div class="a-card" style="margin-bottom:1.5rem;background:#eff6ff;border:1px solid #93c5fd">
         <div style="display:flex;align-items:center;gap:1rem;padding:.25rem 0;flex-wrap:wrap">
           <span class="a-badge" style="background:#2563eb;color:#fff;font-size:.85rem;padding:.3rem .75rem">Producto separado</span>
           <span style="color:var(--a-text-muted)">Entrada operativa:</span>
-          <strong style="color:#1d4ed8">{{ studioUrl }}</strong>
-          <span style="color:var(--a-text-muted);margin-left:auto;font-size:.875rem">SSO por workspace o API key fallback</span>
+          <strong style="color:#1d4ed8">{{ studioLoginUrl }}</strong>
+          <span style="color:var(--a-text-muted);margin-left:auto;font-size:.875rem">SSO por workspace o lanzamiento delegado seguro</span>
         </div>
       </div>
 
@@ -44,7 +53,7 @@ const STUDIO_PUBLIC_URL = "https://auctorio.com/studio/login";
         <div class="a-card">
           <div class="a-card-title" style="margin-bottom:.5rem">Modo actual</div>
           <p style="margin:0;color:var(--a-text-muted)">
-            Si el workspace no tiene OIDC configurado, el login expone fallback por API key sin simular un cockpit dentro de este dashboard.
+            Si el workspace no tiene OIDC configurado, el acceso operativo debe venir por lanzamiento delegado seguro o por la ruta de emergencia del Studio.
           </p>
         </div>
       </div>
@@ -56,7 +65,7 @@ const STUDIO_PUBLIC_URL = "https://auctorio.com/studio/login";
         <div style="display:grid;gap:1rem">
           <div style="padding:1rem;border:1px solid var(--a-border);border-radius:.75rem">
             <strong style="display:block;margin-bottom:.25rem">1. Seleccionas workspace</strong>
-            <span style="color:var(--a-text-muted);font-size:.9rem">El login verifica si el tenant tiene SSO activo o si debe usar fallback temporal.</span>
+            <span style="color:var(--a-text-muted);font-size:.9rem">El login verifica si el tenant tiene SSO activo o si debe entrar por lanzamiento delegado seguro.</span>
           </div>
           <div style="padding:1rem;border:1px solid var(--a-border);border-radius:.75rem">
             <strong style="display:block;margin-bottom:.25rem">2. Autenticas en Auctorio Studio</strong>
@@ -75,14 +84,37 @@ const STUDIO_PUBLIC_URL = "https://auctorio.com/studio/login";
             <h3 style="margin:0 0 .25rem;color:#fff">Ir al producto real</h3>
             <p style="margin:0;color:#cbd5e1;font-size:.9rem">Usa el Studio operativo de Auctorio. Este panel ya no intenta simular sus métricas internas.</p>
           </div>
-          <a class="a-btn" [href]="studioUrl" target="_blank" rel="noreferrer" style="background:#fff;color:#0f172a">
+          <button class="a-btn" type="button" [disabled]="launching" (click)="openStudio()" style="background:#fff;color:#0f172a">
             Abrir Auctorio
-          </a>
+          </button>
         </div>
       </div>
     </div>
   `,
 })
 export class AuctorioPageComponent {
-  readonly studioUrl = STUDIO_PUBLIC_URL;
+  readonly studioLoginUrl = buildAuctorioPublicLoginUrl();
+
+  launching = false;
+  launchError = "";
+
+  constructor(private readonly auctorioLaunch: AuctorioLaunchService) {}
+
+  async openStudio(): Promise<void> {
+    this.launchError = "";
+    this.launching = true;
+
+    try {
+      await this.auctorioLaunch.openStudioInNewTab({
+        workspace: "tecnoria",
+        returnTo: "/studio/dashboard",
+      });
+    } catch (error: any) {
+      this.launchError = String(
+        error?.error?.message || error?.message || "No se pudo abrir Auctorio."
+      );
+    } finally {
+      this.launching = false;
+    }
+  }
 }

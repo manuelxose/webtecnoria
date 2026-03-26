@@ -1,6 +1,6 @@
 <section class="auth-shell">
   <div class="site-container auth-grid">
-    <aside class="auth-panel auth-panel--accent">
+    <aside class="auth-panel auth-panel--accent auth-panel--login-accent">
       <div class="auth-topbar">
         <a class="brand-logo brand-logo--light auth-brand" routerLink="/" aria-label="Volver a TecnoRia">
           <img
@@ -16,88 +16,156 @@
         </button>
       </div>
 
-      <span class="eyebrow">Acceso seguro</span>
-      <h1>Inicia sesion en el panel privado.</h1>
-      <p class="lead">
-        Accede al dashboard editorial, gestiona posts del blog y lanza jobs de
-        scraping desde el mismo sistema visual del site publico.
-      </p>
-
-      <ul class="plain-list auth-checklist">
-        <li>Sesion por cookie y validacion SSR.</li>
-        <li>Google OAuth y acceso clasico solo para usuarios autorizados.</li>
-        <li>Backoffice unificado con la misma identidad del site.</li>
-      </ul>
-    </aside>
-
-    <article class="auth-panel auth-panel--form surface-card">
-      <div class="auth-card-head">
-        <span class="panel-label">Login</span>
-        <h2>Entrar al dashboard</h2>
-        <p>
-          Usa el acceso facilitado para gestionar contenido y operaciones
-          internas.
+      <div class="auth-login-hero">
+        <span class="eyebrow">Acceso privado</span>
+        <h1>Una sola entrada para panel interno y portal cliente.</h1>
+        <p class="lead">
+          El acceso privado se ha unificado: misma puerta de entrada, misma
+          validación SSR y redirección automática según el rol y la cuenta
+          autorizada.
         </p>
       </div>
 
-      <form class="contact-form__form" (ngSubmit)="signIn()">
-        <div class="form-group">
-          <label class="form-label form-label-required" for="admin-email">Email</label>
-          <input
-            id="admin-email"
-            class="form-control"
-            type="email"
-            name="email"
-            autocomplete="username"
-            [(ngModel)]="email"
-            required
-          />
-        </div>
+      <div class="auth-login-matrix" aria-label="Áreas disponibles">
+        <article class="auth-login-matrix__card">
+          <span class="auth-login-matrix__label">Editorial</span>
+          <strong>Dashboard y contenidos</strong>
+          <p>Posts, scraping, operaciones internas y panel administrativo.</p>
+        </article>
 
-        <div class="form-group">
-          <div class="auth-form-row">
-            <label class="form-label form-label-required" for="admin-password">Password</label>
-            <a
-              class="text-link"
-              routerLink="/auth-re-password"
-              [queryParams]="returnUrl ? { returnUrl } : null"
-            >
-              Recuperar acceso
-            </a>
+        <article class="auth-login-matrix__card">
+          <span class="auth-login-matrix__label">Portal</span>
+          <strong>Clientes y seguimiento</strong>
+          <p>Proyectos, tickets, facturas y estado de servicio con sesión segura.</p>
+        </article>
+      </div>
+
+      <ul class="plain-list auth-checklist">
+        <li>Acceso único para dashboard interno, contenidos y portal cliente.</li>
+        <li>Login clásico y Google Sign-In para usuarios que ya están autorizados.</li>
+        <li>Redirección directa al área que corresponde según el rol del usuario.</li>
+      </ul>
+    </aside>
+
+    <article class="auth-panel auth-panel--form surface-card auth-login-card">
+      <div class="auth-card-head auth-card-head--login">
+        <span class="panel-label">Área privada</span>
+        <h2>Entrar al sistema</h2>
+        <p>
+          Usa credenciales o tu cuenta Google autorizada. El sistema te lleva
+          al dashboard o portal correspondiente después de validar la sesión.
+        </p>
+      </div>
+
+      <div class="auth-access-stack">
+        <section class="auth-access-section">
+          <div class="auth-access-section__head">
+            <span class="panel-label">Credenciales</span>
+            <p>Email y password para usuarios con acceso clásico.</p>
           </div>
-          <input
-            id="admin-password"
-            class="form-control"
-            type="password"
-            name="password"
-            autocomplete="current-password"
-            [(ngModel)]="password"
-            required
-          />
-        </div>
 
-        <div *ngIf="errorMessage" class="alert alert-error">
-          {{ errorMessage }}
-        </div>
+          <form class="contact-form__form" (ngSubmit)="signIn()">
+            <div class="form-group">
+              <label class="form-label form-label-required" for="admin-email">Email</label>
+              <input
+                id="admin-email"
+                class="form-control"
+                type="email"
+                name="email"
+                autocomplete="username"
+                [(ngModel)]="email"
+                required
+              />
+            </div>
 
-        <button class="button button-primary button-block" type="submit" [disabled]="loading">
-          {{ loading ? "Entrando..." : "Entrar al panel" }}
-        </button>
-      </form>
+            <div class="form-group">
+              <div class="auth-form-row">
+                <label class="form-label form-label-required" for="admin-password">Password</label>
+                <a
+                  class="text-link"
+                  routerLink="/auth-re-password"
+                  [queryParams]="returnUrl ? { returnUrl } : null"
+                >
+                  Recuperar acceso
+                </a>
+              </div>
+              <input
+                id="admin-password"
+                class="form-control"
+                type="password"
+                name="password"
+                autocomplete="current-password"
+                [(ngModel)]="password"
+                required
+              />
+            </div>
 
-      <div class="auth-divider" *ngIf="googleEnabled">
-        <span>o continua con Google</span>
+            <div *ngIf="errorMessage" class="alert alert-error">
+              {{ errorMessage }}
+            </div>
+
+            <button class="button button-primary button-block" type="submit" [disabled]="loading">
+              {{ loading ? "Entrando..." : "Entrar al área privada" }}
+            </button>
+          </form>
+        </section>
+
+        <section class="auth-access-section auth-access-section--google">
+          <div class="auth-access-section__head">
+            <span class="panel-label">Google</span>
+            <p>Acceso directo con la cuenta corporativa autorizada en el sistema.</p>
+          </div>
+
+          <div class="auth-google-surface" [class.is-ready]="googleReady" [class.is-error]="!!googleUnavailableMessage">
+            <div class="auth-google-surface__meta">
+              <span class="auth-google-surface__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#4285F4" d="M21.6 12.23c0-.69-.06-1.35-.17-1.99H12v3.77h5.39a4.6 4.6 0 0 1-2 3.02v2.5h3.24c1.9-1.75 2.97-4.32 2.97-7.3Z"/>
+                  <path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.61-2.45l-3.24-2.5c-.9.6-2.05.95-3.37.95-2.59 0-4.78-1.75-5.56-4.1H3.1v2.58A10 10 0 0 0 12 22Z"/>
+                  <path fill="#FBBC05" d="M6.44 13.9A5.97 5.97 0 0 1 6.13 12c0-.66.11-1.3.31-1.9V7.52H3.1a10 10 0 0 0 0 8.96l3.34-2.58Z"/>
+                  <path fill="#EA4335" d="M12 5.98c1.47 0 2.79.5 3.83 1.48l2.87-2.87C16.95 2.96 14.7 2 12 2A10 10 0 0 0 3.1 7.52l3.34 2.58C7.22 7.73 9.41 5.98 12 5.98Z"/>
+                </svg>
+              </span>
+
+              <div>
+                <strong>Continuar con Google</strong>
+                <p>
+                  {{
+                    googleUnavailableMessage
+                      ? googleUnavailableMessage
+                      : googleReady
+                        ? "Selecciona tu cuenta autorizada para acceder sin usar password."
+                        : googleConfigured
+                          ? "Preparando Google Sign-In para este acceso."
+                          : "Comprobando disponibilidad del acceso con Google."
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div class="auth-google-render">
+              <div #googleButtonHost class="google-button-host" [class.google-button-host--ready]="googleReady"></div>
+
+              <div class="auth-google-placeholder" *ngIf="!googleReady">
+                <span class="auth-google-placeholder__pill">Google Sign-In</span>
+                <span class="auth-google-placeholder__state">
+                  {{ googleConfigured ? "Cargando botón seguro..." : "Verificando acceso..." }}
+                </span>
+              </div>
+            </div>
+
+            <p *ngIf="googleLoading" class="dashboard-note auth-google-status">
+              Validando acceso con Google...
+            </p>
+
+            <div *ngIf="googleErrorMessage" class="alert alert-error">
+              {{ googleErrorMessage }}
+            </div>
+          </div>
+        </section>
       </div>
 
-      <div class="auth-google-block" *ngIf="googleEnabled">
-        <div #googleButtonHost class="google-button-host"></div>
-        <p *ngIf="googleLoading" class="dashboard-note">Validando acceso con Google...</p>
-        <div *ngIf="googleErrorMessage" class="alert alert-error">
-          {{ googleErrorMessage }}
-        </div>
-      </div>
-
-      <div class="auth-footer">
+      <div class="auth-footer auth-footer--login">
         <span>Necesitas un acceso nuevo?</span>
         <a
           class="text-link"

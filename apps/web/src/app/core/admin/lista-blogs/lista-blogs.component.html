@@ -1,187 +1,289 @@
-<div class="a-page">
-
-  <!-- Header -->
+<div class="a-page blog-admin-page">
   <div class="page-header">
     <div class="page-header-left">
       <h1 class="page-title">Blog</h1>
-      <p class="page-subtitle">{{ posts().length }} artículos publicados</p>
+      <p class="page-subtitle">
+        Artículos públicos, borradores API y piezas base preparadas para
+        gestionarse desde dashboard o delegarse a Auctorio.
+      </p>
     </div>
-    <div class="page-actions">
+
+    <div class="page-actions blog-admin-page__actions">
+      <button
+        type="button"
+        class="a-btn a-btn-ghost"
+        [disabled]="launchingAuctorio()"
+        (click)="openAuctorio()"
+      >
+        @if (launchingAuctorio()) {
+          <span class="a-spinner" style="width:13px;height:13px"></span>
+        }
+        Delegar en Auctorio
+      </button>
       <a routerLink="/dashboard/blog/new" class="a-btn a-btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <line x1="5" y1="12" x2="19" y2="12" />
         </svg>
         Nuevo artículo
       </a>
     </div>
   </div>
 
-  <!-- Stats row -->
-  <div class="a-grid-3" style="margin-bottom:24px">
+  <section class="a-card blog-admin-sync-card">
+    <div>
+      <span class="a-badge blog-admin-sync-card__badge">Flujo unificado</span>
+      <h2>La web pública y el dashboard ya comparten el mismo inventario editorial.</h2>
+      <p>
+        Las piezas base del sitio aparecen aquí, los borradores de la API se
+        abren para edición y cualquier artículo puede terminar publicándose
+        desde este panel o desde Auctorio Studio usando el mismo contrato.
+      </p>
+    </div>
+
+    <div class="blog-admin-sync-card__actions">
+      <a class="a-btn a-btn-secondary" routerLink="/blog" target="_blank" rel="noreferrer">
+        Ver blog público
+      </a>
+      <button
+        type="button"
+        class="a-btn a-btn-ghost"
+        [disabled]="launchingAuctorio()"
+        (click)="openAuctorio()"
+      >
+        Abrir Studio
+      </button>
+    </div>
+  </section>
+
+  <div class="blog-admin-kpis">
     <div class="kpi-card">
       <div class="kpi-card-header">
-        <span class="kpi-card-label">Total artículos</span>
+        <span class="kpi-card-label">Visibles en web</span>
         <svg class="kpi-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
+          <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
         </svg>
       </div>
-      <div class="kpi-card-value">{{ posts().length }}</div>
-      <div class="kpi-card-footer"><span>en la API</span></div>
+      <div class="kpi-card-value">{{ publishedCount() }}</div>
+      <div class="kpi-card-footer"><span>publicados por código o API</span></div>
     </div>
 
     <div class="kpi-card">
       <div class="kpi-card-header">
-        <span class="kpi-card-label">Autores únicos</span>
+        <span class="kpi-card-label">Borradores API</span>
         <svg class="kpi-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
+          <path d="M12 20h9" />
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
         </svg>
       </div>
-      <div class="kpi-card-value">{{ uniqueAuthors() }}</div>
-      <div class="kpi-card-footer"><span>colaboradores</span></div>
+      <div class="kpi-card-value">{{ apiDraftCount() }}</div>
+      <div class="kpi-card-footer"><span>solo visibles en editor</span></div>
     </div>
 
     <div class="kpi-card">
       <div class="kpi-card-header">
-        <span class="kpi-card-label">Tags registrados</span>
+        <span class="kpi-card-label">Piezas delegables</span>
         <svg class="kpi-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
-          <line x1="7" y1="7" x2="7.01" y2="7"/>
+          <rect x="3" y="4" width="18" height="14" rx="2" />
+          <path d="M8 20h8" />
+          <path d="M12 18v2" />
+        </svg>
+      </div>
+      <div class="kpi-card-value">{{ delegableCount() }}</div>
+      <div class="kpi-card-footer"><span>listas para dashboard o Auctorio</span></div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <span class="kpi-card-label">Cobertura editorial</span>
+        <svg class="kpi-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
         </svg>
       </div>
       <div class="kpi-card-value">{{ uniqueTags() }}</div>
-      <div class="kpi-card-footer"><span>etiquetas distintas</span></div>
+      <div class="kpi-card-footer"><span>{{ uniqueAuthors() }} autores o firmas activas</span></div>
     </div>
   </div>
 
-  <!-- Error -->
   @if (error()) {
-    <div style="padding:12px 16px;background:var(--a-danger-muted);border:1px solid var(--a-danger);border-radius:var(--a-r-md);color:var(--a-danger);font-size:13px;margin-bottom:16px;display:flex;align-items:center;gap:10px">
+    <div class="blog-admin-alert blog-admin-alert--error">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="12" />
+        <line x1="12" y1="16" x2="12.01" y2="16" />
       </svg>
-      {{ error() }}
-      <button class="a-btn a-btn-ghost a-btn-sm" style="margin-left:auto" (click)="load()">Reintentar</button>
+      <span>{{ error() }}</span>
+      <button class="a-btn a-btn-ghost a-btn-sm" (click)="load()">Reintentar</button>
     </div>
   }
 
-  <!-- Search -->
-  <div style="margin-bottom:16px">
-    <div style="position:relative;max-width:360px">
-      <svg style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--a-text-muted)" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  @if (launchError()) {
+    <div class="blog-admin-alert blog-admin-alert--error">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="12" />
+        <line x1="12" y1="16" x2="12.01" y2="16" />
+      </svg>
+      <span>{{ launchError() }}</span>
+    </div>
+  }
+
+  <section class="a-card blog-admin-toolbar">
+    <div class="blog-admin-toolbar__search">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
       </svg>
       <input
         class="a-input"
-        style="padding-left:34px"
         type="search"
         placeholder="Buscar por título, slug, autor o tag…"
         [value]="search()"
         (input)="search.set($any($event.target).value)"
       />
     </div>
-  </div>
 
-  <!-- Loading -->
+    <p class="blog-admin-toolbar__hint">
+      Si una pieza viene de código, puedes abrirla en el editor para crear una
+      versión gestionada por API sin perder el slug público.
+    </p>
+  </section>
+
   @if (loading()) {
-    <div style="display:flex;align-items:center;gap:10px;color:var(--a-text-muted);padding:48px 0">
-      <span class="a-spinner"></span> Cargando artículos…
+    <div class="blog-admin-loading">
+      <span class="a-spinner"></span>
+      Cargando inventario editorial…
     </div>
   }
 
-  <!-- Table -->
   @if (!loading()) {
     @if (filtered().length === 0) {
-      <div class="a-empty" style="padding:64px 0">
+      <div class="a-empty blog-admin-empty">
         <svg class="a-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-          <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-          <polyline points="10 9 9 9 8 9"/>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+          <polyline points="10 9 9 9 8 9" />
         </svg>
-        <div class="a-empty-title">{{ search() ? 'Sin resultados' : 'Sin artículos' }}</div>
+        <div class="a-empty-title">
+          {{ search() ? "Sin resultados" : "Sin artículos" }}
+        </div>
         <div class="a-empty-desc">
           @if (search()) {
             Ningún artículo coincide con «{{ search() }}».
-            <button class="a-btn a-btn-ghost a-btn-sm" style="margin-left:8px" (click)="search.set('')">Limpiar</button>
+            <button class="a-btn a-btn-ghost a-btn-sm" (click)="search.set('')">
+              Limpiar
+            </button>
           } @else {
-            Crea el primer artículo con el botón de arriba.
+            Crea el primer artículo desde el dashboard o delega el flujo a
+            Auctorio Studio.
           }
         </div>
       </div>
     } @else {
-      <div class="a-card" style="padding:0;overflow:hidden">
+      <div class="a-card blog-admin-table-card">
         <div class="a-table-wrap">
-          <table class="a-table">
+          <table class="a-table blog-admin-table">
             <thead>
               <tr>
-                <th style="width:40%">Artículo</th>
-                <th>Autor</th>
-                <th>Tags</th>
+                <th>Artículo</th>
+                <th>Estado</th>
+                <th>Fuente</th>
                 <th>Actualizado</th>
-                <th style="width:120px"></th>
+                <th class="blog-admin-table__actions-head">Acciones</th>
               </tr>
             </thead>
             <tbody>
-              @for (post of filtered(); track post.id) {
+              @for (post of filtered(); track post.slug) {
                 <tr>
                   <td>
-                    <div>
-                      <div style="font-weight:500;color:var(--a-text);margin-bottom:2px">{{ post.title }}</div>
-                      <div style="font-size:11px;color:var(--a-text-muted);font-family:var(--a-font-mono)">/{{ post.slug }}</div>
+                    <div class="blog-admin-row-title">
+                      <div class="blog-admin-row-title__main">
+                        <strong>{{ post.title }}</strong>
+                        <span>/{{ post.slug }}</span>
+                      </div>
+                      <p>{{ post.shortDescription || "Sin resumen todavía." }}</p>
                     </div>
                   </td>
+
                   <td>
-                    <div style="display:flex;align-items:center;gap:8px">
-                      <div class="a-avatar sm">{{ post.author.slice(0, 2).toUpperCase() }}</div>
-                      <span style="font-size:13px">{{ post.author || '—' }}</span>
+                    <div class="blog-admin-state">
+                      <span class="a-badge" [class.blog-admin-state__badge--draft]="post.status === 'draft'">
+                        {{ getEditorialLabel(post) }}
+                      </span>
+                      <span class="blog-admin-state__visibility">
+                        {{ getVisibilityLabel(post) }}
+                      </span>
                     </div>
                   </td>
+
                   <td>
-                    <div style="display:flex;flex-wrap:wrap;gap:4px">
-                      @for (tag of post.tags.slice(0, 3); track tag) {
-                        <span class="a-badge a-badge-draft">{{ tag }}</span>
-                      }
-                      @if (post.tags.length > 3) {
-                        <span class="a-badge" style="color:var(--a-text-muted)">+{{ post.tags.length - 3 }}</span>
-                      }
-                    </div>
-                  </td>
-                  <td style="color:var(--a-text-muted);font-size:12px">
-                    {{ formatDate(post.updatedAt || post.createdAt) }}
-                  </td>
-                  <td>
-                    <div style="display:flex;gap:6px;justify-content:flex-end">
-                      <a
-                        [routerLink]="['/dashboard/blog', post.id]"
-                        class="a-btn a-btn-ghost a-btn-sm"
-                        title="Editar"
-                      >
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                        </svg>
-                        Editar
-                      </a>
-                      <button
-                        class="a-btn a-btn-ghost a-btn-sm"
-                        style="color:var(--a-danger)"
-                        [disabled]="deletingId() === post.id"
-                        (click)="deletePost(post)"
-                        title="Eliminar"
-                      >
-                        @if (deletingId() === post.id) {
-                          <span class="a-spinner" style="width:12px;height:12px"></span>
-                        } @else {
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="3 6 5 6 21 6"/>
-                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-                            <path d="M10 11v6"/><path d="M14 11v6"/>
-                            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-                          </svg>
+                    <div class="blog-admin-source">
+                      <strong>{{ getSourceLabel(post) }}</strong>
+                      <div class="blog-admin-source__tags">
+                        @for (tag of post.tags.slice(0, 3); track tag) {
+                          <span class="a-badge a-badge-draft">{{ tag }}</span>
                         }
-                      </button>
+                        @if (post.tags.length > 3) {
+                          <span class="a-badge">+{{ post.tags.length - 3 }}</span>
+                        }
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="blog-admin-date-cell">
+                    <span>{{ formatDate(post.updatedAt || post.publishedAt || post.createdAt) }}</span>
+                    <small>
+                      {{ post.source === "api" ? "última edición" : "publicación base" }}
+                    </small>
+                  </td>
+
+                  <td>
+                    <div class="blog-admin-row-actions">
+                      <a
+                        [routerLink]="['/dashboard/blog', post.slug]"
+                        class="a-btn a-btn-ghost a-btn-sm"
+                      >
+                        {{ getEditLabel(post) }}
+                      </a>
+                      <a
+                        [routerLink]="getPublicPath(post)"
+                        class="a-btn a-btn-ghost a-btn-sm"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Ver web
+                      </a>
+                      @if (post.source === "api") {
+                        <button
+                          class="a-btn a-btn-ghost a-btn-sm blog-admin-delete"
+                          [disabled]="deletingId() === post.id"
+                          (click)="deletePost(post)"
+                        >
+                          @if (deletingId() === post.id) {
+                            <span class="a-spinner" style="width:12px;height:12px"></span>
+                          } @else {
+                            Eliminar
+                          }
+                        </button>
+                      }
                     </div>
                   </td>
                 </tr>
@@ -191,10 +293,9 @@
         </div>
       </div>
 
-      <div style="margin-top:12px;font-size:12px;color:var(--a-text-muted)">
-        {{ filtered().length }} de {{ posts().length }} artículos
+      <div class="blog-admin-footer-meta">
+        {{ filtered().length }} de {{ posts().length }} artículos visibles en el inventario editorial
       </div>
     }
   }
-
 </div>

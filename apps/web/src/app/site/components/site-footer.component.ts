@@ -32,12 +32,12 @@ import {
               >
             </a>
             <p>
-              Ingeniería de software, automatización e inteligencia artificial
-              aplicada para empresas que necesitan sistemas sólidos, operativa
-              eficiente y decisiones tecnológicas bien fundamentadas.
+              Ingeniería de software, automatización e IA aplicada para
+              empresas que necesitan una arquitectura sólida, una operativa
+              más limpia y decisiones tecnológicas bien planteadas.
             </p>
             <div class="site-footer__signals">
-              <span>Galicia, España</span>
+              <span>Galicia · España</span>
               <span>Respuesta inicial &lt; 24h laborables</span>
               <span>Software, automatización e IA aplicada</span>
             </div>
@@ -45,11 +45,11 @@ import {
 
           <div class="site-footer__cta">
             <span class="panel-label">¿Hablamos?</span>
-            <h2>Tu próximo proyecto merece una base técnica a la altura.</h2>
+            <h2>Tu próximo sistema merece una base técnica que no se quede corta.</h2>
             <p>
-              Software a medida, automatización, chatbots o IA aplicada
-              con criterio de negocio. Cuéntanos qué necesitas y te orientamos
-              sin compromiso.
+              Cuéntanos el cuello de botella, la oportunidad o la idea que
+              quieres convertir en producto. Te devolvemos criterio y un
+              siguiente paso útil, sin rodeos.
             </p>
             <div class="site-footer__actions">
               <a class="button button-primary" routerLink="/contacto">Solicitar diagnóstico</a>

@@ -1,0 +1,27 @@
+{
+  "project": "webtecnoria",
+  "description": "Monorepo with Angular SSR web, custom API, and shared types.",
+  "roles": {
+    "Architect": {
+      "focus": "Monorepo architecture, API design, SOLID, Clean Architecture.",
+      "instructions": "When acting as Architect, oversee the integration between 'apps/web', 'apps/api', and 'packages/shared-types'. Maintain strict type boundaries."
+    },
+    "Developer": {
+      "focus": "Full-stack implementation (Angular + Node.js).",
+      "instructions": "When acting as Developer, implement features across the monorepo. Use shared types to ensure frontend-backend synchronization."
+    },
+    "Tester": {
+      "focus": "QA, API testing, E2E user flows.",
+      "instructions": "When acting as Tester, verify the integrity of the API and the web application. Focus on edge cases and security."
+    },
+    "UXUI": {
+      "focus": "Angular UI excellence, premium styles, responsive design.",
+      "instructions": "When acting as UX/UI, focus on 'apps/web'. Deliver 'WOW' factor interfaces with modern CSS and smooth animations."
+    }
+  },
+  "token_optimization": {
+    "be_concise": true,
+    "prefer_summaries": true,
+    "exclude_paths": ["node_modules", "dist", ".git", "infra"]
+  }
+}

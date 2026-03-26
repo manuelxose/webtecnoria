@@ -18,6 +18,7 @@ import { SeoService } from "../services/seo.service";
   selector: "app-service-detail-page",
   standalone: true,
   imports: [CommonModule, RouterModule, ContactFormComponent],
+  styleUrls: ["./service-detail-page.component.css"],
   template: `
     <ng-container *ngIf="service as current">
       <section class="page-hero section">
@@ -114,7 +115,7 @@ import { SeoService } from "../services/seo.service";
         </div>
       </section>
 
-      <section class="section section-dark" *ngIf="current.crossLinks?.length">
+      <section class="section section-dark service-cross-links" *ngIf="current.crossLinks?.length">
         <div class="site-container section-head section-head--light">
           <span class="eyebrow">También puede encajar</span>
           <h2>Relacionamos este servicio con la siguiente mejor decisión.</h2>
@@ -123,11 +124,14 @@ import { SeoService } from "../services/seo.service";
             aterrizado en esta landing.
           </p>
         </div>
-        <div class="site-container card-grid card-grid--two">
-          <article class="surface-card surface-card--soft-dark" *ngFor="let link of current.crossLinks">
+        <div class="site-container card-grid card-grid--two service-cross-links__grid">
+          <article class="surface-card surface-card--soft-dark service-cross-link-card" *ngFor="let link of current.crossLinks">
+            <span class="service-cross-link-card__label">Ruta complementaria</span>
             <h3>{{ link.label }}</h3>
             <p>{{ link.description }}</p>
-            <a class="text-link text-link--light" [routerLink]="link.path">Explorar landing</a>
+            <a class="text-link text-link--light service-cross-link-card__link" [routerLink]="link.path">
+              Explorar landing
+            </a>
           </article>
         </div>
       </section>

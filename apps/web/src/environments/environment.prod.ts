@@ -2,7 +2,8 @@ export const environment = {
   production: true,
   apiBaseUrl: "",
   chatWidgetEnabled: true,
-  chatWidgetBaseUrl: "https://tecnoriasl.com/chat-widget/",
-  chatWidgetApiBaseUrl: "https://tecnoriasl.com/chat-api",
+  chatWidgetBaseUrl: "https://talkaris.com/widget/",
+  chatWidgetApiBaseUrl: "https://talkaris.com/api",
   chatWidgetSiteKey: "tecnoria-public-site-key",
+  chatWidgetAssetVersion: "20260320-widget-runtime-v8",
 };

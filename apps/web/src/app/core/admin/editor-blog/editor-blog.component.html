@@ -1,170 +1,327 @@
-<div class="a-page">
-
-  <!-- Header -->
+<div class="a-page blog-editor-page">
   <div class="page-header">
     <div class="page-header-left">
-      <a routerLink="/dashboard/blog" class="a-btn a-btn-ghost a-btn-sm" style="margin-bottom:8px">
+      <a routerLink="/dashboard/blog" class="a-btn a-btn-ghost a-btn-sm blog-editor-page__back">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
         </svg>
         Volver al listado
       </a>
-      <h1 class="page-title">{{ isEdit() ? 'Editar artículo' : 'Nuevo artículo' }}</h1>
-      <p class="page-subtitle">{{ isEdit() ? 'Modifica el contenido y guarda los cambios.' : 'Rellena los campos y publica el artículo.' }}</p>
+      <h1 class="page-title">{{ titleText }}</h1>
+      <p class="page-subtitle">{{ subtitleText }}</p>
     </div>
-    <div class="page-actions">
+
+    <div class="page-actions blog-editor-page__actions">
+      <a class="a-btn a-btn-ghost" [routerLink]="publicPath()" target="_blank" rel="noreferrer">
+        Ver artículo público
+      </a>
+      <button
+        type="button"
+        class="a-btn a-btn-ghost"
+        [disabled]="launchingAuctorio()"
+        (click)="openAuctorio()"
+      >
+        @if (launchingAuctorio()) {
+          <span class="a-spinner" style="width:13px;height:13px"></span>
+        }
+        Delegar en Auctorio
+      </button>
       <a routerLink="/dashboard/blog" class="a-btn a-btn-secondary">Cancelar</a>
       <button class="a-btn a-btn-primary" [disabled]="saving()" (click)="save()">
         @if (saving()) {
           <span class="a-spinner" style="width:13px;height:13px"></span>
-          Guardando…
-        } @else {
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-            <polyline points="17 21 17 13 7 13 7 21"/>
-            <polyline points="7 3 7 8 15 8"/>
-          </svg>
-          {{ isEdit() ? 'Guardar cambios' : 'Publicar artículo' }}
         }
+        {{ primaryActionLabel }}
       </button>
     </div>
   </div>
 
-  <!-- Loading -->
   @if (loading()) {
-    <div style="display:flex;align-items:center;gap:10px;color:var(--a-text-muted);padding:48px 0">
-      <span class="a-spinner"></span> Cargando artículo…
+    <div class="blog-editor-page__loading">
+      <span class="a-spinner"></span>
+      Cargando artículo…
     </div>
   }
 
   @if (!loading()) {
+    <section class="a-card blog-editor-status-card">
+      <div>
+        <span class="a-badge blog-editor-status-card__badge">
+          {{
+            editorMode() === "edit"
+              ? "Artículo API"
+              : editorMode() === "seed"
+                ? "Base pública"
+                : "Nuevo borrador"
+          }}
+        </span>
+        <h2>La edición se guarda en la API editorial y puede operarse también desde Auctorio.</h2>
+        <p>{{ sourceSummary() }}</p>
+      </div>
 
-    <!-- Alerts -->
+      <div class="blog-editor-status-card__meta">
+        <div>
+          <strong>Slug público</strong>
+          <span>/blog/{{ draft().slug || "pendiente-de-definir" }}</span>
+        </div>
+        <div>
+          <strong>Estado editorial</strong>
+          <span>{{ draft().status === "publish" ? "Publicado" : "Borrador" }}</span>
+        </div>
+      </div>
+    </section>
+
     @if (error()) {
-      <div style="padding:12px 16px;background:var(--a-danger-muted);border:1px solid var(--a-danger);border-radius:var(--a-r-md);color:var(--a-danger);font-size:13px;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+      <div class="blog-editor-alert blog-editor-alert--error">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
         </svg>
-        {{ error() }}
+        <span>{{ error() }}</span>
       </div>
     }
+
     @if (success()) {
-      <div style="padding:12px 16px;background:var(--a-success-muted);border:1px solid var(--a-success);border-radius:var(--a-r-md);color:var(--a-success);font-size:13px;margin-bottom:20px;display:flex;align-items:center;gap:10px">
+      <div class="blog-editor-alert blog-editor-alert--success">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="20 6 9 17 4 12"/>
+          <polyline points="20 6 9 17 4 12" />
         </svg>
-        {{ success() }}
+        <span>{{ success() }}</span>
       </div>
     }
 
-    <!-- Form layout -->
-    <div style="display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start">
+    @if (launchError()) {
+      <div class="blog-editor-alert blog-editor-alert--error">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+        <span>{{ launchError() }}</span>
+      </div>
+    }
 
-      <!-- Main column -->
-      <div style="display:flex;flex-direction:column;gap:16px">
-
-        <!-- Título + Slug -->
-        <div class="a-card">
-          <div class="a-card-header" style="padding-bottom:0">
-            <span class="a-card-title">Identificación</span>
+    <div class="blog-editor-layout">
+      <div class="blog-editor-main">
+        <section class="a-card">
+          <div class="a-card-header">
+            <span class="a-card-title">Identificación editorial</span>
           </div>
-          <div style="display:flex;flex-direction:column;gap:14px;padding:16px 20px 20px">
 
+          <div class="blog-editor-form-grid">
             <div class="a-form-group">
               <label class="a-label a-label-required">Título</label>
               <input
                 class="a-input"
                 type="text"
-                placeholder="Ej: Cómo automatizar procesos con IA en tu empresa"
+                placeholder="Ej. Cómo ordenar reporting, automatización y decisiones sin rehacerlo todo"
                 [value]="draft().title"
-                (input)="draft.update(v => ({ ...v, title: $any($event.target).value }))"
+                (input)="updateTextField('title', $event)"
                 (blur)="onTitleBlur()"
               />
             </div>
 
             <div class="a-form-group">
-              <label class="a-label a-label-required">
-                Slug
-                <span style="font-weight:400;color:var(--a-text-muted);margin-left:6px">· Se genera automáticamente desde el título</span>
-              </label>
-              <div style="position:relative">
-                <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--a-text-muted);font-size:12px;font-family:var(--a-font-mono)">/blog/</span>
+              <label class="a-label a-label-required">Slug</label>
+              <div class="blog-editor-prefixed-input">
+                <span>/blog/</span>
                 <input
                   class="a-input"
                   type="text"
-                  style="padding-left:48px;font-family:var(--a-font-mono);font-size:13px"
                   placeholder="nombre-del-articulo"
                   [value]="draft().slug"
-                  (input)="draft.update(v => ({ ...v, slug: $any($event.target).value }))"
+                  (input)="updateTextField('slug', $event)"
                 />
               </div>
             </div>
 
-          </div>
-        </div>
-
-        <!-- Descripción corta -->
-        <div class="a-card">
-          <div class="a-card-header" style="padding-bottom:0">
-            <span class="a-card-title">Descripción corta</span>
-            <span style="font-size:12px;color:var(--a-text-muted)">Aparece en el listado y en SEO</span>
-          </div>
-          <div style="padding:16px 20px 20px">
             <div class="a-form-group">
               <label class="a-label a-label-required">Resumen</label>
               <textarea
                 class="a-input"
-                rows="3"
-                placeholder="Una o dos frases que resumen el artículo…"
-                style="resize:vertical"
+                rows="4"
+                placeholder="Dos o tres frases que expliquen el enfoque del artículo y por qué importa."
                 [value]="draft().shortDescription"
-                (input)="draft.update(v => ({ ...v, shortDescription: $any($event.target).value }))"
+                (input)="updateTextField('shortDescription', $event)"
               ></textarea>
             </div>
-          </div>
-        </div>
 
-        <!-- Contenido -->
-        <div class="a-card">
-          <div class="a-card-header" style="padding-bottom:0">
-            <span class="a-card-title">Contenido</span>
-            <span style="font-size:12px;color:var(--a-text-muted)">Admite HTML para estructura rica</span>
-          </div>
-          <div style="padding:16px 20px 20px">
             <div class="a-form-group">
-              <label class="a-label a-label-required">Cuerpo del artículo</label>
+              <div class="blog-editor-content-topbar">
+                <label class="a-label a-label-required">Contenido</label>
+
+                <div class="blog-editor-mode-switch">
+                  <button
+                    type="button"
+                    class="blog-editor-mode-switch__button"
+                    [class.blog-editor-mode-switch__button--active]="editorView() === 'rich'"
+                    (click)="setEditorView('rich')"
+                  >
+                    Visual
+                  </button>
+                  <button
+                    type="button"
+                    class="blog-editor-mode-switch__button"
+                    [class.blog-editor-mode-switch__button--active]="editorView() === 'html'"
+                    (click)="setEditorView('html')"
+                  >
+                    HTML
+                  </button>
+                </div>
+              </div>
+
+              <div class="blog-editor-content-shell">
+                @if (editorView() === "rich") {
+                  <div class="blog-editor-toolbar">
+                    <button type="button" class="blog-editor-toolbar__button" (click)="applyEditorCommand('paragraph')">
+                      P
+                    </button>
+                    <button type="button" class="blog-editor-toolbar__button" (click)="applyEditorCommand('heading2')">
+                      H2
+                    </button>
+                    <button type="button" class="blog-editor-toolbar__button" (click)="applyEditorCommand('heading3')">
+                      H3
+                    </button>
+                    <button type="button" class="blog-editor-toolbar__button" (click)="applyEditorCommand('bold')">
+                      B
+                    </button>
+                    <button type="button" class="blog-editor-toolbar__button" (click)="applyEditorCommand('italic')">
+                      I
+                    </button>
+                    <button type="button" class="blog-editor-toolbar__button" (click)="applyEditorCommand('underline')">
+                      U
+                    </button>
+                    <button
+                      type="button"
+                      class="blog-editor-toolbar__button"
+                      (click)="applyEditorCommand('insertUnorderedList')"
+                    >
+                      Lista
+                    </button>
+                    <button
+                      type="button"
+                      class="blog-editor-toolbar__button"
+                      (click)="applyEditorCommand('insertOrderedList')"
+                    >
+                      1.2.3
+                    </button>
+                    <button type="button" class="blog-editor-toolbar__button" (click)="applyEditorCommand('blockquote')">
+                      Cita
+                    </button>
+                    <button type="button" class="blog-editor-toolbar__button" (click)="insertLink()">
+                      Enlace
+                    </button>
+                    <button type="button" class="blog-editor-toolbar__button" (click)="applyEditorCommand('undo')">
+                      Deshacer
+                    </button>
+                    <button type="button" class="blog-editor-toolbar__button" (click)="applyEditorCommand('redo')">
+                      Rehacer
+                    </button>
+                    <button
+                      type="button"
+                      class="blog-editor-toolbar__button"
+                      (click)="applyEditorCommand('removeFormat')"
+                    >
+                      Limpiar
+                    </button>
+                  </div>
+
+                  <div
+                    #richEditor
+                    class="blog-rich-editor"
+                    contenteditable="true"
+                    spellcheck="true"
+                    role="textbox"
+                    aria-multiline="true"
+                    (input)="onRichEditorInput()"
+                  ></div>
+                } @else {
+                  <textarea
+                    class="a-input blog-editor-content"
+                    rows="20"
+                    placeholder="Escribe HTML editorial o pega una estructura rica desde Auctorio."
+                    [value]="draft().content"
+                    (input)="updateTextField('content', $event)"
+                  ></textarea>
+                }
+              </div>
+
+              <p class="blog-editor-content-hint">
+                Usa el modo visual para redactar y el modo HTML para revisar o pegar bloques generados desde Auctorio.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="a-card">
+          <div class="a-card-header">
+            <span class="a-card-title">SEO y discoverability</span>
+          </div>
+
+          <div class="blog-editor-form-grid blog-editor-form-grid--two">
+            <div class="a-form-group">
+              <label class="a-label">SEO title</label>
+              <input
+                class="a-input"
+                type="text"
+                placeholder="Si se deja vacío, usa el título principal"
+                [value]="draft().seoTitle"
+                (input)="updateTextField('seoTitle', $event)"
+              />
+            </div>
+
+            <div class="a-form-group">
+              <label class="a-label">SEO description</label>
               <textarea
                 class="a-input"
-                rows="18"
-                style="resize:vertical;font-family:var(--a-font-mono);font-size:12.5px;line-height:1.65"
-                placeholder="Escribe el contenido aquí. Puedes usar HTML si necesitas estructura rica."
-                [value]="draft().content"
-                (input)="draft.update(v => ({ ...v, content: $any($event.target).value }))"
+                rows="4"
+                placeholder="Si se deja vacío, usa el resumen corto."
+                [value]="draft().seoDescription"
+                (input)="updateTextField('seoDescription', $event)"
               ></textarea>
             </div>
           </div>
-        </div>
-
+        </section>
       </div>
 
-      <!-- Sidebar column -->
-      <div style="display:flex;flex-direction:column;gap:16px">
-
-        <!-- Metadatos -->
-        <div class="a-card">
-          <div class="a-card-header" style="padding-bottom:0">
-            <span class="a-card-title">Metadatos</span>
+      <aside class="blog-editor-sidebar">
+        <section class="a-card">
+          <div class="a-card-header">
+            <span class="a-card-title">Publicación</span>
           </div>
-          <div style="display:flex;flex-direction:column;gap:14px;padding:16px 20px 20px">
+
+          <div class="blog-editor-sidebar__stack">
+            <div class="a-form-group">
+              <label class="a-label">Estado</label>
+              <select
+                class="a-input"
+                [value]="draft().status"
+                (change)="updateStatus($event)"
+              >
+                <option value="draft">Borrador</option>
+                <option value="publish">Publicado</option>
+              </select>
+            </div>
+
+            <div class="a-form-group">
+              <label class="a-label">Fecha de publicación</label>
+              <input
+                class="a-input"
+                type="datetime-local"
+                [value]="draft().publishedAt"
+                (input)="updatePublishedAt($event)"
+              />
+            </div>
 
             <div class="a-form-group">
               <label class="a-label a-label-required">Autor</label>
               <input
                 class="a-input"
                 type="text"
-                placeholder="TecnoRia"
                 [value]="draft().author"
-                (input)="draft.update(v => ({ ...v, author: $any($event.target).value }))"
+                (input)="updateTextField('author', $event)"
               />
             </div>
 
@@ -175,98 +332,80 @@
                 type="text"
                 placeholder="software, automatización, ia"
                 [value]="draft().tagsText"
-                (input)="draft.update(v => ({ ...v, tagsText: $any($event.target).value }))"
+                (input)="updateTextField('tagsText', $event)"
               />
-              <span style="font-size:11px;color:var(--a-text-muted);margin-top:4px">Separados por comas</span>
             </div>
-
           </div>
-        </div>
+        </section>
 
-        <!-- Imagen destacada -->
-        <div class="a-card">
-          <div class="a-card-header" style="padding-bottom:0">
+        <section class="a-card">
+          <div class="a-card-header">
             <span class="a-card-title">Imagen destacada</span>
           </div>
-          <div style="display:flex;flex-direction:column;gap:12px;padding:16px 20px 20px">
 
+          <div class="blog-editor-sidebar__stack">
             @if (draft().imageUrl && !selectedFile()) {
-              <div style="border-radius:var(--a-r-sm);overflow:hidden;background:var(--a-bg-raised);border:1px solid var(--a-border)">
+              <div class="blog-editor-image-preview">
                 <img
                   [src]="draft().imageUrl"
                   alt="Imagen actual"
-                  style="width:100%;height:140px;object-fit:cover;display:block"
                   (error)="$any($event.target).style.display='none'"
                 />
               </div>
-              <div style="font-size:11px;color:var(--a-text-muted);word-break:break-all">{{ draft().imageUrl }}</div>
             }
 
             @if (selectedFile()) {
-              <div style="padding:10px 12px;background:var(--a-success-muted);border:1px solid var(--a-success);border-radius:var(--a-r-sm);display:flex;align-items:center;justify-content:space-between;gap:8px">
+              <div class="blog-editor-file-pill">
                 <div>
-                  <div style="font-size:12px;font-weight:500;color:var(--a-success)">Nuevo archivo</div>
-                  <div style="font-size:11px;color:var(--a-text-muted)">{{ selectedFile()!.name }}</div>
+                  <strong>Archivo listo</strong>
+                  <span>{{ selectedFile()!.name }}</span>
                 </div>
-                <button class="a-btn a-btn-ghost a-btn-sm" style="color:var(--a-danger)" (click)="clearFile()">Quitar</button>
+                <button class="a-btn a-btn-ghost a-btn-sm" (click)="clearFile()">Quitar</button>
               </div>
             }
 
-            <div class="a-form-group" style="margin:0">
-              <label class="a-label">{{ selectedFile() || draft().imageUrl ? 'Reemplazar imagen' : 'Subir imagen' }}</label>
+            <div class="a-form-group">
+              <label class="a-label">Subir imagen</label>
               <input
                 class="a-input"
                 type="file"
                 accept="image/*"
-                style="padding:6px 10px;font-size:12px"
                 (change)="onFileChange($event)"
               />
             </div>
 
-            @if (!selectedFile() && !draft().imageUrl) {
-              <div class="a-form-group" style="margin:0">
-                <label class="a-label">O pegar URL</label>
+            @if (!selectedFile()) {
+              <div class="a-form-group">
+                <label class="a-label">O usar URL</label>
                 <input
                   class="a-input"
                   type="url"
                   placeholder="https://..."
                   [value]="draft().imageUrl"
-                  (input)="draft.update(v => ({ ...v, imageUrl: $any($event.target).value }))"
+                  (input)="updateTextField('imageUrl', $event)"
                 />
               </div>
             }
-
           </div>
-        </div>
+        </section>
 
-        <!-- Acciones rápidas -->
-        <div class="a-card" style="background:var(--a-bg-raised)">
-          <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px">
-            <button
-              class="a-btn a-btn-primary"
-              style="width:100%;justify-content:center"
-              [disabled]="saving()"
-              (click)="save()"
-            >
-              @if (saving()) {
-                <span class="a-spinner" style="width:13px;height:13px"></span> Guardando…
-              } @else {
-                {{ isEdit() ? 'Guardar cambios' : 'Publicar artículo' }}
-              }
-            </button>
-            <a
-              routerLink="/dashboard/blog"
-              class="a-btn a-btn-ghost"
-              style="width:100%;justify-content:center"
-            >
-              Cancelar
-            </a>
-          </div>
-        </div>
-
-      </div>
+        <section class="a-card blog-editor-delegate-card">
+          <span class="a-badge blog-editor-delegate-card__badge">Auctorio-ready</span>
+          <h3>Mismo contrato, otro cockpit editorial.</h3>
+          <p>
+            Auctorio publica contra este mismo endpoint de blog. Puedes empezar
+            aquí y mover la operación editorial al Studio cuando convenga.
+          </p>
+          <button
+            type="button"
+            class="a-btn a-btn-primary"
+            [disabled]="launchingAuctorio()"
+            (click)="openAuctorio()"
+          >
+            Abrir Auctorio directo
+          </button>
+        </section>
+      </aside>
     </div>
-
   }
-
 </div>

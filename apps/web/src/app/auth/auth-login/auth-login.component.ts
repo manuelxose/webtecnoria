@@ -5,6 +5,7 @@ import {
   ElementRef,
   Inject,
   NgZone,
+  OnInit,
   PLATFORM_ID,
   ViewChild,
 } from "@angular/core";
@@ -28,7 +29,7 @@ let googleScriptPromise: Promise<void> | null = null;
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
 })
-export class AuthLoginComponent implements AfterViewInit {
+export class AuthLoginComponent implements OnInit, AfterViewInit {
   @ViewChild("googleButtonHost")
   private readonly googleButtonHost?: ElementRef<HTMLDivElement>;
 
@@ -37,8 +38,11 @@ export class AuthLoginComponent implements AfterViewInit {
   loading = false;
   errorMessage = "";
   googleEnabled = false;
+  googleConfigured = false;
+  googleReady = false;
   googleLoading = false;
   googleErrorMessage = "";
+  googleUnavailableMessage = "";
   returnUrl: string | null = null;
   logos = brandLogos;
 
@@ -55,6 +59,17 @@ export class AuthLoginComponent implements AfterViewInit {
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
     this.returnUrl = this.privateNavigation.getReturnUrl(this.route);
+
+    if (this.isBrowser) {
+      this.googleConfigured = Boolean(getPublicRuntimeConfig().googleClientId?.trim());
+    }
+  }
+
+  async ngOnInit(): Promise<void> {
+    const user = await this.authRepository.me();
+    if (user) {
+      await this.router.navigateByUrl(this.privateNavigation.getPostLoginUrl(this.route, user));
+    }
   }
 
   ngAfterViewInit(): void {
@@ -95,10 +110,14 @@ export class AuthLoginComponent implements AfterViewInit {
 
     const clientId = getPublicRuntimeConfig().googleClientId?.trim();
     if (!clientId) {
+      this.googleUnavailableMessage =
+        "El acceso con Google no esta disponible en este entorno.";
       return;
     }
 
     this.googleEnabled = true;
+    this.googleConfigured = true;
+    this.googleUnavailableMessage = "";
 
     try {
       await this.loadGoogleScript();
@@ -128,13 +147,18 @@ export class AuthLoginComponent implements AfterViewInit {
         size: "large",
         shape: "pill",
         text: "continue_with",
-        width: 360,
+        width: this.getGoogleButtonWidth(),
       });
 
       this.googleButtonRendered = true;
+      this.googleReady = true;
     } catch (error) {
       console.error("Google button setup failed:", error);
       this.googleEnabled = false;
+      this.googleConfigured = true;
+      this.googleReady = false;
+      this.googleUnavailableMessage =
+        "No se pudo cargar Google Sign-In. Revisa bloqueadores de scripts o vuelve a intentarlo.";
     }
   }
 
@@ -224,5 +248,10 @@ export class AuthLoginComponent implements AfterViewInit {
     });
 
     return googleScriptPromise;
+  }
+
+  private getGoogleButtonWidth(): number {
+    const width = this.googleButtonHost?.nativeElement.clientWidth ?? 0;
+    return Math.min(Math.max(width || 320, 280), 420);
   }
 }

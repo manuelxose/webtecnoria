@@ -125,6 +125,8 @@ export interface ArticleEntry {
   readingTime: string;
   ctaLabel: string;
   ctaLink: string;
+  publishedAt?: string;
+  tags?: string[];
   seo: SeoEntry;
   sections: ArticleSection[];
 }
@@ -155,19 +157,25 @@ export interface SolutionSpotlight {
 export const brandImages = {
   hero: {
     src: "/assets/images/brand/hero-precision-engineering.webp",
-    alt: "Espacio editorial y tecnológico que representa operaciones, software e inteligencia conectados en una arquitectura premium.",
+    alt: "Composición editorial de precisión con superficies de cristal, aluminio cepillado y capas de software sobre una dirección visual blanca, azul y near-black.",
+    width: 1024,
+    height: 1024,
+  },
+  heroDark: {
+    src: "/assets/images/brand/hero-dark-grid.webp",
+    alt: "Grid geométrico de ingeniería de precisión con azul profundo y blancos fríos sobre fondo casi negro.",
     width: 1024,
     height: 1024,
   },
   systems: {
     src: "/assets/images/brand/services-system-architecture.webp",
-    alt: "Composición abstracta de bloques modulares de cristal y metal que simboliza sistemas, integraciones y automatización.",
+    alt: "Arquitectura abstracta de bloques modulares de cristal y metal anodizado que representa sistemas, integraciones y automatización con una estética limpia y precisa.",
     width: 1024,
     height: 1024,
   },
   method: {
     src: "/assets/images/brand/method-discovery-studio.webp",
-    alt: "Maqueta arquitectónica premium que evoca discovery, definición y método antes de ejecutar tecnología.",
+    alt: "Estudio editorial con maquetas, paneles translúcidos y materiales técnicos que evoca discovery, definición y método antes de ejecutar tecnología con criterio.",
     width: 1024,
     height: 1024,
   },
@@ -177,9 +185,21 @@ export const brandImages = {
     width: 1600,
     height: 1066,
   },
+  talkaris: {
+    src: "/assets/images/brand/talkaris-platform.webp",
+    alt: "Dashboard de la plataforma Talkaris — chatbots y asistentes conversacionales enterprise con interfaz near-black y azul profundo.",
+    width: 1024,
+    height: 1024,
+  },
+  auctorio: {
+    src: "/assets/images/brand/auctorio-platform.webp",
+    alt: "Plataforma editorial Auctorio con IA — pipeline de generación, revisión y publicación de contenido multisitio.",
+    width: 1024,
+    height: 1024,
+  },
   social: {
     src: "/assets/images/brand/og-tecnoria-home.webp",
-    alt: "Imagen social de TecnoRia.",
+    alt: "Imagen social de TecnoRia con composición near-black, azul profundo y detalles cobre.",
     width: 1200,
     height: 630,
   },
@@ -224,6 +244,12 @@ const articleVisualMap: Record<string, keyof typeof brandImages> = {
   "chatbots-atencion-cliente-empresa": "chatbot",
   "ia-para-equipos-operativos": "hero",
   "migrar-software-legacy-sin-romper-operativa": "method",
+  "discovery-tecnico-que-debe-salir-de-la-primera-fase": "method",
+  "crm-erp-o-software-propio-cuando-integrar-y-cuando-construir": "systems",
+  "automatizacion-documental-finanzas-y-operaciones": "systems",
+  "asistentes-internos-para-onboarding-y-soporte-distribuido": "chatbot",
+  "roadmap-producto-b2b-que-entra-en-el-primer-build": "hero",
+  "cuadros-de-mando-operativos-cuando-excel-ya-no-da": "method",
 };
 
 export const primaryNavigation: NavEntry[] = [
@@ -1936,24 +1962,372 @@ export const articles: ArticleEntry[] = [
       },
     ],
   },
+  {
+    slug: "discovery-tecnico-que-debe-salir-de-la-primera-fase",
+    title: "Discovery técnico: qué debería salir de una primera fase bien hecha",
+    category: "Discovery",
+    summary:
+      "Los entregables, decisiones y límites que deberías exigir antes de pasar a presupuesto o build.",
+    readingTime: "6 min",
+    ctaLabel: "Explorar consultoría",
+    ctaLink: "/servicios/consultoria-tecnologica",
+    publishedAt: "2026-03-10",
+    tags: ["discovery", "alcance", "priorización"],
+    seo: {
+      title: "Discovery técnico: qué debería salir de una primera fase",
+      description:
+        "Guía práctica para entender qué entregables y decisiones deberían salir de una primera fase de discovery técnico bien planteada.",
+      path: "/blog/discovery-tecnico-que-debe-salir-de-la-primera-fase",
+      keywords: [
+        "discovery tecnico",
+        "primera fase discovery",
+        "alcance tecnico proyecto",
+      ],
+    },
+    sections: [
+      {
+        title: "Discovery no es una reunión elegante: es una fase para decidir mejor",
+        paragraphs: [
+          "Una primera fase bien hecha sirve para reducir ambigüedad, bajar alcance y dejar claro qué problema merece inversión ahora y cuál no.",
+          "Si al terminar discovery sigues sin saber por dónde empezar, qué dependencias existen o qué riesgo asumes, la fase no ha cumplido su función.",
+        ],
+      },
+      {
+        title: "Qué entregables deberían salir sí o sí",
+        paragraphs: [
+          "No necesitas documentos decorativos. Necesitas piezas que permitan discutir presupuesto, secuencia y arquitectura con una base común.",
+        ],
+        bullets: [
+          "Mapa del problema, objetivos y restricciones reales",
+          "Alcance priorizado con exclusiones explícitas",
+          "Arquitectura o enfoque técnico inicial defendible",
+          "Riesgos, dependencias y siguiente fase recomendada",
+        ],
+      },
+      {
+        title: "La señal buena es que el presupuesto siguiente se vuelve más comparable",
+        paragraphs: [
+          "Cuando discovery está bien hecho, el siguiente presupuesto ya no depende de supuestos difusos, sino de una conversación mucho más concreta sobre entregables y fases.",
+          "Eso protege tanto al equipo que compra como al equipo que ejecuta, porque reduce malentendidos y expectativas imposibles.",
+        ],
+      },
+      {
+        title: "Cómo detectar un discovery pobre",
+        paragraphs: [
+          "Si todo acaba en una lista genérica de ideas, sin priorización, sin mapa de riesgo y sin siguiente paso claro, se ha confundido exploración con definición.",
+          "La utilidad real de discovery está en que deja mejores decisiones, no solo mejor documentación.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "crm-erp-o-software-propio-cuando-integrar-y-cuando-construir",
+    title: "CRM, ERP o software propio: cuándo integrar y cuándo construir",
+    category: "Integración",
+    summary:
+      "Cómo decidir si conviene conectar mejor el stack actual o abrir una capa propia para no seguir forzando la operativa.",
+    readingTime: "8 min",
+    ctaLabel: "Ver automatización",
+    ctaLink: "/servicios/automatizacion-procesos",
+    publishedAt: "2026-03-09",
+    tags: ["crm", "erp", "integraciones", "backoffice"],
+    seo: {
+      title: "CRM, ERP o software propio: integrar o construir",
+      description:
+        "Criterios para decidir cuándo conviene integrar CRM y ERP existentes y cuándo tiene sentido construir software propio sobre la operativa.",
+      path: "/blog/crm-erp-o-software-propio-cuando-integrar-y-cuando-construir",
+      keywords: [
+        "crm erp o software propio",
+        "integrar crm y erp",
+        "cuando construir backoffice propio",
+      ],
+    },
+    sections: [
+      {
+        title: "El problema rara vez es una sola herramienta",
+        paragraphs: [
+          "Lo habitual es que CRM, ERP, formularios, email y hojas paralelas funcionen razonablemente por separado pero mal como sistema conjunto.",
+          "La decisión correcta no suele ser sustituir todo, sino entender dónde está la fricción principal entre herramientas y equipos.",
+        ],
+      },
+      {
+        title: "Cuándo conviene integrar antes que construir",
+        paragraphs: [
+          "Si la lógica principal ya existe en herramientas sólidas y el mayor dolor está en sincronización, trazabilidad o doble trabajo, integrar suele ser el primer paso más rentable.",
+        ],
+        bullets: [
+          "Datos duplicados entre áreas",
+          "Estados inconsistentes entre sistemas",
+          "Dependencia excesiva de tareas manuales de coordinación",
+          "Falta de visibilidad compartida sobre el flujo",
+        ],
+      },
+      {
+        title: "Cuándo una capa propia empieza a tener más sentido",
+        paragraphs: [
+          "Cuando la operativa real ya no encaja en el modelo de ninguna herramienta y el equipo vive rodeado de workarounds, formularios auxiliares y decisiones fuera del sistema.",
+          "Ahí la capa propia no compite con el CRM o el ERP: ordena lo que el negocio necesita y conecta mejor lo que ya existe.",
+        ],
+      },
+      {
+        title: "La mejor respuesta muchas veces es híbrida",
+        paragraphs: [
+          "Integrar bien y construir solo la capa diferencial suele ser más sensato que elegir entre licencia o desarrollo como si fueran vías incompatibles.",
+          "La clave es decidir qué parte debe seguir siendo commodity y cuál se ha convertido en una ventaja operativa o comercial demasiado importante para seguir encajándola a la fuerza.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "automatizacion-documental-finanzas-y-operaciones",
+    title: "Automatización documental para finanzas y operaciones: dónde empieza a compensar",
+    category: "Operación",
+    summary:
+      "Facturas, albaranes, justificantes y expedientes: cuándo automatizar documento y dato deja de ser una mejora opcional.",
+    readingTime: "7 min",
+    ctaLabel: "Automatizar un flujo",
+    ctaLink: "/servicios/automatizacion-procesos",
+    publishedAt: "2026-03-08",
+    tags: ["documentos", "operaciones", "finanzas"],
+    seo: {
+      title: "Automatización documental para finanzas y operaciones",
+      description:
+        "Señales para saber cuándo conviene automatizar flujos documentales en equipos financieros y operativos sin añadir más opacidad al proceso.",
+      path: "/blog/automatizacion-documental-finanzas-y-operaciones",
+      keywords: [
+        "automatizacion documental",
+        "digitalizacion operaciones",
+        "automatizacion finanzas empresa",
+      ],
+    },
+    sections: [
+      {
+        title: "La primera señal es que el documento se procesa varias veces",
+        paragraphs: [
+          "Cuando un mismo archivo se descarga, revisa, renombra, reenvía y vuelve a introducirse en varios sistemas, ya no tienes un flujo documental: tienes una fuga operativa.",
+          "El coste aparece en retrasos, errores y en la cantidad de tiempo experto que se gasta en tareas que no aportan criterio real.",
+        ],
+      },
+      {
+        title: "Automatizar documento no es solo OCR",
+        paragraphs: [
+          "El valor no está en leer un PDF, sino en validar, clasificar, enrutar y dejar el dato listo para el siguiente movimiento sin perder trazabilidad.",
+        ],
+        bullets: [
+          "Captura y clasificación inicial",
+          "Validación contra reglas o datos maestros",
+          "Alta o actualización en sistemas internos",
+          "Alertas cuando algo no encaja o requiere revisión",
+        ],
+      },
+      {
+        title: "Dónde suele haber retorno más rápido",
+        paragraphs: [
+          "Facturación, validación de documentación, gestión de expedientes, conciliación operativa o preparación de reporting son frentes donde la mejora suele percibirse rápido.",
+          "Son procesos repetitivos, medibles y con demasiados pasos manuales cuando crecen el volumen o la complejidad.",
+        ],
+      },
+      {
+        title: "La automatización solo compensa si el equipo mantiene control",
+        paragraphs: [
+          "Si nadie sabe qué regla se ha ejecutado o cómo corregir una excepción, el documento deja de circular mejor y pasa a atascarse en un sitio más opaco.",
+          "La capa buena es la que ahorra trabajo y además deja al equipo más capacidad de supervisión, no menos.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "asistentes-internos-para-onboarding-y-soporte-distribuido",
+    title: "Asistentes internos para onboarding y soporte distribuido: cuándo sí aportan valor",
+    category: "Asistentes",
+    summary:
+      "Qué casos de uso internos justifican un asistente conectado a conocimiento y cuándo solo estarías añadiendo otra capa de ruido.",
+    readingTime: "7 min",
+    ctaLabel: "Explorar IA aplicada",
+    ctaLink: "/servicios/inteligencia-artificial-empresas",
+    publishedAt: "2026-03-07",
+    tags: ["asistentes", "onboarding", "soporte interno"],
+    seo: {
+      title: "Asistentes internos para onboarding y soporte distribuido",
+      description:
+        "Casos donde un asistente interno conectado a conocimiento y procesos mejora onboarding y soporte distribuido sin generar dependencia ciega.",
+      path: "/blog/asistentes-internos-para-onboarding-y-soporte-distribuido",
+      keywords: [
+        "asistentes internos empresa",
+        "onboarding con ia",
+        "soporte interno con asistente",
+      ],
+    },
+    sections: [
+      {
+        title: "El valor aparece cuando la información está dispersa y el equipo necesita responder rápido",
+        paragraphs: [
+          "Manual de procesos, políticas, FAQs internas, herramientas y tickets suelen vivir en sitios distintos. Ahí un asistente bien conectado puede reducir tiempo de búsqueda y errores de contexto.",
+          "No sustituye criterio ni managers. Reduce fricción en tareas repetitivas de orientación y soporte inicial.",
+        ],
+      },
+      {
+        title: "Los mejores casos de uso son acotados",
+        paragraphs: [
+          "Onboarding, soporte interno de primer nivel, búsqueda de procedimientos o preparación de contexto para personas expertas son escenarios más sanos que intentar crear un oráculo corporativo.",
+        ],
+        bullets: [
+          "Procedimientos repetitivos de alta frecuencia",
+          "Preguntas internas con respuesta verificable",
+          "Rutas claras de escalado humano",
+          "Conocimiento curado y versionado",
+        ],
+      },
+      {
+        title: "Lo que rompe el proyecto suele ser la gobernanza",
+        paragraphs: [
+          "Sin fuentes claras, responsables, límites y criterios de revisión, el asistente puede ganar visibilidad muy rápido y perder confianza todavía más rápido.",
+          "La adopción interna depende tanto de esa gobernanza como del modelo o la interfaz.",
+        ],
+      },
+      {
+        title: "La pregunta correcta no es si parece inteligente",
+        paragraphs: [
+          "La pregunta correcta es si ahorra tiempo real, reduce dependencia de personas concretas y deja mejor contexto para la siguiente acción.",
+          "Si no ocurre eso, probablemente todavía no necesitas un asistente. Necesitas ordenar antes conocimiento y procesos.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "roadmap-producto-b2b-que-entra-en-el-primer-build",
+    title: "Roadmap de producto B2B: qué debería entrar en el primer build y qué no",
+    category: "Producto",
+    summary:
+      "Cómo decidir el alcance de una primera entrega sin convertir el roadmap en una lista infinita de ideas razonables.",
+    readingTime: "8 min",
+    ctaLabel: "Explorar plataformas SaaS",
+    ctaLink: "/servicios/plataformas-saas",
+    publishedAt: "2026-03-06",
+    tags: ["producto", "roadmap", "mvp"],
+    seo: {
+      title: "Roadmap de producto B2B: qué entra en el primer build",
+      description:
+        "Criterios para definir el primer build de un producto B2B sin inflar el alcance ni hipotecar la evolución del roadmap.",
+      path: "/blog/roadmap-producto-b2b-que-entra-en-el-primer-build",
+      keywords: [
+        "roadmap producto b2b",
+        "primer build saas",
+        "alcance mvp b2b",
+      ],
+    },
+    sections: [
+      {
+        title: "El primer build no debe intentar demostrar que el producto ya es maduro",
+        paragraphs: [
+          "La primera entrega tiene que validar el flujo principal y dejar una base técnica defendible. No demostrar que puedes imaginar veinte módulos futuros.",
+          "Muchos roadmaps se deforman porque intentan resolver de una vez soporte, reporting, billing, permisos complejos y automatización avanzada sin haber validado aún el núcleo del producto.",
+        ],
+      },
+      {
+        title: "Qué sí debería entrar",
+        paragraphs: [
+          "Debe entrar todo lo imprescindible para que el usuario correcto reciba valor, el equipo aprenda de uso real y el negocio pueda medir si la siguiente fase merece inversión.",
+        ],
+        bullets: [
+          "Flujo principal de alta, configuración y uso",
+          "Panel mínimo de administración o soporte",
+          "Eventos o métricas para aprender del comportamiento",
+          "Base técnica lista para crecer sin rehacer la capa crítica",
+        ],
+      },
+      {
+        title: "Qué conviene dejar fuera aunque suene importante",
+        paragraphs: [
+          "Automatizaciones secundarias, permisos demasiado finos, configuradores enormes o integraciones poco usadas suelen entrar demasiado pronto por ansiedad comercial o comparativa.",
+          "Posponerlos no es recortar valor. Es proteger la velocidad de aprendizaje y la salud del roadmap.",
+        ],
+      },
+      {
+        title: "El roadmap útil es el que te deja decidir la siguiente fase con evidencia",
+        paragraphs: [
+          "Si la primera entrega no deja datos, feedback y criterio suficiente para priorizar la fase dos, el roadmap sigue siendo una opinión ordenada pero no una herramienta de decisión.",
+          "La prioridad correcta siempre sale mejor cuando producto, negocio y base técnica se piensan a la vez.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "cuadros-de-mando-operativos-cuando-excel-ya-no-da",
+    title: "Cuadros de mando operativos: cuándo Excel ya no da para más",
+    category: "Reporting",
+    summary:
+      "Qué señales indican que un reporting artesanal ya está frenando decisión, seguimiento y coordinación entre equipos.",
+    readingTime: "6 min",
+    ctaLabel: "Mejorar reporting",
+    ctaLink: "/servicios/automatizacion-procesos",
+    publishedAt: "2026-03-05",
+    tags: ["reporting", "operaciones", "dashboard"],
+    seo: {
+      title: "Cuadros de mando operativos: cuándo Excel ya no da",
+      description:
+        "Señales para detectar cuándo un reporting manual basado en Excel ya no ofrece la trazabilidad y velocidad que necesita la operación.",
+      path: "/blog/cuadros-de-mando-operativos-cuando-excel-ya-no-da",
+      keywords: [
+        "cuadros de mando operativos",
+        "dashboard operaciones empresa",
+        "reporting manual excel",
+      ],
+    },
+    sections: [
+      {
+        title: "La primera alarma es que el dato llega tarde",
+        paragraphs: [
+          "Si el cuadro se actualiza cuando el problema ya explotó o depende de que alguien encuentre tiempo para consolidar datos, no estás midiendo la operación: la estás reconstruyendo a posteriori.",
+          "Eso reduce velocidad de decisión y hace que las reuniones giren alrededor de discutir cifras en lugar de actuar sobre ellas.",
+        ],
+      },
+      {
+        title: "El síntoma no es Excel, sino la forma de alimentar el reporting",
+        paragraphs: [
+          "Excel puede seguir siendo útil en determinados contextos. El problema aparece cuando se convierte en la única capa que conecta sistemas que nunca se pensaron para operar juntos.",
+        ],
+        bullets: [
+          "Múltiples versiones del mismo informe",
+          "Consolidación manual recurrente",
+          "KPIs sin una fuente de verdad clara",
+          "Dependencia de una persona para interpretar el panel",
+        ],
+      },
+      {
+        title: "Qué deberías pedir a un cuadro de mando operativo serio",
+        paragraphs: [
+          "Actualización razonablemente automática, métricas trazables, alertas útiles y una lectura orientada a acción, no solo a decoración ejecutiva.",
+          "El objetivo es que el panel ayude a decidir mejor y antes, no que impresione en una captura bonita.",
+        ],
+      },
+      {
+        title: "El salto correcto suele combinar integración y criterio de negocio",
+        paragraphs: [
+          "No basta con montar gráficas. Primero hay que decidir qué métricas importan, cómo se calculan y qué movimiento deberían activar cuando cambian.",
+          "Sin esa definición, cualquier dashboard nuevo hereda el mismo ruido que ya existía en el Excel de partida.",
+        ],
+      },
+    ],
+  },
 ];
 
 export const editorialBacklog: BacklogEntry[] = [
   {
-    title: "Automatización documental para equipos financieros y de operaciones",
-    intent: "Decisión operativa",
+    title: "Gobierno de prompts y fuentes cuando un asistente ya entra en operativa",
+    intent: "Gobierno",
   },
   {
-    title: "CRM, ERP o software propio: cuándo integrar y cuándo construir",
-    intent: "Comparativa",
+    title: "Cómo decidir el primer módulo de una reescritura legacy sin parar el negocio",
+    intent: "Arquitectura",
   },
   {
-    title: "Asistentes internos para onboarding y soporte a equipos distribuidos",
-    intent: "Consideración",
+    title: "Adopción interna: por qué un sistema bueno fracasa sin handoff ni métricas",
+    intent: "Adopción",
   },
   {
-    title: "Discovery técnico: qué debería salir de una primera fase bien hecha",
-    intent: "Decisión comercial",
+    title: "Reporting operativo en crecimiento: qué indicadores deberían salir del Excel semanal",
+    intent: "Escalado operativo",
   },
 ];
 
@@ -2092,3 +2466,313 @@ export function getArticlesBySlugs(slugs: string[]): ArticleEntry[] {
     .map((slug) => getArticleBySlug(slug))
     .filter((article): article is ArticleEntry => Boolean(article));
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PRODUCTOS PROPIOS — TALKARIS & AUCTORIO
+   ═══════════════════════════════════════════════════════════════ */
+
+export interface ProductFeature {
+  icon: string; // SVG inline path data
+  title: string;
+  description: string;
+}
+
+export interface ProductUseCase {
+  title: string;
+  description: string;
+  badge: string;
+}
+
+export interface OwnProduct {
+  key: string;
+  slug: string;
+  name: string;
+  tagline: string;
+  heroHeadline: string;
+  heroCopy: string;
+  badge: string;
+  image: BrandImage;
+  features: ProductFeature[];
+  useCases: ProductUseCase[];
+  techStack: string[];
+  stats: Array<{ value: string; label: string }>;
+  ctaLabel: string;
+  ctaPath: string;
+  seo: SeoEntry;
+}
+
+export const ownProducts: OwnProduct[] = [
+  {
+    key: "talkaris",
+    slug: "talkaris",
+    name: "Talkaris",
+    tagline: "Plataforma conversacional de chatbots enterprise",
+    heroHeadline: "Atención automatizada que parece humana.",
+    heroCopy:
+      "Talkaris permite a empresas desplegar asistentes conversacionales conectados a su conocimiento, procesos y sistemas internos — sin código, con control total. Desde soporte 24/7 hasta cualificación comercial automatizada.",
+    badge: "Producto propio",
+    image: brandImages.talkaris,
+    features: [
+      {
+        icon: "M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-5l-3 3v-3z",
+        title: "Multi-canal nativo",
+        description:
+          "Web widget, WhatsApp Business, Slack y Telegram. Un único bot, varios canales, coherencia total.",
+      },
+      {
+        icon: "M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4",
+        title: "Multi-tenant SaaS",
+        description:
+          "Arquitectura multi-inquilino con aislamiento completo de datos, dominios y configuración por cliente.",
+      },
+      {
+        icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z",
+        title: "Ingestión automática de conocimiento",
+        description:
+          "Importa PDFs, URLs, Notion, Confluence o texto plano. El bot aprende y se actualiza sin intervención manual.",
+      },
+      {
+        icon: "M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10m6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v14",
+        title: "Analíticas de conversación",
+        description:
+          "Dashboard en tiempo real: tasa de resolución, intenciones detectadas, escalaciones y satisfacción.",
+      },
+      {
+        icon: "M13.828 10.172a4 4 0 0 0-5.656 0l-4 4a4 4 0 1 0 5.656 5.656l1.102-1.101m-.758-4.899a4 4 0 0 0 5.656 0l4-4a4 4 0 1 0-5.656-5.656l-1.1 1.1",
+        title: "Integraciones CRM y ERP",
+        description:
+          "Conectores nativos para HubSpot, Salesforce, Pipedrive y cualquier API REST vía configuración.",
+      },
+      {
+        icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z",
+        title: "Configuración sin código",
+        description:
+          "Panel de administración visual para flujos, respuestas, escalaciones y personalización de tono sin tocar código.",
+      },
+    ],
+    useCases: [
+      {
+        title: "Soporte al cliente 24/7",
+        description:
+          "Resuelve consultas frecuentes, gestiona incidencias y escala a agente humano solo cuando es necesario. Reduce el volumen de tickets hasta un 60%.",
+        badge: "Soporte",
+      },
+      {
+        title: "Cualificación comercial automatizada",
+        description:
+          "Captura leads, filtra intención de compra y agenda reuniones con el equipo comercial de forma autónoma en cualquier canal.",
+        badge: "Ventas",
+      },
+      {
+        title: "Asistente interno de empresa",
+        description:
+          "Accede a políticas, procedimientos, documentación y FAQs internas. Reduce el tiempo invertido en búsquedas internas por los equipos.",
+        badge: "Operaciones",
+      },
+    ],
+    techStack: [
+      "RAG pipeline",
+      "Cloudflare Workers",
+      "Angular web widget",
+      "WebSocket",
+      "PostgreSQL",
+      "Multi-tenant",
+    ],
+    stats: [
+      { value: "99.9%", label: "Uptime" },
+      { value: "<200ms", label: "Latencia media" },
+      { value: "60%", label: "Reducción de tickets" },
+      { value: "24/7", label: "Disponibilidad" },
+    ],
+    ctaLabel: "Solicitar demo de Talkaris",
+    ctaPath: "/contacto?producto=talkaris",
+    seo: {
+      title: "Talkaris — Plataforma de chatbots y asistentes conversacionales para empresas",
+      description:
+        "Talkaris es la plataforma SaaS de TecnoRia para desplegar chatbots enterprise multi-canal. Soporte 24/7, cualificación comercial y asistentes internos conectados a tu conocimiento y sistemas.",
+      path: "/productos/talkaris",
+      keywords: [
+        "plataforma chatbots empresas",
+        "chatbot enterprise multi-canal",
+        "asistente conversacional IA",
+        "chatbot saas whatsapp slack",
+        "automatización atención cliente ia",
+      ],
+    },
+  },
+  {
+    key: "auctorio",
+    slug: "auctorio",
+    name: "Auctorio",
+    tagline: "Plataforma editorial con IA para equipos de contenido",
+    heroHeadline: "Del brief al artículo publicado, con IA.",
+    heroCopy:
+      "Auctorio es el sistema que convierte un brief en contenido revisado, con imagen generada y publicado en múltiples sitios simultáneamente. Sin cuellos de botella editoriales, sin pérdida de control de marca.",
+    badge: "Producto propio",
+    image: brandImages.auctorio,
+    features: [
+      {
+        icon: "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 1 1 3.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z",
+        title: "Generación de contenido con IA",
+        description:
+          "Integración con DeepSeek para redacción de artículos, posts y resúmenes a partir de briefs estructurados con control de tono de marca.",
+      },
+      {
+        icon: "M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2 1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z",
+        title: "Imágenes generadas por IA",
+        description:
+          "Generación automática de imágenes con FLUX.2-pro sincronizada con el contenido. Sin royalties, sin banco de imágenes.",
+      },
+      {
+        icon: "M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
+        title: "QA automático de contenido",
+        description:
+          "Validación automática de legibilidad, SEO on-page, coherencia de tono y cumplimiento de reglas editoriales antes de publicar.",
+      },
+      {
+        icon: "M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9",
+        title: "Publicación multisitio",
+        description:
+          "Publica simultáneamente en múltiples sitios web con adaptación de formato. Conectores para WordPress, API REST y sistemas propios.",
+      },
+      {
+        icon: "M17 20h5v-2a3 3 0 0 0-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 0 1 5.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
+        title: "Roles y flujos de aprobación",
+        description:
+          "Sistema de roles (redactor, editor, publisher) con flujo de aprobación configurable. Control editorial sin fricción en equipo.",
+      },
+      {
+        icon: "M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10m6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v14",
+        title: "Analíticas editoriales",
+        description:
+          "Métricas de producción: artículos generados, tiempos de ciclo, tasas de aprobación y rendimiento por sitio y autor.",
+      },
+    ],
+    useCases: [
+      {
+        title: "Agencias de contenido y marketing",
+        description:
+          "Multiplica la producción sin aumentar el equipo. Gestiona múltiples clientes y sitios desde un único panel con control de marca por proyecto.",
+        badge: "Agencias",
+      },
+      {
+        title: "Medios de comunicación y editores digitales",
+        description:
+          "Produce y publica contenido informativo con rapidez y consistencia. El QA automático mantiene el estándar editorial sin revisiones manuales lentas.",
+        badge: "Medios",
+      },
+      {
+        title: "Equipos de marketing B2B",
+        description:
+          "Genera blog posts, newsletters y contenido de redes desde un brief semanal. Mantén la cadencia editorial sin depender de freelancers.",
+        badge: "Marketing",
+      },
+    ],
+    techStack: [
+      "DeepSeek LLM",
+      "FLUX.2-pro",
+      "Node.js",
+      "PostgreSQL",
+      "Multi-tenant",
+      "API REST",
+    ],
+    stats: [
+      { value: "10×", label: "Velocidad editorial" },
+      { value: "0€", label: "Banco de imágenes" },
+      { value: "100%", label: "Control de marca" },
+      { value: "N sitios", label: "Publicación simultánea" },
+    ],
+    ctaLabel: "Ver Auctorio en acción",
+    ctaPath: "/contacto?producto=auctorio",
+    seo: {
+      title: "Auctorio — Plataforma editorial con IA para generar y publicar contenido",
+      description:
+        "Auctorio convierte briefs en artículos completos con texto generado por IA, imágenes automáticas y publicación multisitio. La plataforma editorial de TecnoRia para equipos que escalan contenido sin perder calidad.",
+      path: "/productos/auctorio",
+      keywords: [
+        "plataforma editorial ia",
+        "generación contenido ia empresas",
+        "cms ia publicación automatizada",
+        "herramienta content marketing ia",
+        "generar artículos ia seo",
+      ],
+    },
+  },
+];
+
+export function getOwnProductBySlug(slug: string): OwnProduct | undefined {
+  return ownProducts.find((p) => p.slug === slug);
+}
+
+/** Datos para la sección de productos en home — versión resumida */
+export const homeProducts = ownProducts.map((p) => ({
+  key: p.key,
+  name: p.name,
+  tagline: p.tagline,
+  badge: p.badge,
+  heroCopy: p.heroCopy,
+  image: p.image,
+  features: p.features.slice(0, 3).map((f) => f.title),
+  ctaLabel: p.ctaLabel,
+  ctaPath: p.ctaPath,
+  slug: p.slug,
+}));
+
+export interface FeaturedShowcase {
+  slug: string;
+  title: string;
+  sector: string;
+  summary: string;
+  impact: string[];
+  ctaLabel: string;
+  ctaLink: string;
+  accentColor: string;
+}
+
+export const featuredShowcases: FeaturedShowcase[] = [
+  {
+    slug: "guia-programacion-tv-desarrollo-cliente",
+    title: "Guía de Programación TV",
+    sector: "Media · Producto cliente",
+    summary: "Plataforma completa de contenido televisivo: EPG en tiempo real, sistema social, editorial integrada con Auctorio y SEO técnico con SSR y sitemaps dinámicos.",
+    impact: [
+      "EPG sincronizado en tiempo real vía WebSocket",
+      "Sistema social: bookmarks, ratings y chat",
+      "Pipeline editorial automatizado con Auctorio",
+      "SSR + sitemaps dinámicos indexados en Google Search Console",
+    ],
+    ctaLabel: "Ver caso completo",
+    ctaLink: "/casos-de-exito",
+    accentColor: "#1d4ed8",
+  },
+  {
+    slug: "auctorio-plataforma-editorial-ia",
+    title: "Auctorio — Plataforma editorial IA",
+    sector: "Producto propio · SaaS",
+    summary: "Cockpit editorial con generación de textos e imágenes por IA, QA automatizado y publicación coordinada en múltiples sitios desde un único panel.",
+    impact: [
+      "Pipeline editorial end-to-end: brief → publicación",
+      "Generación IA (DeepSeek + FLUX) con control de voz de marca",
+      "Publicación multisitio con trazabilidad por versión",
+      "Roles, permisos y modo dry-run de seguridad",
+    ],
+    ctaLabel: "Ver Auctorio",
+    ctaLink: "/productos/auctorio",
+    accentColor: "#be9058",
+  },
+  {
+    slug: "talkaris-plataforma-conversacional",
+    title: "Talkaris — Plataforma conversacional",
+    sector: "Producto propio · SaaS",
+    summary: "Motor de chatbots empresariales multi-canal con RAG pipeline, multi-tenant y widget embebible. Soporta web, WhatsApp y Slack con analíticas de conversación.",
+    impact: [
+      "Multi-canal: web widget embebible, WhatsApp, Slack",
+      "RAG pipeline con ingestión automática de conocimiento",
+      "Arquitectura multi-tenant con aislamiento por workspace",
+      "Analíticas de conversación y resolución automática",
+    ],
+    ctaLabel: "Ver Talkaris",
+    ctaLink: "/productos/talkaris",
+    accentColor: "#1d4ed8",
+  },
+];

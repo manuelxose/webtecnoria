@@ -115,7 +115,9 @@ export class AdminPanelComponent implements OnInit {
     this.postsError = "";
 
     try {
-      const snapshot = await firstValueFrom(this.blogRepository.list());
+      const snapshot = await firstValueFrom(
+        this.blogRepository.list({ includeDrafts: true })
+      );
       const docs = snapshot?.docs ?? [];
 
       this.posts = docs
@@ -143,7 +145,9 @@ export class AdminPanelComponent implements OnInit {
     this.postSuccess = "";
 
     try {
-      const detail = await this.blogRepository.detailBySlug(post.slug);
+      const detail = await this.blogRepository.detailBySlug(post.slug, {
+        includeDrafts: true,
+      });
 
       if (!detail) {
         this.postError = "No se pudo cargar el detalle del post.";

@@ -409,7 +409,9 @@ export const routes: Routes = [
   {
     path: "portal",
     loadComponent: () =>
-      import("./portal/portal-access.component").then((m) => m.PortalAccessComponent),
+      import("./auth/auth-login/auth-login.component").then(
+        (m) => m.AuthLoginComponent
+      ),
   },
   {
     path: "portal",
@@ -562,6 +564,20 @@ export const routes: Routes = [
         loadComponent: () =>
           import("./site/pages/process-page.component").then(
             (m) => m.ProcessPageComponent
+          ),
+      },
+      {
+        path: "productos/talkaris",
+        loadComponent: () =>
+          import("./site/pages/talkaris-page.component").then(
+            (m) => m.TalkarisPageComponent
+          ),
+      },
+      {
+        path: "productos/auctorio",
+        loadComponent: () =>
+          import("./site/pages/auctorio-page.component").then(
+            (m) => m.AuctorioPageComponent
           ),
       },
       {

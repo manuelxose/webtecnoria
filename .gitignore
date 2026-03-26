@@ -64,3 +64,12 @@ apps/web/server_error.txt
 
 apps/api/node_modules/
 apps/api/dist/
+
+# AI tooling
+.agents/
+.claude-flow/
+.claude/
+.swarm/
+tmp-storage/
+current
+releases/

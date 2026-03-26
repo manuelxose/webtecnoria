@@ -1,3 +1,215 @@
 :host {
   display: block;
 }
+
+.auth-panel--login-accent,
+.auth-login-card,
+.auth-login-hero,
+.auth-login-matrix,
+.auth-login-matrix__card,
+.auth-access-stack,
+.auth-access-section,
+.auth-access-section__head,
+.auth-google-surface,
+.auth-google-surface__meta {
+  display: grid;
+  gap: 16px;
+}
+
+.auth-panel--login-accent {
+  align-content: start;
+}
+
+.auth-login-hero {
+  gap: 18px;
+}
+
+.auth-login-matrix {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.auth-login-matrix__card {
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(29, 78, 216, 0.14), transparent 42%),
+    rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.auth-login-matrix__card strong,
+.auth-google-surface__meta strong {
+  color: #ffffff;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.auth-login-matrix__card p,
+.auth-google-surface__meta p,
+.auth-access-section__head p {
+  margin: 0;
+}
+
+.auth-login-matrix__card p {
+  color: rgba(233, 240, 248, 0.72);
+}
+
+.auth-login-matrix__label {
+  width: fit-content;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #bfdbfe;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.auth-login-card {
+  gap: 24px;
+}
+
+.auth-card-head--login {
+  padding-bottom: 6px;
+}
+
+.auth-access-stack {
+  gap: 18px;
+}
+
+.auth-access-section {
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid rgba(15, 26, 37, 0.08);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at top left, rgba(29, 78, 216, 0.06), transparent 36%),
+    rgba(248, 251, 255, 0.92);
+}
+
+.auth-access-section__head {
+  gap: 10px;
+}
+
+.auth-access-section__head .panel-label {
+  width: fit-content;
+  margin-bottom: 0;
+}
+
+.auth-access-section__head p {
+  color: var(--ink-muted);
+}
+
+.auth-google-surface {
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid rgba(15, 26, 37, 0.08);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(246, 249, 253, 0.9) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.auth-google-surface.is-ready {
+  border-color: rgba(29, 78, 216, 0.16);
+}
+
+.auth-google-surface.is-error {
+  border-color: rgba(200, 30, 77, 0.18);
+}
+
+.auth-google-surface__meta {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 14px;
+}
+
+.auth-google-surface__meta strong {
+  color: var(--ink);
+}
+
+.auth-google-surface__meta p {
+  color: var(--ink-muted);
+}
+
+.auth-google-surface__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 12px 24px rgba(15, 26, 37, 0.08);
+}
+
+.auth-google-surface__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.auth-google-render {
+  position: relative;
+  min-height: 56px;
+}
+
+.google-button-host {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.google-button-host--ready {
+  opacity: 1;
+}
+
+.auth-google-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 18px;
+  border: 1px solid rgba(15, 26, 37, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--ink);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 10px 22px rgba(15, 26, 37, 0.06);
+}
+
+.auth-google-placeholder__pill {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.auth-google-placeholder__state {
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.auth-google-status {
+  margin: 0;
+}
+
+.auth-footer--login {
+  padding-top: 14px;
+}
+
+@media (min-width: 768px) {
+  .auth-login-matrix {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -113,7 +113,15 @@ router.post(
 );
 
 router.get("/:slug", async (req, res) => {
-  const canReadDrafts = hasEditorialAccess(req);
+  const status = String(req.query.status ?? "").trim().toLowerCase();
+  const forcePublishedOnly = status === "publish";
+  const canReadDrafts = !forcePublishedOnly && hasEditorialAccess(req);
+
+  if (status && status !== "publish") {
+    res.status(400).json({ code: "INVALID_QUERY", message: "status must be publish" });
+    return;
+  }
+
   const query = await pool.query(
     `SELECT
        id,

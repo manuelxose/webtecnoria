@@ -27,17 +27,6 @@ import { SiteHeaderComponent } from "./site-header.component";
 
       <app-site-footer></app-site-footer>
       <app-chat-widget-embed></app-chat-widget-embed>
-
-      <div class="floating-bar" aria-label="Acceso rapido a contacto">
-        <div class="floating-bar__copy">
-          <strong>Detecta el cuello de botella correcto</strong>
-          <span>Software, automatización, producto, chatbots o IA aplicada</span>
-        </div>
-        <div class="floating-bar__actions">
-          <a class="button button-ghost" href="tel:+34682047802">682 04 78 02</a>
-          <a class="button button-primary" routerLink="/contacto">Solicitar diagnóstico</a>
-        </div>
-      </div>
     </div>
   `,
 })
