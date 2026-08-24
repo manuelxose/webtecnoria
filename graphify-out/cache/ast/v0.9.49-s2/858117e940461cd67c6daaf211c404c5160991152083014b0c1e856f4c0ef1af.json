@@ -1,0 +1,1 @@
+{"nodes": [{"id": "$graphify-root$_apps_api_migrations_005_finance_sql", "label": "005_finance.sql", "file_type": "code", "source_file": "apps/api/migrations/005_finance.sql", "source_location": null}], "edges": []}
