@@ -1,0 +1,17 @@
+[Unit]
+Description=Tecnoria API
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=tecnoria
+Group=tecnoria
+WorkingDirectory=/var/www/webtecnoria/apps/api
+EnvironmentFile=/etc/tecnoria/api.env
+ExecStart=/usr/bin/node /var/www/webtecnoria/apps/api/dist/index.js
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
