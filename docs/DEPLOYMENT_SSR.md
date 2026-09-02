@@ -97,6 +97,24 @@ Puertos internos del despliegue real:
 - `4101` chat API
 - `4102` widget
 
+## Deploy automatizado (GitHub Actions)
+
+El workflow `.github/workflows/deploy.yml` despliega en cada push a `master` (o manual):
+
+1. CI hace SSH con el usuario `deploy` del VPS.
+2. `sudo /var/www/webtecnoria/infra/deploy-webtecnoria.sh`:
+   - `git pull --ff-only` (remoto `git@github-mx-account`), `npm install`
+   - build API (`npm run -w apps/api build`) + restart `tecnoria-api` + smoke `3001/health`
+   - web SSR: `/var/www/bin/deploy-tecnoria-web.sh` (build:ssr + release symlink +
+     restart `tecnoria-web` + smoke local/publico)
+   - `MIGRATE=1` en el entorno del script para ejecutar `npm run migrate:api` antes del restart.
+3. El usuario `deploy` solo puede ejecutar los 3 scripts de deploy via sudo
+   (`/etc/sudoers.d/90-deploy`).
+4. Secretos del repo: `DEPLOY_SSH_HOST`, `DEPLOY_SSH_USER`, `DEPLOY_SSH_KEY`.
+
+Config real del servidor versionada en `infra/`: nginx (`tecnoria.conf`), systemd
+(`tecnoria-api.service`, `tecnoria-web.service`) y binarios de operacion (`infra/bin/`).
+
 ## Corte Cloudflare
 
 Script preparado:
