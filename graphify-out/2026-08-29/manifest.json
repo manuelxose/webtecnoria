@@ -1014,9 +1014,9 @@
     "semantic_hash": "af619e90f3dd414ac600c8f737fa548a"
   },
   ".github/copilot-instructions.md": {
-    "mtime": 1788022404.8326786,
-    "seen": 1788022737.2839317,
-    "ast_hash": "e6e2b4425859077ecbd6488f98bf34df",
+    "mtime": 1773257244.2940733,
+    "seen": 1787654396.2479732,
+    "ast_hash": "4d50faf451432e1b62bb4d7962b548b8",
     "semantic_hash": ""
   },
   ".workspace-tools/migration-inventory.md": {
@@ -1026,15 +1026,15 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1788022404.8306785,
-    "seen": 1788022737.2839365,
-    "ast_hash": "d5a55ee47580726aad6f51c113db1f7b",
+    "mtime": 1787652070.5769184,
+    "seen": 1787654396.2479868,
+    "ast_hash": "2dc782371148a7840ac48d50a58bcaf7",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1788022404.8326786,
-    "seen": 1788022737.283939,
-    "ast_hash": "b6f99f32e37b0b2104e1c19bcaef93cb",
+    "mtime": 1774006522.6108937,
+    "seen": 1787654396.247989,
+    "ast_hash": "7f29b7f4dd31491e5aa42cb39d2e79ea",
     "semantic_hash": ""
   },
   "DEPLOYMENT_SSR.md": {
@@ -1336,179 +1336,5 @@
     "seen": 1788021704.314262,
     "ast_hash": "b7aa8417bdc0e914ee4d548274784b9c",
     "semantic_hash": "b7aa8417bdc0e914ee4d548274784b9c"
-  },
-  ".agentic-platform-backups/20260829-165324/AGENTS.md": {
-    "mtime": 1788021491.1142771,
-    "seen": 1788022737.2838726,
-    "ast_hash": "2f8c252fa5645e32d45d6ec9f052335f",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/CLAUDE.md": {
-    "mtime": 1788021491.1142771,
-    "seen": 1788022737.2838764,
-    "ast_hash": "03cc3fd8303326d67afdd8250add870e",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/POLICY.md": {
-    "mtime": 1788021491.115277,
-    "seen": 1788022737.2838788,
-    "ast_hash": "429cbaf81165700270c534c4643ec560",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/architect.md": {
-    "mtime": 1788021491.115277,
-    "seen": 1788022737.2838812,
-    "ast_hash": "b43b9504585db34912c46778b5c1f83a",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/backend.md": {
-    "mtime": 1788021491.1162772,
-    "seen": 1788022737.2838833,
-    "ast_hash": "a725dc75cb3680962ffc2cb048745068",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/copilot-instructions.md": {
-    "mtime": 1788021491.115277,
-    "seen": 1788022737.283885,
-    "ast_hash": "e08dcc3399be56d3d7ad953353e95962",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/database.md": {
-    "mtime": 1788021491.1162772,
-    "seen": 1788022737.2838871,
-    "ast_hash": "3cdf825f895b8efb39ea61d53e1b6166",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/devops.md": {
-    "mtime": 1788021491.118277,
-    "seen": 1788022737.283889,
-    "ast_hash": "bfcb282cdf117d0d16acd01c6cbaaae2",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/frontend.md": {
-    "mtime": 1788021491.1162772,
-    "seen": 1788022737.283891,
-    "ast_hash": "776b49ff54966c2c2af695d4ec8d6da0",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/orchestrator.md": {
-    "mtime": 1788021491.115277,
-    "seen": 1788022737.2838926,
-    "ast_hash": "746556e5e188ec1511f9b060a620faed",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/performance.md": {
-    "mtime": 1788021491.1172771,
-    "seen": 1788022737.2838948,
-    "ast_hash": "db8f56a0532171dd0e73f20bfa545b04",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/qa.md": {
-    "mtime": 1788021491.1172771,
-    "seen": 1788022737.283897,
-    "ast_hash": "9ce96c21a019bbb64c7eb7019b9ecdc6",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/reviewer.md": {
-    "mtime": 1788021491.118277,
-    "seen": 1788022737.283899,
-    "ast_hash": "104aab7fd38ecfd29e24e191ae8eda4e",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/security.md": {
-    "mtime": 1788021491.1172771,
-    "seen": 1788022737.283901,
-    "ast_hash": "3fa2c1b0b5ebe9443fb8afaf4d1b73ae",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/seo.md": {
-    "mtime": 1788021491.1172771,
-    "seen": 1788022737.283903,
-    "ast_hash": "ab9622bc19c9a11706f47160880c7446",
-    "semantic_hash": ""
-  },
-  ".agentic-platform-backups/20260829-165324/ux-ui.md": {
-    "mtime": 1788021491.1162772,
-    "seen": 1788022737.283905,
-    "ast_hash": "0b5cd76337b2a7516c88b93ee71901e4",
-    "semantic_hash": ""
-  },
-  ".agentic/POLICY.md": {
-    "mtime": 1788022404.8336785,
-    "seen": 1788022737.2839072,
-    "ast_hash": "78ca78384b0199e0cdfc2ff398ce0c3d",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/architect.md": {
-    "mtime": 1788022404.8356783,
-    "seen": 1788022737.283909,
-    "ast_hash": "23438a6b0af72d9e692de453454ce40b",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/backend.md": {
-    "mtime": 1788022404.8376784,
-    "seen": 1788022737.283911,
-    "ast_hash": "a7382af68559992650eb604e1bc73ac1",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/database.md": {
-    "mtime": 1788022404.8386784,
-    "seen": 1788022737.283913,
-    "ast_hash": "a9eab4ce2ba8603a5716ca56fb766706",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/devops.md": {
-    "mtime": 1788022404.8446784,
-    "seen": 1788022737.2839148,
-    "ast_hash": "b74d6830c34d5fbd0a388664fd1ad560",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/frontend.md": {
-    "mtime": 1788022404.8366785,
-    "seen": 1788022737.2839162,
-    "ast_hash": "cb2eb08e4a064d17640c8860912b78fe",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/orchestrator.md": {
-    "mtime": 1788022404.8346784,
-    "seen": 1788022737.2839181,
-    "ast_hash": "6e48b470282faf620ede39f76a33f86e",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/performance.md": {
-    "mtime": 1788022404.8426783,
-    "seen": 1788022737.2839198,
-    "ast_hash": "9a6aa90aaabc4f3bd65efa50621fd6c1",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/qa.md": {
-    "mtime": 1788022404.8436782,
-    "seen": 1788022737.2839217,
-    "ast_hash": "974fc0006664295f5c32b2f55dc82d8f",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/reviewer.md": {
-    "mtime": 1788022404.8466783,
-    "seen": 1788022737.2839231,
-    "ast_hash": "b197c1de8831528f557ec0485d77951e",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/security.md": {
-    "mtime": 1788022404.8416784,
-    "seen": 1788022737.283925,
-    "ast_hash": "eb62e53648ae60391de667453f3b6321",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/seo.md": {
-    "mtime": 1788022404.8436782,
-    "seen": 1788022737.283927,
-    "ast_hash": "748019ae50f75054bf813a7b57ff5cda",
-    "semantic_hash": ""
-  },
-  ".agentic/agents/ux-ui.md": {
-    "mtime": 1788022404.8376784,
-    "seen": 1788022737.2839289,
-    "ast_hash": "e2a390783cf9a195ca58b68beebc1c77",
-    "semantic_hash": ""
   }
 }

@@ -15875,6 +15875,627 @@
       "_origin": "ast"
     },
     {
+      "id": "agentic_platform_backups_20260829_165324_agents",
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/AGENTS.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_agents_agents_md_webtecnoria_ai_agents",
+      "label": "AGENTS.md - Webtecnoria AI Agents",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/AGENTS.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_agents_available_agent_roles",
+      "label": "Available Agent Roles",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/AGENTS.md",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_agents_optimization_policy",
+      "label": "Optimization Policy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/AGENTS.md",
+      "source_location": "L14",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_agents_managed_engineering_policy",
+      "label": "Managed engineering policy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/AGENTS.md",
+      "source_location": "L22",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude",
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_claude_md_webtecnoria_agent_guide",
+      "label": "CLAUDE.md - Webtecnoria Agent Guide",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_project_context",
+      "label": "Project Context",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_behavioral_rules",
+      "label": "Behavioral Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L6",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_build_test_commands",
+      "label": "Build & Test Commands",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L11",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_role_specific_missions",
+      "label": "Role-Specific Missions",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L18",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_architect",
+      "label": "[ARCHITECT]",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L20",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_developer",
+      "label": "[DEVELOPER]",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L23",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_tester",
+      "label": "[TESTER]",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L26",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_ux_ui",
+      "label": "[UX/UI]",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L29",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_claude_managed_engineering_policy",
+      "label": "Managed engineering policy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L33",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_policy",
+      "label": "POLICY.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/POLICY.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_policy_managed_engineering_policy",
+      "label": "Managed engineering policy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/POLICY.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_architect",
+      "label": "architect.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/architect.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_architect_architect",
+      "label": "architect",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/architect.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_backend",
+      "label": "backend.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/backend.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_backend_backend",
+      "label": "backend",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/backend.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_copilot_instructions",
+      "label": "copilot-instructions.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/copilot-instructions.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_database",
+      "label": "database.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/database.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_database_database",
+      "label": "database",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/database.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_devops",
+      "label": "devops.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/devops.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_devops_devops",
+      "label": "devops",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/devops.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_frontend",
+      "label": "frontend.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/frontend.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_frontend_frontend",
+      "label": "frontend",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/frontend.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_orchestrator",
+      "label": "orchestrator.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/orchestrator.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_orchestrator_orchestrator",
+      "label": "orchestrator",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/orchestrator.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_performance",
+      "label": "performance.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/performance.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_performance_performance",
+      "label": "performance",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/performance.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_qa",
+      "label": "qa.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/qa.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_qa_qa",
+      "label": "qa",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/qa.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_reviewer",
+      "label": "reviewer.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/reviewer.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_reviewer_reviewer",
+      "label": "reviewer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/reviewer.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_security",
+      "label": "security.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/security.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_security_security",
+      "label": "security",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/security.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_seo",
+      "label": "seo.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/seo.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_seo_seo",
+      "label": "seo",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/seo.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_ux_ui",
+      "label": "ux-ui.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic-platform-backups/20260829-165324/ux-ui.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_platform_backups_20260829_165324_ux_ui_ux_ui",
+      "label": "ux-ui",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic-platform-backups/20260829-165324/ux-ui.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_policy",
+      "label": "POLICY.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/POLICY.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_policy_managed_engineering_policy",
+      "label": "Managed engineering policy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/POLICY.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_architect",
+      "label": "architect.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/architect.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_architect_architect",
+      "label": "architect",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/architect.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_backend",
+      "label": "backend.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/backend.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_backend_backend",
+      "label": "backend",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/backend.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_database",
+      "label": "database.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/database.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_database_database",
+      "label": "database",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/database.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_devops",
+      "label": "devops.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/devops.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_devops_devops",
+      "label": "devops",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/devops.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_frontend",
+      "label": "frontend.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/frontend.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_frontend_frontend",
+      "label": "frontend",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/frontend.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_orchestrator",
+      "label": "orchestrator.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/orchestrator.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_orchestrator_orchestrator",
+      "label": "orchestrator",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/orchestrator.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_performance",
+      "label": "performance.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/performance.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_performance_performance",
+      "label": "performance",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/performance.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_qa",
+      "label": "qa.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/qa.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_qa_qa",
+      "label": "qa",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/qa.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_reviewer",
+      "label": "reviewer.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/reviewer.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_reviewer_reviewer",
+      "label": "reviewer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/reviewer.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_security",
+      "label": "security.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/security.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_security_security",
+      "label": "security",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/security.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_seo",
+      "label": "seo.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/seo.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_seo_seo",
+      "label": "seo",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/seo.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_ux_ui",
+      "label": "ux-ui.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": ".agentic/agents/ux-ui.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "agentic_agents_ux_ui_ux_ui",
+      "label": "ux-ui",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": ".agentic/agents/ux-ui.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
       "id": "github_copilot_instructions",
       "label": "copilot-instructions.md",
       "file_type": "document",
@@ -15926,6 +16547,15 @@
       "node_kind": "heading",
       "source_file": "AGENTS.md",
       "source_location": "L14",
+      "_origin": "ast"
+    },
+    {
+      "id": "agents_managed_engineering_policy",
+      "label": "Managed engineering policy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L22",
       "_origin": "ast"
     },
     {
@@ -16016,6 +16646,15 @@
       "node_kind": "heading",
       "source_file": "CLAUDE.md",
       "source_location": "L29",
+      "_origin": "ast"
+    },
+    {
+      "id": "claude_managed_engineering_policy",
+      "label": "Managed engineering policy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CLAUDE.md",
+      "source_location": "L33",
       "_origin": "ast"
     },
     {
@@ -52765,6 +53404,406 @@
       "_origin": "ast"
     },
     {
+      "source": "agentic_platform_backups_20260829_165324_agents",
+      "target": "agentic_platform_backups_20260829_165324_agents_agents_md_webtecnoria_ai_agents",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_agents_agents_md_webtecnoria_ai_agents",
+      "target": "agentic_platform_backups_20260829_165324_agents_available_agent_roles",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/AGENTS.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_agents_agents_md_webtecnoria_ai_agents",
+      "target": "agentic_platform_backups_20260829_165324_agents_optimization_policy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/AGENTS.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_agents",
+      "target": "agentic_platform_backups_20260829_165324_agents_managed_engineering_policy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/AGENTS.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude",
+      "target": "agentic_platform_backups_20260829_165324_claude_claude_md_webtecnoria_agent_guide",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude_claude_md_webtecnoria_agent_guide",
+      "target": "agentic_platform_backups_20260829_165324_claude_project_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude_claude_md_webtecnoria_agent_guide",
+      "target": "agentic_platform_backups_20260829_165324_claude_behavioral_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude_claude_md_webtecnoria_agent_guide",
+      "target": "agentic_platform_backups_20260829_165324_claude_build_test_commands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude_claude_md_webtecnoria_agent_guide",
+      "target": "agentic_platform_backups_20260829_165324_claude_role_specific_missions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude_role_specific_missions",
+      "target": "agentic_platform_backups_20260829_165324_claude_architect",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude_role_specific_missions",
+      "target": "agentic_platform_backups_20260829_165324_claude_developer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude_role_specific_missions",
+      "target": "agentic_platform_backups_20260829_165324_claude_tester",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude_role_specific_missions",
+      "target": "agentic_platform_backups_20260829_165324_claude_ux_ui",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_claude",
+      "target": "agentic_platform_backups_20260829_165324_claude_managed_engineering_policy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/CLAUDE.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_policy",
+      "target": "agentic_platform_backups_20260829_165324_policy_managed_engineering_policy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/POLICY.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_architect",
+      "target": "agentic_platform_backups_20260829_165324_architect_architect",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/architect.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_backend",
+      "target": "agentic_platform_backups_20260829_165324_backend_backend",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/backend.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_database",
+      "target": "agentic_platform_backups_20260829_165324_database_database",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/database.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_devops",
+      "target": "agentic_platform_backups_20260829_165324_devops_devops",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/devops.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_frontend",
+      "target": "agentic_platform_backups_20260829_165324_frontend_frontend",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/frontend.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_orchestrator",
+      "target": "agentic_platform_backups_20260829_165324_orchestrator_orchestrator",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/orchestrator.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_performance",
+      "target": "agentic_platform_backups_20260829_165324_performance_performance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/performance.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_qa",
+      "target": "agentic_platform_backups_20260829_165324_qa_qa",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/qa.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_reviewer",
+      "target": "agentic_platform_backups_20260829_165324_reviewer_reviewer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/reviewer.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_security",
+      "target": "agentic_platform_backups_20260829_165324_security_security",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/security.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_seo",
+      "target": "agentic_platform_backups_20260829_165324_seo_seo",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/seo.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_platform_backups_20260829_165324_ux_ui",
+      "target": "agentic_platform_backups_20260829_165324_ux_ui_ux_ui",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic-platform-backups/20260829-165324/ux-ui.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_policy",
+      "target": "agentic_policy_managed_engineering_policy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/POLICY.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_architect",
+      "target": "agentic_agents_architect_architect",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/architect.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_backend",
+      "target": "agentic_agents_backend_backend",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/backend.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_database",
+      "target": "agentic_agents_database_database",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/database.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_devops",
+      "target": "agentic_agents_devops_devops",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/devops.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_frontend",
+      "target": "agentic_agents_frontend_frontend",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/frontend.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_orchestrator",
+      "target": "agentic_agents_orchestrator_orchestrator",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/orchestrator.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_performance",
+      "target": "agentic_agents_performance_performance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/performance.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_qa",
+      "target": "agentic_agents_qa_qa",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/qa.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_reviewer",
+      "target": "agentic_agents_reviewer_reviewer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/reviewer.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_security",
+      "target": "agentic_agents_security_security",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/security.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_seo",
+      "target": "agentic_agents_seo_seo",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/seo.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agentic_agents_ux_ui",
+      "target": "agentic_agents_ux_ui_ux_ui",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agentic/agents/ux-ui.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
       "source": "agents",
       "target": "agents_agents_md_webtecnoria_ai_agents",
       "relation": "contains",
@@ -52791,6 +53830,16 @@
       "confidence": "EXTRACTED",
       "source_file": "AGENTS.md",
       "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "agents",
+      "target": "agents_managed_engineering_policy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -52881,6 +53930,16 @@
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
       "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "claude",
+      "target": "claude_managed_engineering_policy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast"
     },

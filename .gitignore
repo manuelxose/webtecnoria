@@ -73,3 +73,6 @@ apps/api/dist/
 tmp-storage/
 current
 releases/
+.agentic-backup/
+!.claude/
+!.claude/settings.json

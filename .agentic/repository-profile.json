@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "type": "fullstack-web",
+  "languages": [
+    "javascript",
+    "typescript"
+  ],
+  "frameworks": [
+    "angular",
+    "node"
+  ],
+  "databases": [],
+  "packageManager": "npm",
+  "monorepo": true,
+  "tests": [
+    "admin-panel.component.spec.ts",
+    "app.component.spec.ts",
+    "auth-login.component.spec.ts",
+    "auth-re-password.component.spec.ts",
+    "auth-signup.component.spec.ts",
+    "editor-blog.component.spec.ts",
+    "lista-blogs.component.spec.ts",
+    "test.md",
+    "test.ts",
+    "tsconfig.spec.json"
+  ],
+  "ui": true,
+  "seo": false,
+  "docker": true,
+  "graphify": true,
+  "approximateFiles": 7679,
+  "skills": [
+    "accessibility",
+    "angular",
+    "api-design",
+    "cicd",
+    "code-review",
+    "docker",
+    "e2e-testing",
+    "frontend-architecture",
+    "graphify-first-analysis",
+    "javascript",
+    "nodejs",
+    "observability",
+    "performance-engineering",
+    "repository-discovery",
+    "security-review",
+    "testing",
+    "typescript",
+    "ux-ui-engineering"
+  ],
+  "agents": [
+    "architect",
+    "backend",
+    "devops",
+    "frontend",
+    "performance",
+    "qa",
+    "reviewer",
+    "security",
+    "ux-ui"
+  ]
+}
