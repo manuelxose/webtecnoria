@@ -13,6 +13,7 @@
     "dev:deps:up": "docker compose --project-name tecnoria-dev -f infra/docker-compose.dev.yml up -d",
     "dev:deps:down": "docker compose --project-name tecnoria-dev -f infra/docker-compose.dev.yml down",
     "dev:web": "npm run -w apps/web start",
+    "dev:ssr": "npm run -w apps/web dev:ssr",
     "build:types": "npm run -w packages/shared-types build",
     "build:web": "npm run -w apps/web build",
     "build:ssr:web": "npm run -w apps/web build:ssr",
