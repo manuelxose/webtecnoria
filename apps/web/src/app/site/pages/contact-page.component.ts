@@ -44,7 +44,7 @@ import { SeoService } from "../services/seo.service";
       <div class="site-container card-grid card-grid--three">
         <article class="surface-card contact-card">
           <span class="chip chip-soft">Respuesta</span>
-          <h2>Primer filtro en menos de 24 horas laborables</h2>
+          <h2>Primer filtro y siguiente paso concreto</h2>
           <p>Te diremos rápido si hay encaje, qué capa parece prioritaria y cuál debería ser el siguiente paso.</p>
         </article>
         <article class="surface-card contact-card">
@@ -111,7 +111,7 @@ export class ContactPageComponent implements OnInit {
     this.seo.update({
       title: "Contacto para software, automatización, plataformas e IA aplicada",
       description:
-        "Contacta con TecnoRia para software a medida, automatización, plataformas e IA aplicada. Diagnóstico inicial en menos de 24 horas laborables.",
+        "Contacta con TecnoRia para software a medida, automatización, plataformas e IA aplicada. Diagnóstico inicial y siguiente paso concreto.",
       path: "/contacto",
       imagePath: this.visual.src,
       keywords: [

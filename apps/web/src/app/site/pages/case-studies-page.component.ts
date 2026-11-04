@@ -19,9 +19,10 @@ import { SeoService } from "../services/seo.service";
           <span class="eyebrow">Casos de éxito</span>
           <h1>Prueba de valor explicada como problema, decisión y cambio operativo.</h1>
           <p class="lead">
-            Aquí no mostramos pantallas sueltas. Mostramos qué estaba frenando
-            al negocio, qué capa se construyó y qué impacto generó en el trabajo
-            diario o en la salida al mercado.
+            Aquí no mostramos pantallas sueltas ni testimonios anónimos.
+            Mostramos proyectos propios o desarrollos con permiso del cliente:
+            qué estaba frenando al negocio, qué capa se construyó y qué cambió
+            en el trabajo diario o en la salida al mercado.
           </p>
         </div>
 
@@ -108,7 +109,7 @@ export class CaseStudiesPageComponent implements OnInit {
     this.seo.update({
       title: "Casos de éxito de software, automatización, producto e IA aplicada",
       description:
-        "Casos de éxito de TecnoRia con foco en problema, solución e impacto en software, automatización, plataformas, chatbots e IA aplicada.",
+        "Proyectos propios y desarrollos con permiso del cliente: problema, solución e impacto en software, automatización, plataformas, chatbots e IA aplicada.",
       path: "/casos-de-exito",
       imagePath: this.visual.src,
       keywords: [

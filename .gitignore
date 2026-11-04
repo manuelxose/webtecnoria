@@ -65,6 +65,20 @@ apps/web/server_error.txt
 apps/api/node_modules/
 apps/api/dist/
 
+# AgentTeams runtime state
+.agent-teams/
+
+# Project-scoped AI tooling (repo convention: local-only)
+.dsh/
+.specify/
+
+# Local SEO evidence captures
+.seo-*.html
+.seo-*.xml
+.local-*.html
+.local-*.txt
+.api-blog.json
+
 # AI tooling
 .agents/
 .claude-flow/

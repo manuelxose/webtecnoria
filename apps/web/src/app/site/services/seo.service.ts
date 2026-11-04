@@ -7,7 +7,6 @@ import {
   SITE_EMAIL,
   SITE_NAME,
   SITE_PHONE,
-  SITE_REGION,
   SITE_TAGLINE,
   SITE_URL,
 } from "../content/site-content";
@@ -26,7 +25,7 @@ export interface SeoConfig {
 
 @Injectable({ providedIn: "root" })
 export class SeoService {
-  private jsonLdNodes: HTMLScriptElement[] = [];
+  private static readonly jsonLdId = "tecnoria-jsonld";
 
   constructor(
     private readonly title: Title,
@@ -36,7 +35,7 @@ export class SeoService {
 
   update(config: SeoConfig): void {
     const pageTitle = `${config.title} | ${SITE_NAME}`;
-    const canonicalUrl = `${SITE_URL}${config.path === "/" ? "" : config.path}`;
+    const canonicalUrl = `${SITE_URL}${config.path === "/" ? "/" : config.path}`;
     const keywords = config.keywords?.join(", ");
     const imagePath = config.imagePath ?? brandImages.social.src;
     const matchedImage = Object.values(brandImages).find(
@@ -89,7 +88,11 @@ export class SeoService {
       this.meta.updateTag({ name: "keywords", content: keywords });
     }
 
-    this.ensureCanonical(canonicalUrl);
+    if (config.noIndex) {
+      this.removeCanonical();
+    } else {
+      this.ensureCanonical(canonicalUrl);
+    }
 
     const schemas = [
       this.createOrganizationSchema(),
@@ -110,7 +113,7 @@ export class SeoService {
         "@type": "ListItem",
         position: index + 1,
         name: item.name,
-        item: `${SITE_URL}${item.path === "/" ? "" : item.path}`,
+        item: `${SITE_URL}${item.path === "/" ? "/" : item.path}`,
       })),
     };
   }
@@ -152,50 +155,7 @@ export class SeoService {
         name: SITE_NAME,
         url: SITE_URL,
       },
-      url: `${SITE_URL}${path === "/" ? "" : path}`,
-    };
-  }
-
-  createLocalBusinessSchema(): Record<string, unknown> {
-    return {
-      "@context": "https://schema.org",
-      "@type": ["ProfessionalService", "LocalBusiness"],
-      name: SITE_NAME,
-      description: SITE_TAGLINE,
-      url: SITE_URL,
-      telephone: SITE_PHONE,
-      email: SITE_EMAIL,
-      logo: `${SITE_URL}${brandLogos.mark.dark.src}`,
-      image: `${SITE_URL}${brandImages.social.src}`,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Galicia",
-        addressCountry: "ES",
-      },
-      areaServed: [
-        { "@type": "Country", name: "España" },
-        { "@type": "State", name: "Galicia" },
-      ],
-      knowsAbout: [
-        "Software a medida",
-        "Automatización de procesos",
-        "Inteligencia Artificial aplicada",
-        "Chatbots empresariales",
-        "Plataformas SaaS",
-        "Consultoría tecnológica",
-      ],
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Servicios de ingeniería de software e IA",
-        itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Software a medida" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Automatización de procesos" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Inteligencia Artificial aplicada" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Chatbots empresariales" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Plataformas SaaS" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Consultoría tecnológica" } },
-        ],
-      },
+      url: `${SITE_URL}${path === "/" ? "/" : path}`,
     };
   }
 
@@ -219,15 +179,6 @@ export class SeoService {
       applicationCategory: data.category ?? "BusinessApplication",
       operatingSystem: "Web",
       inLanguage: "es",
-      offers: {
-        "@type": "Offer",
-        availability: "https://schema.org/InStock",
-        seller: {
-          "@type": "Organization",
-          name: SITE_NAME,
-          url: SITE_URL,
-        },
-      },
       author: {
         "@type": "Organization",
         name: SITE_NAME,
@@ -268,7 +219,7 @@ export class SeoService {
           url: `${SITE_URL}${brandLogos.mark.dark.src}`,
         },
       },
-      mainEntityOfPage: `${SITE_URL}${path === "/" ? "" : path}`,
+      mainEntityOfPage: `${SITE_URL}${path === "/" ? "/" : path}`,
     };
   }
 
@@ -281,7 +232,10 @@ export class SeoService {
       url: SITE_URL,
       email: SITE_EMAIL,
       telephone: SITE_PHONE,
-      areaServed: SITE_REGION,
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Galicia" },
+        { "@type": "Country", name: "España" },
+      ],
       image: `${SITE_URL}${brandImages.social.src}`,
       logo: `${SITE_URL}${brandLogos.mark.dark.src}`,
     };
@@ -326,14 +280,30 @@ export class SeoService {
     canonical.setAttribute("href", url);
   }
 
+  private removeCanonical(): void {
+    this.document.querySelector("link[rel='canonical']")?.remove();
+  }
+
   private updateSchemas(schemas: Record<string, unknown>[]): void {
-    this.jsonLdNodes.forEach((node) => node.remove());
-    this.jsonLdNodes = schemas.map((schema) => {
-      const node = this.document.createElement("script");
+    let node = this.document.getElementById(
+      SeoService.jsonLdId
+    ) as HTMLScriptElement | null;
+
+    if (!node) {
+      node = this.document.createElement("script");
+      node.id = SeoService.jsonLdId;
       node.type = "application/ld+json";
-      node.text = JSON.stringify(schema);
       this.document.head.appendChild(node);
-      return node;
+    }
+
+    const graph = schemas.map((schema) => {
+      const { "@context": _context, ...item } = schema;
+      return item;
+    });
+
+    node.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": graph,
     });
   }
 }

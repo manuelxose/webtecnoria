@@ -6,7 +6,7 @@
 >
   <url>
     <loc>https://tecnoriasl.com/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -60,7 +60,7 @@
   </url>
   <url>
     <loc>https://tecnoriasl.com/casos-de-exito</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -81,6 +81,18 @@
     <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tecnoriasl.com/productos/talkaris</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tecnoriasl.com/productos/auctorio</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tecnoriasl.com/blog/cuanto-cuesta-desarrollar-software-medida</loc>
@@ -120,6 +132,42 @@
   </url>
   <url>
     <loc>https://tecnoriasl.com/blog/migrar-software-legacy-sin-romper-operativa</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tecnoriasl.com/blog/discovery-tecnico-que-debe-salir-de-la-primera-fase</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tecnoriasl.com/blog/crm-erp-o-software-propio-cuando-integrar-y-cuando-construir</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tecnoriasl.com/blog/automatizacion-documental-finanzas-y-operaciones</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tecnoriasl.com/blog/asistentes-internos-para-onboarding-y-soporte-distribuido</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tecnoriasl.com/blog/roadmap-producto-b2b-que-entra-en-el-primer-build</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tecnoriasl.com/blog/cuadros-de-mando-operativos-cuando-excel-ya-no-da</loc>
     <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

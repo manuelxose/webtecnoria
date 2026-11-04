@@ -23,6 +23,8 @@
     "start:api": "npm run -w apps/api start",
     "migrate:api": "npm run -w apps/api migrate",
     "seed:admin": "npm run -w apps/api seed:admin",
+    "test:seo": "tsx scripts/seo-check.ts",
+    "verify:web": "npm run build:web && npm run test:seo",
     "build": "npm run build:types && npm run build:web && npm run build:api"
   }
 }

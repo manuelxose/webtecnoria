@@ -270,8 +270,8 @@ export const heroHighlights = [
 
 export const heroMetrics: HomeMetric[] = [
   {
-    label: "Respuesta inicial",
-    value: "< 24h",
+    label: "Primer paso",
+    value: "Diagnóstico",
     detail: "Filtrado comercial, encaje y siguiente movimiento sin vueltas innecesarias.",
   },
   {
@@ -1375,7 +1375,7 @@ export const caseStudies: CaseStudyEntry[] = [
       "Pipeline editorial end-to-end con IA integrada para texto e imagen",
       "Publicación multisitio coordinada con trazabilidad por versión",
       "QA automático que valida longitud, SEO, encabezados e imágenes antes de publicar",
-      "Reducción del tiempo de producción editorial de días a horas",
+      "Pipeline trazable que sustituye la coordinación manual entre redacción, revisión y publicación",
     ],
     ctaLabel: "Ver desarrollo de plataformas",
     ctaLink: "/servicios/plataformas-saas",
@@ -1412,7 +1412,7 @@ export const caseStudies: CaseStudyEntry[] = [
     problem:
       "El cliente necesitaba una guía de programación TV moderna que fuera más allá de un simple listado de canales: quería descubrimiento de contenido, interacción social y capacidad editorial, todo con rendimiento SEO para captar tráfico orgánico.",
     solution:
-      "Construimos guiaprogramaciontv.com como un monorepo con Angular SSR y API Node.js/Express sobre MongoDB: EPG sincronizado con fuentes reales, sistema de usuarios con bookmarks, ratings y chat, integración editorial con Auctorio para publicar artículos temáticos, y sitemaps dinámicos con indexación en Google Search Console.",
+      "Construimos guiaprogramaciontv.com como un monorepo con Angular SSR y API Node.js/Express sobre MongoDB: EPG sincronizado con fuentes reales, sistema de usuarios con bookmarks, ratings y chat, integración editorial con Auctorio para publicar artículos temáticos, y sitemaps dinámicos con SEO técnico.",
     impact: [
       "Guía de programación en tiempo real con actualizaciones vía WebSocket",
       "Sistema social completo: bookmarks, valoraciones, conversaciones y bloqueo",
@@ -1422,101 +1422,6 @@ export const caseStudies: CaseStudyEntry[] = [
     ctaLabel: "Ver desarrollo de software",
     ctaLink: "/servicios/desarrollo-software-medida",
     serviceKeys: ["software", "ai", "consulting"],
-  },
-  {
-    slug: "operaciones-servicios-b2b",
-    title: "Plataforma interna para centralizar operaciones y seguimiento multiequipo",
-    sector: "Servicios B2B",
-    summary:
-      "Unificamos operativa, estados y reporting en un sistema propio que sustituyó seguimiento disperso y decisiones sin visibilidad.",
-    problem:
-      "La operativa se repartía entre correo, hojas de cálculo y varias herramientas sin una fuente de verdad única. Cada equipo tenía una foto parcial del estado real.",
-    solution:
-      "Diseñamos un backoffice a medida con roles, estados, alertas, paneles y automatizaciones entre sistemas para coordinar operaciones, dirección y seguimiento.",
-    impact: [
-      "Menos dependencias manuales para tareas de seguimiento y cierre",
-      "Información centralizada para operaciones y dirección",
-      "Mayor control de tiempos, bloqueos y volumen de trabajo",
-    ],
-    ctaLabel: "Ver servicio relacionado",
-    ctaLink: "/servicios/desarrollo-software-medida",
-    serviceKeys: ["software", "automation", "consulting"],
-  },
-  {
-    slug: "mvp-saas-comercial",
-    title: "MVP SaaS listo para validar mercado sin hipotecar la evolución técnica",
-    sector: "Startup / SaaS",
-    summary:
-      "Convertimos una idea ambiciosa en un MVP serio con la arquitectura mínima necesaria para vender, aprender y seguir construyendo.",
-    problem:
-      "El equipo fundador necesitaba salir rápido a mercado, pero no quería repetir el patrón de un MVP improvisado que obliga a rehacer el producto cuando empieza a traccionar.",
-    solution:
-      "Definimos alcance real, experiencia principal, roles, onboarding y panel de administración con una arquitectura pensada para iterar y crecer por roadmap.",
-    impact: [
-      "Salida al mercado con una versión válida para vender y aprender",
-      "Base técnica mantenible para nuevas iteraciones",
-      "Claridad sobre el siguiente roadmap de producto y negocio",
-    ],
-    ctaLabel: "Explorar desarrollo SaaS",
-    ctaLink: "/servicios/plataformas-saas",
-    serviceKeys: ["saas", "consulting"],
-  },
-  {
-    slug: "automatizacion-conversacional-soporte",
-    title: "Automatización conversacional para soporte y cualificación comercial",
-    sector: "Soporte y ventas",
-    summary:
-      "Combinamos chatbots, reglas e IA aplicada para mejorar la primera respuesta, ordenar solicitudes y reducir trabajo manual repetitivo.",
-    problem:
-      "Las consultas llegaban por varios canales, se clasificaban manualmente y el equipo perdía demasiado tiempo en triage antes de atender casos de más valor.",
-    solution:
-      "Creamos un flujo conversacional conectado a formularios, base de conocimiento y CRM para responder preguntas, recoger contexto y activar tareas automáticamente.",
-    impact: [
-      "Menos tiempo en triage y tareas de bajo valor",
-      "Mejor experiencia de respuesta inicial en web y canales conversacionales",
-      "Leads y solicitudes mejor definidos antes de pasar a una persona",
-    ],
-    ctaLabel: "Ver desarrollo de chatbots",
-    ctaLink: "/servicios/desarrollo-chatbots-empresas",
-    serviceKeys: ["chatbots", "ai", "automation"],
-  },
-  {
-    slug: "ecosistema-distribucion-industrial",
-    title: "Ecosistema operativo para distribución industrial con datos sincronizados",
-    sector: "Industria / distribución",
-    summary:
-      "Ordenamos inventario, pedidos y seguimiento interno conectando sistemas y automatizaciones sobre un flujo operativo único.",
-    problem:
-      "La información crítica de pedidos, stock y seguimiento se repartía entre varios sistemas, provocando errores, tiempos muertos y demasiadas validaciones manuales.",
-    solution:
-      "Definimos un flujo operativo único, integramos fuentes de datos y construimos una capa propia para coordinar estados, avisos y reporting entre equipos.",
-    impact: [
-      "Menos duplicidades y menos incertidumbre en el estado del pedido",
-      "Mejor coordinación entre comercial, operaciones y dirección",
-      "Base preparada para nuevas automatizaciones y más visibilidad analítica",
-    ],
-    ctaLabel: "Ver automatización de procesos",
-    ctaLink: "/servicios/automatizacion-procesos",
-    serviceKeys: ["software", "automation"],
-  },
-  {
-    slug: "copiloto-documental-operaciones",
-    title: "Copiloto documental para consultas internas y respuesta operativa más rápida",
-    sector: "Operaciones / conocimiento",
-    summary:
-      "Aplicamos IA y gobierno documental para que el equipo encontrara procedimientos, respuestas y contexto sin depender siempre de expertos internos.",
-    problem:
-      "La documentación existía, pero estaba dispersa, desactualizada o demasiado difícil de localizar en momentos de urgencia operativa.",
-    solution:
-      "Estructuramos las fuentes, definimos límites y desplegamos un asistente interno con supervisión para consultas de procedimiento y contexto operativo.",
-    impact: [
-      "Acceso más rápido a conocimiento operativo validado",
-      "Menos interrupciones a perfiles expertos por preguntas recurrentes",
-      "Mejor consistencia en respuestas internas y soporte a nuevos miembros",
-    ],
-    ctaLabel: "Explorar IA aplicada",
-    ctaLink: "/servicios/inteligencia-artificial-empresas",
-    serviceKeys: ["ai", "consulting"],
   },
 ];
 
@@ -2420,34 +2325,6 @@ export const sitemapGroups: SitemapGroup[] = [
   },
 ];
 
-export interface TestimonialEntry {
-  quote: string;
-  author: string;
-  role: string;
-  company: string;
-}
-
-export const testimonials: TestimonialEntry[] = [
-  {
-    quote: "Empezamos con un diagnóstico ejecutivo para ordenar un proceso que llevaba años funcionando con parches. El resultado fue una hoja de ruta clara que cambió cómo abordamos la tecnología en la empresa.",
-    author: "Director de Operaciones",
-    role: "Director de Operaciones",
-    company: "Empresa de servicios B2B",
-  },
-  {
-    quote: "Necesitábamos salir al mercado con un SaaS sin comprometer la arquitectura. TecnoRia definió el MVP correcto y dejó la base lista para seguir iterando. No rehacemos nada.",
-    author: "Fundador",
-    role: "CEO & Fundador",
-    company: "Startup SaaS",
-  },
-  {
-    quote: "El chatbot que implantamos redujo en un 60% las consultas repetitivas al equipo. Lo que más valoramos fue que lo plantearon conectado a nuestros sistemas desde el primer día.",
-    author: "Responsable de Soporte",
-    role: "Head of Customer Success",
-    company: "Empresa de distribución",
-  },
-];
-
 export function getServiceByKey(key: string): ServiceEntry | undefined {
   return services.find((service) => service.key === key);
 }
@@ -2509,7 +2386,7 @@ export const ownProducts: OwnProduct[] = [
     tagline: "Plataforma conversacional de chatbots enterprise",
     heroHeadline: "Atención automatizada que parece humana.",
     heroCopy:
-      "Talkaris permite a empresas desplegar asistentes conversacionales conectados a su conocimiento, procesos y sistemas internos — sin código, con control total. Desde soporte 24/7 hasta cualificación comercial automatizada.",
+      "Talkaris permite a empresas desplegar asistentes conversacionales conectados a su conocimiento, procesos y sistemas internos — sin código, con control total. Desde soporte conversacional hasta cualificación comercial automatizada.",
     badge: "Producto propio",
     image: brandImages.talkaris,
     features: [
@@ -2552,9 +2429,9 @@ export const ownProducts: OwnProduct[] = [
     ],
     useCases: [
       {
-        title: "Soporte al cliente 24/7",
+        title: "Soporte al cliente continuo",
         description:
-          "Resuelve consultas frecuentes, gestiona incidencias y escala a agente humano solo cuando es necesario. Reduce el volumen de tickets hasta un 60%.",
+          "Resuelve consultas frecuentes, gestiona incidencias y escala a una persona del equipo cuando la conversación lo requiere.",
         badge: "Soporte",
       },
       {
@@ -2579,17 +2456,17 @@ export const ownProducts: OwnProduct[] = [
       "Multi-tenant",
     ],
     stats: [
-      { value: "99.9%", label: "Uptime" },
-      { value: "<200ms", label: "Latencia media" },
-      { value: "60%", label: "Reducción de tickets" },
-      { value: "24/7", label: "Disponibilidad" },
+      { value: "Multi-tenant", label: "Arquitectura" },
+      { value: "Multi-canal", label: "Despliegue" },
+      { value: "Widget", label: "Integración" },
+      { value: "Roles", label: "Gobierno" },
     ],
     ctaLabel: "Solicitar demo de Talkaris",
-    ctaPath: "/contacto?producto=talkaris",
+    ctaPath: "/contacto",
     seo: {
       title: "Talkaris — Plataforma de chatbots y asistentes conversacionales para empresas",
       description:
-        "Talkaris es la plataforma SaaS de TecnoRia para desplegar chatbots enterprise multi-canal. Soporte 24/7, cualificación comercial y asistentes internos conectados a tu conocimiento y sistemas.",
+        "Talkaris es la plataforma SaaS de TecnoRia para desplegar chatbots enterprise multi-canal. Soporte conversacional, cualificación comercial y asistentes internos conectados a tu conocimiento y sistemas.",
       path: "/productos/talkaris",
       keywords: [
         "plataforma chatbots empresas",
@@ -2677,13 +2554,13 @@ export const ownProducts: OwnProduct[] = [
       "API REST",
     ],
     stats: [
-      { value: "10×", label: "Velocidad editorial" },
-      { value: "0€", label: "Banco de imágenes" },
-      { value: "100%", label: "Control de marca" },
-      { value: "N sitios", label: "Publicación simultánea" },
+      { value: "Brief → artículo", label: "Pipeline" },
+      { value: "Imágenes IA", label: "Generación visual" },
+      { value: "Reglas marca", label: "Control editorial" },
+      { value: "Multisitio", label: "Publicación" },
     ],
     ctaLabel: "Ver Auctorio en acción",
-    ctaPath: "/contacto?producto=auctorio",
+    ctaPath: "/contacto",
     seo: {
       title: "Auctorio — Plataforma editorial con IA para generar y publicar contenido",
       description:
@@ -2739,7 +2616,7 @@ export const featuredShowcases: FeaturedShowcase[] = [
       "EPG sincronizado en tiempo real vía WebSocket",
       "Sistema social: bookmarks, ratings y chat",
       "Pipeline editorial automatizado con Auctorio",
-      "SSR + sitemaps dinámicos indexados en Google Search Console",
+      "SSR + sitemaps dinámicos",
     ],
     ctaLabel: "Ver caso completo",
     ctaLink: "/casos-de-exito",

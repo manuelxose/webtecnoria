@@ -38,7 +38,7 @@ import {
             </p>
             <div class="site-footer__signals">
               <span>Galicia · España</span>
-              <span>Respuesta inicial &lt; 24h laborables</span>
+              <span>Filtro de encaje y siguiente paso</span>
               <span>Software, automatización e IA aplicada</span>
             </div>
           </div>

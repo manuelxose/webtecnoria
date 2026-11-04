@@ -6,7 +6,6 @@ import { ParticleCanvasComponent } from "../components/particle-canvas.component
 import {
   benefitBlocks,
   brandImages,
-  caseStudies,
   challengeCards,
   featuredInsightSlugs,
   featuredShowcases,
@@ -17,7 +16,6 @@ import {
   processSteps,
   proofMoments,
   services,
-  testimonials,
   trustStatements,
 } from "../content/site-content";
 import { RevealDirective } from "../directives/reveal.directive";
@@ -339,19 +337,29 @@ const PROCESS_ICONS = [
 
       <section class="section testimonials-section home-testimonials">
         <div class="site-container section-head reveal" appReveal>
-          <span class="eyebrow">Lo que dicen quienes han trabajado con nosotros</span>
-          <h2>Proyectos reales, resultados medibles y relaciones que continúan.</h2>
+          <span class="eyebrow">Prueba verificable</span>
+          <h2>Productos propios y proyectos que podemos enseñar.</h2>
+          <p>
+            No publicamos testimonios anónimos ni métricas sin fuente. Puedes
+            revisar el trabajo real antes de decidir si encaja con tu caso.
+          </p>
         </div>
 
         <div class="site-container card-grid card-grid--three stagger-children" appReveal>
-          <article class="testimonial-card glass-card home-testimonial-card" *ngFor="let item of testimonialItems">
-            <blockquote>
-              <p>{{ item.quote }}</p>
-            </blockquote>
-            <footer class="testimonial-card__footer">
-              <span class="testimonial-card__role">{{ item.role }}</span>
-              <span class="testimonial-card__company">{{ item.company }}</span>
-            </footer>
+          <article class="testimonial-card glass-card home-testimonial-card">
+            <h3>Talkaris</h3>
+            <p>Plataforma conversacional multi-tenant con widget embebible, ingestión de conocimiento y consola de administración.</p>
+            <a class="text-link" routerLink="/productos/talkaris">Ver producto</a>
+          </article>
+          <article class="testimonial-card glass-card home-testimonial-card">
+            <h3>Auctorio</h3>
+            <p>Plataforma editorial con IA para generar, revisar y publicar contenido en varios sitios desde un único panel.</p>
+            <a class="text-link" routerLink="/productos/auctorio">Ver producto</a>
+          </article>
+          <article class="testimonial-card glass-card home-testimonial-card">
+            <h3>Guía de Programación TV</h3>
+            <p>Desarrollo a cliente de una guía de televisión en tiempo real con SSR, contenido editorial y funciones sociales.</p>
+            <a class="text-link" routerLink="/casos-de-exito">Ver casos</a>
           </article>
         </div>
       </section>
@@ -462,16 +470,15 @@ export class HomePageComponent implements OnInit {
   steps = processSteps;
   featuredInsights = getArticlesBySlugs(featuredInsightSlugs);
   homeFaqs = generalFaqs.slice(0, 4);
-  testimonialItems = testimonials;
   products = homeProducts;
 
   constructor(private readonly seo: SeoService) {}
 
   ngOnInit(): void {
     this.seo.update({
-      title: "Ingeniería de software, automatización e IA aplicada para empresas",
+      title: "Software a medida e IA para empresas en Galicia",
       description:
-        "TecnoRia diseña y desarrolla software a medida, automatización e inteligencia artificial aplicada para empresas que necesitan operar mejor y escalar con una base técnica seria. Software · Automatización · IA en Galicia, España.",
+        "TecnoRia diseña software a medida, automatización e IA aplicada para empresas en Galicia y España. Sistemas que ordenan operativa y escalan con criterio.",
       path: "/",
       imagePath: brandImages.social.src,
       keywords: [
@@ -481,10 +488,7 @@ export class HomePageComponent implements OnInit {
         "chatbot empresas español",
         "plataforma saas b2b desarrollo",
       ],
-      schemas: [
-        this.seo.createFaqSchema(this.homeFaqs),
-        this.seo.createLocalBusinessSchema(),
-      ],
+      schemas: [this.seo.createFaqSchema(this.homeFaqs)],
     });
   }
 

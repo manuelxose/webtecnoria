@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "engine-04-manifest/1",
+  "id": "webtecnoria",
+  "stages": [
+    {
+      "id": "build-web",
+      "argv": ["npm", "run", "build:web"],
+      "required": true,
+      "timeoutMs": 600000,
+      "kind": "build"
+    },
+    {
+      "id": "seo-http",
+      "argv": ["npm", "run", "test:seo"],
+      "required": true,
+      "timeoutMs": 180000,
+      "kind": "integration"
+    },
+    {
+      "id": "build-api",
+      "argv": ["npm", "run", "build:api"],
+      "required": true,
+      "timeoutMs": 300000,
+      "kind": "build"
+    }
+  ]
+}

@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
 Disallow: /dashboard
+Disallow: /portal
+Disallow: /acceso-restringido
 Disallow: /auth-
 Disallow: /api/
+Disallow: /uploads/
 
 Sitemap: https://tecnoriasl.com/sitemap.xml

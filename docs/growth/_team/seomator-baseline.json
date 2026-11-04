@@ -1,0 +1,5653 @@
+{
+  "schemaVersion": 2,
+  "url": "https://tecnoriasl.com",
+  "overallScore": 89,
+  "categoryResults": [
+    {
+      "categoryId": "core",
+      "score": 99,
+      "passCount": 21,
+      "warnCount": 2,
+      "failCount": 0,
+      "notMeasuredCount": 1,
+      "results": [
+        {
+          "ruleId": "core-title-present",
+          "status": "pass",
+          "message": "Title tag is present",
+          "score": 100,
+          "details": {
+            "found": true,
+            "title": "Ingeniería de software, automatización e IA aplicada para empresas | TecnoRia",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 25
+        },
+        {
+          "ruleId": "core-title-length",
+          "status": "warn",
+          "message": "Title is too long (77 characters). Recommended: 30-60 characters",
+          "score": 50,
+          "details": {
+            "length": 77,
+            "minLength": 30,
+            "maxLength": 60,
+            "title": "Ingeniería de software, automatización e IA aplicada para empresas | TecnoRia",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "core-description-present",
+          "status": "pass",
+          "message": "Meta description tag is present",
+          "score": 100,
+          "details": {
+            "found": true,
+            "description": "TecnoRia diseña y desarrolla software a medida, automatización e inteligencia artificial aplicada para empresas que necesitan operar mejor y escalar con una base técnica seria. Software · Automatización · IA en Galicia, España.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "core-description-length",
+          "status": "warn",
+          "message": "Meta description is too long (227 characters). Recommended: 120-160 characters",
+          "score": 50,
+          "details": {
+            "length": 227,
+            "minLength": 120,
+            "maxLength": 160,
+            "description": "TecnoRia diseña y desarrolla software a medida, automatización e inteligencia artificial aplicada para empresas que necesitan operar mejor y escalar con una base técnica seria. Software · Automatización · IA en Galicia, España.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "core-canonical-present",
+          "status": "pass",
+          "message": "Canonical URL tag is present",
+          "score": 100,
+          "details": {
+            "found": true,
+            "canonicalUrl": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "core-canonical-valid",
+          "status": "pass",
+          "message": "Canonical URL is a valid absolute URL",
+          "score": 100,
+          "details": {
+            "canonicalUrl": "https://tecnoriasl.com",
+            "isAbsolute": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "core-viewport-present",
+          "status": "pass",
+          "message": "Viewport meta tag is present",
+          "score": 100,
+          "details": {
+            "found": true,
+            "viewport": "width=device-width, initial-scale=1",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 20
+        },
+        {
+          "ruleId": "core-favicon-present",
+          "status": "pass",
+          "message": "Favicon link tag is present",
+          "score": 100,
+          "details": {
+            "found": true,
+            "faviconUrl": "/assets/brand/tecnoria-mark-dark.svg",
+            "rel": "icon",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "core-h1-present",
+          "status": "pass",
+          "message": "H1 tag is present",
+          "score": 100,
+          "details": {
+            "found": true,
+            "count": 1,
+            "text": "Operación precisa.Software que escala contigo.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "core-h1-single",
+          "status": "pass",
+          "message": "Document has exactly one <h1> tag",
+          "score": 100,
+          "details": {
+            "count": 1,
+            "text": "Operación precisa.Software que escala contigo.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "core-canonical-header",
+          "status": "pass",
+          "message": "Single canonical signal present (no conflict)",
+          "score": 100,
+          "details": {
+            "htmlCanonical": "https://tecnoriasl.com",
+            "headerCanonical": null,
+            "source": "html",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "core-nosnippet",
+          "status": "pass",
+          "message": "Page allows search engine snippets",
+          "score": 100,
+          "details": {
+            "directives": [
+              "index, follow"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "core-robots-meta",
+          "status": "pass",
+          "message": "Robots directives allow indexing",
+          "score": 100,
+          "details": {
+            "allDirectives": [
+              {
+                "source": "meta[name=\"robots\"]",
+                "directives": [
+                  "index",
+                  "follow"
+                ]
+              }
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "core-title-unique",
+          "status": "not-measured",
+          "message": "Title uniqueness needs other pages to compare against - run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "core-canonical-conflicting",
+          "status": "pass",
+          "message": "No conflicting canonical URLs detected (at most one canonical source present)",
+          "score": 100,
+          "details": {
+            "htmlCanonical": "https://tecnoriasl.com",
+            "headerCanonical": null,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "core-canonical-to-homepage",
+          "status": "pass",
+          "message": "Page is the homepage; canonical to homepage is expected",
+          "score": 100,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com",
+            "pagePath": "/"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "core-canonical-http-mismatch",
+          "status": "pass",
+          "message": "Page and canonical use the same protocol (https)",
+          "score": 100,
+          "details": {
+            "pageProtocol": "https:",
+            "canonicalProtocol": "https:",
+            "canonicalUrl": "https://tecnoriasl.com/",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "core-canonical-loop",
+          "status": "pass",
+          "message": "Canonical is self-referencing (best practice)",
+          "score": 100,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com",
+            "canonicalUrl": "https://tecnoriasl.com/",
+            "selfReferencing": true
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "core-canonical-to-noindex",
+          "status": "pass",
+          "message": "No noindex directive found; no conflict with canonical",
+          "score": 100,
+          "details": {
+            "canonicalUrl": "https://tecnoriasl.com/",
+            "hasNoindex": false,
+            "selfReferencing": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "core-canonical-outside-head",
+          "status": "pass",
+          "message": "No canonical element outside the <head>",
+          "score": 100,
+          "details": {
+            "outsideHead": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "core-canonical-attributes",
+          "status": "pass",
+          "message": "Canonical element carries only rel and href attributes",
+          "score": 100,
+          "details": {
+            "found": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "core-canonical-multiple",
+          "status": "pass",
+          "message": "At most one canonical element in the HTML",
+          "score": 100,
+          "details": {
+            "count": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "core-canonical-external",
+          "status": "pass",
+          "message": "Canonical points to a URL on the same host",
+          "score": 100,
+          "details": {
+            "found": true,
+            "external": false,
+            "canonicalUrl": "https://tecnoriasl.com/",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "core-robots-directive-mismatch",
+          "status": "pass",
+          "message": "Robots directives are consistent between HTML and HTTP header",
+          "score": 100,
+          "details": {
+            "htmlDeclarations": [
+              {
+                "noindex": false,
+                "index": true,
+                "nofollow": false,
+                "follow": true
+              }
+            ],
+            "header": null,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "categoryId": "technical",
+      "score": 94,
+      "passCount": 15,
+      "warnCount": 2,
+      "failCount": 1,
+      "notMeasuredCount": 0,
+      "results": [
+        {
+          "ruleId": "technical-robots-txt-exists",
+          "status": "pass",
+          "message": "robots.txt file exists and is accessible",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com/robots.txt",
+            "statusCode": 200,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-robots-txt-valid",
+          "status": "pass",
+          "message": "robots.txt has valid syntax",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com/robots.txt",
+            "userAgents": [
+              "*"
+            ],
+            "sitemapUrls": [
+              "https://tecnoriasl.com/sitemap.xml"
+            ],
+            "hasDirectives": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-sitemap-exists",
+          "status": "pass",
+          "message": "Sitemap found: 1 sitemap(s) accessible",
+          "score": 100,
+          "details": {
+            "foundSitemaps": [
+              "https://tecnoriasl.com/sitemap.xml"
+            ],
+            "checkedLocations": [
+              "https://tecnoriasl.com/sitemap.xml"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-sitemap-valid",
+          "status": "pass",
+          "message": "Sitemap has valid XML structure (24 URLs)",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com/sitemap.xml",
+            "isSitemapIndex": false,
+            "urlCount": 24,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-url-structure",
+          "status": "pass",
+          "message": "URL follows SEO best practices",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "path": "/",
+            "pathLength": 1,
+            "totalLength": 22,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-trailing-slash",
+          "status": "pass",
+          "message": "Each internal path is linked in one form (0 with a trailing slash, 25 without)",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "currentHasTrailingSlash": false,
+            "withSlashCount": 0,
+            "withoutSlashCount": 25,
+            "dominantStyle": "without-slash",
+            "sampleWithSlash": [],
+            "sampleWithoutSlash": [
+              "/servicios",
+              "/soluciones",
+              "/casos-de-exito"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-www-redirect",
+          "status": "pass",
+          "message": "Canonical URL is set to non-www version",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "wwwUrl": "https://www.tecnoriasl.com/",
+            "nonWwwUrl": "https://tecnoriasl.com/",
+            "currentIsWww": false,
+            "wwwStatus": 200,
+            "nonWwwStatus": 200,
+            "canonicalHostname": "tecnoriasl.com",
+            "canonicalMatchesCurrent": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-404-page",
+          "status": "fail",
+          "message": "Non-existent page returned 200 instead of 404 (soft 404 issue)",
+          "score": 0,
+          "details": {
+            "testUrl": "https://tecnoriasl.com/seo-audit-test-nonexistent-page-9qrhhfu33x-1793836557507",
+            "statusCode": 200,
+            "issue": "Soft 404 - returns 200 for non-existent pages",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-soft-404",
+          "status": "pass",
+          "message": "Page does not appear to be a soft 404",
+          "score": 100,
+          "details": {
+            "statusCode": 200,
+            "wordCount": 1592,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "technical-server-error",
+          "status": "pass",
+          "message": "Page returned a successful response",
+          "score": 100,
+          "details": {
+            "statusCode": 200,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "technical-4xx-non-404",
+          "status": "pass",
+          "message": "No client error detected",
+          "score": 100,
+          "details": {
+            "statusCode": 200,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "technical-timeout",
+          "status": "pass",
+          "message": "Page response time is 532ms",
+          "score": 100,
+          "details": {
+            "responseTimeMs": 532,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "technical-bad-content-type",
+          "status": "pass",
+          "message": "Content-Type is correct: text/html; charset=utf-8",
+          "score": 100,
+          "details": {
+            "contentType": "text/html; charset=utf-8",
+            "mediaType": "text/html",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "technical-empty-html",
+          "status": "pass",
+          "message": "Page contains meaningful HTML content",
+          "score": 100,
+          "details": {
+            "statusCode": 200,
+            "htmlLength": 120803,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "technical-form-get-method",
+          "status": "warn",
+          "message": "Page contains 1 form(s) using the GET method; submitted data will be appended to the URL",
+          "score": 50,
+          "details": {
+            "formCount": 1,
+            "actions": [
+              "(current URL)"
+            ],
+            "fix": "Switch the form method to POST, or block the form action URL from crawlers via robots.txt if GET URLs are intentional",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "technical-duplicate-gtm",
+          "status": "pass",
+          "message": "No Google Tag Manager containers found",
+          "score": 100,
+          "details": {
+            "containerIds": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-duplicate-ga",
+          "status": "pass",
+          "message": "Page contains a single Google Analytics property: G-LE6ETPWL23",
+          "score": 100,
+          "details": {
+            "propertyIds": [
+              "G-LE6ETPWL23"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "technical-consent-mode",
+          "status": "warn",
+          "message": "Google tag is present and no consent update was found",
+          "score": 50,
+          "details": {
+            "googleTag": true,
+            "consent": false,
+            "recommendation": "Call gtag('consent', 'default', ...) with ad_storage, ad_user_data, and ad_personalization before the tag loads.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "categoryId": "perf",
+      "score": 79,
+      "passCount": 13,
+      "warnCount": 7,
+      "failCount": 0,
+      "notMeasuredCount": 8,
+      "results": [
+        {
+          "ruleId": "cwv-lcp",
+          "status": "not-measured",
+          "message": "Could not measure Largest Contentful Paint",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "metric": "LCP",
+            "reason": "Metric not available",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "cwv-cls",
+          "status": "not-measured",
+          "message": "Could not measure Cumulative Layout Shift",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "metric": "CLS",
+            "reason": "Metric not available",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "cwv-inp",
+          "status": "not-measured",
+          "message": "INP not measured - it requires real user interaction, which an automated crawl does not perform. Use field data (CrUX or RUM) for INP, or --simulate-interaction for an indicative lab value.",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "metric": "INP",
+            "reason": "INP requires user interaction and cannot be measured in a lab crawl",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "cwv-ttfb",
+          "status": "not-measured",
+          "message": "Could not measure Time to First Byte",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "metric": "TTFB",
+            "reason": "Metric not available",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "cwv-fcp",
+          "status": "not-measured",
+          "message": "Could not measure First Contentful Paint",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "metric": "FCP",
+            "reason": "Metric not available",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "perf-dom-size",
+          "status": "pass",
+          "message": "DOM size is optimal (569 nodes, depth 15)",
+          "score": 100,
+          "details": {
+            "totalNodes": 569,
+            "maxDepth": 15,
+            "maxChildren": 12,
+            "deepestSelector": "path",
+            "widestSelector": "div.home-page",
+            "thresholds": {
+              "nodes": {
+                "good": 800,
+                "warning": 1500
+              },
+              "depth": {
+                "good": 32,
+                "warning": 48
+              },
+              "children": {
+                "good": 60
+              }
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "perf-css-file-size",
+          "status": "warn",
+          "message": "CSS could be optimized: 55KB inline CSS - consider extracting to external file",
+          "score": 50,
+          "details": {
+            "externalCssCount": 1,
+            "externalCssUrls": [
+              "styles-KGNLOAAK.css"
+            ],
+            "inlineStyleCount": 5,
+            "inlineCssKb": 55,
+            "hasPreloadCss": false,
+            "thresholds": {
+              "externalFiles": {
+                "good": 3,
+                "warning": 6
+              },
+              "inlineCssKb": {
+                "good": 50,
+                "warning": 100
+              }
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "perf-font-loading",
+          "status": "pass",
+          "message": "Font loading is optimized (2 preloaded, font-display set, display=swap)",
+          "score": 100,
+          "details": {
+            "preloadedFonts": [
+              "/assets/fonts/manrope-latin.woff2",
+              "/assets/fonts/space-grotesk-latin.woff2"
+            ],
+            "googleFontsLinks": [],
+            "fontFacesWithDisplay": 2,
+            "fontFacesWithoutDisplay": 0,
+            "totalFontLinks": 4,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "perf-preconnect",
+          "status": "warn",
+          "message": "Missing preconnect for 1 critical origin(s): https://www.googletagmanager.com",
+          "score": 50,
+          "details": {
+            "preconnects": [],
+            "dnsPrefetches": [],
+            "thirdPartyOrigins": [
+              "https://www.googletagmanager.com"
+            ],
+            "missingPreconnects": [
+              "https://www.googletagmanager.com"
+            ],
+            "criticalOrigins": [
+              "fonts.googleapis.com",
+              "fonts.gstatic.com",
+              "www.google-analytics.com",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "platform.twitter.com",
+              "cdn.jsdelivr.net",
+              "cdnjs.cloudflare.com",
+              "unpkg.com",
+              "ajax.googleapis.com"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "perf-render-blocking",
+          "status": "pass",
+          "message": "No render-blocking scripts (3 async/defer/module)",
+          "score": 100,
+          "details": {
+            "blockingScripts": [
+              {
+                "src": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+                "inHead": false
+              }
+            ],
+            "inlineScriptsInHead": 7,
+            "largeInlineScripts": [],
+            "potentiallyBlockingCss": [],
+            "asyncScripts": 1,
+            "deferScripts": 0,
+            "moduleScripts": 2,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 20
+        },
+        {
+          "ruleId": "perf-lazy-above-fold",
+          "status": "warn",
+          "message": "2 above-fold image(s) have loading=\"lazy\"",
+          "score": 50,
+          "details": {
+            "aboveFoldImages": [
+              {
+                "src": "https://tecnoriasl.com/assets/brand/tecnoria-lockup-dark.svg",
+                "isLazy": false
+              },
+              {
+                "src": "https://tecnoriasl.com/assets/images/brand/services-system-architecture.webp",
+                "isLazy": true
+              },
+              {
+                "src": "https://tecnoriasl.com/assets/images/brand/method-discovery-studio.webp",
+                "isLazy": true
+              }
+            ],
+            "lazyAboveFoldCount": 2,
+            "firstImageLazy": false,
+            "totalImages": 4,
+            "aboveFoldThreshold": 3,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "perf-lcp-hints",
+          "status": "warn",
+          "message": "LCP candidate (header img) could be optimized: no preload or fetchpriority",
+          "score": 50,
+          "details": {
+            "candidate": {
+              "type": "image",
+              "element": "header img",
+              "src": "/assets/brand/tecnoria-lockup-dark.svg",
+              "hasPreload": false,
+              "hasFetchPriority": false,
+              "fetchPriority": null,
+              "isLazyLoaded": false
+            },
+            "preloadedImages": [],
+            "hasAnyOptimization": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "perf-text-compression",
+          "status": "pass",
+          "message": "Text compression enabled (br)",
+          "score": 100,
+          "details": {
+            "contentEncoding": "br",
+            "supportedEncodings": [
+              "gzip",
+              "br",
+              "deflate",
+              "zstd"
+            ],
+            "detectedEncoding": "br",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "perf-brotli",
+          "status": "pass",
+          "message": "Brotli compression is active — optimal text compression",
+          "score": 100,
+          "details": {
+            "contentEncoding": "br",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "perf-asset-compression",
+          "status": "not-measured",
+          "message": "Could not measure text compression of assets — page was not rendered",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "reason": "Asset data not available",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "perf-cache-policy",
+          "status": "pass",
+          "message": "Cache policy set to \"no-store, no-store\" — appropriate for dynamic HTML content",
+          "score": 100,
+          "details": {
+            "cacheControl": "no-store, no-store",
+            "expires": "not set",
+            "etag": "not set",
+            "lastModified": "not set",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "perf-asset-cache-policy",
+          "status": "not-measured",
+          "message": "Could not measure static asset cache policies — page was not rendered",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "reason": "Asset data not available",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "perf-minify-css",
+          "status": "pass",
+          "message": "Inline CSS is minified (56655 bytes, 0% whitespace)",
+          "score": 100,
+          "details": {
+            "styleTagCount": 5,
+            "totalBytes": 56655,
+            "thresholds": {
+              "minBytesToCheck": 500,
+              "whitespaceRatio": 0.15
+            },
+            "whitespaceRatio": 0.002,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "perf-minify-js",
+          "status": "pass",
+          "message": "Inline JavaScript is minimal (294 bytes across 2 <script> tag(s))",
+          "score": 100,
+          "details": {
+            "scriptTagCount": 2,
+            "totalBytes": 294,
+            "thresholds": {
+              "minBytesToCheck": 500,
+              "whitespaceRatio": 0.15
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "perf-response-time",
+          "status": "warn",
+          "message": "Response time is 532ms (recommended: <500ms) — may impact user experience",
+          "score": 50,
+          "details": {
+            "responseTimeMs": 532,
+            "thresholds": {
+              "good": 500,
+              "warning": 1000
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "perf-http2",
+          "status": "pass",
+          "message": "HTTP/3 support advertised via alt-svc header — optimal protocol performance",
+          "score": 100,
+          "details": {
+            "altSvc": "h3=\":443\"; ma=86400",
+            "protocol": "h3",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "perf-page-weight",
+          "status": "warn",
+          "message": "HTML document is 118KB (recommended: <100KB) — consider externalizing inline resources",
+          "score": 50,
+          "details": {
+            "htmlBytes": 121118,
+            "htmlSize": "118KB",
+            "externalScripts": 4,
+            "externalStylesheets": 1,
+            "imageCount": 4,
+            "thresholds": {
+              "good": "100KB",
+              "warning": "300KB"
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "perf-js-file-size",
+          "status": "pass",
+          "message": "Inline JavaScript is 294B across 2 script(s) — within optimal range",
+          "score": 100,
+          "details": {
+            "totalBytes": 294,
+            "totalSize": "294B",
+            "inlineScriptCount": 2,
+            "largestScriptBytes": 172,
+            "largestScriptSize": "172B",
+            "thresholds": {
+              "good": "50KB",
+              "warning": "150KB"
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "perf-video-for-animations",
+          "status": "pass",
+          "message": "No GIF images found — page uses appropriate media formats",
+          "score": 100,
+          "details": {
+            "gifCount": 0,
+            "gifUrls": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "perf-legacy-javascript",
+          "status": "warn",
+          "message": "Legacy JavaScript detected (polyfill bundle). Modern browsers do not need these; consider dropping them from the default bundle.",
+          "score": 50,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "detected": [
+              {
+                "label": "polyfill bundle",
+                "source": "polyfills-OLE7FRBA.js"
+              }
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "perf-image-encoding",
+          "status": "not-measured",
+          "message": "Could not measure image encoding — page was not rendered",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "reason": "Asset data not available",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "perf-duplicate-js",
+          "status": "pass",
+          "message": "No known library is loaded more than once",
+          "score": 100,
+          "details": {
+            "libraries": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "perf-source-maps",
+          "status": "pass",
+          "message": "No source map reference in the page or response headers",
+          "score": 100,
+          "details": {
+            "found": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "categoryId": "links",
+      "score": 97,
+      "passCount": 17,
+      "warnCount": 1,
+      "failCount": 1,
+      "notMeasuredCount": 8,
+      "results": [
+        {
+          "ruleId": "links-broken-internal",
+          "status": "fail",
+          "message": "Found 1 broken internal link(s) out of 26",
+          "score": 0,
+          "details": {
+            "totalChecked": 26,
+            "totalLinks": 58,
+            "brokenCount": 1,
+            "brokenLinks": [
+              {
+                "href": "https://tecnoriasl.com/cdn-cgi/l/email-protection",
+                "statusCode": 404
+              }
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-external-valid",
+          "status": "pass",
+          "message": "No external links found to check",
+          "score": 100,
+          "details": {
+            "totalLinks": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-internal-present",
+          "status": "pass",
+          "message": "Found 54 internal link(s) on this page",
+          "score": 100,
+          "details": {
+            "internalLinkCount": 54,
+            "examples": [
+              "https://tecnoriasl.com/servicios",
+              "https://tecnoriasl.com/soluciones",
+              "https://tecnoriasl.com/casos-de-exito",
+              "https://tecnoriasl.com/metodologia",
+              "https://tecnoriasl.com/blog"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-nofollow-appropriate",
+          "status": "pass",
+          "message": "Nofollow attributes appear to be used appropriately",
+          "score": 100,
+          "details": {
+            "totalLinks": 58,
+            "externalNofollow": 0,
+            "internalNofollow": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-anchor-text",
+          "status": "warn",
+          "message": "Found 2 link(s) with non-descriptive anchor text (3.4% of all links)",
+          "score": 50,
+          "details": {
+            "issueCount": 2,
+            "totalLinks": 58,
+            "issues": [
+              {
+                "href": "https://tecnoriasl.com/",
+                "text": "",
+                "issue": "Empty anchor text"
+              },
+              {
+                "href": "https://tecnoriasl.com/",
+                "text": "",
+                "issue": "Empty anchor text"
+              }
+            ],
+            "suggestion": "Use descriptive anchor text that tells users and search engines what the linked page is about",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-depth",
+          "status": "not-measured",
+          "message": "Click depth needs the site-wide link graph - run with --crawl to measure it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-dead-end-pages",
+          "status": "pass",
+          "message": "Page has 54 outgoing internal link(s)",
+          "score": 100,
+          "details": {
+            "internalLinkCount": 54,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-https-downgrade",
+          "status": "pass",
+          "message": "All links maintain HTTPS security",
+          "score": 100,
+          "details": {
+            "totalLinksChecked": 58,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-external-count",
+          "status": "pass",
+          "message": "Page has 0 external link(s) across 0 domain(s)",
+          "score": 100,
+          "details": {
+            "externalLinkCount": 0,
+            "uniqueDomains": 0,
+            "topDomains": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-invalid",
+          "status": "pass",
+          "message": "No invalid links found",
+          "score": 100,
+          "details": {
+            "invalidCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-tel-mailto",
+          "status": "pass",
+          "message": "All 3 tel:/mailto: link(s) have valid formats",
+          "score": 100,
+          "details": {
+            "totalSpecialLinks": 3,
+            "telCount": 3,
+            "mailtoCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-redirect-chains",
+          "status": "pass",
+          "message": "All 20 sampled internal link(s) resolve directly",
+          "score": 100,
+          "details": {
+            "totalChecked": 20,
+            "totalInternalLinks": 26,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "links-orphan-pages",
+          "status": "not-measured",
+          "message": "Inbound link counting needs the site-wide link graph - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-localhost",
+          "status": "pass",
+          "message": "No localhost or development URL references found",
+          "score": 100,
+          "details": {
+            "totalElementsChecked": 58,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "links-local-file",
+          "status": "pass",
+          "message": "No local file references found",
+          "score": 100,
+          "weight": 8,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-broken-fragment",
+          "status": "pass",
+          "message": "All 1 same-page fragment link(s) have matching IDs",
+          "score": 100,
+          "details": {
+            "fragmentLinksChecked": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "links-excessive",
+          "status": "pass",
+          "message": "Page has 58 link(s), within recommended limits",
+          "score": 100,
+          "details": {
+            "totalLinks": 58,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "links-onclick",
+          "status": "pass",
+          "message": "No onclick-based navigation detected",
+          "score": 100,
+          "weight": 5,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-whitespace-href",
+          "status": "pass",
+          "message": "All link hrefs are free of whitespace issues",
+          "score": 100,
+          "weight": 4,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-non-http-protocol",
+          "status": "pass",
+          "message": "All links use HTTP(S), tel: or mailto: protocols",
+          "score": 100,
+          "details": {
+            "totalLinksChecked": 61,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "links-inbound-all-nofollow",
+          "status": "not-measured",
+          "message": "Inbound link analysis needs the site-wide link graph - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-inbound-mixed-follow",
+          "status": "not-measured",
+          "message": "Inbound link analysis needs the site-wide link graph - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-inbound-low-quality",
+          "status": "not-measured",
+          "message": "Inbound link analysis needs the site-wide link graph - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-inbound-anchor-text",
+          "status": "not-measured",
+          "message": "Inbound link analysis needs the site-wide link graph - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-nofollow-internal",
+          "status": "pass",
+          "message": "No internal links carry rel=nofollow",
+          "score": 100,
+          "details": {
+            "links": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "links-weak-inbound",
+          "status": "not-measured",
+          "message": "Inbound link analysis needs the site-wide link graph - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "links-chrome-inbound",
+          "status": "not-measured",
+          "message": "Inbound link analysis needs the site-wide link graph - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "images",
+      "score": 80,
+      "passCount": 8,
+      "warnCount": 6,
+      "failCount": 0,
+      "notMeasuredCount": 0,
+      "results": [
+        {
+          "ruleId": "images-alt-present",
+          "status": "pass",
+          "message": "All 4 image(s) have alt attributes",
+          "score": 100,
+          "details": {
+            "totalImages": 4,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 20
+        },
+        {
+          "ruleId": "images-alt-quality",
+          "status": "warn",
+          "message": "Found 2 image(s) with low-quality alt text (50.0% of images with alt)",
+          "score": 50,
+          "details": {
+            "issueCount": 2,
+            "totalImagesWithAlt": 4,
+            "issues": [
+              {
+                "src": "https://tecnoriasl.com/assets/images/brand/services-system-architecture.webp",
+                "alt": "Arquitectura abstracta de bloques modulares de cri...",
+                "issue": "Alt text too long (163 chars, recommended max 125)"
+              },
+              {
+                "src": "https://tecnoriasl.com/assets/images/brand/method-discovery-studio.webp",
+                "alt": "Estudio editorial con maquetas, paneles translúcid...",
+                "issue": "Alt text too long (158 chars, recommended max 125)"
+              }
+            ],
+            "suggestion": "Write descriptive alt text that explains the content and context of each image",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "images-dimensions",
+          "status": "pass",
+          "message": "All 4 image(s) have width and height attributes",
+          "score": 100,
+          "details": {
+            "totalImages": 4,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "images-lazy-loading",
+          "status": "warn",
+          "message": "Found 1 below-fold image(s) not using lazy loading (100.0%)",
+          "score": 50,
+          "details": {
+            "notLazyLoadedCount": 1,
+            "belowFoldCount": 1,
+            "totalImages": 4,
+            "images": [
+              {
+                "src": "https://tecnoriasl.com/assets/brand/tecnoria-lockup-light.svg"
+              }
+            ],
+            "suggestion": "Add loading=\"lazy\" to images below the fold to improve initial page load performance",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "images-modern-format",
+          "status": "pass",
+          "message": "Good modern format usage (100.0% WebP/AVIF/SVG)",
+          "score": 100,
+          "details": {
+            "modernImageCount": 4,
+            "totalImages": 4,
+            "pictureElements": 0,
+            "formatBreakdown": {
+              "svg": 2,
+              "webp": 2
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "images-size",
+          "status": "warn",
+          "message": "Found 1 potentially oversized image(s) (may exceed 200KB)",
+          "score": 50,
+          "details": {
+            "potentiallyOversizedCount": 1,
+            "totalImages": 4,
+            "maxRecommendedSizeKB": 200,
+            "images": [
+              {
+                "src": "https://tecnoriasl.com/assets/images/brand/method-discovery-studio.webp",
+                "reason": "Filename suggests large image (contains \"cover\")",
+                "width": "1024",
+                "height": "1024"
+              }
+            ],
+            "suggestion": "Optimize large images using compression, resizing, or modern formats (WebP/AVIF)",
+            "note": "File sizes are estimated based on image attributes and filenames. Use browser DevTools for actual sizes.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "images-responsive",
+          "status": "warn",
+          "message": "No responsive image techniques detected (100.0% of images could benefit)",
+          "score": 50,
+          "details": {
+            "nonResponsiveCount": 4,
+            "totalImages": 4,
+            "pictureElements": 0,
+            "imagesWithSrcset": 0,
+            "images": [
+              {
+                "src": "https://tecnoriasl.com/assets/brand/tecnoria-lockup-dark.svg",
+                "width": "336",
+                "height": "72"
+              },
+              {
+                "src": "https://tecnoriasl.com/assets/images/brand/services-system-architecture.webp",
+                "width": "1024",
+                "height": "1024"
+              },
+              {
+                "src": "https://tecnoriasl.com/assets/images/brand/method-discovery-studio.webp",
+                "width": "1024",
+                "height": "1024"
+              },
+              {
+                "src": "https://tecnoriasl.com/assets/brand/tecnoria-lockup-light.svg",
+                "width": "336",
+                "height": "72"
+              }
+            ],
+            "suggestion": "Use srcset attribute or picture element to serve appropriately sized images for different screen sizes",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "images-broken",
+          "status": "pass",
+          "message": "All 4 checked image(s) are accessible",
+          "score": 100,
+          "details": {
+            "checkedCount": 4,
+            "totalImages": 4,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "images-figure-captions",
+          "status": "warn",
+          "message": "2 figure(s) missing figcaption",
+          "score": 50,
+          "details": {
+            "totalFigures": 2,
+            "withoutCaptions": 2,
+            "emptyFigures": 0,
+            "suggestion": "Add figcaption elements to describe figure content for accessibility",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "images-filename-quality",
+          "status": "pass",
+          "message": "All 4 image(s) have descriptive filenames",
+          "score": 100,
+          "details": {
+            "totalImages": 4,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "images-inline-svg-size",
+          "status": "pass",
+          "message": "All 19 inline SVG(s) are appropriately sized (5.1KB total)",
+          "score": 100,
+          "details": {
+            "svgCount": 19,
+            "totalSizeKB": "5.1",
+            "maxRecommendedKB": 5,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "images-picture-element",
+          "status": "pass",
+          "message": "No picture elements found on page",
+          "score": 100,
+          "details": {
+            "pictureCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "images-alt-length",
+          "status": "warn",
+          "message": "Found 2 image(s) with long alt text (125-250 chars)",
+          "score": 50,
+          "details": {
+            "totalImagesWithAlt": 4,
+            "longCount": 2,
+            "issues": [
+              {
+                "src": "https://tecnoriasl.com/assets/images/brand/services-system-architecture.webp",
+                "alt": "Arquitectura abstracta de bloques modulares de cristal y met...",
+                "length": 163,
+                "severity": "long"
+              },
+              {
+                "src": "https://tecnoriasl.com/assets/images/brand/method-discovery-studio.webp",
+                "alt": "Estudio editorial con maquetas, paneles translúcidos y mater...",
+                "length": 158,
+                "severity": "long"
+              }
+            ],
+            "recommendation": "Aim for alt text under 125 characters for optimal screen reader and SEO performance",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "images-background-seo",
+          "status": "pass",
+          "message": "No inline CSS background images detected",
+          "score": 100,
+          "details": {
+            "count": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "categoryId": "security",
+      "score": 67,
+      "passCount": 12,
+      "warnCount": 7,
+      "failCount": 5,
+      "notMeasuredCount": 2,
+      "results": [
+        {
+          "ruleId": "security-https",
+          "status": "pass",
+          "message": "Page is served over HTTPS",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "protocol": "https:",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "security-https-redirect",
+          "status": "pass",
+          "message": "HTTP redirects to HTTPS (301 -> https://tecnoriasl.com/)",
+          "score": 100,
+          "details": {
+            "httpUrl": "http://tecnoriasl.com/",
+            "expectedHttpsUrl": "https://tecnoriasl.com/",
+            "statusCode": 301,
+            "redirectLocation": "https://tecnoriasl.com/",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "security-hsts",
+          "status": "fail",
+          "message": "Strict-Transport-Security header is missing",
+          "score": 0,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "security-csp",
+          "status": "warn",
+          "message": "Content-Security-Policy header is missing. Consider adding CSP to prevent XSS attacks.",
+          "score": 50,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "security-x-frame-options",
+          "status": "fail",
+          "message": "Neither X-Frame-Options nor CSP frame-ancestors is set. Site is vulnerable to clickjacking.",
+          "score": 0,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "xFrameOptions": null,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "security-x-content-type-options",
+          "status": "fail",
+          "message": "X-Content-Type-Options header is missing. Add \"nosniff\" to prevent MIME type sniffing attacks.",
+          "score": 0,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "security-external-links",
+          "status": "pass",
+          "message": "All external target=\"_blank\" links have noopener/noreferrer",
+          "score": 100,
+          "details": {
+            "checkedLinks": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "security-form-https",
+          "status": "pass",
+          "message": "All 1 form(s) use secure actions",
+          "score": 100,
+          "details": {
+            "formCount": 1,
+            "isHttpsPage": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "security-mixed-content",
+          "status": "pass",
+          "message": "No mixed content detected",
+          "score": 100,
+          "details": {
+            "isHttps": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "security-permissions-policy",
+          "status": "warn",
+          "message": "Permissions-Policy header is missing. Consider adding to control browser features.",
+          "score": 50,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        },
+        {
+          "ruleId": "security-referrer-policy",
+          "status": "warn",
+          "message": "Referrer-Policy is not set. Consider adding to control referrer information.",
+          "score": 50,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        },
+        {
+          "ruleId": "security-leaked-secrets",
+          "status": "fail",
+          "message": "Found 1 potential exposed secret(s)",
+          "score": 0,
+          "details": {
+            "secrets": [
+              {
+                "type": "Google OAuth",
+                "match": "53385776....com",
+                "context": "={\"googleClientId\":\"533857766582-hsp4fsrct6321117n68de3h4ckm..."
+              }
+            ],
+            "totalSecrets": 1,
+            "byType": {
+              "Google OAuth": 1
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "security-password-http",
+          "status": "pass",
+          "message": "Page is served over HTTPS; password inputs are secure",
+          "score": 100,
+          "details": {
+            "isHttps": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "security-protocol-relative",
+          "status": "pass",
+          "message": "No protocol-relative URLs found in resource references",
+          "score": 100,
+          "details": {
+            "count": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "security-ssl-expiry",
+          "status": "warn",
+          "message": "HTTPS is enabled but no Strict-Transport-Security header found; browsers can be downgraded to HTTP",
+          "score": 50,
+          "details": {
+            "isHttps": true,
+            "hasHsts": false,
+            "recommendation": "Add Strict-Transport-Security header with max-age of at least 1 year (31536000 seconds)",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "security-ssl-protocol",
+          "status": "fail",
+          "message": "No Strict-Transport-Security header on HTTPS site; browsers cannot enforce secure connections",
+          "score": 0,
+          "details": {
+            "isHttps": true,
+            "hasHsts": false,
+            "recommendation": "Add Strict-Transport-Security: max-age=31536000; includeSubDomains; preload",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "security-cookie-flags",
+          "status": "pass",
+          "message": "No cookies set by the server on this response",
+          "score": 100,
+          "details": {
+            "cookieCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "security-cookie-lifetime",
+          "status": "pass",
+          "message": "No cookies set by the server on this response",
+          "score": 100,
+          "details": {
+            "cookieCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "security-coop",
+          "status": "warn",
+          "message": "Missing Cross-Origin-Opener-Policy header. Pages that open this one keep a reference to its window.",
+          "score": 50,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "value": null,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "security-csp-xss",
+          "status": "not-measured",
+          "message": "No Content-Security-Policy to grade",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "security-info-disclosure",
+          "status": "warn",
+          "message": "Response headers disclose the software stack (x-powered-by: Express). Suppress or genericise these headers.",
+          "score": 50,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "disclosed": [
+              {
+                "header": "x-powered-by",
+                "value": "Express"
+              }
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "security-paste-blocking",
+          "status": "pass",
+          "message": "No inputs block pasting",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "blocked": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        },
+        {
+          "ruleId": "security-trusted-types",
+          "status": "not-measured",
+          "message": "No Content-Security-Policy, so Trusted Types cannot be enforced yet",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "security-sri",
+          "status": "warn",
+          "message": "1 cross-origin asset(s) have no integrity hash",
+          "score": 50,
+          "details": {
+            "assets": [
+              {
+                "url": "https://www.googletagmanager.com/gtag/js?id=G-LE6ETPWL23",
+                "kind": "script"
+              }
+            ],
+            "recommendation": "Add an integrity attribute with a sha384 or sha256 hash, and crossorigin=\"anonymous\", to cross-origin scripts and stylesheets.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "security-obfuscated-script",
+          "status": "pass",
+          "message": "No obfuscated inline script found",
+          "score": 100,
+          "details": {
+            "hits": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "security-brand-impersonation",
+          "status": "pass",
+          "message": "Brand sign-in links point at the brand or this host",
+          "score": 100,
+          "details": {
+            "found": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        }
+      ]
+    },
+    {
+      "categoryId": "crawl",
+      "score": 99,
+      "passCount": 20,
+      "warnCount": 1,
+      "failCount": 0,
+      "notMeasuredCount": 17,
+      "results": [
+        {
+          "ruleId": "crawl-schema-noindex-conflict",
+          "status": "pass",
+          "message": "Page has 2 rich result schema type(s) and is indexable",
+          "score": 100,
+          "details": {
+            "isNoindexed": false,
+            "schemaTypes": [
+              "ProfessionalService",
+              "WebSite",
+              "WebPage",
+              "FAQPage",
+              "ProfessionalService",
+              "LocalBusiness"
+            ],
+            "richResultTypes": [
+              "FAQPage",
+              "LocalBusiness"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "crawl-pagination-canonical",
+          "status": "pass",
+          "message": "Page does not appear to be paginated",
+          "score": 100,
+          "details": {
+            "isPaginated": false,
+            "hasPaginationLinks": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "crawl-sitemap-domain",
+          "status": "pass",
+          "message": "All 24 sitemap URLs belong to the expected domain",
+          "score": 100,
+          "details": {
+            "sitemapUrl": "https://tecnoriasl.com/sitemap.xml",
+            "isSitemapIndex": false,
+            "totalUrls": 24,
+            "expectedHostnames": [
+              "tecnoriasl.com",
+              "www.tecnoriasl.com"
+            ],
+            "invalidCount": 0,
+            "invalidDomainUrls": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "crawl-noindex-in-sitemap",
+          "status": "pass",
+          "message": "Page is indexable (no noindex directive)",
+          "score": 100,
+          "details": {
+            "isNoindexed": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "crawl-indexability-conflict",
+          "status": "pass",
+          "message": "No indexability conflict detected",
+          "score": 100,
+          "details": {
+            "url": "/",
+            "robotsTxtStatus": "accessible",
+            "hasNoindex": false,
+            "noindexSources": [],
+            "isDisallowedByRobotsTxt": false,
+            "matchedDisallowRule": null,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "crawl-canonical-redirect",
+          "status": "pass",
+          "message": "Canonical is self-referencing and does not redirect",
+          "score": 100,
+          "details": {
+            "canonical": "https://tecnoriasl.com/",
+            "currentUrl": "https://tecnoriasl.com",
+            "isSelfReferencing": true,
+            "redirects": false,
+            "statusCode": 200,
+            "chainLength": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "crawl-sitemap-url-limit",
+          "status": "pass",
+          "message": "Sitemap contains 24 URLs (within 50.000 limit)",
+          "score": 100,
+          "details": {
+            "urlCount": 24,
+            "largestUrlCount": 24,
+            "largestSitemap": "https://tecnoriasl.com/sitemap.xml",
+            "sitemapsChecked": 1,
+            "skippedSitemaps": 0,
+            "maxAllowed": 50000,
+            "warnThreshold": 40000,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "crawl-sitemap-size-limit",
+          "status": "pass",
+          "message": "Sitemap size is 4.5 KB (within 50 MB limit)",
+          "score": 100,
+          "details": {
+            "sizeBytes": 4617,
+            "largestSitemap": "https://tecnoriasl.com/sitemap.xml",
+            "sitemapsChecked": 1,
+            "skippedSitemaps": 0,
+            "sizeFormatted": "4.5 KB",
+            "maxSizeBytes": 52428800,
+            "maxSizeFormatted": "50.0 MB",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "crawl-sitemap-duplicate-urls",
+          "status": "pass",
+          "message": "All 24 sitemap URLs are unique",
+          "score": 100,
+          "details": {
+            "totalUrls": 24,
+            "uniqueUrls": 24,
+            "duplicateCount": 0,
+            "duplicates": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "crawl-sitemap-orphan-urls",
+          "status": "not-measured",
+          "message": "Orphan detection needs the links of crawled pages - run with --crawl to build them",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-blocked-resources",
+          "status": "pass",
+          "message": "robots.txt does not block important CSS/JS resources",
+          "score": 100,
+          "details": {
+            "disallowRuleCount": 3,
+            "blockedResourcePaths": [],
+            "blockedResourceExtensions": [],
+            "totalBlockedRules": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "crawl-blocked-images",
+          "status": "pass",
+          "message": "No images are disallowed by robots.txt (4 checked)",
+          "score": 100,
+          "details": {
+            "imageCount": 4,
+            "blockedCount": 0,
+            "blockedImages": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "crawl-crawl-delay",
+          "status": "pass",
+          "message": "No Crawl-delay directive found in robots.txt",
+          "score": 100,
+          "details": {
+            "hasCrawlDelay": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "crawl-sitemap-in-robotstxt",
+          "status": "pass",
+          "message": "robots.txt references 1 sitemap(s)",
+          "score": 100,
+          "details": {
+            "sitemapDirectiveCount": 1,
+            "sitemapUrls": [
+              "https://tecnoriasl.com/sitemap.xml"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "crawl-pagination-broken",
+          "status": "pass",
+          "message": "No pagination links found (rel=\"next\"/\"prev\")",
+          "score": 100,
+          "details": {
+            "hasPagination": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "crawl-pagination-loop",
+          "status": "pass",
+          "message": "No pagination links found (rel=\"next\"/\"prev\")",
+          "score": 100,
+          "details": {
+            "hasPagination": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "crawl-pagination-sequence",
+          "status": "pass",
+          "message": "No pagination links found",
+          "score": 100,
+          "details": {
+            "hasNext": false,
+            "hasPrev": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "crawl-pagination-noindex",
+          "status": "pass",
+          "message": "Page is not paginated (no rel=\"next\"/\"prev\" links)",
+          "score": 100,
+          "details": {
+            "isPaginated": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "crawl-pagination-orphaned",
+          "status": "pass",
+          "message": "Page does not appear to be paginated",
+          "score": 100,
+          "details": {
+            "isPaginated": false,
+            "hasPaginationLinks": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "crawl-sitemap-lastmod",
+          "status": "warn",
+          "message": "24 of 24 URLs share the same <lastmod> (2026-03-11), which looks generated rather than genuine",
+          "score": 50,
+          "details": {
+            "entryCount": 24,
+            "withLastmod": 24,
+            "invalidDates": [],
+            "futureDates": [],
+            "mostCommonDate": "2026-03-11",
+            "mostCommonDateCount": 24,
+            "impact": "Google discounts lastmod on sites where it does not track real changes, so an inaccurate value forfeits the signal for every URL.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "crawl-pagination-isolated",
+          "status": "not-measured",
+          "message": "Counting incoming links needs the site-wide crawl graph - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-sitemap-non-200",
+          "status": "not-measured",
+          "message": "Per-page crawl data needs a multi-page crawl - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-sitemap-non-canonical",
+          "status": "not-measured",
+          "message": "Per-page crawl data needs a multi-page crawl - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-sitemap-disallowed",
+          "status": "not-measured",
+          "message": "Per-page crawl data needs a multi-page crawl - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-sitemap-cross-duplicates",
+          "status": "not-measured",
+          "message": "Per-page crawl data needs a multi-page crawl - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-canonical-to-noindex",
+          "status": "not-measured",
+          "message": "Checking the canonical target needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-canonical-to-disallowed",
+          "status": "not-measured",
+          "message": "Checking the canonical target needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-canonical-chain",
+          "status": "not-measured",
+          "message": "Following the canonical chain needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-canonical-loop",
+          "status": "not-measured",
+          "message": "Following the canonical chain needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-hreflang-to-noindex",
+          "status": "not-measured",
+          "message": "Checking hreflang targets needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-hreflang-to-disallowed",
+          "status": "not-measured",
+          "message": "Checking hreflang targets needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-hreflang-disallowed-target",
+          "status": "not-measured",
+          "message": "Checking incoming hreflang needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-hreflang-incoming-conflict",
+          "status": "not-measured",
+          "message": "Comparing incoming hreflang annotations needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-hreflang-reciprocity",
+          "status": "not-measured",
+          "message": "Checking hreflang return tags needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-isolated-url",
+          "status": "not-measured",
+          "message": "Checking how the URL was discovered needs the crawl's per-URL discovery records - run with --crawl to build them",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-canonical-form-drift",
+          "status": "not-measured",
+          "message": "Canonical form comparison needs a crawl of at least two pages — run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "crawl-sitemap-date-drift",
+          "status": "pass",
+          "message": "No lastmod and dateModified pair to compare",
+          "score": 100,
+          "details": {
+            "modified": null,
+            "lastmod": "2026-03-11",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "crawl-pdf-size",
+          "status": "pass",
+          "message": "No PDF links on the page",
+          "score": 100,
+          "details": {
+            "pdfs": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "categoryId": "schema",
+      "score": 87,
+      "passCount": 11,
+      "warnCount": 4,
+      "failCount": 0,
+      "notMeasuredCount": 4,
+      "results": [
+        {
+          "ruleId": "schema-present",
+          "status": "pass",
+          "message": "Structured data found: JSON-LD",
+          "score": 100,
+          "details": {
+            "jsonLdCount": 5,
+            "microdataCount": 0,
+            "rdfaCount": 0,
+            "formats": [
+              "JSON-LD"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 25
+        },
+        {
+          "ruleId": "schema-valid",
+          "status": "pass",
+          "message": "All 5 JSON-LD script(s) contain valid JSON",
+          "score": 100,
+          "details": {
+            "totalScripts": 5,
+            "validCount": 5,
+            "invalidCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 25
+        },
+        {
+          "ruleId": "schema-type",
+          "status": "pass",
+          "message": "All 5 JSON-LD script(s) have @type: ProfessionalService, WebSite, WebPage, FAQPage, LocalBusiness",
+          "score": 100,
+          "details": {
+            "totalScripts": 5,
+            "scriptsWithType": 5,
+            "types": [
+              "ProfessionalService",
+              "WebSite",
+              "WebPage",
+              "FAQPage",
+              "LocalBusiness"
+            ],
+            "recognizedTypes": [
+              "WebSite",
+              "WebPage",
+              "FAQPage",
+              "LocalBusiness"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 25
+        },
+        {
+          "ruleId": "schema-required-fields",
+          "status": "warn",
+          "message": "All required fields present, but 7 recommended field(s) missing",
+          "score": 50,
+          "details": {
+            "typesChecked": 4,
+            "totalMissingRequired": 0,
+            "totalMissingRecommended": 7,
+            "recommendations": [
+              "WebSite: consider adding potentialAction, publisher",
+              "WebPage: consider adding breadcrumb, mainEntity",
+              "LocalBusiness: consider adding openingHours, priceRange, geo"
+            ],
+            "validations": [
+              {
+                "type": "WebSite",
+                "missingRequired": [],
+                "missingRecommended": [
+                  "potentialAction",
+                  "publisher"
+                ]
+              },
+              {
+                "type": "WebPage",
+                "missingRequired": [],
+                "missingRecommended": [
+                  "breadcrumb",
+                  "mainEntity"
+                ]
+              },
+              {
+                "type": "FAQPage",
+                "missingRequired": [],
+                "missingRecommended": []
+              },
+              {
+                "type": "LocalBusiness",
+                "missingRequired": [],
+                "missingRecommended": [
+                  "openingHours",
+                  "priceRange",
+                  "geo"
+                ]
+              }
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 25
+        },
+        {
+          "ruleId": "schema-article",
+          "status": "pass",
+          "message": "No Article schema found (not required)",
+          "score": 100,
+          "details": {
+            "articlesFound": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 12
+        },
+        {
+          "ruleId": "schema-breadcrumb",
+          "status": "pass",
+          "message": "Homepage - breadcrumb not required",
+          "score": 100,
+          "details": {
+            "isHomepage": true,
+            "breadcrumbsFound": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "schema-faq",
+          "status": "pass",
+          "message": "Valid FAQPage schema found with 4 question(s)",
+          "score": 100,
+          "details": {
+            "faqPagesFound": 1,
+            "questionsFound": 4,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "schema-local-business",
+          "status": "warn",
+          "message": "LocalBusiness schema has warnings: LocalBusiness: address missing fields: streetAddress; LocalBusiness: missing recommended fields: openingHours, geo, priceRange",
+          "score": 50,
+          "details": {
+            "businessesFound": 1,
+            "warnings": [
+              "LocalBusiness: address missing fields: streetAddress",
+              "LocalBusiness: missing recommended fields: openingHours, geo, priceRange"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "schema-organization",
+          "status": "pass",
+          "message": "No Organization schema found (not required)",
+          "score": 100,
+          "details": {
+            "found": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "schema-product",
+          "status": "pass",
+          "message": "No Product schema found (not required)",
+          "score": 100,
+          "details": {
+            "found": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 12
+        },
+        {
+          "ruleId": "schema-review",
+          "status": "pass",
+          "message": "No Review/AggregateRating schema found (not required)",
+          "score": 100,
+          "details": {
+            "found": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "schema-video",
+          "status": "pass",
+          "message": "No VideoObject schema found (not required)",
+          "score": 100,
+          "details": {
+            "found": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "schema-website-search",
+          "status": "warn",
+          "message": "WebSite found but no SearchAction for sitelinks searchbox",
+          "score": 50,
+          "details": {
+            "websiteCount": 1,
+            "hasSearchAction": false,
+            "suggestion": "Add potentialAction with SearchAction for sitelinks searchbox eligibility",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "schema-entity-id",
+          "status": "warn",
+          "message": "WebSite, LocalBusiness missing @id",
+          "score": 50,
+          "details": {
+            "missing": [
+              "WebSite",
+              "LocalBusiness"
+            ],
+            "relative": [],
+            "recommendation": "Give each Organization, WebSite, and Person one absolute @id, such as https://example.com/#organization, and reuse that URL on every page.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "schema-rating-scope",
+          "status": "pass",
+          "message": "No AggregateRating schema",
+          "score": 100,
+          "details": {
+            "ratings": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "schema-entity-conflict",
+          "status": "not-measured",
+          "message": "Schema identity across pages needs a crawl of at least two pages — run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "schema-entity-dangling",
+          "status": "not-measured",
+          "message": "Schema identity across pages needs a crawl of at least two pages — run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "schema-entity-type-drift",
+          "status": "not-measured",
+          "message": "Schema identity across pages needs a crawl of at least two pages — run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "schema-entity-split",
+          "status": "not-measured",
+          "message": "Schema identity across pages needs a crawl of at least two pages — run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "a11y",
+      "score": 95,
+      "passCount": 33,
+      "warnCount": 3,
+      "failCount": 0,
+      "notMeasuredCount": 0,
+      "results": [
+        {
+          "ruleId": "a11y-aria-labels",
+          "status": "pass",
+          "message": "All interactive elements have accessible names",
+          "score": 100,
+          "details": {
+            "checkedElements": 69,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "a11y-color-contrast",
+          "status": "pass",
+          "message": "No obvious color contrast issues detected",
+          "score": 100,
+          "details": {
+            "note": "Full WCAG contrast checking requires visual rendering",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "a11y-focus-visible",
+          "status": "warn",
+          "message": "Focus outline removed but :focus-visible detected",
+          "score": 50,
+          "details": {
+            "issues": [],
+            "hasFocusVisibleSupport": true,
+            "recommendation": "Ensure :focus-visible provides clear focus indicators",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "a11y-form-labels",
+          "status": "pass",
+          "message": "All form inputs have associated labels",
+          "score": 100,
+          "details": {
+            "totalInputs": 8,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "a11y-heading-order",
+          "status": "pass",
+          "message": "Heading hierarchy is correct",
+          "score": 100,
+          "details": {
+            "totalHeadings": 36,
+            "levels": "H1, H2, H3",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "a11y-landmark-regions",
+          "status": "pass",
+          "message": "All essential landmark regions present",
+          "score": 100,
+          "details": {
+            "landmarks": {
+              "main": {
+                "type": "main",
+                "count": 1
+              },
+              "navigation": {
+                "type": "navigation",
+                "count": 1
+              },
+              "banner": {
+                "type": "banner",
+                "count": 1
+              },
+              "contentinfo": {
+                "type": "contentinfo",
+                "count": 4
+              }
+            },
+            "recommendation": "Consider adding role=\"search\" to search forms",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "a11y-link-text",
+          "status": "warn",
+          "message": "Found 3 link text accessibility issue(s)",
+          "score": 50,
+          "details": {
+            "genericLinks": [],
+            "duplicates": [
+              {
+                "text": "explorar",
+                "count": 5
+              },
+              {
+                "text": "ver plataforma",
+                "count": 2
+              },
+              {
+                "text": "leer artículo",
+                "count": 3
+              }
+            ],
+            "totalLinks": 60,
+            "issues": [
+              "\"explorar\" used 5 times for different destinations",
+              "\"ver plataforma\" used 2 times for different destinations",
+              "\"leer artículo\" used 3 times for different destinations"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "a11y-skip-link",
+          "status": "pass",
+          "message": "Skip link is present",
+          "score": 100,
+          "details": {
+            "skipLink": {
+              "text": "saltar al contenido",
+              "href": "#main-content",
+              "isVisible": false
+            },
+            "hasMainLandmark": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "a11y-table-headers",
+          "status": "pass",
+          "message": "No data tables found on page",
+          "score": 100,
+          "details": {
+            "layoutTables": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "a11y-touch-targets",
+          "status": "pass",
+          "message": "No obvious touch target size issues detected",
+          "score": 100,
+          "details": {
+            "note": "Full touch target analysis requires visual rendering",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "a11y-video-captions",
+          "status": "pass",
+          "message": "No video or audio elements found on page",
+          "score": 100,
+          "details": {
+            "note": "If adding video content, include captions or transcripts",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "a11y-zoom-disabled",
+          "status": "pass",
+          "message": "Viewport allows user zoom",
+          "score": 100,
+          "details": {
+            "viewport": "width=device-width, initial-scale=1",
+            "userScalable": "yes (default)",
+            "maximumScale": "not set",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "a11y-iframe-title",
+          "status": "pass",
+          "message": "No frames on the page",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "total": 0,
+            "untitled": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "a11y-object-alt",
+          "status": "pass",
+          "message": "No <object> elements on the page",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "total": 0,
+            "missing": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-empty-heading",
+          "status": "pass",
+          "message": "All 36 heading(s) contain content",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "total": 36,
+            "empty": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "a11y-input-image-alt",
+          "status": "pass",
+          "message": "No image buttons on the page",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "total": 0,
+            "missing": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "a11y-main-landmark",
+          "status": "pass",
+          "message": "Page has one main landmark",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "count": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "a11y-list-structure",
+          "status": "pass",
+          "message": "List markup is well-formed",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "issues": [],
+            "total": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "a11y-duplicate-id",
+          "status": "pass",
+          "message": "All element IDs are unique",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "duplicates": [],
+            "breakingCount": 0,
+            "svgInternalCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "a11y-tabindex-positive",
+          "status": "pass",
+          "message": "No positive tabindex values",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "offenders": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-accesskey-unique",
+          "status": "pass",
+          "message": "No access keys in use",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "total": 0,
+            "duplicates": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        },
+        {
+          "ruleId": "a11y-form-multiple-labels",
+          "status": "pass",
+          "message": "No form control has multiple labels",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "multiple": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-aria-valid",
+          "status": "pass",
+          "message": "ARIA roles and attributes are valid",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "issues": [],
+            "total": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "a11y-aria-hidden-focusable",
+          "status": "pass",
+          "message": "aria-hidden is not hiding focusable content",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "issues": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "a11y-svg-img-alt",
+          "status": "pass",
+          "message": "No SVGs with an image role on the page",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "total": 0,
+            "missing": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-presentation-role-conflict",
+          "status": "pass",
+          "message": "No presentation role conflicts",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "conflicts": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-valid-lang-element",
+          "status": "pass",
+          "message": "No element-level lang attributes to validate",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "total": 0,
+            "invalid": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        },
+        {
+          "ruleId": "a11y-redundant-alt",
+          "status": "pass",
+          "message": "No redundant alt text found",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "redundant": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-table-caption",
+          "status": "pass",
+          "message": "No data tables on the page",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "dataTables": 0,
+            "issues": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-identical-links-purpose",
+          "status": "warn",
+          "message": "3 link text(s) point to different destinations: \"explorar\" (5 targets), \"ver plataforma\" (2 targets), \"leer art culo\" (3 targets)",
+          "score": 50,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "ambiguous": [
+              {
+                "text": "explorar",
+                "destinations": [
+                  "/servicios/automatizacion-procesos",
+                  "/servicios/desarrollo-chatbots-empresas",
+                  "/servicios/inteligencia-artificial-empresas",
+                  "/servicios/plataformas-saas",
+                  "/servicios/consultoria-tecnologica"
+                ],
+                "count": 5
+              },
+              {
+                "text": "ver plataforma",
+                "destinations": [
+                  "/productos/talkaris",
+                  "/productos/auctorio"
+                ],
+                "count": 2
+              },
+              {
+                "text": "leer art culo",
+                "destinations": [
+                  "/blog/cuanto-cuesta-desarrollar-software-medida",
+                  "/blog/chatbots-atencion-cliente-empresa",
+                  "/blog/migrar-software-legacy-sin-romper-operativa"
+                ],
+                "count": 3
+              }
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "a11y-label-name-mismatch",
+          "status": "pass",
+          "message": "Accessible names contain their visible labels",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "mismatched": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-button-name",
+          "status": "pass",
+          "message": "Buttons have accessible names, or the page has none",
+          "score": 100,
+          "details": {
+            "unnamed": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "a11y-autocomplete",
+          "status": "pass",
+          "message": "Email and telephone inputs set autocomplete, or the page has none",
+          "score": 100,
+          "details": {
+            "missing": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-xml-lang-mismatch",
+          "status": "pass",
+          "message": "html does not set both lang and xml:lang",
+          "score": 100,
+          "details": {
+            "lang": "es",
+            "xmlLang": null,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "a11y-aria-hidden-body",
+          "status": "pass",
+          "message": "html and body are not aria-hidden",
+          "score": 100,
+          "details": {
+            "hidden": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "a11y-aria-required",
+          "status": "pass",
+          "message": "Explicit ARIA widgets have their required roles",
+          "score": 100,
+          "details": {
+            "issues": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "categoryId": "content",
+      "score": 89,
+      "passCount": 17,
+      "warnCount": 3,
+      "failCount": 1,
+      "notMeasuredCount": 6,
+      "results": [
+        {
+          "ruleId": "content-word-count",
+          "status": "pass",
+          "message": "Adequate content length: 1661 words (optimal range)",
+          "score": 100,
+          "details": {
+            "wordCount": 1661,
+            "thresholds": {
+              "fail": 100,
+              "warn": 300,
+              "optimal": {
+                "min": 500,
+                "max": 2500
+              }
+            },
+            "isOptimal": true,
+            "isVeryLong": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "content-reading-level",
+          "status": "warn",
+          "message": "Content may be too complex: 0 (Very Difficult (college graduate))",
+          "score": 50,
+          "details": {
+            "score": 0,
+            "levelDescription": "Very Difficult (college graduate)",
+            "wordCount": 1661,
+            "sentenceCount": 99,
+            "avgWordsPerSentence": 16.8,
+            "thresholds": {
+              "optimal": {
+                "min": 60,
+                "max": 70
+              },
+              "acceptable": {
+                "min": 50,
+                "max": 80
+              }
+            },
+            "impact": "Complex content may alienate general audiences and reduce engagement",
+            "recommendation": "Simplify language by: using shorter sentences, replacing jargon with common words, breaking long paragraphs into smaller chunks, and using bullet points for lists.",
+            "note": "Technical content for expert audiences may legitimately score lower.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        },
+        {
+          "ruleId": "content-keyword-stuffing",
+          "status": "pass",
+          "message": "No keyword stuffing detected",
+          "score": 100,
+          "details": {
+            "totalWords": 1661,
+            "contentWords": 1205,
+            "topicTerm": "con",
+            "topicTermCount": 39,
+            "thresholds": {
+              "warnDensity": 4,
+              "severeDensity": 10,
+              "topicTermAllowance": 8,
+              "minOccurrences": 5
+            },
+            "overusedWords": [],
+            "severelyOverusedWords": [],
+            "note": "Keyword density is within acceptable limits. \"con\" is treated as this page's primary topic and allowed up to 8% density before being flagged.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "content-article-links",
+          "status": "pass",
+          "message": "Link density is appropriate: 1.51 links per 100 words",
+          "score": 100,
+          "details": {
+            "wordCount": 1661,
+            "totalLinks": 25,
+            "internalLinks": 25,
+            "externalLinks": 0,
+            "linksPer100Words": 1.51,
+            "thresholds": {
+              "min": 0.5,
+              "max": 5
+            },
+            "recommendation": "Consider adding external links to authoritative sources",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "content-broken-html",
+          "status": "pass",
+          "message": "No significant HTML structure issues detected",
+          "score": 100,
+          "details": {
+            "issueCount": 0,
+            "criticalCount": 0,
+            "minorCount": 0,
+            "issues": [],
+            "categories": {
+              "duplicate-id": 0,
+              "invalid-nesting": 0,
+              "missing-attribute": 0,
+              "empty-element": 0,
+              "accessibility": 0,
+              "deprecated-element": 0
+            },
+            "note": "HTML structure appears well-formed",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "content-meta-in-body",
+          "status": "pass",
+          "message": "All meta elements are correctly placed in document head",
+          "score": 100,
+          "details": {
+            "checkedElements": [
+              "<meta>",
+              "<title>",
+              "<link rel=\"canonical\">",
+              "<link rel=\"icon\">"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "content-mime-type",
+          "status": "pass",
+          "message": "Content-Type header is correctly configured",
+          "score": 100,
+          "details": {
+            "header": "text/html; charset=utf-8",
+            "mimeType": "text/html",
+            "charset": "utf-8",
+            "charsetSource": "header",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "content-duplicate-description",
+          "status": "not-measured",
+          "message": "Description uniqueness needs other pages to compare against - run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "content-heading-hierarchy",
+          "status": "pass",
+          "message": "Heading hierarchy is correct",
+          "score": 100,
+          "details": {
+            "headingCount": 36,
+            "structure": [
+              {
+                "level": 1,
+                "text": "Operación precisa.Software que escala contigo."
+              },
+              {
+                "level": 2,
+                "text": "Cuando el negocio se tensiona, la tecnología deja ..."
+              },
+              {
+                "level": 3,
+                "text": "Operaciones fragmentadas"
+              },
+              {
+                "level": 3,
+                "text": "Atención y cualificación manual"
+              },
+              {
+                "level": 3,
+                "text": "Producto o software heredado sin base"
+              },
+              {
+                "level": 3,
+                "text": "Decisiones técnicas tomadas con poca claridad"
+              },
+              {
+                "level": 2,
+                "text": "Seis líneas de servicio. Un único criterio de ejec..."
+              },
+              {
+                "level": 3,
+                "text": "Desarrollo de software a medida"
+              },
+              {
+                "level": 3,
+                "text": "Automatización de procesos"
+              },
+              {
+                "level": 3,
+                "text": "Desarrollo de chatbots para empresas"
+              },
+              {
+                "level": 3,
+                "text": "Inteligencia artificial para empresas"
+              },
+              {
+                "level": 3,
+                "text": "Desarrollo de plataformas y SaaS"
+              },
+              {
+                "level": 3,
+                "text": "Consultoría tecnológica"
+              },
+              {
+                "level": 2,
+                "text": "Software real, en producción, resolviendo problema..."
+              },
+              {
+                "level": 2,
+                "text": "Software que construimos para nosotros y desplegam..."
+              },
+              {
+                "level": 3,
+                "text": "Talkaris"
+              },
+              {
+                "level": 3,
+                "text": "Auctorio"
+              },
+              {
+                "level": 2,
+                "text": "Proyectos reales, resultados medibles y relaciones..."
+              },
+              {
+                "level": 2,
+                "text": "Una forma de trabajar que reduce incertidumbre y p..."
+              },
+              {
+                "level": 3,
+                "text": "1. Discovery ejecutivo"
+              },
+              {
+                "level": 3,
+                "text": "2. Blueprint de solución"
+              },
+              {
+                "level": 3,
+                "text": "3. Build por entregas"
+              },
+              {
+                "level": 3,
+                "text": "4. Lanzamiento y adopción"
+              },
+              {
+                "level": 3,
+                "text": "5. Evolución continua"
+              },
+              {
+                "level": 2,
+                "text": "Contenido evergreen para resolver objeciones reale..."
+              },
+              {
+                "level": 3,
+                "text": "Cuánto cuesta desarrollar software a medida y de q..."
+              },
+              {
+                "level": 3,
+                "text": "Cuándo un chatbot para atención al cliente tiene s..."
+              },
+              {
+                "level": 3,
+                "text": "Cómo migrar software legacy sin romper la operativ..."
+              },
+              {
+                "level": 2,
+                "text": "Preguntas frecuentes antes de pedir reunión."
+              },
+              {
+                "level": 2,
+                "text": "Si ya sabes que algo se ha quedado pequeño, lo con..."
+              },
+              {
+                "level": 2,
+                "text": "Cuanto mejor entendamos el contexto, mejor será la..."
+              },
+              {
+                "level": 2,
+                "text": "Tu próximo sistema merece una base técnica que no ..."
+              },
+              {
+                "level": 3,
+                "text": "Mapa rápido"
+              },
+              {
+                "level": 3,
+                "text": "Servicios"
+              },
+              {
+                "level": 3,
+                "text": "Contacto"
+              },
+              {
+                "level": 3,
+                "text": "Accesos"
+              }
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "content-heading-length",
+          "status": "warn",
+          "message": "Heading length issues: 5 too short (<10 chars), 3 too long (>70 chars)",
+          "score": 50,
+          "details": {
+            "headingCount": 36,
+            "issueCount": 8,
+            "tooShort": 5,
+            "tooLong": 3,
+            "issues": [
+              {
+                "level": 2,
+                "text": "Software que construimos para nosotros y desplegamos para equipos que operan de ...",
+                "length": 87,
+                "issue": "too-long"
+              },
+              {
+                "level": 3,
+                "text": "Talkaris",
+                "length": 8,
+                "issue": "too-short"
+              },
+              {
+                "level": 3,
+                "text": "Auctorio",
+                "length": 8,
+                "issue": "too-short"
+              },
+              {
+                "level": 2,
+                "text": "Si ya sabes que algo se ha quedado pequeño, lo convertimos en una decisión ejecu...",
+                "length": 86,
+                "issue": "too-long"
+              },
+              {
+                "level": 2,
+                "text": "Cuanto mejor entendamos el contexto, mejor será la siguiente recomendación.",
+                "length": 75,
+                "issue": "too-long"
+              },
+              {
+                "level": 3,
+                "text": "Servicios",
+                "length": 9,
+                "issue": "too-short"
+              },
+              {
+                "level": 3,
+                "text": "Contacto",
+                "length": 8,
+                "issue": "too-short"
+              },
+              {
+                "level": 3,
+                "text": "Accesos",
+                "length": 7,
+                "issue": "too-short"
+              }
+            ],
+            "minLength": 10,
+            "maxLength": 70,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "content-heading-unique",
+          "status": "pass",
+          "message": "All 36 headings have unique content",
+          "score": 100,
+          "details": {
+            "uniqueHeadings": 36,
+            "duplicateCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "content-text-html-ratio",
+          "status": "warn",
+          "message": "Low text-to-HTML ratio: 10.3% (12443 text bytes / 120803 HTML bytes)",
+          "score": 50,
+          "details": {
+            "textLength": 12443,
+            "htmlLength": 120803,
+            "ratio": 10.3,
+            "thresholds": {
+              "good": 25,
+              "low": 10
+            },
+            "impact": "Low text ratio may indicate bloated code or insufficient content",
+            "recommendation": "Aim for at least 25% text-to-HTML ratio by reducing code bloat or adding more content",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "content-title-same-as-h1",
+          "status": "pass",
+          "message": "Title tag and H1 heading are different",
+          "score": 100,
+          "details": {
+            "title": "Ingeniería de software, automatización e IA aplicada para empresas | TecnoRia",
+            "h1": "Operación precisa.Software que escala contigo.",
+            "normalizedTitle": "ingeniería de software, automatización e ia aplicada para empresas | tecnoria",
+            "normalizedH1": "operación precisa.software que escala contigo.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "content-title-same-as-description",
+          "status": "pass",
+          "message": "Title tag and meta description are different",
+          "score": 100,
+          "details": {
+            "title": "Ingeniería de software, automatización e IA aplicada para empresas | TecnoRia",
+            "description": "TecnoRia diseña y desarrolla software a medida, automatización e inteligencia artificial aplicada para empresas que necesitan operar mejor y escalar con una base técnica seria. Software · Automatización · IA en Galicia, España.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "content-title-pixel-width",
+          "status": "pass",
+          "message": "Title fits within SERP display: estimated 546px",
+          "score": 100,
+          "details": {
+            "title": "Ingeniería de software, automatización e IA aplicada para empresas | TecnoRia",
+            "estimatedWidth": 546,
+            "characterCount": 77,
+            "thresholds": {
+              "good": 580,
+              "warn": 620
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "content-description-pixel-width",
+          "status": "fail",
+          "message": "Meta description will be truncated in SERP: estimated 1593px (max ~920px)",
+          "score": 0,
+          "details": {
+            "description": "TecnoRia diseña y desarrolla software a medida, automatización e inteligencia artificial aplicada para empresas que necesitan operar mejor y escalar con una base técnica seria. Software · Automatización · IA en Galicia, España.",
+            "estimatedWidth": 1593,
+            "characterCount": 227,
+            "thresholds": {
+              "good": 920,
+              "warn": 990
+            },
+            "impact": "Truncated descriptions lose the call-to-action and may reduce click-through rates",
+            "recommendation": "Shorten the description to fit within 920px (~155 characters). Place the most compelling information first.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "content-duplicate-exact",
+          "status": "not-measured",
+          "message": "Duplicate content detection needs other pages to compare against - run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "content-duplicate-near",
+          "status": "not-measured",
+          "message": "Near-duplicate detection needs other pages to compare against - run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "content-duplicate-h1",
+          "status": "not-measured",
+          "message": "Cross-page H1 comparison needs the crawl page inventory - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "content-mojibake",
+          "status": "pass",
+          "message": "No mojibake in visible text",
+          "score": 100,
+          "details": {
+            "samples": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "content-unrendered-markup",
+          "status": "pass",
+          "message": "No unrendered Markdown in visible text",
+          "score": 100,
+          "details": {
+            "samples": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "content-placeholder-text",
+          "status": "pass",
+          "message": "No template leftovers or author notes in visible text",
+          "score": 100,
+          "details": {
+            "templates": [],
+            "notes": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "content-stale-copyright",
+          "status": "pass",
+          "message": "Footer copyright year is current (2026)",
+          "score": 100,
+          "details": {
+            "currentYear": 2026,
+            "years": [
+              2026
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        },
+        {
+          "ruleId": "content-date-agreement",
+          "status": "pass",
+          "message": "No published-date sources to compare",
+          "score": 100,
+          "details": {
+            "sources": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "content-hidden-text",
+          "status": "pass",
+          "message": "No long text hidden with an inline style",
+          "score": 100,
+          "details": {
+            "samples": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "content-thin-vs-site",
+          "status": "not-measured",
+          "message": "Comparing length with the rest of the site needs a crawl of at least four pages",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "content-title-pattern",
+          "status": "not-measured",
+          "message": "A title template needs a crawl of at least four titled pages",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "social",
+      "score": 83,
+      "passCount": 6,
+      "warnCount": 3,
+      "failCount": 0,
+      "notMeasuredCount": 0,
+      "results": [
+        {
+          "ruleId": "social-og-title",
+          "status": "pass",
+          "message": "Open Graph title tag is present",
+          "score": 100,
+          "details": {
+            "found": true,
+            "ogTitle": "Ingeniería de software, automatización e IA aplicada para empresas | TecnoRia",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "social-og-description",
+          "status": "pass",
+          "message": "Open Graph description tag is present",
+          "score": 100,
+          "details": {
+            "found": true,
+            "ogDescription": "TecnoRia diseña y desarrolla software a medida, automatización e inteligencia artificial aplicada para empresas que necesitan operar mejor y escalar con una base técnica seria. Software · Automatización · IA en Galicia, España.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "social-og-image",
+          "status": "pass",
+          "message": "Open Graph image tag is present with a valid URL",
+          "score": 100,
+          "details": {
+            "found": true,
+            "ogImage": "https://tecnoriasl.com/assets/images/brand/og-tecnoria-home.webp",
+            "isValidUrl": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "social-og-image-size",
+          "status": "warn",
+          "message": "Missing og:image:width and og:image:height meta tags. Add these with recommended size 1200x630",
+          "score": 50,
+          "details": {
+            "hasImage": true,
+            "ogImage": "https://tecnoriasl.com/assets/images/brand/og-tecnoria-home.webp",
+            "hasDimensions": false,
+            "recommendedWidth": 1200,
+            "recommendedHeight": 630,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "social-twitter-card",
+          "status": "pass",
+          "message": "Twitter card tag is present with a valid type",
+          "score": 100,
+          "details": {
+            "found": true,
+            "twitterCard": "summary_large_image",
+            "isValidType": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "social-og-url",
+          "status": "pass",
+          "message": "Open Graph URL tag is present with a valid URL",
+          "score": 100,
+          "details": {
+            "found": true,
+            "ogUrl": "https://tecnoriasl.com",
+            "isValidUrl": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "social-og-url-canonical",
+          "status": "pass",
+          "message": "og:url matches canonical URL",
+          "score": 100,
+          "details": {
+            "hasOgUrl": true,
+            "hasCanonical": true,
+            "ogUrl": "https://tecnoriasl.com",
+            "canonical": "https://tecnoriasl.com",
+            "match": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "social-share-buttons",
+          "status": "warn",
+          "message": "No social sharing buttons detected. Add share buttons to encourage social engagement",
+          "score": 50,
+          "details": {
+            "hasShareButtons": false,
+            "platformCount": 0,
+            "suggestion": "Add share buttons for Facebook, Twitter/X, and LinkedIn",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "social-profiles",
+          "status": "warn",
+          "message": "No social media profile links found. Add links to your social profiles in header/footer",
+          "score": 50,
+          "details": {
+            "hasProfiles": false,
+            "profileCount": 0,
+            "suggestion": "Add social profile links in header/footer and include sameAs in Organization schema",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "categoryId": "eeat",
+      "score": 76,
+      "passCount": 8,
+      "warnCount": 7,
+      "failCount": 0,
+      "notMeasuredCount": 1,
+      "results": [
+        {
+          "ruleId": "eeat-about-page",
+          "status": "warn",
+          "score": 50,
+          "message": "No about page link found - important for trust and E-E-A-T",
+          "details": {
+            "hasAboutPage": false,
+            "recommendation": "Add an \"About\" or \"About Us\" page explaining who you are and link to it from your navigation",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "eeat-affiliate-disclosure",
+          "status": "pass",
+          "score": 100,
+          "message": "No affiliate or sponsored content detected",
+          "details": {
+            "hasAffiliateLinks": false,
+            "hasDisclosure": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "eeat-author-byline",
+          "status": "pass",
+          "message": "Author byline found (1 signal)",
+          "score": 100,
+          "details": {
+            "signals": [
+              "Meta author: \"TecnoRia\""
+            ],
+            "impact": "Author attribution supports E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "eeat-author-expertise",
+          "status": "warn",
+          "score": 50,
+          "message": "Author found but no expertise indicators detected",
+          "details": {
+            "signals": [],
+            "credentials": [],
+            "socialLinks": [],
+            "recommendation": "Add author credentials, bio, and professional social links to establish expertise",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "eeat-citations",
+          "status": "pass",
+          "score": 100,
+          "message": "No external citations found (may not be needed for this content type)",
+          "details": {
+            "citationCount": 0,
+            "hasCitationMarkup": false,
+            "hasReferencesSection": false,
+            "recommendation": "For content making claims, consider citing authoritative sources to build credibility",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "eeat-contact-page",
+          "status": "pass",
+          "score": 100,
+          "message": "Contact page found with 2 contact methods",
+          "details": {
+            "hasContactPage": true,
+            "contactMethods": [
+              "phone",
+              "contact form"
+            ],
+            "links": [
+              {
+                "href": "/contacto",
+                "text": "Contacto",
+                "location": "footer"
+              },
+              {
+                "href": "/contacto",
+                "text": "Contacto",
+                "location": "footer"
+              }
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "eeat-content-dates",
+          "status": "warn",
+          "message": "No content date signals found",
+          "score": 50,
+          "details": {
+            "signals": [],
+            "recommendation": "Add datePublished and dateModified to Article schema, or use <time> elements with datetime attributes",
+            "impact": "Search engines use date signals to assess content freshness, which can affect rankings for time-sensitive queries",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "eeat-disclaimers",
+          "status": "pass",
+          "score": 100,
+          "message": "Non-YMYL content - disclaimers not required",
+          "details": {
+            "isYMYL": false,
+            "disclaimers": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "eeat-editorial-policy",
+          "status": "warn",
+          "score": 50,
+          "message": "No editorial policy found - recommended for content-focused sites",
+          "details": {
+            "hasEditorialPolicy": false,
+            "signals": [],
+            "isContentSite": true,
+            "recommendation": "Add an editorial policy page explaining your content creation, review, and correction processes",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "eeat-physical-address",
+          "status": "warn",
+          "score": 50,
+          "message": "No physical address found - important for business trust signals",
+          "details": {
+            "hasAddress": false,
+            "isBusinessSite": true,
+            "recommendation": "Add your business address using Schema.org PostalAddress and display it visibly on the page",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "eeat-privacy-policy",
+          "status": "warn",
+          "score": 50,
+          "message": "No privacy policy link found - important for trust and legal compliance",
+          "details": {
+            "hasPrivacyPolicy": false,
+            "recommendation": "Add a link to your privacy policy in the footer of every page",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "eeat-terms-of-service",
+          "status": "pass",
+          "score": 100,
+          "message": "No terms of service link found (may not be required for this site type)",
+          "details": {
+            "hasTermsOfService": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "eeat-trust-signals",
+          "status": "pass",
+          "score": 100,
+          "message": "Strong trust signals: 4 types of social proof found",
+          "details": {
+            "signalCount": 4,
+            "signalTypes": [
+              "reviews",
+              "media",
+              "payment",
+              "professional"
+            ],
+            "signals": {
+              "reviews": [
+                "Element: [class*=\"testimonial\"] (\"Lo que dicen quienes han trabajado con nosotrosPro\")"
+              ],
+              "media": [
+                "Element: [class*=\"media\"] (\"Dónde solemos entrarCuando el negocio se tensiona,\")"
+              ],
+              "payment": [
+                "Text: \"visa\""
+              ],
+              "professional": [
+                "Element: [class*=\"badge\"] (\"Core build\")"
+              ]
+            },
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "eeat-ymyl-detection",
+          "status": "pass",
+          "score": 100,
+          "message": "No YMYL content detected",
+          "details": {
+            "isYMYL": false,
+            "categories": [],
+            "confidence": "none",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "eeat-geo-meta",
+          "status": "warn",
+          "message": "Local-business schema is present and no geo meta tag was found",
+          "score": 50,
+          "details": {
+            "local": true,
+            "present": [],
+            "recommendation": "Add meta tags for geo.region, geo.placename, or geo.position on pages that describe a place.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        },
+        {
+          "ruleId": "eeat-nap-consistency",
+          "status": "not-measured",
+          "message": "Schema identity across pages needs a crawl of at least two pages — run with --crawl",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "url",
+      "score": 100,
+      "passCount": 14,
+      "warnCount": 0,
+      "failCount": 0,
+      "notMeasuredCount": 0,
+      "results": [
+        {
+          "ruleId": "url-slug-keywords",
+          "status": "pass",
+          "message": "URL contains descriptive keywords: ",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "path": "/",
+            "slugSegments": [],
+            "hasDescriptiveSlug": true,
+            "isGeneric": false,
+            "isDynamic": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "url-stop-words",
+          "status": "pass",
+          "message": "URL contains no stop words",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "path": "/",
+            "words": [],
+            "stopWordsFound": [],
+            "stopWordCount": 0,
+            "stopWordRatio": 0,
+            "suggestions": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "url-uppercase",
+          "status": "pass",
+          "message": "URL path is all lowercase",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "path": "/",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "url-underscores",
+          "status": "pass",
+          "message": "Root path has no underscores",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "path": "/",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "url-double-slash",
+          "status": "pass",
+          "message": "URL path has no double slashes",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "path": "/",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "url-spaces",
+          "status": "pass",
+          "message": "URL contains no spaces",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "path": "/",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "url-non-ascii",
+          "status": "pass",
+          "message": "URL path contains only ASCII characters",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "path": "/",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "url-length",
+          "status": "pass",
+          "message": "URL length is 22 characters (good, <= 75)",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "length": 22,
+            "maxRecommended": 75,
+            "maxAcceptable": 200,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "url-repetitive-path",
+          "status": "pass",
+          "message": "URL path has no repetitive segments",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "path": "/",
+            "segments": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "url-parameters",
+          "status": "pass",
+          "message": "URL has no query parameters",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "parameterCount": 0,
+            "parameters": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "url-session-ids",
+          "status": "pass",
+          "message": "No session IDs found in URL",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "url-tracking-params",
+          "status": "pass",
+          "message": "No tracking parameters found in URL",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 5
+        },
+        {
+          "ruleId": "url-internal-search",
+          "status": "pass",
+          "message": "URL does not appear to be an internal search page",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "url-http-https-duplicate",
+          "status": "pass",
+          "message": "Canonical URL protocol matches page URL protocol",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "protocol": "https:",
+            "canonical": "https://tecnoriasl.com",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "categoryId": "mobile",
+      "score": 61,
+      "passCount": 5,
+      "warnCount": 0,
+      "failCount": 2,
+      "notMeasuredCount": 5,
+      "results": [
+        {
+          "ruleId": "mobile-font-size",
+          "status": "fail",
+          "message": "Found 1 critical font size issue(s) below 12px",
+          "score": 0,
+          "details": {
+            "issues": [
+              {
+                "location": "CSS stylesheet",
+                "issue": "CSS declares font size below 12px",
+                "value": "11.5px"
+              },
+              {
+                "location": "CSS stylesheet",
+                "issue": "Line height below 1.2 reduces mobile readability",
+                "value": "1.1"
+              },
+              {
+                "location": "CSS stylesheet",
+                "issue": "Line height below 1.2 reduces mobile readability",
+                "value": "1.1"
+              },
+              {
+                "location": "CSS stylesheet",
+                "issue": "Line height below 1.2 reduces mobile readability",
+                "value": "1"
+              },
+              {
+                "location": "CSS stylesheet",
+                "issue": "Line height below 1.2 reduces mobile readability",
+                "value": "1.1"
+              }
+            ],
+            "totalIssues": 5,
+            "smallFontCount": 1,
+            "tightLineHeightCount": 4,
+            "recommendation": "Use minimum 16px for body text, 12px absolute minimum",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "mobile-horizontal-scroll",
+          "status": "fail",
+          "message": "Found 4 element(s) that may cause horizontal scrolling",
+          "score": 0,
+          "details": {
+            "issues": [
+              {
+                "element": "img: Arquitectura abstracta de bloques modulares de cristal y metal anodizado que representa sistemas, integraciones y automatización con una estética limpia y precisa.",
+                "issue": "Width attribute exceeds mobile viewport",
+                "cause": "width=\"1024\""
+              },
+              {
+                "element": "img: Estudio editorial con maquetas, paneles translúcidos y materiales técnicos que evoca discovery, definición y método antes de ejecutar tecnología con criterio.",
+                "issue": "Width attribute exceeds mobile viewport",
+                "cause": "width=\"1024\""
+              },
+              {
+                "element": "img: services-system-architecture.webp",
+                "issue": "Large image without max-width: 100%",
+                "cause": "width=\"1024\" without responsive constraint"
+              },
+              {
+                "element": "img: method-discovery-studio.webp",
+                "issue": "Large image without max-width: 100%",
+                "cause": "width=\"1024\" without responsive constraint"
+              }
+            ],
+            "totalIssues": 4,
+            "recommendation": "Use max-width: 100% on images, overflow-x: auto on tables, responsive iframes",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "mobile-interstitials",
+          "status": "pass",
+          "message": "No intrusive interstitials detected",
+          "score": 100,
+          "details": {
+            "note": "Static analysis - JavaScript-triggered popups may not be detected",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "mobile-viewport-width",
+          "status": "pass",
+          "message": "Viewport width is set to device-width (responsive)",
+          "score": 100,
+          "details": {
+            "viewportContent": "width=device-width, initial-scale=1",
+            "widthValue": "device-width",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "mobile-multiple-viewports",
+          "status": "pass",
+          "message": "Single viewport meta tag found (correct)",
+          "score": 100,
+          "details": {
+            "viewportCount": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "mobile-image-maps",
+          "status": "pass",
+          "message": "No image map tags found",
+          "score": 100,
+          "details": {
+            "mapCount": 0,
+            "areaCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "mobile-viewport-content",
+          "status": "pass",
+          "message": "Viewport meta tag sets width and initial-scale=1, with no minimum-scale",
+          "score": 100,
+          "details": {
+            "viewportContent": "width=device-width, initial-scale=1",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "mobile-parity-content",
+          "status": "not-measured",
+          "message": "Mobile parity not measured - run with --mobile (and without --no-cwv) to render desktop and mobile and compare them",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "mobile-parity-title",
+          "status": "not-measured",
+          "message": "Mobile parity not measured - run with --mobile (and without --no-cwv) to render desktop and mobile and compare them",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "mobile-parity-canonical",
+          "status": "not-measured",
+          "message": "Mobile parity not measured - run with --mobile (and without --no-cwv) to render desktop and mobile and compare them",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "mobile-parity-structured-data",
+          "status": "not-measured",
+          "message": "Mobile parity not measured - run with --mobile (and without --no-cwv) to render desktop and mobile and compare them",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "mobile-parity-links",
+          "status": "not-measured",
+          "message": "Mobile parity not measured - run with --mobile (and without --no-cwv) to render desktop and mobile and compare them",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "i18n",
+      "score": 100,
+      "passCount": 12,
+      "warnCount": 0,
+      "failCount": 0,
+      "notMeasuredCount": 1,
+      "results": [
+        {
+          "ruleId": "i18n-lang-attribute",
+          "status": "pass",
+          "message": "HTML lang attribute set to \"es\"",
+          "score": 100,
+          "details": {
+            "found": true,
+            "lang": "es",
+            "validFormat": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "i18n-hreflang",
+          "status": "pass",
+          "message": "No hreflang tags found, and no links to other-language versions of this page",
+          "score": 100,
+          "details": {
+            "count": 0,
+            "note": "Add hreflang tags if you have multi-language or regional versions",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "i18n-hreflang-return-links",
+          "status": "pass",
+          "message": "No hreflang tags found (nothing to check)",
+          "score": 100,
+          "details": {
+            "count": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 12
+        },
+        {
+          "ruleId": "i18n-hreflang-to-noindex",
+          "status": "pass",
+          "message": "No hreflang tags found, no conflict possible",
+          "score": 100,
+          "details": {
+            "hasHreflang": false,
+            "hasNoindex": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "i18n-hreflang-to-non-canonical",
+          "status": "pass",
+          "message": "No hreflang tags found, no conflict possible",
+          "score": 100,
+          "details": {
+            "hasHreflang": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "i18n-hreflang-to-broken",
+          "status": "pass",
+          "message": "No hreflang tags found",
+          "score": 100,
+          "details": {
+            "count": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "i18n-hreflang-to-redirect",
+          "status": "pass",
+          "message": "No hreflang tags found",
+          "score": 100,
+          "details": {
+            "count": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "i18n-hreflang-conflicting",
+          "status": "pass",
+          "message": "No hreflang tags found",
+          "score": 100,
+          "details": {
+            "count": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "i18n-hreflang-relative-url",
+          "status": "pass",
+          "message": "No hreflang tags found",
+          "score": 100,
+          "details": {
+            "count": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "i18n-hreflang-x-default",
+          "status": "pass",
+          "message": "No hreflang tags found",
+          "score": 100,
+          "details": {
+            "count": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "i18n-hreflang-lang-mismatch",
+          "status": "pass",
+          "message": "No hreflang tags found, no mismatch possible",
+          "score": 100,
+          "details": {
+            "hasHreflang": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "i18n-hreflang-multiple-methods",
+          "status": "pass",
+          "message": "No hreflang declarations found",
+          "score": 100,
+          "details": {
+            "htmlHreflang": false,
+            "headerHreflang": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "i18n-hreflang-incoming-invalid",
+          "status": "not-measured",
+          "message": "Validating incoming hreflang annotations needs per-page crawl state - run with --crawl to build it",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "legal",
+      "score": 50,
+      "passCount": 0,
+      "warnCount": 1,
+      "failCount": 0,
+      "notMeasuredCount": 0,
+      "results": [
+        {
+          "ruleId": "legal-cookie-consent",
+          "status": "warn",
+          "score": 50,
+          "message": "No cookie consent mechanism detected (tracking scripts present)",
+          "details": {
+            "hasConsent": false,
+            "hasTracking": true,
+            "issues": [
+              "Tracking scripts detected but no cookie consent mechanism found"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "categoryId": "js",
+      "score": 100,
+      "passCount": 3,
+      "warnCount": 0,
+      "failCount": 0,
+      "notMeasuredCount": 13,
+      "results": [
+        {
+          "ruleId": "js-rendered-title",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-rendered-description",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-rendered-h1",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-rendered-canonical",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-canonical-mismatch",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-noindex-mismatch",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-title-modified",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-description-modified",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-h1-modified",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-rendered-content",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-rendered-links",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to enable JavaScript rendering checks",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-blocked-resources",
+          "status": "pass",
+          "message": "No JavaScript resources are blocked by robots.txt",
+          "score": 100,
+          "details": {
+            "totalScripts": 4,
+            "disallowPatterns": 3,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        },
+        {
+          "ruleId": "js-ssr-check",
+          "status": "pass",
+          "message": "Page appears to be server-side rendered with content in the initial HTML",
+          "score": 100,
+          "details": {
+            "bodyTextLength": 12443,
+            "hasEmptyRoot": false,
+            "rootSelector": null,
+            "hasJsRequiredNoscript": false,
+            "scriptCount": 12,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "js-console-errors",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to capture JavaScript errors",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-failed-requests",
+          "status": "not-measured",
+          "message": "Rendered DOM not available - run without --no-cwv to capture failed resource requests",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "js-document-write",
+          "status": "pass",
+          "message": "No document.write() calls in inline scripts",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com",
+            "occurrences": [],
+            "total": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 7
+        }
+      ]
+    },
+    {
+      "categoryId": "redirect",
+      "score": 100,
+      "passCount": 8,
+      "warnCount": 0,
+      "failCount": 0,
+      "notMeasuredCount": 3,
+      "results": [
+        {
+          "ruleId": "redirect-meta-refresh",
+          "status": "pass",
+          "message": "No meta refresh redirect found",
+          "score": 100,
+          "weight": 15,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "redirect-javascript",
+          "status": "pass",
+          "message": "No JavaScript redirects detected in inline scripts",
+          "score": 100,
+          "weight": 12,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "redirect-http-refresh",
+          "status": "pass",
+          "message": "No Refresh HTTP header present",
+          "score": 100,
+          "weight": 10,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "redirect-loop",
+          "status": "pass",
+          "message": "No redirect loop detected",
+          "score": 100,
+          "details": {
+            "chainLength": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "redirect-type",
+          "status": "pass",
+          "message": "Page is not a redirect",
+          "score": 100,
+          "details": {
+            "statusCode": 200,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 12
+        },
+        {
+          "ruleId": "redirect-broken",
+          "status": "pass",
+          "message": "Redirect chain resolves to a valid page",
+          "score": 100,
+          "details": {
+            "finalStatusCode": 200,
+            "chainLength": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "redirect-resource",
+          "status": "pass",
+          "message": "No HTTP resources found on HTTPS page",
+          "score": 100,
+          "weight": 10,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "redirect-case-normalization",
+          "status": "pass",
+          "message": "Current URL matches canonical URL",
+          "score": 100,
+          "details": {
+            "url": "https://tecnoriasl.com/",
+            "canonical": "https://tecnoriasl.com/",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "redirect-resource-broken",
+          "status": "not-measured",
+          "message": "Rendered page assets not captured - run without --no-cwv to measure resource redirects",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "redirect-resource-loop",
+          "status": "not-measured",
+          "message": "Rendered page assets not captured - run without --no-cwv to measure resource redirects",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "redirect-resource-chain",
+          "status": "not-measured",
+          "message": "Rendered page assets not captured - run without --no-cwv to measure resource redirects",
+          "score": 50,
+          "weight": 0,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        }
+      ]
+    },
+    {
+      "categoryId": "htmlval",
+      "score": 100,
+      "passCount": 11,
+      "warnCount": 0,
+      "failCount": 0,
+      "notMeasuredCount": 0,
+      "results": [
+        {
+          "ruleId": "htmlval-missing-doctype",
+          "status": "pass",
+          "message": "DOCTYPE declaration is present",
+          "score": 100,
+          "weight": 15,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "htmlval-missing-charset",
+          "status": "pass",
+          "message": "Charset is declared via <meta charset>",
+          "score": 100,
+          "details": {
+            "method": "meta-charset",
+            "value": "utf-8",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "htmlval-invalid-head",
+          "status": "pass",
+          "message": "<head> contains only valid metadata elements",
+          "score": 100,
+          "weight": 10,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "htmlval-noscript-in-head",
+          "status": "pass",
+          "message": "<noscript> in <head> contains only permitted elements",
+          "score": 100,
+          "weight": 5,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "htmlval-multiple-heads",
+          "status": "pass",
+          "message": "Document has a single <head> element",
+          "score": 100,
+          "details": {
+            "count": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "htmlval-size-limit",
+          "status": "pass",
+          "message": "HTML document size is 118.3 KB",
+          "score": 100,
+          "details": {
+            "sizeBytes": 121118,
+            "sizeFormatted": "118.3 KB",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 8
+        },
+        {
+          "ruleId": "htmlval-lorem-ipsum",
+          "status": "pass",
+          "message": "No placeholder text detected",
+          "score": 100,
+          "weight": 5,
+          "details": {
+            "pageUrl": "https://tecnoriasl.com"
+          }
+        },
+        {
+          "ruleId": "htmlval-multiple-titles",
+          "status": "pass",
+          "message": "Document has a single <title> element",
+          "score": 100,
+          "details": {
+            "count": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 12
+        },
+        {
+          "ruleId": "htmlval-multiple-descriptions",
+          "status": "pass",
+          "message": "Document has a single meta description",
+          "score": 100,
+          "details": {
+            "count": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 10
+        },
+        {
+          "ruleId": "htmlval-title-outside-head",
+          "status": "pass",
+          "message": "All <title> elements are inside <head>",
+          "score": 100,
+          "details": {
+            "count": 1,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 12
+        },
+        {
+          "ruleId": "htmlval-base-url",
+          "status": "pass",
+          "message": "Document has a single valid <base> element (/)",
+          "score": 100,
+          "details": {
+            "count": 1,
+            "hrefs": [
+              "/"
+            ],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        }
+      ]
+    },
+    {
+      "categoryId": "geo",
+      "score": 92,
+      "passCount": 9,
+      "warnCount": 4,
+      "failCount": 0,
+      "notMeasuredCount": 0,
+      "results": [
+        {
+          "ruleId": "geo-semantic-html",
+          "status": "pass",
+          "message": "Excellent semantic HTML structure (9 distinct semantic elements found)",
+          "score": 100,
+          "details": {
+            "found": [
+              "article",
+              "section",
+              "nav",
+              "main",
+              "header",
+              "footer",
+              "figure",
+              "details",
+              "summary"
+            ],
+            "foundCount": 9,
+            "elementCounts": {
+              "article": 23,
+              "section": 13,
+              "nav": 1,
+              "main": 1,
+              "header": 1,
+              "footer": 4,
+              "figure": 2,
+              "details": 4,
+              "summary": 4
+            },
+            "missingRecommended": [],
+            "totalSemanticChecked": 13,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 25
+        },
+        {
+          "ruleId": "geo-content-structure",
+          "status": "pass",
+          "message": "Page has excellent content structure for AI extraction (all 4 signals present)",
+          "score": 100,
+          "details": {
+            "presentSignals": [
+              "main content area",
+              "hierarchical headings",
+              "paragraph content",
+              "structured data (lists/tables)"
+            ],
+            "missingSignals": [],
+            "signalCount": 4,
+            "headingLevels": [
+              1,
+              2,
+              3
+            ],
+            "paragraphWordCount": 923,
+            "hasLists": true,
+            "hasTables": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 25
+        },
+        {
+          "ruleId": "geo-ai-bot-access",
+          "status": "pass",
+          "message": "AI bots are not blocked in robots.txt",
+          "score": 100,
+          "details": {
+            "robotsTxtUrl": "https://tecnoriasl.com/robots.txt",
+            "robotsTxtAccessible": true,
+            "blockedBots": [],
+            "allowedBots": [
+              "OAI-SearchBot",
+              "ChatGPT-User",
+              "PerplexityBot",
+              "Perplexity-User",
+              "ClaudeBot",
+              "Claude-User",
+              "Claude-SearchBot",
+              "Google-Extended",
+              "DuckAssistBot",
+              "MistralAI-User",
+              "Amazonbot",
+              "Applebot",
+              "YouBot",
+              "GPTBot",
+              "Google-CloudVertexBot",
+              "Applebot-Extended",
+              "meta-externalagent",
+              "FacebookBot",
+              "CCBot",
+              "Bytespider",
+              "cohere-ai",
+              "Diffbot",
+              "Timpibot",
+              "omgili",
+              "anthropic-ai",
+              "Claude-Web"
+            ],
+            "blockedCitationBots": [],
+            "blockedTrainingBots": [],
+            "totalBotsChecked": 26,
+            "citationBotsChecked": 13,
+            "blockedCount": 0,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 20
+        },
+        {
+          "ruleId": "geo-llms-txt",
+          "status": "warn",
+          "message": "No llms.txt reference found - consider adding for AI discoverability",
+          "score": 50,
+          "details": {
+            "references": [],
+            "referenceCount": 0,
+            "note": "llms.txt is an emerging standard (llmstxt.org) - not yet required but recommended for AI visibility",
+            "recommendation": "Add <link rel=\"llms\" href=\"/llms.txt\"> in <head>, or create /llms.txt describing your site for LLMs (see llmstxt.org)",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "geo-schema-drift",
+          "status": "pass",
+          "message": "Schema data is consistent with visible content (7 field(s) verified)",
+          "score": 100,
+          "details": {
+            "jsonLdCount": 5,
+            "parsedSchemas": 5,
+            "totalChecks": 7,
+            "consistentFields": [
+              "name/headline",
+              "description",
+              "name/headline",
+              "name/headline",
+              "description",
+              "name/headline",
+              "description"
+            ],
+            "driftFields": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 15
+        },
+        {
+          "ruleId": "geo-content-signals",
+          "status": "pass",
+          "message": "robots.txt has no Content-Signal directive",
+          "score": 100,
+          "details": {
+            "present": false,
+            "signals": {},
+            "errors": [],
+            "blockedTrainingBots": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 6
+        },
+        {
+          "ruleId": "geo-noai-signals",
+          "status": "pass",
+          "message": "No noai or noimageai directive",
+          "score": 100,
+          "details": {
+            "directives": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "geo-agents-md",
+          "status": "warn",
+          "message": "/AGENTS.md returned an HTML document instead of the instructions file",
+          "score": 50,
+          "details": {
+            "path": "/AGENTS.md",
+            "recommendation": "Serve AGENTS.md as text or Markdown, not the site HTML fallback.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        },
+        {
+          "ruleId": "geo-well-known",
+          "status": "warn",
+          "message": "No MCP or agent-card manifest under .well-known",
+          "score": 50,
+          "details": {
+            "found": [],
+            "recommendation": "Publish /.well-known/mcp.json or /.well-known/agent-card.json if agents should call this site.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "geo-rsl-license",
+          "status": "pass",
+          "message": "robots.txt has no License directive",
+          "score": 100,
+          "details": {
+            "urls": [],
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 4
+        },
+        {
+          "ruleId": "geo-markdown-response",
+          "status": "warn",
+          "message": "The origin does not serve a Markdown representation of /",
+          "score": 50,
+          "details": {
+            "recommendation": "Answer Accept: text/markdown for /, or publish /index.md, so an agent can read the page without the HTML chrome.",
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 2
+        },
+        {
+          "ruleId": "geo-markdown-page",
+          "status": "pass",
+          "message": "The origin root is checked by the Markdown response rule",
+          "score": 100,
+          "details": {
+            "root": true,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 1
+        },
+        {
+          "ruleId": "geo-pay-per-crawl",
+          "status": "pass",
+          "message": "The response is not a pay-per-crawl challenge",
+          "score": 100,
+          "details": {
+            "statusCode": 200,
+            "terms": false,
+            "pageUrl": "https://tecnoriasl.com"
+          },
+          "weight": 3
+        }
+      ]
+    }
+  ],
+  "timestamp": "2026-11-04T23:56:10.171Z",
+  "crawledPages": 1,
+  "page": {
+    "title": "Ingeniería de software, automatización e IA aplicada para empresas | TecnoRia",
+    "description": "TecnoRia diseña y desarrolla software a medida, automatización e inteligencia artificial aplicada para empresas que necesitan operar mejor y escalar con una base técnica seria. Software · Automatización · IA en Galicia, España.",
+    "canonical": "https://tecnoriasl.com",
+    "og": {
+      "title": "Ingeniería de software, automatización e IA aplicada para empresas | TecnoRia",
+      "description": "TecnoRia diseña y desarrolla software a medida, automatización e inteligencia artificial aplicada para empresas que necesitan operar mejor y escalar con una base técnica seria. Software · Automatización · IA en Galicia, España.",
+      "image": "https://tecnoriasl.com/assets/images/brand/og-tecnoria-home.webp",
+      "siteName": "TecnoRia",
+      "type": "website"
+    },
+    "twitterCard": "summary_large_image",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Operación precisa.Software que escala contigo."
+      },
+      {
+        "level": 2,
+        "text": "Cuando el negocio se tensiona, la tecnología deja de ser secundaria."
+      },
+      {
+        "level": 3,
+        "text": "Operaciones fragmentadas"
+      },
+      {
+        "level": 3,
+        "text": "Atención y cualificación manual"
+      },
+      {
+        "level": 3,
+        "text": "Producto o software heredado sin base"
+      },
+      {
+        "level": 3,
+        "text": "Decisiones técnicas tomadas con poca claridad"
+      },
+      {
+        "level": 2,
+        "text": "Seis líneas de servicio. Un único criterio de ejecución."
+      },
+      {
+        "level": 3,
+        "text": "Desarrollo de software a medida"
+      },
+      {
+        "level": 3,
+        "text": "Automatización de procesos"
+      },
+      {
+        "level": 3,
+        "text": "Desarrollo de chatbots para empresas"
+      },
+      {
+        "level": 3,
+        "text": "Inteligencia artificial para empresas"
+      },
+      {
+        "level": 3,
+        "text": "Desarrollo de plataformas y SaaS"
+      },
+      {
+        "level": 3,
+        "text": "Consultoría tecnológica"
+      },
+      {
+        "level": 2,
+        "text": "Software real, en producción, resolviendo problemas reales."
+      },
+      {
+        "level": 2,
+        "text": "Software que construimos para nosotros y desplegamos para equipos que operan de verdad."
+      },
+      {
+        "level": 3,
+        "text": "Talkaris"
+      },
+      {
+        "level": 3,
+        "text": "Auctorio"
+      },
+      {
+        "level": 2,
+        "text": "Proyectos reales, resultados medibles y relaciones que continúan."
+      },
+      {
+        "level": 2,
+        "text": "Una forma de trabajar que reduce incertidumbre y protege la inversión."
+      },
+      {
+        "level": 3,
+        "text": "1. Discovery ejecutivo"
+      },
+      {
+        "level": 3,
+        "text": "2. Blueprint de solución"
+      },
+      {
+        "level": 3,
+        "text": "3. Build por entregas"
+      },
+      {
+        "level": 3,
+        "text": "4. Lanzamiento y adopción"
+      },
+      {
+        "level": 3,
+        "text": "5. Evolución continua"
+      },
+      {
+        "level": 2,
+        "text": "Contenido evergreen para resolver objeciones reales."
+      },
+      {
+        "level": 3,
+        "text": "Cuánto cuesta desarrollar software a medida y de qué depende realmente"
+      },
+      {
+        "level": 3,
+        "text": "Cuándo un chatbot para atención al cliente tiene sentido de verdad"
+      },
+      {
+        "level": 3,
+        "text": "Cómo migrar software legacy sin romper la operativa"
+      },
+      {
+        "level": 2,
+        "text": "Preguntas frecuentes antes de pedir reunión."
+      },
+      {
+        "level": 2,
+        "text": "Si ya sabes que algo se ha quedado pequeño, lo convertimos en una decisión ejecutable."
+      },
+      {
+        "level": 2,
+        "text": "Cuanto mejor entendamos el contexto, mejor será la siguiente recomendación."
+      },
+      {
+        "level": 2,
+        "text": "Tu próximo sistema merece una base técnica que no se quede corta."
+      },
+      {
+        "level": 3,
+        "text": "Mapa rápido"
+      },
+      {
+        "level": 3,
+        "text": "Servicios"
+      },
+      {
+        "level": 3,
+        "text": "Contacto"
+      },
+      {
+        "level": 3,
+        "text": "Accesos"
+      }
+    ],
+    "metrics": {
+      "wordCount": 1592,
+      "internalLinks": 58,
+      "externalLinks": 0,
+      "images": 4,
+      "textRatio": 10.3
+    }
+  },
+  "run": {
+    "crawl": false,
+    "maxPages": 1,
+    "concurrency": 1,
+    "measureCwv": false,
+    "mobile": false,
+    "simulateInteraction": false,
+    "categories": [],
+    "scoringVersion": 4,
+    "enableRules": [
+      "*"
+    ],
+    "disableRules": [],
+    "timeout": 30000
+  },
+  "coverage": {
+    "pages": [
+      "https://tecnoriasl.com"
+    ],
+    "detail": "per-page"
+  }
+}

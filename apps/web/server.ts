@@ -2,9 +2,14 @@ import { CommonEngine } from "@angular/ssr/node";
 import express from "express";
 import http from "node:http";
 import https from "node:https";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import bootstrap from "./src/main.server";
+import {
+  isPrivatePath,
+  isPublicPath,
+  LEGACY_REDIRECTS,
+} from "./src/app/site/seo-route-manifest";
 
 type SessionUser = {
   id: string;
@@ -161,6 +166,70 @@ function isPortalProtectedPath(path: string): boolean {
   return path.startsWith("/portal/");
 }
 
+const blogPublicationCache = new Map<
+  string,
+  { published: boolean; expiresAt: number }
+>();
+
+async function isPublishedBlogArticle(
+  path: string,
+  apiTarget: URL
+): Promise<boolean> {
+  if (isPublicPath(path)) {
+    return true;
+  }
+
+  const match = /^\/blog\/([a-z0-9-]+)$/.exec(path);
+  if (!match) {
+    return false;
+  }
+
+  const cached = blogPublicationCache.get(path);
+  if (cached && cached.expiresAt > Date.now()) {
+    return cached.published;
+  }
+
+  let published = true;
+  try {
+    const response = await fetch(
+      new URL(`/api/v1/blog/${match[1]}?status=publish`, apiTarget),
+      { signal: AbortSignal.timeout(1200) }
+    );
+    // Only a clean 404 means "not published"; API outages must not deindex
+    // an article that already exists.
+    published = response.status !== 404;
+    if (!response.ok && response.status !== 404) {
+      console.warn(
+        `[web:ssr] Blog publication check unavailable for ${path}: HTTP ${response.status}`
+      );
+    }
+  } catch {
+    published = true;
+  }
+
+  if (blogPublicationCache.size >= 500) {
+    const now = Date.now();
+    for (const [key, value] of blogPublicationCache) {
+      if (value.expiresAt <= now) {
+        blogPublicationCache.delete(key);
+      }
+    }
+    while (blogPublicationCache.size >= 500) {
+      const oldest = blogPublicationCache.keys().next().value;
+      if (oldest === undefined) {
+        break;
+      }
+      blogPublicationCache.delete(oldest);
+    }
+  }
+
+  blogPublicationCache.set(path, {
+    published,
+    expiresAt: Date.now() + 60_000,
+  });
+  return published;
+}
+
 function getPrivateHome(user: SessionUser): string {
   if (user.role === "client") {
     return "/portal/dashboard";
@@ -175,6 +244,7 @@ function getPrivateHome(user: SessionUser): string {
 
 export function app(): express.Express {
   const server = express();
+  server.disable("x-powered-by");
   server.set("trust proxy", 1);
   const commonEngine = new CommonEngine();
   const port = process.env["PORT"] || 4000;
@@ -184,6 +254,14 @@ export function app(): express.Express {
   const serverDistPath = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistPath, "../browser");
   const indexHtml = join(serverDistPath, "index.server.html");
+
+  server.use((_req, res, next) => {
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+    res.setHeader("X-Frame-Options", "SAMEORIGIN");
+    res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    next();
+  });
 
   server.get("/health", (_req, res) => {
     res.json({
@@ -196,14 +274,82 @@ export function app(): express.Express {
   server.use("/api", proxyToApi(apiTarget));
   server.use("/uploads", proxyToApi(apiTarget));
 
-  server.get(
-    "*.*",
-    express.static(browserDistFolder, {
-      maxAge: "1y",
-    })
-  );
+  server.use((req, res, next) => {
+    if (req.method !== "GET" && req.method !== "HEAD") {
+      next();
+      return;
+    }
+
+    const path = req.path;
+    const search = req.originalUrl.slice(path.length);
+
+    if (path === "/index.html") {
+      res.redirect(301, `/${search}`);
+      return;
+    }
+
+    if (path.length > 1 && path.endsWith("/")) {
+      res.redirect(301, `${path.replace(/\/+$/, "")}${search}`);
+      return;
+    }
+
+    if (path !== path.toLowerCase()) {
+      res.redirect(301, `${path.toLowerCase()}${search}`);
+      return;
+    }
+
+    const legacyTarget = LEGACY_REDIRECTS[path];
+    if (legacyTarget) {
+      res.redirect(301, `${legacyTarget}${search}`);
+      return;
+    }
+
+    next();
+  });
+
+  const staticOptions = {
+    maxAge: 0,
+    setHeaders: (res: express.Response, filePath: string) => {
+      if (filePath.endsWith("robots.txt") || filePath.endsWith("sitemap.xml")) {
+        res.setHeader("Cache-Control", "public, max-age=3600");
+        return;
+      }
+
+      if (
+        /-[A-Z0-9]{8}\.(?:js|css|woff2?|svg|png|webp|avif)$/i.test(filePath)
+      ) {
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        return;
+      }
+
+      if (
+        filePath.endsWith(".js") ||
+        filePath.endsWith(".css") ||
+        filePath.endsWith(".woff2") ||
+        filePath.endsWith(".woff") ||
+        filePath.includes(`${sep}assets${sep}`)
+      ) {
+        res.setHeader("Cache-Control", "public, max-age=2592000");
+      }
+    },
+  };
+
+  server.get("*.*", express.static(browserDistFolder, staticOptions));
+
+  server.use((req, res, next) => {
+    if ((req.method === "GET" || req.method === "HEAD") && /\.[^/]+$/.test(req.path)) {
+      res.status(404).type("text/plain").send("Not found");
+      return;
+    }
+
+    next();
+  });
 
   server.get("*", async (req, res) => {
+    if (isPrivatePath(req.path)) {
+      res.setHeader("Cache-Control", "no-store");
+    }
+
     const cookieHeader = req.headers.cookie ?? "";
     const sessionUser = cookieHeader
       ? await fetchSessionUser(cookieHeader, apiTarget)
@@ -263,6 +409,22 @@ export function app(): express.Express {
         res.redirect(302, getPrivateHome(sessionUser));
         return;
       }
+    }
+
+    const privatePath = isPrivatePath(req.path);
+    const isPublicBlogArticle =
+      !privatePath && (await isPublishedBlogArticle(req.path, apiTarget));
+    const isNotFound =
+      !privatePath &&
+      (!isPublicPath(req.path) || req.path === "/404") &&
+      !isPublicBlogArticle;
+
+    if (privatePath || isNotFound) {
+      res.setHeader("X-Robots-Tag", "noindex, nofollow");
+    }
+
+    if (isNotFound) {
+      res.status(404);
     }
 
     const serverPort = String(port);

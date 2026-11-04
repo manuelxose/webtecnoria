@@ -315,6 +315,12 @@ export class ArticlePageComponent implements OnInit {
     }
 
     this.notFound = true;
+    this.seo.update({
+      title: "Artículo no encontrado",
+      description: "El artículo solicitado no está disponible en TecnoRia.",
+      path: `/blog/${slug}`,
+      noIndex: true,
+    });
   }
 
   private formatPublishedLabel(value: string): string {
