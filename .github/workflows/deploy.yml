@@ -20,8 +20,23 @@ jobs:
           host: ${{ secrets.DEPLOY_SSH_HOST }}
           username: ${{ secrets.DEPLOY_SSH_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          script_stop: true
+          # GROWTH-04 P0-1b: `script_stop` es un input de la acción appleboy y NO es
+          # un límite de confianza suficiente para "parar en el primer error". El
+          # script remoto se envuelve explícitamente con `bash -euo pipefail`, que es
+          # el mecanismo real que corta en el primer comando fallido y propaga el
+          # código de salida 1 al step (y por tanto al job).
+          #
+          # GROWTH-04 P0-1c: un deploy NO puede ser verde sólo porque
+          # `publish-frontend-release.sh` terminó. El publish ocurre ANTES del smoke
+          # público, así que un smoke fallido deja la release viva con el job rojo.
+          # El gate posterior (`infra/bin/release-verify-gate.sh`) se ejecuta DENTRO
+          # de deploy-webtecnoria.sh: sudoers NOPASSWD sólo permite rutas exactas y
+          # añadir una cuarta a /etc/sudoers.d/90-deploy ampliaría innecesariamente
+          # lo que el usuario `deploy` puede ejecutar como root.
           script: |
+            bash -euo pipefail <<'REMOTE'
+            set -euo pipefail
+
             # Do NOT wrap this in `sudo bash -c ...` or `sudo env FOO=1 ...`.
             # The SSH user is `deploy`, and sudoers grants NOPASSWD only for
             # three exact script paths, including this one:
@@ -36,5 +51,7 @@ jobs:
             # executed as root: it sources /etc/tecnoria/api.env and runs
             # `npm run migrate:api` BEFORE `systemctl restart tecnoria-api`, so a
             # failed migration aborts the release and leaves the previous API
-            # process running.
+            # process running. The post-publish release gate runs inside the same
+            # script, for the same reason, and its exit status decides this step.
             sudo /var/www/webtecnoria/infra/deploy-webtecnoria.sh
+            REMOTE

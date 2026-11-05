@@ -3,10 +3,106 @@ import { Router } from "express";
 import { z } from "zod";
 import { requireAdmin, type AuthedRequest } from "../../auth/middleware.js";
 import { env } from "../../config/env.js";
+import { pool } from "../../db/pool.js";
 
 const router = Router();
 
 const DEFAULT_AUCTORIO_RETURN_TO = "/studio/dashboard";
+
+/**
+ * GROWTH-04 / P0-4a — diagnóstico de entrega de notificaciones.
+ *
+ * Reemplaza al script de servidor que se planteó como "verificación SMTP": aquí
+ * la comprobación del transporte (`transporter.verify()`) reutiliza el MISMO
+ * transporte que envía las notificaciones de leads, y NO envía ningún correo.
+ *
+ * Seguridad:
+ *  - sólo administradores (`requireAdmin`);
+ *  - nunca devuelve el mensaje SMTP, sólo la CLASE de error saneada (misma regex
+ *    que el resto de la API), porque el mensaje puede citar direcciones y
+ *    detalles internos del servidor;
+ *  - nunca expone valores de credencial: sólo nombres de variables de entorno;
+ *  - un transporte roto se informa como `deliveryHealthy: false`, no como 5xx.
+ */
+const ERROR_CLASS_PATTERN = /^[A-Za-z0-9_]{1,48}$/;
+
+export function sanitizeTransportClass(error: unknown): string {
+  const code = (error as { code?: unknown } | null)?.code;
+  if (typeof code === "string" && ERROR_CLASS_PATTERN.test(code)) {
+    return code;
+  }
+  const name = (error as { name?: unknown } | null)?.name;
+  if (typeof name === "string" && ERROR_CLASS_PATTERN.test(name)) {
+    return name;
+  }
+  return "UnknownError";
+}
+
+/** GROWTH-04 F4: un SMTP que no responde no puede colgar la petición. */
+export const TRANSPORT_VERIFY_TIMEOUT_MS = 8_000;
+
+async function probeTransport(): Promise<{ ok: boolean; errorClass?: string; checkedAt: string }> {
+  const checkedAt = new Date().toISOString();
+  let timer: NodeJS.Timeout | undefined;
+
+  try {
+    const { getTransporter } = await import("../../services/email.js");
+    const transporter = getTransporter();
+    if (typeof transporter?.verify !== "function") {
+      return { ok: false, errorClass: "TransporterUnavailable", checkedAt };
+    }
+
+    const timeout = new Promise<never>((_, reject) => {
+      timer = setTimeout(() => {
+        const error = new Error("transport verify timeout");
+        (error as { code?: string }).code = "ETIMEDOUT";
+        reject(error);
+      }, TRANSPORT_VERIFY_TIMEOUT_MS);
+      timer.unref?.();
+    });
+
+    await Promise.race([transporter.verify(), timeout]);
+    return { ok: true, checkedAt };
+  } catch (error) {
+    return { ok: false, errorClass: sanitizeTransportClass(error), checkedAt };
+  } finally {
+    if (timer) {
+      clearTimeout(timer);
+    }
+  }
+}
+
+router.get("/notifications/status", requireAdmin, async (_req: AuthedRequest, res) => {
+  const counts = await pool.query<{ notification_status: string; count: string }>(
+    `SELECT notification_status, COUNT(*)::text AS count
+       FROM contact_messages
+      GROUP BY notification_status`
+  );
+
+  const byStatus: Record<string, number> = {};
+  for (const row of counts.rows) {
+    byStatus[String(row.notification_status)] = Number(row.count);
+  }
+
+  // Sólo nombres de variables: ningún valor de credencial sale de aquí.
+  const required = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_FROM", "ADMIN_NOTIFICATION_EMAIL"];
+  const missing = required.filter((name) => !process.env[name]);
+
+  const transport = await probeTransport();
+
+  res.json({
+    checkedAt: new Date().toISOString(),
+    transport,
+    env: { required, missing },
+    delivery: {
+      legacy: byStatus["legacy"] ?? 0,
+      pending: byStatus["pending"] ?? 0,
+      failed: byStatus["failed"] ?? 0,
+      sent: byStatus["sent"] ?? 0,
+    },
+    deliveryHealthy: transport.ok && missing.length === 0,
+  });
+});
 
 const LaunchSchema = z.object({
   workspace: z.string().trim().min(2).default("tecnoria"),

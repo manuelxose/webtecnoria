@@ -127,6 +127,77 @@ export function sanitizeErrorClassValue(value: unknown): string {
   return typeof value === "string" && /^[A-Za-z0-9_]{1,48}$/.test(value) ? value : "UnknownError";
 }
 
+/**
+ * Totales agregados para la vista de operador SIN datos personales.
+ *
+ * Todo lo que sale de aquí es un contador o una marca de tiempo: no se
+ * devuelve ninguna fila, así que ningún nombre, email, teléfono, mensaje,
+ * client_hash, id o idempotency_key puede llegar al payload.
+ *
+ * Los tramos de antigüedad se calculan en SQL con NOW() - INTERVAL (no en
+ * JavaScript): el reloj de la base de datos es la única fuente de verdad y la
+ * consulta sigue siendo un único viaje de ida y vuelta.
+ */
+const NOTIFICATION_SUMMARY_TOTALS_SQL = `SELECT
+            (COUNT(*) FILTER (WHERE notification_status = 'pending'))::int AS pending,
+            (COUNT(*) FILTER (WHERE notification_status = 'failed'))::int AS failed,
+            (COUNT(*) FILTER (WHERE notification_status = 'sent'))::int AS sent,
+            (COUNT(*) FILTER (WHERE notification_status = 'legacy'))::int AS legacy,
+            (COUNT(*) FILTER (
+               WHERE notification_status = 'pending'
+                 AND created_at <= NOW() - INTERVAL '1 minute'
+             ))::int AS pending_older_m1,
+            (COUNT(*) FILTER (
+               WHERE notification_status = 'pending'
+                 AND created_at <= NOW() - INTERVAL '15 minutes'
+             ))::int AS pending_older_m15,
+            (COUNT(*) FILTER (
+               WHERE notification_status = 'pending'
+                 AND created_at <= NOW() - INTERVAL '60 minutes'
+             ))::int AS pending_older_m60,
+            (MIN(created_at) FILTER (WHERE notification_status = 'pending'))::timestamptz AS oldest_pending_at
+          FROM contact_messages`;
+
+/**
+ * Clases de error de las notificaciones fallidas, agrupadas y recortadas.
+ *
+ * La clase es un identificador técnico (EAUTH, ETIMEDOUT…), nunca el texto
+ * del error: la respuesta SMTP original puede citar direcciones y el motor
+ * nunca la guarda.
+ */
+const NOTIFICATION_FAILED_BY_CLASS_SQL = `SELECT
+            COALESCE(notification_error, 'UnknownError') AS error_class,
+            (COUNT(*))::int AS error_count
+          FROM contact_messages
+          WHERE notification_status = 'failed'
+          GROUP BY COALESCE(notification_error, 'UnknownError')
+          ORDER BY error_count DESC, error_class ASC
+          LIMIT 10`;
+
+/** Un contador es siempre un entero no negativo, sea lo que devuelva el driver. */
+function toCount(value: unknown): number {
+  const parsed = typeof value === "number" ? value : Number(value);
+  if (!Number.isFinite(parsed) || parsed < 0) {
+    return 0;
+  }
+
+  return Math.trunc(parsed);
+}
+
+/** Un timestamptz como ISO 8601, o null cuando no hay ninguna fila que fecharla. */
+function toTimestamp(value: unknown): string | null {
+  if (value instanceof Date) {
+    return Number.isNaN(value.getTime()) ? null : value.toISOString();
+  }
+
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
+  }
+
+  return null;
+}
+
 function fieldErrors(error: z.ZodError): Record<string, string> {
   const fields: Record<string, string> = {};
   for (const issue of error.issues) {
@@ -363,6 +434,66 @@ export function createContactRouter(deps: ContactRouterDependencies): Router {
       res.json({
         items,
         nextBefore: items.length === limit && last ? new Date(String(last)).toISOString() : null,
+      });
+    })
+  );
+
+  // ---- Vista de operador sin PII (GROWTH-04 / P0-5). ----
+  //
+  // EL ORDEN IMPORTA: esta ruta se declara ANTES que "/messages/:id". Express
+  // empareja las rutas en orden de declaración, así que un ":id" declarado
+  // primero se tragaría "notification-summary" y respondería 404 en lugar del
+  // agregado. La prueba de scripts/api-tests/lead-summary.test.mjs lo
+  // demuestra de las dos maneras (comportamiento y orden de declaración).
+  //
+  // El payload es un agregado: recuentos, antigüedad y clases de error. Nunca
+  // contiene nombre, email, teléfono, empresa, mensaje, client_hash, id ni
+  // idempotency_key, de modo que el operador puede vigilar la cola sin abrir
+  // un solo lead ni exponer datos personales.
+  router.get(
+    "/messages/notification-summary",
+    requireAdmin,
+    asyncHandler(async (req, res) => {
+      const [totals, classes] = await Promise.all([
+        deps.pool.query(NOTIFICATION_SUMMARY_TOTALS_SQL),
+        deps.pool.query(NOTIFICATION_FAILED_BY_CLASS_SQL),
+      ]);
+
+      const row = totals.rows[0] as Record<string, unknown> | undefined;
+      const pending = toCount(row?.["pending"]);
+      const failed = toCount(row?.["failed"]);
+
+      const failedByClass = classes.rows
+        .map((entry) => ({
+          // Se sanea otra vez aquí: la ruta no confía en lo que hay en la tabla.
+          errorClass: sanitizeErrorClassValue(entry["error_class"]),
+          count: toCount(entry["error_count"]),
+        }))
+        .sort((left, right) => right.count - left.count || left.errorClass.localeCompare(right.errorClass))
+        .slice(0, 10);
+
+      // Sólo contadores agregados: ni una fila, ni un identificador.
+      deps.logger.log({
+        event: "contact_notification_summary_read",
+        count: pending + failed,
+        status: 200,
+      });
+
+      res.json({
+        counts: {
+          pending,
+          failed,
+          sent: toCount(row?.["sent"]),
+          legacy: toCount(row?.["legacy"]),
+        },
+        pendingOlderThan: {
+          m1: toCount(row?.["pending_older_m1"]),
+          m15: toCount(row?.["pending_older_m15"]),
+          m60: toCount(row?.["pending_older_m60"]),
+        },
+        oldestPendingAt: toTimestamp(row?.["oldest_pending_at"]),
+        failedByClass,
+        readAt: new Date().toISOString(),
       });
     })
   );
