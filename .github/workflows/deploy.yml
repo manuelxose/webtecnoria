@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Desplegar vía SSH (build en servidor + smoke)
+      - name: Desplegar vía SSH (build en servidor + migraciones + smoke)
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.DEPLOY_SSH_HOST }}
@@ -22,4 +22,27 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script_stop: true
           script: |
-            sudo /var/www/webtecnoria/infra/deploy-webtecnoria.sh
+            # MIGRATE=1 is required: the API depends on additive migrations
+            # (009_contact_reliability.sql adds the columns the contact endpoint
+            # writes). deploy-webtecnoria.sh runs `npm run migrate:api` BEFORE
+            # `systemctl restart tecnoria-api`, so a failed migration aborts the
+            # deploy and leaves the previous API process running.
+            #
+            # WHY THE ENV IS SOURCED HERE: `npm run migrate:api` imports
+            # apps/api/src/config/env.ts, which validates every required
+            # variable at import time. The SSH session has none of them, and
+            # apps/api/.env does NOT exist on the server — the service receives
+            # its environment from systemd (EnvironmentFile=/etc/tecnoria/api.env).
+            # Without this, the migration step exits 1 and `set -euo pipefail`
+            # aborts before the restart, so the release never ships.
+            # Verified on 2026-11-05: sourcing that file yields all required
+            # variables and env.ts validation passes (ENV_OK).
+            #
+            # The migration runner re-applies EVERY file on each deploy (no
+            # ledger), so every file must be re-runnable. Two defects were found
+            # and fixed: 006_support.sql created a trigger unconditionally
+            # (SQLSTATE 42710 on the second pass) and 002_blog_workflow.sql ran
+            # an unconditional `UPDATE blog_posts SET status='publish'`, which
+            # would have published every draft on every release.
+            # Automated guard: node --import tsx --test "scripts/api-tests/migrations.twice.test.mjs"
+            sudo bash -c 'set -euo pipefail; set -a; . /etc/tecnoria/api.env; set +a; MIGRATE=1 /var/www/webtecnoria/infra/deploy-webtecnoria.sh'
