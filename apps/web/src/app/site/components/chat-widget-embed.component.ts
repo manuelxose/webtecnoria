@@ -75,6 +75,8 @@ export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
   private readonly runtimeEnvironment = environment as WidgetEnvironment;
   private observer?: MutationObserver;
   private readinessTimeoutId?: number;
+  private idleCallbackId?: number;
+  private idleTimeoutId?: number;
 
   widgetState: "idle" | "loading" | "ready" | "error" = "idle";
   shouldRenderFallback = false;
@@ -89,12 +91,48 @@ export class ChatWidgetEmbedComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.mountWidget();
+    const win = this.document.defaultView;
+    if (!win) {
+      return;
+    }
+
+    const requestIdle = (
+      win as Window & {
+        requestIdleCallback?: (
+          callback: () => void,
+          options?: { timeout: number }
+        ) => number;
+      }
+    ).requestIdleCallback;
+
+    if (typeof requestIdle === "function") {
+      this.idleCallbackId = requestIdle.call(
+        win,
+        () => this.mountWidget(),
+        { timeout: 3000 }
+      );
+      return;
+    }
+
+    this.idleTimeoutId = win.setTimeout(
+      () => this.mountWidget(),
+      2500
+    ) as unknown as number;
   }
 
   ngOnDestroy(): void {
     this.clearTimers();
     this.observer?.disconnect();
+
+    const win = this.document.defaultView as
+      | (Window & { cancelIdleCallback?: (id: number) => void })
+      | null;
+    if (this.idleCallbackId && win?.cancelIdleCallback) {
+      win.cancelIdleCallback(this.idleCallbackId);
+    }
+    if (this.idleTimeoutId) {
+      win?.clearTimeout(this.idleTimeoutId);
+    }
   }
 
   private resolveWidgetBaseUrl(): string {
