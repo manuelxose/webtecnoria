@@ -2,7 +2,8 @@
 
 **Date:** 2026-11-05
 **Production:** https://tecnoriasl.com
-**Final commit:** `3c7cdb9`
+**Deployed code commit:** `3c7cdb9`
+**Final repository HEAD:** `f77c7b2` (documentation only)
 **Release:** `apps/web/releases/20261105_012220`
 **GitHub Actions run:** 41940740641 (success)
 **Overall verdict:** **PARTIAL** — technical SEO and deployment are complete; growth measurement,

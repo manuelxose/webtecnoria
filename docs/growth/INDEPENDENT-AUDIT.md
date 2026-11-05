@@ -54,7 +54,7 @@ caught by the first static reviews. It was found by live `curl` and fixed:
 | `npm run test:seo` | exit 0: 32 public routes, JSON-LD, 404/301, cache, sitemap |
 | `npm run build:api` | exit 0 |
 | `git diff --check` | no output |
-| GitHub Actions deploy | success, `3ef170f` |
+| GitHub Actions deploy | success, run `41940740641`, code `3c7cdb9` |
 | live 32 sitemap URLs | 32/32 HTTP 200 |
 | live home assets | all 14 JS/CSS return 200 after redirect |
 | live 404 | 404 + `X-Robots-Tag: noindex` |
