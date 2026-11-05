@@ -46,7 +46,20 @@ npm install --no-audit --no-fund
 
 # 1) API corporativa
 npm run -w apps/api build
-if [ "${MIGRATE:-0}" = "1" ]; then
+# MIGRATE defaults to 1: the API depends on its schema, and the migration runner
+# re-applies every file on each release (no ledger), so all files are guarded.
+# This block lives INSIDE this script on purpose: sudoers grants the SSH deploy
+# user NOPASSWD only for this exact path, so `sudo bash -c ...` or `sudo env ...`
+# are denied. Running as root here also lets us load the service environment,
+# which `npm run migrate:api` needs because env.ts validates every required
+# variable at import time (there is no apps/api/.env on the server).
+if [ "${MIGRATE:-1}" = "1" ]; then
+  if [ -r /etc/tecnoria/api.env ]; then
+    set -a
+    # shellcheck disable=SC1091
+    . /etc/tecnoria/api.env
+    set +a
+  fi
   npm run migrate:api
 fi
 systemctl restart tecnoria-api
