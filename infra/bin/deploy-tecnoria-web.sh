@@ -11,6 +11,6 @@ SERVER_ENTRY="server/server.mjs" \
 LOCAL_URL="http://127.0.0.1:4300/" \
 PUBLIC_URL="https://tecnoriasl.com/" \
 PUBLIC_HOST="tecnoriasl.com" \
-EXPECTED_TEXT="IA aplicada para empresas" \
+EXPECTED_TEXT="TecnoRia" \
 NODE_BUILD_OPTIONS="${NODE_BUILD_OPTIONS:---max-old-space-size=1536}" \
 exec /var/www/bin/publish-frontend-release.sh

@@ -32,13 +32,15 @@ wait_http() {
 
 cd "${APP_DIR}"
 
-if git diff --quiet && git diff --cached --quiet; then
-  git fetch --prune origin
-  git checkout "${BRANCH}"
-  git pull --ff-only origin "${BRANCH}"
-else
-  echo "Working tree has local changes. Deploying current checkout without git sync."
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  echo "Working tree has local changes; refusing to deploy a stale checkout." >&2
+  git status --short >&2
+  exit 1
 fi
+
+git fetch --prune origin
+git checkout "${BRANCH}"
+git pull --ff-only origin "${BRANCH}"
 
 npm install --no-audit --no-fund
 
