@@ -30,6 +30,9 @@ CREATE INDEX IF NOT EXISTS tickets_status_idx     ON tickets(status);
 CREATE INDEX IF NOT EXISTS tickets_priority_idx   ON tickets(priority);
 CREATE INDEX IF NOT EXISTS tickets_created_at_idx ON tickets(created_at DESC);
 
+-- Guarded like 007: the runner re-applies every migration on each deploy with no
+-- ledger, so a bare CREATE TRIGGER aborts the second pass (SQLSTATE 42710).
+DROP TRIGGER IF EXISTS trg_tickets_updated_at ON tickets;
 CREATE TRIGGER trg_tickets_updated_at
   BEFORE UPDATE ON tickets
   FOR EACH ROW EXECUTE FUNCTION set_updated_at();
