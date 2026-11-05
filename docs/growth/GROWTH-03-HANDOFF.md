@@ -104,6 +104,7 @@ Ninguna de estas es opcional: cada una bloquea o degrada algo que GROWTH-02 no p
 | H-7 | Token de API de Cloudflare (permiso de purga por zona) | Sin invalidación selectiva no se pueden evaluar los redirects legacy servidos desde caché | Sin token en host ni servidor |
 | H-8 | Acceso admin/datos a GA4 (`G-LE6ETPWL23`) | La Admin API está deshabilitada en el proyecto `533857766582` y la cuenta de servicio no pertenece a la propiedad. Sin acceso no hay cifras de comportamiento, ni marcar `generate_lead` como conversión, ni exclusiones de referidos | `GA4-CONFIGURATION.md` |
 | H-9 | Sincronización entre pestañas del consentimiento (evento `storage`) | Retirar en la pestaña A no detiene la B | L4 G-8 |
+| H-10 | Smoke de despliegue fiable | El smoke público de `publish-frontend-release.sh` (`curl --resolve tecnoriasl.com:443:127.0.0.1 -k`) es intermitente: hizo que dos despliegues correctos figurasen como `failure` en Actions. El mismo comando pasa manualmente (`200`, `TecnoRia` ×13). Mientras siga así, **el semáforo del pipeline no es fiable**. Corregirlo exige tocar una pieza compartida por otros sitios del servidor, así que no se hizo bajo presión | `GROWTH-02-DELIVERY.md` §7.5 |
 
 ---
 

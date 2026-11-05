@@ -241,6 +241,40 @@ registrado con clase saneada en lugar del mensaje SMTP. La fila de prueba se eli
 presente y `notification_status` con default `'legacy'`. Las 17 filas históricas quedaron intactas y
 `blog_posts` sigue con 2 entradas en `publish` y **0 borradores publicados**.
 
+### 7.5 Estado de GitHub Actions: rojo, y por qué no es lo que parece
+
+Hay que decirlo sin adornos: **los runs de Actions figuran como `failure`** aunque el despliegue se aplicó
+correctamente. Reproduje el camino exacto como usuario `deploy` y el error real es:
+
+```
+==> staging build is identical to current release, skipping new release publish
+==> current service already points to the expected release, skipping restart
+Expected text not found on https://tecnoriasl.com/: TecnoRia
+SCRIPT_EXIT=1
+```
+
+El paso que falla es el **smoke público** de `publish-frontend-release.sh`, que no usa la URL pública sino
+`curl --resolve tecnoriasl.com:443:127.0.0.1 -k` (va directo al origen). Minutos después, el **mismo
+comando exacto devuelve `http=200` con `TecnoRia` 13 veces**. Es un smoke intermitente, no un fallo de
+despliegue.
+
+Consecuencias, para que nadie se confunda:
+
+- El artefacto **sí** se publicó: release `20261105_052852`, API reiniciada `05:28:33` y `05:42:08`, web
+  `05:28:54`, esquema migrado, monitor y navegador en PASS.
+- Un run rojo **no** significa que producción esté rota, pero sí que el operador **no puede fiarse del
+  semáforo**. Es un defecto operativo real y viaja a GROWTH-03 como **H-10**.
+- No se ha tocado `publish-frontend-release.sh` esta noche: es una pieza **compartida** por otros sitios
+  del mismo servidor y un cambio ahí bajo presión tiene más riesgo que el problema que resuelve.
+
+### 7.6 Ruta automatizada de migraciones: verificada
+
+El despliegue de `789904c` fue el primero que ejecutó la migración **desde el propio script permitido**
+(`MIGRATE` por defecto 1, con `/etc/tecnoria/api.env` sourceado). Resultado medido después: 18 columnas,
+17 filas, 7 usuarios, 2 posts en `publish` y **0 borradores publicados**. La migración se re-aplicó
+completa en producción sin cambiar un solo dato.
+
+
 ---
 
 ## 8. Rendimiento
