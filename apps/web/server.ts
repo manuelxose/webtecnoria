@@ -293,7 +293,7 @@ export function app(): express.Express {
       return;
     }
 
-    if (path !== path.toLowerCase()) {
+    if (path !== path.toLowerCase() && !/\.[^/]+$/.test(path)) {
       res.redirect(301, `${path.toLowerCase()}${search}`);
       return;
     }

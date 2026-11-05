@@ -175,8 +175,11 @@ async function main(): Promise<void> {
     if (!assetPath) {
       throw new Error("could not find a hashed JS asset in the homepage");
     }
-    const asset = await request(assetPath.startsWith("/") ? assetPath : `/${assetPath}`);
-    assert.equal(asset.status, 200);
+    const asset = await request(
+      assetPath.startsWith("/") ? assetPath : `/${assetPath}`,
+      "manual"
+    );
+    assert.equal(asset.status, 200, "hashed asset must not be redirected");
     const cacheControl = asset.headers.get("cache-control") ?? "";
     assert.match(cacheControl, /immutable/);
     assert.doesNotMatch(cacheControl, /no-store/);
