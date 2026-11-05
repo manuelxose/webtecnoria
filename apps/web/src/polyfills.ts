@@ -2,10 +2,15 @@
  * `@angular/localize/init` is intentionally NOT imported.
  *
  * GROWTH-03C: the application defines no i18n configuration in angular.json and uses no
- * `$localize` tags anywhere in src/ (verified: the only occurrence was this comment).
- * Importing it only to satisfy a comment pulled the Angular compiler runtime into the CLIENT
- * polyfills bundle: 500,258 B of dead code shipped to every visitor before first paint.
- * If i18n is ever adopted, re-add the import together with that configuration.
+ * `$localize` tags anywhere in src/, so this import had nothing to do. Measured on the build:
+ * removing it saved 507 B of the polyfills bundle. That is all it was worth.
+ *
+ * The 500 KB that used to live in this bundle was NOT localize: it was the Angular JIT compiler,
+ * shipped because the build's base options had `aot: false` and the `production` configuration
+ * never overrode it. That is fixed in angular.json (production now sets `aot: true`), which took
+ * the bundle from 500,258 B to 34,609 B. Do not attribute that reduction to this comment's import.
+ *
+ * If i18n is ever adopted, re-add the import together with the angular.json i18n configuration.
  */
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
