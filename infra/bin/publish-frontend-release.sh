@@ -149,12 +149,12 @@ verify_staging_release() {
     exit 1
   fi
 
-  if ! find "${STAGING_DIR}/browser" -type f | grep -q .; then
+  if [ -z "$(find "${STAGING_DIR}/browser" -type f -print -quit)" ]; then
     echo "Browser output is empty in ${STAGING_DIR}/browser" >&2
     exit 1
   fi
 
-  if ! find "${STAGING_DIR}/server" -type f | grep -q .; then
+  if [ -z "$(find "${STAGING_DIR}/server" -type f -print -quit)" ]; then
     echo "Server output is empty in ${STAGING_DIR}/server" >&2
     exit 1
   fi
