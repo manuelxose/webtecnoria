@@ -78,14 +78,20 @@ wait_http "http://127.0.0.1:${API_PORT}/health"
 #
 # El smoke de publish-frontend-release.sh ocurre ANTES de este punto: sin este
 # gate, el job podria quedar rojo con la release ya viva.
+#
+# GROWTH-04b: el gate se invoca con `bash <ruta>`, no como ejecutable directo.
+# Causa medida del primer deploy fallido (run 42114563529): el fichero estaba en
+# el servidor con modo 100644 porque el commit se hizo desde Windows y git no
+# guardo el bit +x; `-x` lo tomaba por "ausente" y tumbaba la release. Un fichero
+# de un script de shell no necesita el bit de ejecucion para ejecutarse, asi que
+# la comprobacion es de EXISTENCIA y legibilidad, no de permiso de ejecucion.
 RELEASE_GATE="/var/www/webtecnoria/infra/bin/release-verify-gate.sh"
-if [ -x "${RELEASE_GATE}" ]; then
-  if ! "${RELEASE_GATE}"; then
-    echo "Deploy webtecnoria: release gate FAILED (release already published)" >&2
-    exit 1
-  fi
-else
+if [ ! -r "${RELEASE_GATE}" ]; then
   echo "Deploy webtecnoria: release gate missing at ${RELEASE_GATE}" >&2
+  exit 1
+fi
+if ! bash "${RELEASE_GATE}"; then
+  echo "Deploy webtecnoria: release gate FAILED (release already published)" >&2
   exit 1
 fi
 
