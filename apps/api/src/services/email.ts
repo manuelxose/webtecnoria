@@ -10,7 +10,12 @@ type EmailPayload = {
 
 let transporter: any = null;
 
-function getTransporter(): any {
+/**
+ * GROWTH-04 / P0-4a: expuesto para que el diagnóstico verifique el MISMO
+ * transporte que envía los leads, en lugar de abrir una conexión distinta.
+ * No expone credenciales: el objeto transport sólo se usa con verify()/sendMail().
+ */
+export function getTransporter(): any {
   if (transporter) {
     return transporter;
   }

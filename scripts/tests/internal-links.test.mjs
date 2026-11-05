@@ -138,3 +138,89 @@ test("a CMS-served article still renders the editorial service link", () => {
     "ApiArticleView must declare the optional serviceLinks field"
   );
 });
+
+// GROWTH-04 P0-2 — el defecto medido en producción: la fila de blog_posts del
+// artículo de coste tiene content="sadasda" (7 caracteres) y GANABA sobre el
+// artículo editorial del repositorio. La guarda debe fallar en cerrado.
+test("the API branch fails closed on a non-editorial body", () => {
+  const source = template("article-page.component.ts");
+
+  assert.match(source, /export const MIN_ARTICLE_BODY_CHARS = 400;/, "the threshold must be explicit");
+  assert.match(source, /export function isRenderableEditorialBody/, "the guard must be a named function");
+  assert.match(
+    source,
+    /if \(apiArticle && isRenderableEditorialBody\(String\(apiArticle\.content \?\? ""\)\)\) \{/,
+    "the API branch must be gated by the guard, so a placeholder body falls through to the static article"
+  );
+  assert.doesNotMatch(
+    source,
+    /if \(apiArticle\) \{[\s\S]{0,200}kind: "api"/,
+    "an unguarded `if (apiArticle)` must not reach the api branch again"
+  );
+});
+
+test("the guard rejects the exact production body and accepts the editorial one", () => {
+  const source = template("article-page.component.ts");
+  const threshold = Number(/MIN_ARTICLE_BODY_CHARS = (\d+)/.exec(source)?.[1]);
+
+  assert.ok(threshold >= 400, `threshold ${threshold} is too low`);
+  // "sadasda" is 7 characters; any editorial body is orders of magnitude larger.
+  assert.ok(7 < threshold, "the production defect must be below the threshold");
+  assert.ok(2289 >= threshold, "the recovered editorial body must be above the threshold");
+  assert.match(
+    source,
+    /articleBodyTextLength\(html\) >= MIN_ARTICLE_BODY_CHARS &&/,
+    "the length criterion must be present"
+  );
+  assert.match(
+    source,
+    /articleSectionCount\(html\) >= MIN_ARTICLE_BODY_SECTIONS/,
+    "the body must also prove structure: a long placeholder alone is not an article"
+  );
+});
+
+// GROWTH-04 F3 (revisión independiente): la longitud sola aceptaría un marcador
+// largo ("BORRADOR, pendiente de revisar...") de más de 400 caracteres. La
+// estructura (encabezados) es un segundo criterio independiente.
+test("the guard is not length-only: a long unstructured placeholder is rejected", () => {
+  const source = template("article-page.component.ts");
+  const sections = Number(/MIN_ARTICLE_BODY_SECTIONS = (\d+)/.exec(source)?.[1]);
+
+  assert.ok(Number.isFinite(sections) && sections >= 2, `section threshold ${sections} must be >= 2`);
+  assert.match(source, /export function articleSectionCount/, "structure must be counted explicitly");
+  assert.match(source, /<h\[23\]/, "both h2 and h3 must count as structure");
+});
+
+// GROWTH-04 P0-2 — el TOC del CMS NO se propaga (hallazgo verificado sobre el SSR
+// real): el saneador de [innerHTML] elimina los `id` de los <h2> al serializar en
+// servidor, así que propagar el índice produciría anclas rotas. Esta prueba fija
+// la decisión y obliga a resolver el anclaje antes de reactivarla.
+test("the CMS article TOC stays disabled until heading ids survive SSR", () => {
+  const source = template("article-page.component.ts");
+
+  assert.match(source, /this\.tableOfContents = \[\];/, "the API branch must clear the TOC");
+  assert.doesNotMatch(
+    source,
+    /this\.tableOfContents = body\.entries;/,
+    "the CMS TOC must not be re-enabled without a mechanism that survives SSR attribute stripping"
+  );
+  // Los estáticos siguen teniendo TOC: sus encabezados se pintan desde plantilla.
+  assert.match(
+    source,
+    /this\.tableOfContents = staticArticle\.sections\.map/,
+    "static articles must keep their table of contents"
+  );
+});
+
+test("no article route emits the generic 'Leer artículo' anchor", () => {
+  for (const name of ["article-page.component.ts", "blog-page.component.ts"]) {
+    const source = template(name);
+    const hits = [...source.matchAll(/>\s*(Leer artículo|Leer insight)\s*</g)];
+    assert.deepEqual(
+      hits.map((match) => match[0]),
+      [],
+      `${name} must use descriptive anchor text (39 generic anchors were measured on 13 blog routes)`
+    );
+  }
+});
+

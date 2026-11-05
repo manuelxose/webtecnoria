@@ -50,6 +50,57 @@ interface PendingRow {
   notification_attempts: number;
 }
 
+/**
+ * Una clase de error es un identificador técnico (EAUTH, ETIMEDOUT…), nunca
+ * un texto libre: el mismo criterio que aplica el resto del código del
+ * proyecto para no filtrar respuestas SMTP con direcciones dentro.
+ */
+function errorClassOrNone(value: unknown): string {
+  if (typeof value === "string" && /^[A-Za-z0-9_]{1,48}$/.test(value)) {
+    return value;
+  }
+
+  return "None";
+}
+
+/** Fecha de creación en ISO 8601, o "unknown" si la fila no la trae. */
+function createdAtOf(value: unknown): string {
+  if (value instanceof Date) {
+    return Number.isNaN(value.getTime()) ? "unknown" : value.toISOString();
+  }
+
+  if (typeof value === "string" && value.trim().length > 0) {
+    return value;
+  }
+
+  return "unknown";
+}
+
+/**
+ * Clases de error de los candidatos, indexadas por identificador interno.
+ *
+ * La consulta de selección NO cambia: mismo alcance, mismos parámetros y
+ * mismo corte NOTIFY_SINCE. Esta es una segunda consulta de solo lectura que
+ * trae únicamente el identificador interno y la clase de error ya saneada.
+ */
+async function loadErrorClasses(ids: string[]): Promise<Map<string, string>> {
+  const classes = new Map<string, string>();
+  if (ids.length === 0) {
+    return classes;
+  }
+
+  const result = await pool.query(
+    "SELECT id, notification_error FROM contact_messages WHERE id = ANY($1)",
+    [ids]
+  );
+
+  for (const row of result.rows) {
+    classes.set(String(row["id"]), errorClassOrNone(row["notification_error"]));
+  }
+
+  return classes;
+}
+
 export async function runRenotify(options: RenotifyOptions): Promise<{ scanned: number; sent: number; failed: number }> {
   const pending = await pool.query<PendingRow>(
     `SELECT id, created_at, name, email, phone, company, service_1, service_2, message,
@@ -67,8 +118,18 @@ export async function runRenotify(options: RenotifyOptions): Promise<{ scanned: 
   logger.log({ event: "renotify_scan", count: rows.length, detail: options.dryRun ? "dry-run" : "live" });
 
   if (options.dryRun) {
+    // Una línea por candidato: el operador necesita saber QUÉ lead está
+    // atascado, no solo cuántos hay. La línea lleva identificador interno,
+    // fecha de creación, intentos y clase de error: nunca nombre, email,
+    // teléfono, empresa ni mensaje.
+    const errorClasses = await loadErrorClasses(rows.map((row) => row.id));
     for (const row of rows) {
-      logger.log({ event: "renotify_would_send", count: row.notification_attempts });
+      logger.log({
+        event: "renotify_would_send",
+        count: row.notification_attempts,
+        errorClass: errorClasses.get(row.id) ?? "None",
+        detail: `id=${row.id} createdAt=${createdAtOf(row.created_at)}`,
+      });
     }
     return { scanned: rows.length, sent: 0, failed: 0 };
   }

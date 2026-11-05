@@ -9,6 +9,70 @@
 //
 // Sale 0 sólo si TODAS las comprobaciones pasan. Cada fallo imprime el motivo exacto.
 
+// GROWTH-04 — utilidades puras exportadas (no red, no I/O) para que
+// scripts/tests/release-verify.test.mjs pueda verificar que las comprobaciones
+// nuevas tienen dientes.
+
+// Umbral mínimo de cuerpo de artículo: el defecto P0-1 ('sadasda') tenía ~7
+// caracteres; un artículo real siempre supera 400.
+export const MIN_BODY_CHARS = 400;
+
+// Anchuras genéricas prohibidas en cualquier ruta del sitemap (P0-5).
+const GENERIC_ANCHOR_RE = />\s*(Leer artículo|Leer insight)\s*</g;
+
+export function genericAnchorCount(html) {
+  return (html.match(GENERIC_ANCHOR_RE) ?? []).length;
+}
+
+// Texto plano del cuerpo del artículo: bloques .article-richtext (artículos CMS)
+// o secciones .article-section (artículos estáticos).
+export function stripHtmlText(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&[a-z]+#?0*?[0-9]*;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export function articleBodyText(html) {
+  const chunks = [];
+  // Artículo CMS: el div.richtext es el último hijo de <article ...>, así que el
+  // cierre no ambiguo es el primer </article> posterior.
+  for (const m of html.matchAll(
+    /class="article-richtext"[^>]*>([\s\S]*?)<\/article>/gi
+  )) {
+    chunks.push(m[1]);
+  }
+  // Artículo estático: secciones .article-section completas.
+  for (const m of html.matchAll(
+    /<section[^>]*class="[^"]*article-section[^"]*"[^>]*>([\s\S]*?)<\/section>/gi
+  )) {
+    chunks.push(m[1]);
+  }
+  return stripHtmlText(chunks.join(" "));
+}
+
+// Tabla de contenidos: ids vacíos o duplicados dentro del <article> cuando la
+// TOC está renderizada.
+export function tocIssues(html) {
+  const issues = { empty: [], duplicates: [], tocPresent: false };
+  const toc = html.match(/class="article-toc[\s\S]*?<\/div>/i);
+  if (!toc) return issues;
+  issues.tocPresent = true;
+  const region = html.match(/<article[\s\S]*?<\/article>/i)?.[0] ?? "";
+  const ids = [...region.matchAll(/\sid="([^"]*)"/g)].map((m) => m[1]);
+  for (const id of ids) if (!id.trim()) issues.empty.push(id);
+  const seen = new Set();
+  for (const id of ids) {
+    if (id.trim() && seen.has(id)) issues.duplicates.push(id);
+    seen.add(id);
+  }
+  return issues;
+}
+
 const args = process.argv.slice(2);
 const argOf = (name, fallback) => {
   const i = args.indexOf(name);
@@ -54,9 +118,11 @@ async function main() {
   check("sitemap declara 33 rutas", locs.length === 33, `locs=${locs.length}`);
 
   let routeFailures = 0;
+  const routeBodies = new Map();
   for (const loc of locs) {
     const path = loc.replace(APEX, "") || "/";
     const r = await get(path);
+    routeBodies.set(path, r.body);
     const cans = canonicals(r.body);
     const ok = r.status === 200 && cans.length === 1 && cans[0] === loc;
     if (!ok) {
@@ -65,6 +131,54 @@ async function main() {
     }
   }
   check("las 33 rutas del sitemap responden 200 con canonical único propio", routeFailures === 0, `fallos=${routeFailures}`);
+
+  // 2b. Integridad de contenido por ruta (P0-1 / P0-5). El defecto de coste
+  // ('sadasda') y las anclas genéricas 'Leer artículo'/'Leer insight' deben
+  // quedar atrapados aquí, en TODAS las rutas del sitemap, no solo en la home.
+  const articleRoutes = [...routeBodies.entries()].filter(([path]) => path.startsWith("/blog/"));
+
+  // Cuerpo del artículo (bloque .article-richtext de CMS o secciones
+  // .article-section de estáticos) con al menos MIN_BODY_CHARS caracteres.
+  const shortBodies = [];
+  for (const [path, body] of articleRoutes) {
+    const text = articleBodyText(body);
+    if (body && text.length < MIN_BODY_CHARS) shortBodies.push(`${path} (${text.length} chars)`);
+  }
+  check(
+    `cada artículo de /blog tiene cuerpo >= ${MIN_BODY_CHARS} caracteres`,
+    shortBodies.length === 0,
+    shortBodies.length ? shortBodies.join("; ") : `${articleRoutes.length} artículos OK`
+  );
+
+  // Anclas genéricas: cero en cada una de las 33 rutas del sitemap. Nota de
+  // alcance: 'Leer artículo' dentro de la rejilla de relacionados del
+  // article-page también es ancla genérica y cuenta como defecto (P0-5).
+  const genericRoutes = [];
+  for (const [path, body] of routeBodies) {
+    const n = genericAnchorCount(body);
+    if (n > 0) genericRoutes.push(`${path} (${n})`);
+  }
+  check(
+    "ninguna ruta del sitemap usa anclas genéricas de artículo ('Leer artículo'/'Leer insight')",
+    genericRoutes.length === 0,
+    genericRoutes.length ? genericRoutes.join("; ") : `${routeBodies.size} rutas OK`
+  );
+
+  // TOC: cuando la tabla de contenidos está renderizada, sin ids vacíos ni
+  // duplicados dentro del <article>.
+  const tocFailures = [];
+  for (const [path, body] of articleRoutes) {
+    const issues = tocIssues(body);
+    if (!issues.tocPresent) continue;
+    if (issues.empty.length || issues.duplicates.length) {
+      tocFailures.push(`${path} empty=${JSON.stringify(issues.empty)} dup=${JSON.stringify(issues.duplicates)}`);
+    }
+  }
+  check(
+    "la tabla de contenidos de cada artículo no tiene ids vacíos ni duplicados",
+    tocFailures.length === 0,
+    tocFailures.length ? tocFailures.join("; ") : "OK"
+  );
 
   // 3. Comportamientos de enlazado de GROWTH-03B/03C.
   const home = await get("/");
@@ -134,4 +248,11 @@ async function main() {
   return failed.length === 0;
 }
 
-await main();
+// Entrada con guardia: los tests importan este módulo por sus funciones puras
+// sin ejecutar la verificación en red.
+import { pathToFileURL } from "node:url";
+const isMain =
+  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isMain) {
+  await main();
+}

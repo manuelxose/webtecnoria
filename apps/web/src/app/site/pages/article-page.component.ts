@@ -27,6 +27,119 @@ type BlogCardView = {
   image: BrandImage;
 };
 
+/**
+ * GROWTH-04 — guarda de cuerpo editorial.
+ *
+ * Defecto medido en producción (2026-11-05): la fila de `blog_posts` del artículo
+ * de coste tiene `content="sadasda"` (7 caracteres) y GANABA sobre el artículo
+ * editorial del repositorio, de modo que
+ * https://tecnoriasl.com/blog/cuanto-cuesta-desarrollar-software-medida servía
+ * un cuerpo de 7 caracteres con 267-297 impresiones y 0 clics.
+ *
+ * La guarda falla en cerrado: por debajo del umbral, la fila de la API no se
+ * pinta y el artículo estático del repositorio ocupa su lugar. El umbral es
+ * deliberadamente enorme comparado con el defecto (7) y pequeño comparado con el
+ * contenido real (2.289 caracteres), así que no hay zona gris.
+ *
+ * No se borra ni se modifica ninguna fila: la guarda es de render.
+ */
+export const MIN_ARTICLE_BODY_CHARS = 400;
+
+/**
+ * Mínimo de subsecciones con contenido propio (GROWTH-04, hallazgo F3 de la
+ * revisión independiente). La longitud sola no basta: 400 caracteres del mismo
+ * texto repetido, o un aviso de borrador largo, superarían el umbral y se
+ * publicarían como artículo. Un artículo editorial real está estructurado.
+ */
+export const MIN_ARTICLE_BODY_SECTIONS = 3;
+
+/** Longitud del texto plano de un fragmento HTML. */
+export function articleBodyTextLength(html: string | null | undefined): number {
+  if (typeof html !== "string") {
+    return 0;
+  }
+
+  return html
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim().length;
+}
+
+/**
+ * Encabezados que separan contenido: h2 de un artículo del CMS, o cualquier
+ * h2/h3 cuando el CMS entrega HTML plano sin `section`.
+ */
+export function articleSectionCount(html: string | null | undefined): number {
+  if (typeof html !== "string") {
+    return 0;
+  }
+
+  return (html.match(/<h[23]\b/gi) ?? []).length;
+}
+
+/**
+ * ¿Es este cuerpo contenido editorial publicable?
+ *
+ * Falla en cerrado por dos criterios independientes: longitud suficiente Y
+ * estructura suficiente. Un marcador largo ("BORRADOR - pendiente de revisar...")
+ * pasa la longitud pero no la estructura.
+ */
+export function isRenderableEditorialBody(html: string | null | undefined): boolean {
+  return (
+    articleBodyTextLength(html) >= MIN_ARTICLE_BODY_CHARS &&
+    articleSectionCount(html) >= MIN_ARTICLE_BODY_SECTIONS
+  );
+}
+
+/**
+ * Garantiza que cada <h2> tenga un id estable y único, para que el índice del
+ * artículo (`Recorrido del artículo`) nunca produzca un ancla rota: el HTML que
+ * llega del CMS no trae ids.
+ *
+ * `startIndex` desplaza la numeración: el componente numera los encabezados
+ * sobre el HTML COMPLETO del cuerpo, mientras que el tamaño del texto del cuerpo
+ * se mide con otra función. Mantener la numeración aquí y en la medición sobre la
+ * misma base evita que un índice empiece en "2-" por un desfase de cuenta.
+ */
+export function ensureHeadingIds(
+  html: string,
+  startIndex = 0
+): {
+  html: string;
+  entries: Array<{ id: string; title: string }>;
+} {
+  const entries: Array<{ id: string; title: string }> = [];
+  let index = startIndex;
+
+  const slugify = (value: string): string =>
+    value
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+  const out = html.replace(
+    /<h2\b([^>]*)>([\s\S]*?)<\/h2>/gi,
+    (match, attrs: string, inner: string) => {
+      const current = index++;
+      const existing = /\bid\s*=\s*["']([^"']+)["']/i.exec(attrs);
+      const title = String(inner).replace(/<[^>]+>/g, "").trim();
+      const id = existing ? existing[1] : `${current + 1}-${slugify(title)}`;
+
+      // Un id repetido no se añade dos veces al índice (ancla ambigua).
+      if (entries.some((entry) => entry.id === id)) {
+        return match;
+      }
+
+      entries.push({ id, title });
+      return existing ? match : `<h2${attrs} id="${id}">${inner}</h2>`;
+    }
+  );
+
+  return { html: out, entries };
+}
+
 type ApiArticleView = {
   slug: string;
   title: string;
@@ -162,7 +275,7 @@ type ApiArticleView = {
               <span class="chip chip-soft">{{ item.category }}</span>
               <h3>{{ item.title }}</h3>
               <p>{{ item.summary }}</p>
-              <a class="text-link" [routerLink]="item.path">Leer artículo</a>
+              <a class="text-link" [routerLink]="item.path">{{ item.title }}</a>
             </div>
           </article>
         </div>
@@ -225,19 +338,25 @@ export class ArticlePageComponent implements OnInit {
     this.tableOfContents = [];
 
     const apiArticle = await this.blogRepository.detailBySlug(slug);
-    if (apiArticle) {
+    // Fail closed (GROWTH-04): una fila con cuerpo no editorial NO gana sobre el
+    // artículo del repositorio. Se cae al bloque estático de más abajo.
+    if (apiArticle && isRenderableEditorialBody(String(apiArticle.content ?? ""))) {
       const publishedAt = String(
         apiArticle.publishedAt ?? apiArticle.updatedAt ?? apiArticle.createdAt ?? PUBLISH_DATE
       );
 
       const staticCounterpart = getArticleBySlug(slug);
 
+      // El HTML del CMS no trae ids: se añaden aquí y el índice se construye del
+      // mismo resultado, así que plantilla e índice no pueden discrepar.
+      const body = ensureHeadingIds(String(apiArticle.content ?? ""));
+
       this.article = {
         kind: "api",
         slug,
         title: String(apiArticle.title ?? ""),
         summary: String(apiArticle.shortDescription ?? ""),
-        content: String(apiArticle.content ?? ""),
+        content: body.html,
         serviceLinks: staticCounterpart?.serviceLinks,
         category:
           Array.isArray(apiArticle.tags) && apiArticle.tags.length
@@ -253,6 +372,19 @@ export class ArticlePageComponent implements OnInit {
       };
 
       this.related = await this.loadRelated(slug);
+
+      // GROWTH-04: el TOC de los artículos servidos por CMS NO se propaga.
+      //
+      // Verificado sobre el SSR construido (no sobre la fuente): aunque
+      // ensureHeadingIds devuelve el HTML con `id` y el índice con esos mismos
+      // ids, el HTML servido sale como `<h2>No compras código</h2>`, sin id. El
+      // saneador de Angular para [innerHTML] elimina los atributos `id` al
+      // serializar en servidor. Propagar el índice en esas condiciones generaría
+      // exactamente las anclas rotas que el handoff pide evitar ("verificar
+      // antes"), así que se mantiene oculto para la rama CMS y seguirá
+      // funcionando para los artículos estáticos, cuyos encabezados se pintan
+      // desde plantilla.
+      this.tableOfContents = [];
 
       const articleVisual = getArticleVisualBySlug(slug);
       this.articleVisual = articleVisual;

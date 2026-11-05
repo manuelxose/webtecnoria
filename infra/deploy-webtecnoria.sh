@@ -68,4 +68,25 @@ wait_http "http://127.0.0.1:${API_PORT}/health"
 # 2) Web SSR (release + restart + smoke local/publico)
 /var/www/bin/deploy-tecnoria-web.sh
 
+# 3) Gate POSTERIOR al publish (GROWTH-04).
+#
+# Por que aqui y no en el workflow: sudoers NOPASSWD solo permite estas tres rutas
+# exactas (/etc/sudoers.d/90-deploy), asi que un `sudo .../release-verify-gate.sh`
+# desde GitHub Actions pediria contrasena sin TTY y el step fallaria antes de
+# comprobar nada. Este script ya corre como root y ya esta en la lista permitida,
+# de modo que el gate se ejecuta dentro y su codigo de salida decide el deploy.
+#
+# El smoke de publish-frontend-release.sh ocurre ANTES de este punto: sin este
+# gate, el job podria quedar rojo con la release ya viva.
+RELEASE_GATE="/var/www/webtecnoria/infra/bin/release-verify-gate.sh"
+if [ -x "${RELEASE_GATE}" ]; then
+  if ! "${RELEASE_GATE}"; then
+    echo "Deploy webtecnoria: release gate FAILED (release already published)" >&2
+    exit 1
+  fi
+else
+  echo "Deploy webtecnoria: release gate missing at ${RELEASE_GATE}" >&2
+  exit 1
+fi
+
 echo "Deploy webtecnoria OK: $(git rev-parse --short HEAD)"

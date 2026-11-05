@@ -147,14 +147,47 @@ function isoDate(date) {
 }
 
 // Last N COMPLETE (finalised) days, ending at today - FINALISATION_OFFSET_DAYS (UTC).
-function windowRange(days, now = new Date()) {
+// Overrides: { start, end } ISO dates (YYYY-MM-DD) anchor the window explicitly;
+// they are recorded in the output with anchored=true.
+export function windowRange(days, now = new Date(), overrides = {}) {
   const end = new Date(
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
   );
   end.setUTCDate(end.getUTCDate() - FINALISATION_OFFSET_DAYS);
-  const start = new Date(end);
-  start.setUTCDate(start.getUTCDate() - (days - 1));
-  return { startDate: isoDate(start), endDate: isoDate(end) };
+  let startDate = new Date(end);
+  startDate.setUTCDate(startDate.getUTCDate() - (days - 1));
+  const anchored = Boolean(overrides.start || overrides.end);
+  let endDate = end;
+  if (overrides.end) {
+    endDate = isoToUtcDate(overrides.end);
+    if (!overrides.start) {
+      startDate = new Date(endDate);
+      startDate.setUTCDate(startDate.getUTCDate() - (days - 1));
+    }
+  }
+  if (overrides.start) {
+    startDate = isoToUtcDate(overrides.start);
+    if (!overrides.end) {
+      endDate = new Date(startDate);
+      endDate.setUTCDate(endDate.getUTCDate() + (days - 1));
+    }
+  }
+  return { startDate: isoDate(startDate), endDate: isoDate(endDate), anchored };
+}
+
+// YYYY-MM-DD with a real calendar date round-trip (rejects 2026-02-30, 13th month, etc.).
+export function isValidIsoDate(value) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [y, m, d] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  return (
+    date.getUTCFullYear() === y && date.getUTCMonth() === m - 1 && date.getUTCDate() === d
+  );
+}
+
+function isoToUtcDate(value) {
+  const [y, m, d] = value.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d));
 }
 
 async function searchAnalyticsOnce(token, site, payload) {
@@ -280,6 +313,28 @@ async function main() {
     throw new Error("--dimensions must list at least one dimension (e.g. query,page)");
   }
 
+  // Anchored windows: --start / --end (YYYY-MM-DD). Overrides the rolling
+  // defaults for every declared window's bounds; window length (days) and
+  // labels stay the declared WINDOWS.
+  const overrides = {};
+  const startArg = arg("start");
+  const endArg = arg("end");
+  if (startArg !== undefined) {
+    if (!isValidIsoDate(startArg)) {
+      throw new Error(`--start must be YYYY-MM-DD (got: ${startArg})`);
+    }
+    overrides.start = startArg;
+  }
+  if (endArg !== undefined) {
+    if (!isValidIsoDate(endArg)) {
+      throw new Error(`--end must be YYYY-MM-DD (got: ${endArg})`);
+    }
+    overrides.end = endArg;
+  }
+  if (overrides.start && overrides.end && overrides.start > overrides.end) {
+    throw new Error(`--start (${overrides.start}) must be <= --end (${overrides.end})`);
+  }
+
   const warnings = [];
   const serviceAccount = loadServiceAccount();
   const token = await getAccessToken(serviceAccount);
@@ -292,7 +347,7 @@ async function main() {
 
   const windows = [];
   for (const spec of WINDOWS) {
-    const { startDate, endDate } = windowRange(spec.days);
+    const { startDate, endDate, anchored } = windowRange(spec.days, new Date(), overrides);
     console.log(`# window ${spec.label}: ${startDate}..${endDate}`);
 
     const basePayload = {
@@ -359,6 +414,7 @@ async function main() {
       days: spec.days,
       startDate,
       endDate,
+      windowSource: anchored ? "anchored (--start/--end)" : "rolling (last N finalised days)",
       totals,
       rowCount: primary.rows,
       pagesFetched: primary.pagesFetched,
@@ -388,6 +444,10 @@ async function main() {
       rowLimit: ROW_LIMIT,
       maxPages: MAX_PAGES,
       primaryDimensions: dimensions,
+      requestedWindow:
+        overrides.start || overrides.end
+          ? { start: overrides.start ?? null, end: overrides.end ?? null, mode: "anchored" }
+          : { start: null, end: null, mode: "rolling" },
       api: `POST https://${API_HOST}/webmasters/v3/sites/<site>/searchAnalytics/query`,
     },
     hostScope: {
@@ -398,6 +458,9 @@ async function main() {
     windows,
     methodology: [
       `Windows are the last N COMPLETE finalised days: endDate = today(UTC) - ${FINALISATION_OFFSET_DAYS} days, startDate = endDate - (N-1) days.`,
+      overrides.start || overrides.end
+        ? `Anchored window override in effect: --start=${overrides.start ?? "(default end-anchor)"} --end=${overrides.end ?? "(default start-anchor)"}; declared window lengths and labels unchanged, bounds recorded per window with windowSource=anchored.`
+        : `Anchored overrides (--start/--end, YYYY-MM-DD) may pin the window bounds explicitly; they are recorded per window in windowSource and in request.requestedWindow.`,
       "Totals come ONLY from the dimension-less query. GSC dimension rows are NOT additive and must never be summed (docs/growth/GROWTH-03-HANDOFF.md 2.4).",
       `Each dataset is paginated with startRow until a page returns fewer than ${ROW_LIMIT} rows, hard stop at ${MAX_PAGES} pages (${MAX_PAGES * ROW_LIMIT} rows); truncation is flagged per window and in warnings.`,
       "searchType=web, dataState=all. Rows are returned by the API ordered by clicks then impressions descending.",
@@ -414,7 +477,7 @@ async function main() {
   for (const win of windows) {
     const t = win.totals;
     console.log(
-      `${win.label} ${win.startDate}..${win.endDate} totals=${t ? `${t.clicks}c/${t.impressions}i` : "no-data"} ` +
+      `${win.label} ${win.startDate}..${win.endDate}${win.windowSource.startsWith("anchored") ? " [anchored]" : ""} totals=${t ? `${t.clicks}c/${t.impressions}i` : "no-data"} ` +
         `rowsQueryPage=${win.rowCounts.queryPage.rows} (target ${win.rowsQueryPageTarget.length}) ` +
         `rowsPage=${win.rowCounts.page.rows} rowsQuery=${win.rowCounts.query.rows} ` +
         `pagesFetched=${win.pagesFetched} truncated=${win.truncated}`
@@ -429,7 +492,14 @@ async function main() {
   console.log(`WROTE ${out}`);
 }
 
-main().catch((error) => {
-  console.error(`ERROR ${error.message}`);
-  process.exitCode = 1;
-});
+// Entrada con guardia: los tests importan el módulo por sus funciones puras
+// (isValidIsoDate, windowRange) sin abrir red ni credenciales.
+import { pathToFileURL } from "node:url";
+const isMain =
+  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isMain) {
+  main().catch((error) => {
+    console.error(`ERROR ${error.message}`);
+    process.exitCode = 1;
+  });
+}
