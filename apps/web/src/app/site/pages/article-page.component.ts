@@ -15,6 +15,7 @@ import {
   getArticleBySlug,
   getArticleVisualBySlug,
   PUBLISH_DATE,
+  ServiceLinkEntry,
 } from "../content/site-content";
 import { SeoService } from "../services/seo.service";
 
@@ -33,6 +34,13 @@ type ApiArticleView = {
   content: string;
   category: string;
   publishedAt: string;
+  /**
+   * GROWTH-03C: CMS-served articles carry no contextual service links, so the
+   * article→service link added in GROWTH-03B never rendered for any slug that has
+   * a row in blog_posts. When a static counterpart exists for the same slug we reuse
+   * its editorial service link, which is the only place that intent is expressed.
+   */
+  serviceLinks?: ServiceLinkEntry[];
 };
 
 @Component({
@@ -222,12 +230,15 @@ export class ArticlePageComponent implements OnInit {
         apiArticle.publishedAt ?? apiArticle.updatedAt ?? apiArticle.createdAt ?? PUBLISH_DATE
       );
 
+      const staticCounterpart = getArticleBySlug(slug);
+
       this.article = {
         kind: "api",
         slug,
         title: String(apiArticle.title ?? ""),
         summary: String(apiArticle.shortDescription ?? ""),
         content: String(apiArticle.content ?? ""),
+        serviceLinks: staticCounterpart?.serviceLinks,
         category:
           Array.isArray(apiArticle.tags) && apiArticle.tags.length
             ? String(apiArticle.tags[0])

@@ -114,3 +114,27 @@ test("the cost article is still reachable from the article template sidebar", ()
     "serviceLinks must be bound as a routerLink so SSR emits a real href"
   );
 });
+
+// GROWTH-03C: a slug that exists in blog_posts renders through the CMS branch
+// (`kind: "api"`), which carries no serviceLinks of its own. The cost article is
+// exactly that case in production, so the GROWTH-03B contextual link never reached
+// the rendered page. The API branch must inherit the editorial link from the static
+// counterpart for the same slug, otherwise the sidebar silently drops it.
+test("a CMS-served article still renders the editorial service link", () => {
+  const source = template("article-page.component.ts");
+  assert.match(
+    source,
+    /const staticCounterpart = getArticleBySlug\(slug\);/,
+    "the API branch must look up the static counterpart for the same slug"
+  );
+  assert.match(
+    source,
+    /serviceLinks:\s*staticCounterpart\?\.serviceLinks/,
+    "the API branch must carry the static article's serviceLinks"
+  );
+  assert.match(
+    source,
+    /type ApiArticleView = \{[\s\S]*?serviceLinks\?: ServiceLinkEntry\[\];[\s\S]*?\};/,
+    "ApiArticleView must declare the optional serviceLinks field"
+  );
+});
