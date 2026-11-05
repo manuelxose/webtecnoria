@@ -123,7 +123,7 @@ los reportó; no se derivan de un contador de conversación.
 |---|---|
 | Commit base | `894e7c6e057df3e7bacb8b15f39c1d3b47e98ae7` |
 | Rama | `master` |
-| Commit de entrega | ver §9 (se registra al commitear) |
+| Commit de entrega | **`94de3ab`** — `feat(growth): GSC query+page evidence, mobile perf baseline and evidence-gated link fixes` |
 | Alcance del diff | 9 archivos versionados modificados; 5 archivos nuevos de datos y planes; 4 documentos |
 | Fuera de alcance tocado | **nada** en `apps/api/**`, `infra/**`, `.github/**`, ni el script compartido `publish-frontend-release.sh` |
 
