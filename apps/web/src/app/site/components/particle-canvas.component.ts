@@ -41,7 +41,7 @@ interface Particle {
 export class ParticleCanvasComponent implements AfterViewInit, OnDestroy {
   @ViewChild("canvas") canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  @Input() count = 80;
+  @Input() count = 48;
   @Input() dotColor = "rgba(255,255,255,0.25)";
   @Input() lineColor = "rgba(255,255,255,0.05)";
   @Input() connectDist = 140;
@@ -52,6 +52,7 @@ export class ParticleCanvasComponent implements AfterViewInit, OnDestroy {
   private ro?: ResizeObserver;
   private dpr = 1;
   private prefersReducedMotion = false;
+  private lastFrameAt = 0;
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
@@ -112,10 +113,16 @@ export class ParticleCanvasComponent implements AfterViewInit, OnDestroy {
     }));
   }
 
-  private loop(): void {
+  private loop = (time = 0): void => {
+    this.animId = requestAnimationFrame(this.loop);
+
+    if (document.hidden || time - this.lastFrameAt < 33) {
+      return;
+    }
+
+    this.lastFrameAt = time;
     this.drawFrame(true);
-    this.animId = requestAnimationFrame(() => this.loop());
-  }
+  };
 
   private drawFrame(animate = false): void {
     const canvas = this.canvasRef.nativeElement;
