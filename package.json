@@ -24,6 +24,12 @@
     "migrate:api": "npm run -w apps/api migrate",
     "seed:admin": "npm run -w apps/api seed:admin",
     "test:seo": "tsx scripts/seo-check.ts",
+    "test:consent": "node --test scripts/tests/consent.test.mjs",
+    "test:analytics": "node --test scripts/tests/analytics-dispatch.test.mjs",
+    "test:browser": "node --test scripts/browser-consent.mjs",
+    "test:api": "node --import tsx --test \"scripts/api-tests/*.test.mjs\"",
+    "test:monitor": "node scripts/growth-monitor.mjs",
+    "test:all": "npm run test:seo && npm run test:consent && npm run test:analytics && npm run test:api",
     "verify:web": "npm run build:web && npm run test:seo",
     "build": "npm run build:types && npm run build:web && npm run build:api"
   }

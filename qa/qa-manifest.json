@@ -17,11 +17,39 @@
       "kind": "integration"
     },
     {
+      "id": "consent-unit",
+      "argv": ["npm", "run", "test:consent"],
+      "required": true,
+      "timeoutMs": 180000,
+      "kind": "unit"
+    },
+    {
+      "id": "analytics-unit",
+      "argv": ["npm", "run", "test:analytics"],
+      "required": true,
+      "timeoutMs": 180000,
+      "kind": "unit"
+    },
+    {
       "id": "build-api",
       "argv": ["npm", "run", "build:api"],
       "required": true,
       "timeoutMs": 300000,
       "kind": "build"
+    },
+    {
+      "id": "api-unit",
+      "argv": ["npm", "run", "test:api"],
+      "required": true,
+      "timeoutMs": 300000,
+      "kind": "unit"
+    },
+    {
+      "id": "browser-cdp",
+      "argv": ["npm", "run", "test:browser"],
+      "required": false,
+      "timeoutMs": 600000,
+      "kind": "e2e"
     }
   ]
 }

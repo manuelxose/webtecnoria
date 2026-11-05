@@ -1,0 +1,9 @@
+# Dedicated ports for scripts/api-tests/migrations.twice.test.mjs.
+#
+# The migration guard needs its own container because the API test runner executes
+# test files in parallel: sharing the integration test's project and ports would
+# let one file's `down -v` kill the other mid-run.
+services:
+  postgres-dev:
+    ports: !override
+      - "127.0.0.1:55433:5432"

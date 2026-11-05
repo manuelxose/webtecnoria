@@ -1,0 +1,19 @@
+# Test-only port override for scripts/api-tests/integration.docker.test.mjs.
+#
+# Why this file exists: infra/docker-compose.dev.yml publishes Postgres on
+# 0.0.0.0:5432. On this Windows host, 127.0.0.1:5432 is answered by an UNRELATED
+# PostgreSQL instance (Ubuntu 16.15 build, databases tecnoria / tecnoria_chat /
+# content_ai) that wins the loopback race against Docker's proxy. A test that
+# connected there would write leads into somebody else's database. Publishing on
+# dedicated loopback ports makes "127.0.0.1:55432" unambiguously our container.
+#
+# Mailpit is moved too for symmetry: 1025/8025 are common dev ports, and the
+# test asserts the sink identifies itself as Mailpit anyway.
+services:
+  postgres-dev:
+    ports: !override
+      - "127.0.0.1:55432:5432"
+  mailpit-dev:
+    ports: !override
+      - "127.0.0.1:11025:1025"
+      - "127.0.0.1:18025:8025"
