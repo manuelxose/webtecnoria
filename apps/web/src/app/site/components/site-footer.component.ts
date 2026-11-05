@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
   brandLogos,
@@ -11,12 +11,36 @@ import {
   SITE_PHONE,
   SITE_REGION,
 } from "../content/site-content";
+import { ConsentService } from "../services/consent.service";
 
 @Component({
   selector: "app-site-footer",
   standalone: true,
   imports: [CommonModule, RouterModule],
   styleUrls: ["./site-footer.component.css"],
+  styles: [
+    `
+      .footer-consent-link {
+        padding: 0;
+        border: 0;
+        background: none;
+        color: rgba(255, 255, 255, 0.68);
+        font: inherit;
+        text-align: left;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .footer-consent-link:hover {
+        color: #ffffff;
+      }
+
+      .footer-consent-link:focus-visible {
+        outline: 2px solid var(--copper);
+        outline-offset: 2px;
+      }
+    `,
+  ],
   template: `
     <footer class="site-footer">
       <div class="site-container site-footer__shell">
@@ -92,6 +116,16 @@ import {
             <ul class="footer-list">
               <li><a routerLink="/auth-login">Área privada</a></li>
               <li><a routerLink="/politica-de-privacidad">Política de privacidad</a></li>
+              <li><a routerLink="/politica-de-cookies">Política de cookies</a></li>
+              <li>
+                <button
+                  type="button"
+                  class="footer-consent-link"
+                  (click)="openCookieSettings()"
+                >
+                  Configuración de cookies
+                </button>
+              </li>
               <li><a routerLink="/mapa-web">Mapa web</a></li>
             </ul>
           </div>
@@ -113,6 +147,8 @@ import {
   `,
 })
 export class SiteFooterComponent {
+  private readonly consent = inject(ConsentService);
+
   logos = brandLogos;
   quickLinks = footerLinks;
   serviceLinks = services;
@@ -122,4 +158,8 @@ export class SiteFooterComponent {
   region = SITE_REGION;
   siteName = SITE_NAME;
   year = new Date().getFullYear();
+
+  openCookieSettings(): void {
+    this.consent.requestPreferences();
+  }
 }

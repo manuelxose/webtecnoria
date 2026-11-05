@@ -30,6 +30,7 @@ export const PUBLIC_PATHS = new Set<string>([
   "/faq",
   "/contacto",
   "/politica-de-privacidad",
+  "/politica-de-cookies",
   "/mapa-web",
 ]);
 

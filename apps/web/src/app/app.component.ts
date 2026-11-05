@@ -2,13 +2,14 @@ import { CommonModule, isPlatformBrowser } from "@angular/common";
 import { Component, Inject, PLATFORM_ID } from "@angular/core";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { filter } from "rxjs";
+import { ConsentBannerComponent } from "./site/components/consent-banner.component";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ConsentBannerComponent],
 })
 export class AppComponent {
   constructor(

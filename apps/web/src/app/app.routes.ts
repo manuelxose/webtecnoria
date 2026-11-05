@@ -616,6 +616,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: "politica-de-cookies",
+        loadComponent: () =>
+          import("./site/pages/cookies-page.component").then(
+            (m) => m.CookiesPageComponent
+          ),
+      },
+      {
         path: "mapa-web",
         loadComponent: () =>
           import("./site/pages/sitemap-page.component").then(

@@ -2,6 +2,11 @@
 
 <router-outlet></router-outlet>
 
+<!-- Global consent UI: public and private routes. Hydration is skipped on the
+     host because its visibility depends on localStorage, which only exists in
+     the browser; SSR must not evaluate it. -->
+<app-consent-banner ngSkipHydration></app-consent-banner>
+
 <!-- <modal-outlet></modal-outlet>
 
 <app-carousel></app-carousel>   -->

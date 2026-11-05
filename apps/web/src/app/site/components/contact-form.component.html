@@ -36,8 +36,17 @@
       </div>
 
       <div *ngIf="submitError" class="alert alert-error" role="alert">
-        <h3>No se ha podido enviar el formulario</h3>
-        <p>Prueba de nuevo en unos minutos o escríbenos directamente a oficina@tecnoriasl.com.</p>
+        <h3 *ngIf="!rateLimited">No se ha podido enviar el formulario</h3>
+        <h3 *ngIf="rateLimited">Demasiados envíos seguidos</h3>
+        <p *ngIf="rateLimited">
+          Hemos recibido varios envíos desde tu conexión en muy poco tiempo. Espera unos
+          minutos y vuelve a intentarlo; tu mensaje no se ha perdido, simplemente no se ha
+          enviado todavía.
+        </p>
+        <p *ngIf="!rateLimited">
+          Revisa los campos marcados y vuelve a intentarlo. Si el problema continúa,
+          escríbenos directamente a oficina@tecnoriasl.com.
+        </p>
       </div>
 
       <form
@@ -47,6 +56,18 @@
         class="contact-form__form"
         novalidate
       >
+        <div class="contact-form__honeypot" aria-hidden="true">
+          <label for="_hp">No rellenar este campo</label>
+          <input
+            id="_hp"
+            type="text"
+            formControlName="_hp"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+        </div>
+
         <div class="form-row">
           <div class="form-group">
             <label class="form-label form-label-required" for="name">Nombre completo</label>
@@ -146,6 +167,7 @@
           <textarea
             id="message"
             rows="6"
+            maxlength="5000"
             formControlName="message"
             class="form-textarea"
             [class.is-invalid]="f['message'].touched && f['message'].invalid"

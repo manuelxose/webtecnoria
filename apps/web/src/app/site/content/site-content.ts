@@ -2307,6 +2307,7 @@ export const sitemapGroups: SitemapGroup[] = [
       { label: "Recursos", path: "/blog" },
       { label: "FAQ", path: "/faq" },
       { label: "Contacto", path: "/contacto" },
+      { label: "Política de cookies", path: "/politica-de-cookies" },
     ],
   },
   {

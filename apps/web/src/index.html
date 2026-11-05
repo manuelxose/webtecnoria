@@ -46,12 +46,58 @@
       crossorigin
     >
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LE6ETPWL23"></script>
+    <!--
+      Consent Mode v2 (basic): every signal defaults to denied and Google
+      Analytics is NOT requested until the visitor accepts.
+
+      There is deliberately NO boot-time read of the stored consent here.
+      ConsentService is the only entry point: it resolves `tecnoria.consent.v1`
+      through parseConsentRecord (version, types, timestamp parsing with clock
+      skew and expiry) and calls window.__tecnoriaLoadAnalytics() through
+      ensureAnalyticsLoaded() only when analytics consent is in force. Keeping a
+      second, weaker parser in this file would let the two disagree.
+
+      GA_ID below must match GA_MEASUREMENT_ID in
+      apps/web/src/app/site/services/consent.service.ts; the consent test
+      asserts they are equal.
+      PENDING CONTROLLER/COUNSEL APPROVAL: consent wording and legal review.
+    -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-LE6ETPWL23');
+      (function () {
+        var GA_ID = 'G-LE6ETPWL23';
+        var TAG_URL = 'https://www.googletagmanager.com/gtag/js?id=';
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag('consent', 'default', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: 'denied',
+          wait_for_update: 500
+        });
+
+        // Loader: the ONLY place a Google request can originate. It is defined
+        // here (so it exists before Angular boots) but is never invoked by this
+        // file. The config command lives inside it, which is why it can be
+        // written literally.
+        window.__tecnoriaLoadAnalytics = function () {
+          if (window.__tecnoriaAnalyticsLoaded) {
+            return;
+          }
+          window.__tecnoriaAnalyticsLoaded = true;
+
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = TAG_URL + GA_ID;
+          document.head.appendChild(script);
+
+          window.gtag('js', new Date());
+          window.gtag('config', GA_ID);
+        };
+      })();
     </script>
   </head>
   <body>
