@@ -4,6 +4,7 @@
 **Target:** Contabo VPS `109.123.248.164`, `https://tecnoriasl.com`
 **Pre-deploy release:** `apps/web/releases/20260320_110038`
 **Pre-deploy git HEAD:** `8b45733`
+**Final release:** `apps/web/releases/20261105_012220` (git `3c7cdb9`, GitHub Actions run `41940740641`)
 **Nginx backup:** `/var/backups/tecnoria/nginx/tecnoria.conf.20261105_005920.bak`
 **Nginx pre-change SHA-256:** `757158cb1f770486a008646b6ad19344c1adf180a3a567dfa29c205747bc36aa`
 

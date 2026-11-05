@@ -1,5 +1,10 @@
 # SEO Architecture
 
+> Updated 2026-11-05: the static sitemap now has 32 URLs, canonical/robots/JSON-LD are emitted in
+> raw SSR HTML, and unknown/legacy/missing-asset URLs return real 404/301 responses. See
+> `docs/growth/TECHNICAL-SEO-AUDIT.md`, `docs/growth/SEO-00-BASELINE.md` and
+> `docs/growth/FINAL-DELIVERY.md` for the evidence.
+
 ## Objetivo
 
 Dejar TecnoRia preparada para competir con una arquitectura organica sostenible en tres capas:

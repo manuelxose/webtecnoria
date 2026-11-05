@@ -1,7 +1,7 @@
 # Contabo optimization report
 
 **Date:** 2026-11-05
-**Release after change:** `20261105_011306` (git `e68b1c4`, then `1d09c65`/`dccd540` included)
+**Release after change:** `20261105_012220` (git `3c7cdb9`)
 **Pre-change nginx backup:** `/var/backups/tecnoria/nginx/tecnoria.conf.20261105_005920.bak`
 
 ## 1. Applied changes
