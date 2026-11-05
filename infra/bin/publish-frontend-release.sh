@@ -237,7 +237,13 @@ verify_expected_text() {
 
   for _ in {1..5}; do
     body="$(curl -fsS --max-time 15 --retry 3 --retry-connrefused --retry-delay 1 "${extra_args[@]}" "${PUBLIC_URL}" || true)"
-    if printf '%s' "${body}" | grep -Fq "${EXPECTED_TEXT}"; then
+    # H-10: `printf '%s' "$body" | grep -Fq "$text"` is NOT a safe way to test for a match
+    # under `set -o pipefail`. `grep -q` exits at the first match, the write end of the pipe
+    # then takes SIGPIPE, and pipefail makes the whole pipeline return 141 even though grep
+    # matched. Measured on the live origin body (2026-11-05): 100% false failures at 125,096
+    # bytes, 42.5% at 63,996 bytes, 19% at 57,091 bytes. The here-string is written to a
+    # temporary file, so no process can be killed by SIGPIPE and the status is grep's own.
+    if grep -Fq -- "${EXPECTED_TEXT}" <<<"${body}"; then
       return 0
     fi
     sleep 3
