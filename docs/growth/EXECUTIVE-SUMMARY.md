@@ -3,7 +3,6 @@
 **Fecha:** 5 de noviembre de 2026
 **Sitio:** https://tecnoriasl.com
 **Commit de código desplegado:** `3c7cdb9`
-**HEAD final del repositorio:** `f77c7b2` (solo documentación)
 **Release en producción:** `20261105_012220`
 **Despliegue:** GitHub Actions run `41940740641`, conclusión `success`
 **Veredicto global:** **PARTIAL** — la base técnica y el despliegue están completos; quedan bloqueos
