@@ -129,6 +129,8 @@ export interface ArticleEntry {
   tags?: string[];
   seo: SeoEntry;
   sections: ArticleSection[];
+  /** Optional contextual links to the service landing that answers the article's intent. */
+  serviceLinks?: ServiceLinkEntry[];
 }
 
 export interface NavEntry {
@@ -1435,6 +1437,14 @@ export const articles: ArticleEntry[] = [
     readingTime: "7 min",
     ctaLabel: "Solicitar diagnóstico",
     ctaLink: "/contacto",
+    serviceLinks: [
+      {
+        label: "Ver el servicio de desarrollo de software a medida",
+        path: "/servicios/desarrollo-software-medida",
+        description:
+          "Si ya tienes clara la decisión, aquí está el servicio que la ejecuta: alcance por fases, arquitectura y entrega.",
+      },
+    ],
     seo: {
       title: "Cuánto cuesta desarrollar software a medida",
       description:

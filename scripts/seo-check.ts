@@ -220,8 +220,74 @@ async function main(): Promise<void> {
     assert.match(sourceSitemap, /productos\/talkaris/);
     assert.match(sourceSitemap, /productos\/auctorio/);
 
+    // --- GROWTH-03B: descriptive anchor integrity -------------------------
+    // Anchors into the cost article and the service cross-links must describe
+    // their destination. Generic labels ("Leer artículo", "Leer insight",
+    // "Explorar landing") carried no contextual signal for the destination.
+    const costArticlePath = "/blog/cuanto-cuesta-desarrollar-software-medida";
+    const genericAnchor = /^(Leer artículo|Leer insight|Explorar landing)$/;
+
+    function anchorsTo(html: string, href: string): string[] {
+      const pattern = new RegExp(
+        `<a\\b[^>]*href="${href.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"[^>]*>([\\s\\S]*?)</a>`,
+        "gi"
+      );
+      return [...html.matchAll(pattern)].map((match) =>
+        match[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim()
+      );
+    }
+
+    const homeFeatured = anchorsTo(homeHtml, costArticlePath);
+    assert.ok(
+      homeFeatured.length > 0,
+      "home must link to the cost article in its featured insights"
+    );
+    for (const text of homeFeatured) {
+      assert.doesNotMatch(
+        text,
+        genericAnchor,
+        `home featured-insight anchor is still generic: "${text}"`
+      );
+    }
+    assert.ok(
+      homeFeatured.some((text) => /cuesta desarrollar software a medida/i.test(text)),
+      `home featured-insight anchor must describe the cost article, got ${JSON.stringify(homeFeatured)}`
+    );
+
+    const servicesHtml = await (await request("/servicios")).text();
+    for (const text of anchorsTo(servicesHtml, costArticlePath)) {
+      assert.doesNotMatch(
+        text,
+        genericAnchor,
+        `/servicios featured-insight anchor is still generic: "${text}"`
+      );
+    }
+
+    // The footer also links every service with its short name, so assert on the
+    // contextual sidebar link specifically rather than on any anchor to the URL.
+    const articleServiceAnchors = anchorsTo(articleHtml, "/servicios/desarrollo-software-medida");
+    assert.ok(
+      articleServiceAnchors.includes("Ver el servicio de desarrollo de software a medida"),
+      `cost article must carry a contextual service link in its sidebar, got ${JSON.stringify(articleServiceAnchors)}`
+    );
+
+    // The service cross-link cards must expose their own descriptive label.
+    const crossLinkHtml = await (await request("/servicios/plataformas-saas")).text();
+    assert.doesNotMatch(
+      crossLinkHtml,
+      /Explorar landing/,
+      "service cross-links must not use the generic 'Explorar landing' anchor"
+    );
+
+    for (const html of [homeHtml, articleHtml, crossLinkHtml]) {
+      assert.ok(
+        anchorsTo(html, costArticlePath).every((text) => !genericAnchor.test(text)),
+        "no page may carry a generic anchor into the cost article"
+      );
+    }
+
     console.log(
-      `SEO checks passed: ${PUBLIC_PATHS.size} public routes, JSON-LD, 404/301, cache and sitemap.`
+      `SEO checks passed: ${PUBLIC_PATHS.size} public routes, JSON-LD, 404/301, cache, sitemap and anchor integrity.`
     );
   } finally {
     server.kill();

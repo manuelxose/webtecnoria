@@ -127,11 +127,12 @@ import { SeoService } from "../services/seo.service";
         <div class="site-container card-grid card-grid--two service-cross-links__grid">
           <article class="surface-card surface-card--soft-dark service-cross-link-card" *ngFor="let link of current.crossLinks">
             <span class="service-cross-link-card__label">Ruta complementaria</span>
-            <h3>{{ link.label }}</h3>
+            <h3>
+              <a class="text-link text-link--light service-cross-link-card__link" [routerLink]="link.path">
+                {{ link.label }}
+              </a>
+            </h3>
             <p>{{ link.description }}</p>
-            <a class="text-link text-link--light service-cross-link-card__link" [routerLink]="link.path">
-              Explorar landing
-            </a>
           </article>
         </div>
       </section>
@@ -175,7 +176,7 @@ import { SeoService } from "../services/seo.service";
             <p>{{ article.summary }}</p>
             <div class="article-meta">{{ article.readingTime }}</div>
             <div class="editorial-card__footer">
-              <a class="text-link" [routerLink]="article.seo.path">Leer insight</a>
+              <a class="text-link" [routerLink]="article.seo.path">{{ article.title }}</a>
             </div>
           </article>
         </div>

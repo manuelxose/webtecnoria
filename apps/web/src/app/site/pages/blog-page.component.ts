@@ -301,7 +301,7 @@ const BLOG_CLUSTER_MAP = new Map(
                 <p>{{ article.summary }}</p>
                 <div class="editorial-card__footer blog-editorial-card__footer">
                   <span class="article-meta">{{ article.readingTime }}</span>
-                  <a class="text-link" [routerLink]="article.path">Leer artículo</a>
+                  <a class="text-link" [routerLink]="article.path">{{ article.title }}</a>
                 </div>
               </div>
             </article>

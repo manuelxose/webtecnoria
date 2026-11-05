@@ -50,6 +50,13 @@
       "required": false,
       "timeoutMs": 600000,
       "kind": "e2e"
+    },
+    {
+      "id": "perf-baseline",
+      "argv": ["npm", "run", "perf:baseline"],
+      "required": false,
+      "timeoutMs": 600000,
+      "kind": "perf"
     }
   ]
 }

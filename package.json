@@ -28,8 +28,11 @@
     "test:analytics": "node --test scripts/tests/analytics-dispatch.test.mjs",
     "test:browser": "node --test scripts/browser-consent.mjs",
     "test:api": "node --import tsx --test \"scripts/api-tests/*.test.mjs\"",
+    "test:links": "node --test scripts/tests/internal-links.test.mjs",
+    "test:perf": "node --test scripts/tests/perf-baseline.test.mjs",
+    "perf:baseline": "node scripts/perf-baseline.mjs --samples 5",
     "test:monitor": "node scripts/growth-monitor.mjs",
-    "test:all": "npm run test:seo && npm run test:consent && npm run test:analytics && npm run test:api",
+    "test:all": "npm run test:seo && npm run test:links && npm run test:perf && npm run test:consent && npm run test:analytics && npm run test:api",
     "verify:web": "npm run build:web && npm run test:seo",
     "build": "npm run build:types && npm run build:web && npm run build:api"
   }

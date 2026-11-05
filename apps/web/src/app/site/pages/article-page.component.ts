@@ -114,6 +114,14 @@ type ApiArticleView = {
                 Si este tema toca una decisión que estás tomando ahora, podemos
                 aterrizarlo en un diagnóstico o en la landing más adecuada.
               </p>
+              <p
+                class="article-sidebar__service-link"
+                *ngIf="$any(current).serviceLinks?.length"
+              >
+                <a class="text-link" [routerLink]="$any(current).serviceLinks[0].path">
+                  {{ $any(current).serviceLinks[0].label }}
+                </a>
+              </p>
               <a class="button button-primary" [routerLink]="current.ctaLink">
                 {{ current.ctaLabel }}
               </a>

@@ -71,6 +71,8 @@ apps/api/dist/
 # Project-scoped AI tooling (repo convention: local-only)
 .dsh/
 .specify/
+.serena/
+.dsh-tmp/
 
 # Local SEO evidence captures
 .seo-*.html

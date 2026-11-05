@@ -190,7 +190,7 @@ const SCENARIO_ICON_PATHS = [
           <p>{{ article.summary }}</p>
           <div class="article-meta">{{ article.readingTime }}</div>
           <div class="editorial-card__footer">
-            <a class="text-link" [routerLink]="article.seo.path">Leer artículo</a>
+            <a class="text-link" [routerLink]="article.seo.path">{{ article.title }}</a>
           </div>
         </article>
       </div>
