@@ -39,7 +39,7 @@ La instrucción exige **no colapsar** las dimensiones en un único PASS. Estado 
 | `be5c234` | `test(release)`: verificador de producción de sólo lectura (**local, pendiente de push**) |
 | Run de despliegue | **`42082908353`**, conclusión **`success`**, 1m16s, 2026-11-05T18:18:09Z→18:19:29Z |
 | **Release activa** | **`20261105_191921`**, `releasedAt 2026-11-05T19:19:22+01:00`, fingerprint `6fc0aab3…7f2d` |
-| HEAD del servidor | `72896271b1d37f58ace600ca645eedd522fbab04` |
+| HEAD del servidor | `632a3ec` (tras el segundo run; la release no cambió) |
 | Anterior / rollback | `20261105_052852` (anterior) · **`20261105_012220`** (objetivo de rollback, presente) |
 
 ### Evidencia del propio run de despliegue
@@ -57,6 +57,24 @@ Deploy webtecnoria OK: 7289627
 
 El smoke `Expected text not found` **no aparece**: la aserción, que fallaba 200/200 con el cuerpo de
 125 KB, ya pasa en el pipeline real. Ésta es la prueba de que H-10 era el gate y no la aplicación.
+
+### Segundo run: idempotencia y fiabilidad del gate
+
+Publicado el commit de documentación `632a3ec`, el workflow se ejecutó de nuevo:
+**run `42084242925` = `success`**. El log es exactamente el comportamiento correcto de una release
+sin cambios de código:
+
+```
+==> tecnoria-web: staging build is identical to current release, skipping new release publish
+==> tecnoria-web: current service already points to the expected release, skipping restart
+==> tecnoria-web: release published
+Deploy webtecnoria OK: 632a3ec
+```
+
+No publicó release nueva, no reinició el servicio y el smoke pasó. **Dos runs consecutivos en verde**
+donde antes había cuatro fallos consecutivos: el gate es ahora fiable, no "de momento pasa".
+El servidor queda en `632a3ec` sirviendo la misma release `20261105_191921`; la comprobación final
+contra producción sigue en **19/19**.
 
 ---
 
