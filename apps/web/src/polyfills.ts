@@ -1,7 +1,12 @@
 /***************************************************************************************************
- * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ * `@angular/localize/init` is intentionally NOT imported.
+ *
+ * GROWTH-03C: the application defines no i18n configuration in angular.json and uses no
+ * `$localize` tags anywhere in src/ (verified: the only occurrence was this comment).
+ * Importing it only to satisfy a comment pulled the Angular compiler runtime into the CLIENT
+ * polyfills bundle: 500,258 B of dead code shipped to every visitor before first paint.
+ * If i18n is ever adopted, re-add the import together with that configuration.
  */
-import '@angular/localize/init';
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
