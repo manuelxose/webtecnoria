@@ -115,3 +115,67 @@ Server: `/var/www/webtecnoria/apps/web/releases/` retains 6 releases; `current -
 Independently measured: polyfills 500,258 B → 34,609 B (JIT compiler removed); total JS transfer home 1,360.2 → 658.8 KiB (−51.6 %); blocking approximation home 3,095.0 → 906.5 ms, service 1,189.5 → 436.0 ms; LCP 878 → 878 ms (correctly not claimed). H-10 reproduced 200/200 fail (exit 141) vs 100/100 pass on the here-string form. All 7 regression suites green on the final bytes. Canonicalization matrix and rollback target verified.
 
 The medium finding F2 (shared deploy-script provenance) must be confirmed with the operator before or at deployment, but the production smoke path is already observed to carry the fix.
+
+---
+
+# Round 2 (re-bind to delivered bytes) — 2026-11-05
+
+Reviewed revision: `415e2ca`+`6500f35`+`6cfcb4f`. Current HEAD: `be5c234` (server/production `7289627`, origin/master).
+
+## 1. Enumerated delta (6cfcb4f..HEAD) and character of change
+
+| File | Character |
+|---|---|
+| `apps/web/src/polyfills.ts` | **comment-only** — rewrites the F1 comment; the import removal was already in round 1. No code change. |
+| `scripts/release-verify.mjs` (+137) | **new tooling** — read-only production release verifier (19 checks). |
+| `docs/growth/GROWTH-03C-{CANONICAL,GSC-MONITORING,JS-ANALYSIS,LEAD-RISK,PERFORMANCE,RELEASE}.md`, `docs/growth/GROWTH-04-HANDOFF.md` | **documentation-only**. |
+| `docs/growth/_team/GROWTH-03C-{CANONICAL,GSC,LEAD,RELEASE,REVIEW}-INPUT.md`, `perf-03c-{before,after}.json` | **documentation/artifact-only** (previously untracked, now committed verbatim). |
+
+Only one CODE file changed and it is a comment.
+
+## 2. Byte-identity of the build
+
+Rebuilt current HEAD myself: `npm run build:ssr:web` → exit 0, "Prerendered 0 static routes", "Application bundle generation complete [19.699 s]".
+
+`dist/browser` = **84 JS files**. Top scripts, byte-for-byte identical to the round-1 artifact (content-hashed names equal → equal content):
+
+```
+polyfills-RNHY7D3N.js   34,609 B
+main-S5IVJD3W.js       128,733 B
+chunk-M6HQQAKG.js      186,663 B
+chunk-4RZWRMQW.js       93,500 B
+chunk-Q7RC5WIO.js       79,495 B
+chunk-V2OUFEZG.js       47,488 B
+```
+
+The comment-only polyfills change did NOT move the minified output, as expected. The production deployment independently serves `polyfills-RNHY7D3N.js` at 34,609 B (release `20261105_191921`, server HEAD `7289627`), so the served build is the reviewed build.
+
+## 3. F3 closure verified
+
+`grep -oE '(src|href)="[^"]+\.js"' apps/web/dist/server/index.server.html` → 12 files (2 `<script>` + 10 `modulepreload`), on-disk sum = **262,338 B**, matching the documented "after" value exactly.
+
+## 4. Re-run of affected suites
+
+- `npm run build:ssr:web` → exit 0.
+- `npm run test:seo` → exit 0, "SEO checks passed: 33 public routes, JSON-LD, 404/301, cache, sitemap and anchor integrity."
+- `node scripts/release-verify.mjs` (production, read-only) → **19/19 OK, exit 0**.
+
+Justification for skipping the other suites: the only code delta is a comment in `polyfills.ts` (proven byte-identical build); the rest is docs + a read-only tool. `test:consent`, `test:analytics`, `test:browser`, `test:links`, `test:perf`, `test:api` execute against unchanged code and are unaffected by this delta (all were green on these same bytes in round 1).
+
+## 5. Assessment of scripts/release-verify.mjs
+
+Read-only (fetch only, GET, `redirect: manual`), fail-closed (non-zero exit on any failed check, unhandled network error also exits non-zero). It checks exactly what it claims: host consolidation, 33-route sitemap with unique self-canonical, GROWTH-03B/03C internal-link behaviour, polyfills < 100 KB and no JIT compiler, no analytics tag load in pre-consent SSR HTML, consent bootstrap present, real 404s, HSTS. It correctly distinguishes the `TAG_URL` string literal (not loaded) from an actual `<script src>`/`<link href>` analytics load. It does NOT verify page content correctness (e.g. it would pass a 200 route with a self-canonical but wrong body) — acceptable for a release smoke, not a content audit.
+
+## Round-2 findings
+
+| id | severity | file | problem | required fix |
+|---|---|---|---|---|
+| R2-F1 | low | `scripts/release-verify.mjs` | Canonical regex `/<link rel="canonical" href="([^"]+)"/g` assumes exact attribute order/form; would miss a canonical emitted with reordered/extra attributes. | Match the canonical link by tag then extract href order-independently. |
+| R2-F2 | low | `scripts/release-verify.mjs` | JIT detection via `parseTemplate`/`compileComponent` substring is a heuristic; a differently-minified compiler could evade it (mitigated by the `<100 KB` polyfills check). | Document the heuristic as such; the `<100 KB` guard is the primary invariant. |
+| R2-F3 | low | `scripts/release-verify.mjs` | Tool lives in commit `be5c234`, which is 1 commit ahead of origin/master (`7289627`); the deployed server does not yet contain the verifier. | Not required for production (local tool); push when it should be part of the pipeline. |
+
+Round-1 F1/F3/F4/F5 are CLOSED. F2 is effectively resolved in practice: the deployment `42082908353` succeeded at server HEAD `7289627`, proving the shared `/var/www/bin/` H-10 fix works in a real deploy (the smoke no longer false-fails). F6 (source-regex test) remains open as low, unchanged by this delta.
+
+## Round-2 verdict
+
+**PASS** — no critical or high finding. The delivered production build is byte-identical to the artifact reviewed and measured in round 1 (only a comment changed, and the rebuild's content-hashed filenames and sizes match exactly). Production (release `20261105_191921`, server HEAD `7289627`) independently serves the AOT build (polyfills 34,609 B, no JIT compiler, consent-gated, 19/19 release checks).

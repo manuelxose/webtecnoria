@@ -53,6 +53,7 @@ HTML de la API tenga `id` en sus encabezados, o se generarán anclas rotas: veri
 | 2 | Automatizar el informe GSC de sólo lectura | No hay planificador autorizado; poner credenciales requiere autorización del propietario | Checkpoints 7/14/30 sin intervención manual |
 | 3 | Revisión de `title`/`description` del artículo de coste | Sólo tiene sentido **después** de restaurar el cuerpo y observar ≥30 días | CTR en las tres consultas de precio, con posición y mix de consultas declarados |
 | 4 | Propagación de `tableOfContents` a artículos CMS | Bloque TOC ausente en todos los slugs con fila en `blog_posts` | TOC presente y con anclas válidas |
+| 5 | Eliminar los ~40 anclas genéricas `Leer artículo` / `Leer insight` **fuera de la home** | Verificado en producción el 2026-11-05: CTA destacado de `/blog` + 3 tarjetas de relacionados por artículo. La home ya está limpia | 0 anclas genéricas en todo el sitio, con prueba en las 33 rutas |
 
 ## 4. Prioridad 1 — Rendimiento
 
@@ -71,6 +72,9 @@ HTML de la API tenga `id` en sus encabezados, o se generarán anclas rotas: veri
 | 2 | Endpoint agregado **sin PII** (`/contact/messages/notification-summary`) | La API actual sólo expone detalle con PII; el panel admin no ve `contact_messages` | Vigilancia diaria sin exponer datos personales |
 | 3 | `renotify-leads.ts --dry-run --verbose` | El dry-run sólo imprime contadores: no dice qué lead falló | Lista de candidatos con clase de error |
 | 4 | Alerta cuando `pending` supere un umbral | No hay alertas; un fallo de SMTP pasa inadvertido | Detección en minutos, no en días |
+| 5 | Reparar `infra/bin/backup-tecnoria-db.sh` y sincronizar la copia de `/usr/local/sbin/tecnoria-db-backup` | **Mismo patrón que H-10**: `gzip -dc "$out" \| pg_restore -l` bajo `pipefail` mata `gzip` con SIGPIPE, el script sale 141 y **nunca ejecuta `chmod 0640`** → el dump de chat queda en `0644` y el log del cron sólo tiene una línea. Reproducido en vivo el 2026-11-05 al hacer el backup previo a la release | Dumps en `0640`, dos líneas `backup ok`, script con exit 0 |
+| 6 | Corregir `script_stop` en `.github/workflows/deploy.yml` | La acción SSH instalada **ignora** ese input (anotación de Actions en el run 42082908353): se cree tener "parar en el primer error" y no se tiene | El workflow falla de verdad en el primer error, verificado con una prueba controlada |
+| 7 | Aserción de **runtime** para el enlace del artículo servido por CMS (hallazgo F6 de la auditoría) | El test actual es una aserción de texto fuente: pasaría con un fallo de render en tiempo de ejecución | El arnés SSR renderiza el slug y comprueba el `href` |
 
 ## 6. Prioridad 2 — Crecimiento comercial
 

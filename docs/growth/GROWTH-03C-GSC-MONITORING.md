@@ -50,15 +50,17 @@ Por tanto la observación es **manual y documentada**, no automática.
 
 ## 3. Procedimiento exacto
 
-1. **T0** = fecha y hora UTC del despliegue verificado (timestamp del servidor), registrada en
-   `GROWTH-03C-DELIVERY.md` junto al `run id` de Actions y el release activo.
+1. **T0 está fijado**: `T0_release = 2026-11-05T18:19:22Z` (`release.json` de
+   `20261105_191921`) y `T0_public = 2026-11-05T18:19:26Z` (primer 200 público del build nuevo,
+   recomendado por `release-engineer` como inicio de ventana). Cuatro segundos de diferencia; las
+   fechas de lectura no cambian. `run id` del despliegue: `42082908353` (exit 0).
 2. Search Console finaliza datos con ~3 días de retardo. Cada checkpoint se lee **no antes** de:
 
-| Checkpoint | Ventana | Leer a partir de |
-|---|---|---|
-| Día 7 | 7 días completos tras T0 | T0 + 10 días |
-| Día 14 | 14 días completos tras T0 | T0 + 17 días |
-| Día 30 | 30 días completos tras T0 | T0 + 33 días |
+| Checkpoint | Ventana | Leer a partir de | Fecha concreta |
+|---|---|---|---|
+| Día 7 | 7 días completos tras T0 | T0 + 10 días | **2026-11-15** |
+| Día 14 | 14 días completos tras T0 | T0 + 17 días | **2026-11-22** |
+| Día 30 | 30 días completos tras T0 | T0 + 33 días | **2026-12-08** |
 
 3. En cada lectura: exportar con `node scripts/gsc-query-page.mjs --out <ruta>` y guardar el fichero
    con la fecha en el nombre. **Nunca** sobrescribir el baseline.
