@@ -172,7 +172,7 @@ servir todos los JS/CSS con 200.
 
 ## 11. Estado del despliegue
 
-- Commit final: `3c7cdb9`.
+- Commit de código desplegado: `3c7cdb9`.
 - Release: `20261105_012220`.
 - GitHub Actions: run `41940740641`, `success`.
 - `tecnoria-web`, `tecnoria-api` y nginx: activos, 0 reinicios.
