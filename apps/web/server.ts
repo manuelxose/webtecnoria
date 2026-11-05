@@ -1,8 +1,9 @@
 import { CommonEngine } from "@angular/ssr/node";
 import express from "express";
+import { readdirSync } from "node:fs";
 import http from "node:http";
 import https from "node:https";
-import { dirname, join, resolve, sep } from "node:path";
+import { dirname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import bootstrap from "./src/main.server";
 import {
@@ -230,6 +231,32 @@ async function isPublishedBlogArticle(
   return published;
 }
 
+function indexBrowserAssets(root: string): Map<string, string> {
+  const assets = new Map<string, string>();
+
+  const walk = (directory: string): void => {
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      const fullPath = join(directory, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+      } else if (entry.isFile()) {
+        assets.set(relative(root, fullPath).toLowerCase(), fullPath);
+      }
+    }
+  };
+
+  walk(root);
+  return assets;
+}
+
+function getAssetCacheControl(filePath: string): string {
+  if (/-[A-Z0-9]{8}\.(?:js|css|woff2?|svg|png|webp|avif)$/i.test(filePath)) {
+    return "public, max-age=31536000, immutable";
+  }
+
+  return "public, max-age=2592000";
+}
+
 function getPrivateHome(user: SessionUser): string {
   if (user.role === "client") {
     return "/portal/dashboard";
@@ -254,6 +281,7 @@ export function app(): express.Express {
   const serverDistPath = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistPath, "../browser");
   const indexHtml = join(serverDistPath, "index.server.html");
+  const browserAssets = indexBrowserAssets(browserDistFolder);
 
   server.use((_req, res, next) => {
     res.setHeader("X-Content-Type-Options", "nosniff");
@@ -315,21 +343,8 @@ export function app(): express.Express {
         return;
       }
 
-      if (
-        /-[A-Z0-9]{8}\.(?:js|css|woff2?|svg|png|webp|avif)$/i.test(filePath)
-      ) {
-        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-        return;
-      }
-
-      if (
-        filePath.endsWith(".js") ||
-        filePath.endsWith(".css") ||
-        filePath.endsWith(".woff2") ||
-        filePath.endsWith(".woff") ||
-        filePath.includes(`${sep}assets${sep}`)
-      ) {
-        res.setHeader("Cache-Control", "public, max-age=2592000");
+      if (filePath.includes(`${sep}assets${sep}`) || /\.(?:js|css|woff2?)$/i.test(filePath)) {
+        res.setHeader("Cache-Control", getAssetCacheControl(filePath));
       }
     },
   };
@@ -337,7 +352,25 @@ export function app(): express.Express {
   server.get("*.*", express.static(browserDistFolder, staticOptions));
 
   server.use((req, res, next) => {
-    if ((req.method === "GET" || req.method === "HEAD") && /\.[^/]+$/.test(req.path)) {
+    if (
+      (req.method === "GET" || req.method === "HEAD") &&
+      /\.[^/]+$/.test(req.path)
+    ) {
+      let requested = "";
+      try {
+        requested = decodeURIComponent(req.path).replace(/^\/+/, "").toLowerCase();
+      } catch {
+        res.status(404).type("text/plain").send("Not found");
+        return;
+      }
+
+      const fallback = browserAssets.get(requested);
+      if (fallback) {
+        res.setHeader("Cache-Control", getAssetCacheControl(fallback));
+        res.sendFile(fallback);
+        return;
+      }
+
       res.status(404).type("text/plain").send("Not found");
       return;
     }

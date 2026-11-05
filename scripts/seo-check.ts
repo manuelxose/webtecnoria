@@ -175,14 +175,26 @@ async function main(): Promise<void> {
     if (!assetPath) {
       throw new Error("could not find a hashed JS asset in the homepage");
     }
-    const asset = await request(
-      assetPath.startsWith("/") ? assetPath : `/${assetPath}`,
-      "manual"
-    );
+    const normalizedAssetPath = assetPath.startsWith("/")
+      ? assetPath
+      : `/${assetPath}`;
+    const asset = await request(normalizedAssetPath, "manual");
     assert.equal(asset.status, 200, "hashed asset must not be redirected");
     const cacheControl = asset.headers.get("cache-control") ?? "";
     assert.match(cacheControl, /immutable/);
     assert.doesNotMatch(cacheControl, /no-store/);
+
+    if (normalizedAssetPath !== normalizedAssetPath.toLowerCase()) {
+      const lowerCaseAsset = await request(
+        normalizedAssetPath.toLowerCase(),
+        "manual"
+      );
+      assert.equal(
+        lowerCaseAsset.status,
+        200,
+        "cached lowercase asset URL must resolve"
+      );
+    }
 
     const robots = await request("/robots.txt");
     assert.equal(robots.status, 200);
